@@ -13,6 +13,7 @@ gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.0'
 
 gem 'devise', '3.0.3'
+gem 'zurb-foundation'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

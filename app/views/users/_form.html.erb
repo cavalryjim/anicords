@@ -11,47 +11,94 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :first_name, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :first_name %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :middle_name %><br>
-    <%= f.text_field :middle_name %>
+  
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :middle_name, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :middle_name %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+  
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :last_name, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :last_name %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :email, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :email %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :address1 %><br>
-    <%= f.text_field :address1 %>
+  
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :address1, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :address1 %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :address2 %><br>
-    <%= f.text_field :address2 %>
+  
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :address2, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :address2 %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+  
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :city, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :city %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
+  
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :state, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :state %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :zip %><br>
-    <%= f.text_field :zip %>
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :zip, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :zip %>	
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.label :phone, class: "right inline" %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.text_field :phone %>	
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <div class="small-9 small-offset-3 columns"><%= f.submit %></div>
   </div>
 <% end %>
