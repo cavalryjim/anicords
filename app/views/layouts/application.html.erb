@@ -13,7 +13,7 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  	<title><%= content_for?(:title) ? ("DooLittl | " + yield(:title)) : "DooLittl" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -25,14 +25,14 @@
 	<nav class="top-bar">
 	  <ul class="title-area">
 	    <li class="name">
-	      <h1><%= link_to "DoLitl", root_path %></a></h1>
+	      <%= link_to image_tag('doolittl1.png'), root_path %>
 	    </li>
 	  </ul>
 	  <section class="top-bar-section">
 	    <ul class="right">
 	      <% if user_signed_in? %>
 	        <li class="divider"></li>
-	        <li>Logged in as <%= current_user.email %>.</li>
+	        <li><a href="#">Logged in as <%= current_user.email %>.</a></li>
 	        <li class="divider"></li>
 	        <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
 	        <li class="divider"></li>
