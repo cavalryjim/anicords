@@ -1,0 +1,43 @@
+<h1>Listing breeders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address1</th>
+      <th>Address2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Phone</th>
+      <th>Website</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @breeders.each do |breeder| %>
+      <tr>
+        <td><%= breeder.name %></td>
+        <td><%= breeder.address1 %></td>
+        <td><%= breeder.address2 %></td>
+        <td><%= breeder.city %></td>
+        <td><%= breeder.state %></td>
+        <td><%= breeder.zip %></td>
+        <td><%= breeder.phone %></td>
+        <td><%= breeder.website %></td>
+        <td><%= breeder.email %></td>
+        <td><%= link_to 'Show', breeder %></td>
+        <td><%= link_to 'Edit', edit_breeder_path(breeder) %></td>
+        <td><%= link_to 'Destroy', breeder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Breeder', new_breeder_path %>
