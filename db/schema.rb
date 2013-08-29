@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829163303) do
+ActiveRecord::Schema.define(version: 20130829220231) do
+
+  create_table "animal_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "animals", force: true do |t|
+    t.string   "name"
+    t.integer  "animal_type_id"
+    t.string   "breed"
+    t.decimal  "weight"
+    t.text     "description"
+    t.integer  "household_id"
+    t.integer  "breeder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "breeders", force: true do |t|
     t.string   "name"
