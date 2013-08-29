@@ -7,9 +7,17 @@ class User < ActiveRecord::Base
   
   has_many  :user_associations, :dependent => :destroy
   has_many  :breeders, :through => :user_associations
-         
+ 
   def multiple_associations?
-    true
+    self.user_associations.count > 1
   end  
+  
+  def associations
+    self.breeders
+  end
+  
+  def set_association(association_id)
+    UserAssociation.find(association_id).breeder_id
+  end
   
 end

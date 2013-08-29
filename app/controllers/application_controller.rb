@@ -9,9 +9,8 @@ class ApplicationController < ActionController::Base
     if current_user.multiple_associations?
       user_select_association_path
       
-      
     else
-      new_breeder_path
+      breeder_path(current_user.breeder_ids)
       
     end
   end

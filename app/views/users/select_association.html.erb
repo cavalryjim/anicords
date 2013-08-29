@@ -1,19 +1,14 @@
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<%= form_for @user, :url => {:action => "set_association"} do |f| %>
 
-<p>
-  <strong>Middle name:</strong>
-  <%= @user.middle_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <div class="row collapse">
+    <div class="small-3 columns">
+	  <%= f.collection_radio_buttons :user_association_ids, @user.associations, :id, :name %>
+    </div>
+    
+  </div>
+  
+  
+  <div class="row">
+    <div class="small-9 small-offset-3 columns"><%= f.submit %></div>
+  </div>
+<% end %>

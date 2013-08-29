@@ -68,6 +68,10 @@ class UsersController < ApplicationController
     @user = current_user
     
   end
+  
+  def set_association
+    redirect_to breeder_path(current_user.set_association(params[:user][:user_association_ids]))
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

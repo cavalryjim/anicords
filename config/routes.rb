@@ -1,11 +1,14 @@
 Anicords::Application.routes.draw do
   
+  resources :animals
+
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
   
   resources :breeders
   resources :users
   
   get 'user/select_association' => 'users#select_association'
+  patch 'user/set_association' => 'users#set_association'
   
 
   # The priority is based upon order of creation: first created -> highest priority.
