@@ -1,10 +1,12 @@
 Anicords::Application.routes.draw do
   
-  resources :breeders
-
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
   
+  resources :breeders
   resources :users
+  
+  get 'user/select_association' => 'users#select_association'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

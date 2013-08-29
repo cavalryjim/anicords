@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827211546) do
+ActiveRecord::Schema.define(version: 20130829163303) do
 
   create_table "breeders", force: true do |t|
     t.string   "name"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20130827211546) do
     t.string   "phone"
     t.string   "website"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_associations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "breeder_id"
+    t.integer  "household_id"
+    t.boolean  "administrator"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

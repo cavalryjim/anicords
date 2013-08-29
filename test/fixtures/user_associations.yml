@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  breeder_id: 1
+  household_id: 1
+  administrator: false
+
+two:
+  user_id: 1
+  breeder_id: 1
+  household_id: 1
+  administrator: false
