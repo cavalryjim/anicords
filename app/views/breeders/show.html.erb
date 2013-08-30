@@ -1,49 +1,22 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @breeder.name %>
 </p>
 
-<p>
-  <strong>Address1:</strong>
-  <%= @breeder.address1 %>
-</p>
+<%= form_for(@breeder) do |f| %>
 
-<p>
-  <strong>Address2:</strong>
-  <%= @breeder.address2 %>
-</p>
 
-<p>
-  <strong>City:</strong>
-  <%= @breeder.city %>
-</p>
+	<%= f.fields_for :animals do |builder| %>
+	  <fieldset>
+	  <%= builder.label :name, "Name " %>
+	  <%= builder.text_field :name %>
+	  <%= builder.check_box :_destroy %>
+	  <%= builder.label :_destroy, "Remove Animal" %>
+	  </fieldset>
+	<% end %>
 
-<p>
-  <strong>State:</strong>
-  <%= @breeder.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @breeder.zip %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @breeder.phone %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @breeder.website %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @breeder.email %>
-</p>
+<% end %>
 
 <%= link_to 'Edit', edit_breeder_path(@breeder) %> |
 <%= link_to 'Back', breeders_path %>
