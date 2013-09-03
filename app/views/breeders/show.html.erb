@@ -8,15 +8,13 @@
 
 
 	<%= f.fields_for :animals do |builder| %>
-	  <fieldset>
-	  <%= builder.label :name, "Name " %>
-	  <%= builder.text_field :name %>
-	  <%= builder.check_box :_destroy %>
-	  <%= builder.label :_destroy, "Remove Animal" %>
-	  </fieldset>
+	  <%= render 'animal_fields', f: builder %>
 	<% end %>
+	
+	<%= link_to_add_fields "Add Animal", f, :animals %>
 
+	<%= f.submit 'Save Changes' %>
 <% end %>
 
-<%= link_to 'Edit', edit_breeder_path(@breeder) %> |
-<%= link_to 'Back', breeders_path %>
+<%= link_to 'Edit Profile', edit_breeder_path(@breeder) %> |
+
