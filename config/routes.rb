@@ -2,7 +2,8 @@ Anicords::Application.routes.draw do
   
   resources :animals
 
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
+                     controllers: {omniauth_callbacks: "omniauth_callbacks"}
   
   resources :breeders
   resources :users

@@ -13,7 +13,9 @@ gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.0'
 
 gem 'devise', '3.0.3'
-gem 'zurb-foundation'
+gem 'zurb-foundation', '4.3.1'
+gem 'omniauth-twitter', '1.0.0'
+gem 'omniauth-facebook', '1.4.1'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
