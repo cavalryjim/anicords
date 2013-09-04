@@ -25,10 +25,11 @@ class AnimalsController < ApplicationController
   # POST /animals.json
   def create
     @animal = Animal.new(animal_params)
-
+    @breeder = Breeder.find_by_id(params[:breeder_id])
+    
     respond_to do |format|
       if @animal.save
-        format.html { redirect_to @animal, notice: 'Animal was successfully created.' }
+        format.html { redirect_to breeder_animal_path(@breeder, @animal), notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
       else
         format.html { render action: 'new' }

@@ -43,14 +43,20 @@
 	      	<li class="divider"></li>
 	  		<li><%= link_to "Login", new_user_session_path %></li>
 	  		<li class="divider"></li>
-	  		<li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
+	  		<li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
 	      <% end %>
 	    </ul>
 	  </section>
-	</nav>
-   
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
+	</nav> 
+	
+	<% flash.each do |name, msg| %>
+	  <div class="alert-box <%= name == :notice ? "success" : "alert" %>" data-alert> 
+		  <%= msg %>
+          <a href="" class="close">&times;</a>
+	  </div>
+    <% end %>
+
+  
    
    <div class="row">
     <div class="large-8 columns">

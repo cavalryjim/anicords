@@ -5,7 +5,9 @@ Anicords::Application.routes.draw do
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
                      controllers: {omniauth_callbacks: "omniauth_callbacks"}
   
-  resources :breeders
+  resources :breeders do
+    resources :animals
+  end
   resources :users
   
   get 'user/select_association' => 'users#select_association'

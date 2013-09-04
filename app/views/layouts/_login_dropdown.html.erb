@@ -1,0 +1,31 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <fieldset>
+    <legend>Login</legend>
+  
+    <div class="row ">
+      <div class="small-3 columns">
+	    <%= f.label :email, class: "right inline" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :email, :autofocus => true %>	
+      </div>
+    </div>
+ 
+    <div class="row ">
+      <div class="small-3 columns">
+	    <%= f.label :password, class: "right inline" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.password_field :password %>	
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="small-3 small-offset-3 columns"><%= f.check_box :remember_me %> </div>
+      <div class="small-6 columns"><%= f.label :remember_me, class: "left" %></div>
+    </div>
+ 
+    <div><%= f.submit "Login" %></div>
+    <%= render "devise/shared/links" %>
+  
+<% end %>
