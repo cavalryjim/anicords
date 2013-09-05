@@ -1,5 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner
 
   # GET /animals
   # GET /animals.json
@@ -25,7 +26,7 @@ class AnimalsController < ApplicationController
   # POST /animals.json
   def create
     @animal = Animal.new(animal_params)
-    @breeder = Breeder.find_by_id(params[:breeder_id])
+    @animal.breeder_id = @breeder.id
     
     respond_to do |format|
       if @animal.save
@@ -63,6 +64,10 @@ class AnimalsController < ApplicationController
   end
 
   private
+    def set_owner
+      @breeder = Breeder.find(params[:breeder_id])
+    end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_animal
       @animal = Animal.find(params[:id])
@@ -70,6 +75,6 @@ class AnimalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
-      params.require(:animal).permit(:name, :type, :breed, :weight, :description)
+      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description)
     end
 end
