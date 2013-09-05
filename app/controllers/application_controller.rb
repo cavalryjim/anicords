@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
       user_select_association_path
       
     else
-      breeder_path(current_user.breeder_ids)
+      session[:home_page] = breeder_path(current_user.breeder_ids.first)
+      #breeder_path(current_user.breeder_ids.first)
+      #session[:home_page]
       
     end
   end

@@ -3,18 +3,53 @@
   <%= @breeder.name %>
 </p>
 
+<!--
+	JDavis: taking out the functionality of editing animal records at this time. 
 <%= form_for(@breeder) do |f| %>
 
 
 	<%= f.fields_for :animals do |builder| %>
 	  <%= render 'animal_fields', f: builder %>
 	<% end %>
-	
+-->
 	<!--<%= link_to_add_fields "Add Animal", f, :animals %>-->
-	<%= link_to "Add Animal", new_breeder_animal_path(@breeder) %>
+<!-- 
 
 	<%= f.submit 'Save Changes' %>
 <% end %>
+	-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Breed</th>
+      <th>Weight</th>
+      <th>Description</th>
+      
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @breeder.animals.each do |animal| %>
+      <tr>
+        <td><%= link_to animal.name, breeder_animal_path(@breeder, animal) %></td>
+        <td><%= animal.animal_type %></td>
+        <td><%= animal.breed %></td>
+        <td><%= animal.weight %></td>
+        <td><%= animal.description %></td>
+        
+        <td><%= link_to 'Edit', edit_animal_path(animal) %></td>
+        <td><%= link_to 'Destroy', animal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+	
+<%= link_to "Add Animal", new_breeder_animal_path(@breeder) %>
 
 <%= link_to 'Edit Breeder Profile', edit_breeder_path(@breeder) %> 
 

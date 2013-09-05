@@ -64,12 +64,22 @@ class UsersController < ApplicationController
     end
   end
   
+  def home
+    #JDavis: this action will need logic to determine which household or breeder to redirect the routing
+    if session[:home_page]
+      redirect_to session[:home_page]
+    else 
+      redirect_to breeder_path(current_user.breeder_ids.first)
+    end
+  end
+  
   def select_association
     @user = current_user
     
   end
   
   def set_association
+    session[:home_page] = breeder_path(current_user.set_association(params[:user][:user_association_ids]))
     redirect_to breeder_path(current_user.set_association(params[:user][:user_association_ids]))
   end
 
