@@ -1,24 +1,41 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Name:</strong>
   <%= @household.name %>
 </p>
 
-<p>
-  <strong>Address1:</strong>
-  <%= @household.address1 %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Breed</th>
+      <th>Weight</th>
+      <th>Description</th>
+      
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Address2:</strong>
-  <%= @household.address2 %>
-</p>
+  <tbody>
+    <% @household.animals.each do |animal| %>
+      <tr>
+        <td><%= link_to animal.name, household_animal_path(@household, animal) %></td>
+        <td><%= animal.animal_type %></td>
+        <td><%= animal.breed %></td>
+        <td><%= animal.weight %></td>
+        <td><%= animal.description %></td>
+        
+        <td><%= link_to 'Edit', edit_household_animal_path(@household, animal) %></td>
+        <td><%= link_to 'Destroy', animal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+	
+<%= link_to "Add Animal", new_household_animal_path(@household) %> |
 
-<p>
-  <strong>Phone:</strong>
-  <%= @household.phone %>
-</p>
+<%= link_to 'Edit Household', edit_household_path(@household) %> 
 
-<%= link_to 'Edit', edit_household_path(@household) %> |
-<%= link_to 'Back', households_path %>

@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to session[:home_page], notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     if session[:home_page]
       redirect_to session[:home_page]
     else 
-      redirect_to breeder_path(current_user.breeder_ids.first)
+      redirect_to user_path(current_user)
     end
   end
   
@@ -79,8 +79,9 @@ class UsersController < ApplicationController
   end
   
   def set_association
-    session[:home_page] = breeder_path(current_user.set_association(params[:user][:user_association_ids]))
-    redirect_to breeder_path(current_user.set_association(params[:user][:user_association_ids]))
+    session[:home_page] = current_user.selected_association(params[:user][:user_association_ids])
+    
+    redirect_to session[:home_page]
   end
 
   private

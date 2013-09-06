@@ -27,7 +27,8 @@ class BreedersController < ApplicationController
     @breeder = Breeder.new(breeder_params)
 
     respond_to do |format|
-      if @breeder.save
+      if @breeder.save && @breeder.create_association(current_user)
+        session[:home_page] = breeder_path(@breeder)
         format.html { redirect_to @breeder, notice: 'Breeder was successfully created.' }
         format.json { render action: 'show', status: :created, location: @breeder }
       else

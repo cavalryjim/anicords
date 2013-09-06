@@ -26,11 +26,10 @@ class AnimalsController < ApplicationController
   # POST /animals.json
   def create
     @animal = Animal.new(animal_params)
-    @animal.breeder_id = @breeder.id
     
     respond_to do |format|
-      if @animal.save
-        format.html { redirect_to breeder_animal_path(@breeder, @animal), notice: 'Animal was successfully created.' }
+      if @animal.save 
+        format.html { redirect_to @owner, notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
       else
         format.html { render action: 'new' }
@@ -65,7 +64,11 @@ class AnimalsController < ApplicationController
 
   private
     def set_owner
-      @breeder = Breeder.find(params[:breeder_id])
+      if params[:breeder_id]
+        @owner = Breeder.find(params[:breeder_id])
+      elsif params[:household_id]
+        @owner = Household.find(params[:household_id])
+      end
     end
     
     # Use callbacks to share common setup or constraints between actions.
@@ -75,6 +78,6 @@ class AnimalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
-      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description)
+      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id)
     end
 end

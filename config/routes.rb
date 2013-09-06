@@ -2,7 +2,9 @@ Anicords::Application.routes.draw do
   
   resources :veterinarians
 
-  resources :households
+  resources :households do
+    resources :animals
+  end
 
   resources :animals
 

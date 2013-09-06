@@ -18,4 +18,16 @@ class UserAssociation < ActiveRecord::Base
   belongs_to :household
   belongs_to :veterinarian
   
+  validates :user_id, :presence => true
+  
+  def name
+    if self.breeder_id
+      self.breeder.name
+    elsif self.household_id
+      self.household.name
+    elsif self.veterinarian_id
+      self.veterinarian.name
+    end
+  end
+  
 end

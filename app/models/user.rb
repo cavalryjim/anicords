@@ -45,11 +45,19 @@ class User < ActiveRecord::Base
   end  
   
   def associations
-    self.breeders
+    self.user_associations
   end
   
-  def set_association(association_id)
-    UserAssociation.find(association_id).breeder_id
+  def selected_association(association_id)
+    ua = UserAssociation.find(association_id)
+    if ua.breeder_id
+      Breeder.find(ua.breeder_id)
+    elsif ua.household_id
+      Household.find(ua.household_id)
+    elsif ua.veterinarian_id
+      Veterinarian.find(ua.veterinarian_id)
+    end
+    
   end
 
   def self.from_omniauth(auth)

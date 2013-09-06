@@ -9,11 +9,14 @@ class ApplicationController < ActionController::Base
     if current_user.multiple_associations?
       user_select_association_path
       
-    else
-      session[:home_page] = breeder_path(current_user.breeder_ids.first)
+    elsif current_user.user_association_ids.count == 1
+      session[:home_page] = url_for(current_user.selected_association(current_user.user_association_ids.first))
       #breeder_path(current_user.breeder_ids.first)
       #session[:home_page]
-      
+    else
+      # JDavis: Will need to prompt the user for setting up a household, breeder, or veterinarian account
+      #     Something like 'They are part of our homes so let's add them as a household account'.
+      session[:home_page] = user_path(current_user)
     end
   end
   

@@ -22,4 +22,8 @@ class Household < ActiveRecord::Base
   has_many  :animals
   accepts_nested_attributes_for :animals, allow_destroy: true
   
+  def create_association(user)
+    UserAssociation.where(user_id: user.id, household_id: self.id).first_or_create
+  end
+  
 end

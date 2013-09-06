@@ -27,7 +27,8 @@ class HouseholdsController < ApplicationController
     @household = Household.new(household_params)
 
     respond_to do |format|
-      if @household.save
+      if @household.save && @household.create_association(current_user)
+        session[:home_page] = @household
         format.html { redirect_to @household, notice: 'Household was successfully created.' }
         format.json { render action: 'show', status: :created, location: @household }
       else
