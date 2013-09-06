@@ -42,7 +42,7 @@
         <td><%= animal.weight %></td>
         <td><%= animal.description %></td>
         
-        <td><%= link_to 'Edit', edit_animal_path(animal) %></td>
+        <td><%= link_to 'Edit', edit_breeder_animal_path(@breeder, animal) %></td>
         <td><%= link_to 'Destroy', animal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
