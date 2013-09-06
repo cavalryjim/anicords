@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @household.name %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @household.address1 %>
+</p>
+
+<p>
+  <strong>Address2:</strong>
+  <%= @household.address2 %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @household.phone %>
+</p>
+
+<%= link_to 'Edit', edit_household_path(@household) %> |
+<%= link_to 'Back', households_path %>

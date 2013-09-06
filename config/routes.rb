@@ -1,9 +1,13 @@
 Anicords::Application.routes.draw do
   
+  resources :veterinarians
+
+  resources :households
+
   resources :animals
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
-                     controllers: {omniauth_callbacks: "omniauth_callbacks"}
+                     controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"}
   
   resources :breeders do
     resources :animals

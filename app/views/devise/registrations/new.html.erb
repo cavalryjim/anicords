@@ -3,16 +3,61 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <div class="row collapse">
+    <div class="small-3 columns">
+      <%= f.label :email %>
+    </div>
+    <div class="small-9 columns">
+      <%= f.email_field :email, :autofocus => true %>
+    </div>
+  </div>
 
   <% if f.object.password_required? %>
-    <div><%= f.label :password %><br />
-    <%= f.password_field :password %></div>
+    <div class="row collapse">
+      <div class="small-3 columns">
+    	<%= f.label :password %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.password_field :password %>
+      </div>
+    </div>
 
-    <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
+    <div class="row collapse">
+      <div class="small-3 columns">
+      	<%= f.label :password_confirmation %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.password_field :password_confirmation %>
+      </div>
+    </div>
   <% end %>
+    
+  <div class="row">
+    <div class="small-1 columns">  
+      <%= radio_button_tag 'account_type', "household" %>
+    </div>
+    <div class="small-10 columns">
+      <%= label_tag 'account_type_household', "Household" %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="small-1 columns">
+      <%= radio_button_tag 'account_type', "breeder" %>
+    </div>
+    <div class="small-10 columns">
+      <%= label_tag 'account_type_breeder', "Breeder" %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="small-1 columns">
+      <%= radio_button_tag 'account_type', "veterinarian", false, disabled: true %>
+    </div>
+    <div class="small-10 columns">
+      <%= label_tag 'account_type_veterinarian', "Veterinarian (coming soon)" %>
+    </div>
+  </div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>
