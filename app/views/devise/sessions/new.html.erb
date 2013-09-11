@@ -1,33 +1,69 @@
-<h2>Login</h2>
-
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  
-  <div class="row collapse">
-    <div class="small-3 columns">
-	  <%= f.label :email, class: "right inline" %>
+<div class="row">
+ <div class="large-8 columns">
+      
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+   <fieldset>
+    <legend>Login to DooLittl</legend>
+    <div class="row collapse">
+      <div class="small-3 columns">
+	    <%= f.label :email, class: "right inline" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :email, autofocus: true %>	
+      </div>
+      <div class="small-3 columns">
+        or
+        <%= link_to image_tag('webicon-facebook-m.png'), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
+      </div>
     </div>
-    <div class="small-9 columns">
-      <%= f.text_field :email, :autofocus => true %>	
-    </div>
-  </div>
  
-  <div class="row collapse">
-    <div class="small-3 columns">
-	  <%= f.label :password, class: "right inline" %>
+    <div class="row collapse">
+      <div class="small-3 columns">
+	    <%= f.label :password, class: "right inline" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.password_field :password %> 
+        
+      </div>
+      <div class="small-3 columns">
+        <small><%= link_to "Forgot your password?", new_user_password_path %>	</small>
+      </div>
     </div>
-    <div class="small-9 columns">
-      <%= f.password_field :password %>	
-    </div>
-  </div>
   
-  <div class="row">
-    <div class="small-3 small-offset-3 columns"><%= f.check_box :remember_me %> </div>
-    <div class="small-6 columns"><%= f.label :remember_me, class: "left" %></div>
-  </div>
+    <div class="row">
+      <div class="small-4 small-offset-3 columns ">
+        <label for="user_remember_me">
+      	  <%= f.check_box :remember_me %> 
+      	  <span class="custom checkbox"></span> 
+      	  Remember me
+        </label>
+      </div>
+      	
+    </div>
  
+    <div class="row collapse">
+      <div class="small-6 small-offset-3 columns">
+	    
+        <%= f.submit "Login" %>
+        or 
+        <%= link_to "sign up", new_user_registration_path %>
+      </div>
+    </div>
+   </fieldset>
+  <% end %>
 
-  <div><%= f.submit "Login" %></div>
-  
-<% end %>
+  <!--<%= render "devise/shared/links" %>-->
 
-<%= render "devise/shared/links" %>
+    </div>
+    <!-- 
+    <div class="large-4 columns">
+      <h2 class="subheader">About Us</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    -->
+</div>
