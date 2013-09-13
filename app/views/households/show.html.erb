@@ -1,41 +1,45 @@
 
-
-<p>
-  <strong>Name:</strong>
-  <%= @household.name %>
-</p>
+<h3><%= @household.name %></h3>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Breed</th>
-      <th>Weight</th>
+      <th width="200">Name</th>
+      <th width="150">Type</th>
+      <th width="200">Breed</th>
       <th>Description</th>
-      
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @household.animals.each do |animal| %>
       <tr>
-        <td><%= link_to animal.name, household_animal_path(@household, animal) %></td>
+        <td><%= link_to animal.name, edit_household_animal_path(@household, animal) %></td>
         <td><%= animal.animal_type %></td>
         <td><%= animal.breed %></td>
         <td><%= animal.weight %></td>
         <td><%= animal.description %></td>
-        
-        <td><%= link_to 'Edit', edit_household_animal_path(@household, animal) %></td>
-        <td><%= link_to 'Destroy', animal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 	
-<%= link_to "Add Animal", new_household_animal_path(@household) %> |
+<%= link_to "Add Animal", new_household_animal_path(@household) %> 
+
+<div class="section-container auto" data-section>
+  <section>
+    <p class="title" data-section-title><a href="#panel1">Veterinarian</a></p>
+    <div class="content" data-section-content>
+      <%= render 'veterinarian_info' %>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel2">Kennel</a></p>
+    <div class="content" data-section-content>
+      <%= render 'kennel_info'%>
+    </div>
+  </section>
+</div>
 
 <%= link_to 'Edit Household', edit_household_path(@household) %> 
 

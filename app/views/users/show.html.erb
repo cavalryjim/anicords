@@ -1,54 +1,17 @@
-<p id="notice"><%= notice %></p>
+<h3>Welcome!  Is this account for a household, breeder, or veterinarian?</h3>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<ul class="small-block-grid-3">
+  <li>
+  	<span class="radius secondary label">Household</span>
+  	<%= link_to image_tag('black-white-house-md.png'), new_household_path %>
+  </li>
+  <li>
+  	<span class="radius secondary label">Breeder (coming soon!)</span>
+  	<%= link_to image_tag('a-variety-of-black-and-white-dog-dog-vector-material_15-1891.jpg'), "#" %>
+  </li>
+  <li>
+  	<span class="radius secondary label">Veterinarian (coming soon!)</span>
+  	<%= link_to image_tag('stock-illustration-10774918-dog-veterinarian.jpg'), "#" %>
+  </li>
+</ul>
 
-<p>
-  <strong>Middle name:</strong>
-  <%= @user.middle_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Address1:</strong>
-  <%= @user.address1 %>
-</p>
-
-<p>
-  <strong>Address2:</strong>
-  <%= @user.address2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @user.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @user.zip %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user), class: "button radius" %>
-<%= link_to 'Back', users_path, class: "button radius" %>
