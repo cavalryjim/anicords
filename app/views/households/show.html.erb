@@ -1,30 +1,33 @@
 
-<h3><%= @household.name %></h3>
 
-<table>
-  <thead>
-    <tr>
-      <th width="200">Name</th>
-      <th width="150">Type</th>
-      <th width="200">Breed</th>
-      <th>Description</th>
-    </tr>
-  </thead>
+<h3><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household) %></small></h3>
+<fieldset>
+	<legend>Animals</legend>
+    <table>
+		<thead>
+			<tr>
+				<th width="200">Name</th>
+				<th width="150">Type</th>
+				<th width="200">Breed</th>
+				<th>Description</th>
+			</tr>
+		</thead>
 
-  <tbody>
-    <% @household.animals.each do |animal| %>
-      <tr>
-        <td><%= link_to animal.name, edit_household_animal_path(@household, animal) %></td>
-        <td><%= animal.animal_type %></td>
-        <td><%= animal.breed %></td>
-        <td><%= animal.weight %></td>
-        <td><%= animal.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+		<tbody>
+			<% @household.animals.each do |animal| %>
+			<tr>
+				<td><%= link_to animal.name, edit_household_animal_path(@household, animal) %></td>
+				<td><%= animal.animal_type %></td>
+				<td><%= animal.breed %></td>
+				<td><%= animal.weight %></td>
+				<td><%= animal.description %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+    <%= link_to "Add Animal", new_household_animal_path(@household) %> 
+</fieldset>
 	
-<%= link_to "Add Animal", new_household_animal_path(@household) %> 
 
 <div class="section-container auto" data-section>
   <section>
@@ -41,5 +44,4 @@
   </section>
 </div>
 
-<%= link_to 'Edit Household', edit_household_path(@household) %> 
 

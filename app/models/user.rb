@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
   has_many  :households, :through => :user_associations
   has_many  :veterinarians, :through => :user_associations
  
+  def name
+    first_name.to_s << ' ' << last_name.to_s
+  end
+  
   def multiple_associations?
     self.user_associations.count > 1
   end  
