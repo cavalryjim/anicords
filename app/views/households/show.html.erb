@@ -1,34 +1,64 @@
 
-
-<h3><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household) %></small></h3>
-<fieldset>
-	<legend>Animals</legend>
-    <table>
-		<thead>
-			<tr>
-				<th width="200">Name</th>
-				<th width="150">Type</th>
-				<th width="200">Breed</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<% @household.animals.each do |animal| %>
-			<tr>
-				<td><%= link_to animal.name, edit_household_animal_path(@household, animal) %></td>
-				<td><%= animal.animal_type %></td>
-				<td><%= animal.breed %></td>
-				<td><%= animal.weight %></td>
-				<td><%= animal.description %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-    <%= link_to "Add Animal", new_household_animal_path(@household) %> 
-</fieldset>
+<div class="row">
+  <div class="large-6 columns">
+      	
+	<fieldset>
+		<legend><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household) %></small></legend>
+	    <table>
+	    	
+		<% @household.animals.each do |animal| %>
+		  <tr>
+		  	<td>
+			  <%= link_to animal_image(animal), edit_household_animal_path(@household, animal) %><br/>
+		  	</td>
+           
+			<td>
+			  <%= link_to animal.name, edit_household_animal_path(@household, animal) %>		
+			</td>	
+			
+			<td> | </td>
+			
+			<td>
+			  <%= link_to 'share', '#' %>
+			</td>
+		  </tr>
+					
+		<% end %>
+	    </table>
+			
+	    <%= button_to "Add Animal", new_household_animal_path(@household), method: :get %> 
+	</fieldset>
+  </div>
+  
+  <div class="large-6 columns">
+	<fieldset>
+		<legend>Service Providers</legend>
+	    <table>
+	    	
+		<% @household.service_providers.each do |provider| %>
+		  <tr>
+		  	
+           
+			<td>
+			  <%= link_to provider.name, household_service_provider_path(@household, provider) %>		
+			</td>	
+			
+			
+		  </tr>
+					
+		<% end %>
+	    </table>
+	  
+		
+			
+	    
+	    <form action="#" class="button_to" ><div><input data-reveal-id="providerModal"  type="submit" value="Add Provider" /><input name="authenticity_token" type="hidden" value="pcnBqsjop4kbfZgRmookLmkdVfqNRv73TZyY2KzQiNg=" /></div></form>
+	   
+	</fieldset>
+  </div>
+</div>
 	
-
+<!--
 <div class="section-container auto" data-section>
   <section>
     <p class="title" data-section-title><a href="#panel1">Veterinarian</a></p>
@@ -43,5 +73,10 @@
     </div>
   </section>
 </div>
+	-->
 
-
+<div id="providerModal" class="reveal-modal">
+  <h3>Lookup Service Providers</h3>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>

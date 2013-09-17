@@ -1,5 +1,7 @@
-<h3>Editing <%=@animal.name%></h3>
 
-<%= render 'form' %>
+<fieldset>
+  <legend><%=@animal.name%></legend>
+  <%= render 'form' %>
+</fieldset>
 
 <%= link_to 'Back', @owner %>

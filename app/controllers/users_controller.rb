@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     if session[:home_page]
       redirect_to session[:home_page]
     elsif current_user
-      redirect_to user_path(current_user)
+      redirect_to user_select_association_path
     else
       redirect_to new_user_session_path
     end

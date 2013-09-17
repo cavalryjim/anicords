@@ -1,0 +1,43 @@
+<h1>Listing service_providers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address1</th>
+      <th>Address2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Phone</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @service_providers.each do |service_provider| %>
+      <tr>
+        <td><%= service_provider.name %></td>
+        <td><%= service_provider.address1 %></td>
+        <td><%= service_provider.address2 %></td>
+        <td><%= service_provider.city %></td>
+        <td><%= service_provider.state %></td>
+        <td><%= service_provider.zip %></td>
+        <td><%= service_provider.email %></td>
+        <td><%= service_provider.website %></td>
+        <td><%= service_provider.phone %></td>
+        <td><%= link_to 'Show', service_provider %></td>
+        <td><%= link_to 'Edit', edit_service_provider_path(service_provider) %></td>
+        <td><%= link_to 'Destroy', service_provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Service provider', new_service_provider_path %>

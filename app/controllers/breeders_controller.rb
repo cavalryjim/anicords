@@ -10,6 +10,7 @@ class BreedersController < ApplicationController
   # GET /breeders/1
   # GET /breeders/1.json
   def show
+    
   end
 
   # GET /breeders/new

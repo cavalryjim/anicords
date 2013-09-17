@@ -63,25 +63,25 @@
     </div>
     
     <div class="row">
-      <div class="large-4 columns">
-      	<table>
-          <thead>
-            <tr>
-              <th width="200">Associations</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @user.associations.each do |association| %>
-              <tr>
-                <td><%= link_to association.organization.name, association.organization %></td>
-        
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+	  <div class="large-4 columns">
+	   <table>
+	      <thead>
+	        <tr>
+	          <th min-width="200" colspan="2">Associations</th>
+	        </tr>
+	      </thead>
+	
+	      <tbody>
+	        <% @user.associations.each do |association| %>
+	          <tr>
+	            <td><%= link_to image(association), association.organization %></td>   
+	            <td><%= link_to association.name, association.organization %></td>       
+	          </tr>
+	        <% end %>
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
     
     <div class="actions">
       <%= f.submit %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906004338) do
+ActiveRecord::Schema.define(version: 20130917203207) do
 
   create_table "animal_types", force: true do |t|
     t.string   "name"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20130906004338) do
     t.integer  "breeder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "dob"
+    t.string   "food"
+    t.decimal  "volume_per_serving"
+    t.integer  "servings_per_day"
   end
 
   create_table "breeders", force: true do |t|
@@ -45,6 +49,14 @@ ActiveRecord::Schema.define(version: 20130906004338) do
     t.datetime "updated_at"
   end
 
+  create_table "household_associations", force: true do |t|
+    t.integer  "household_id"
+    t.integer  "service_provider_id"
+    t.integer  "clinic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "households", force: true do |t|
     t.string   "name"
     t.string   "address1"
@@ -54,6 +66,20 @@ ActiveRecord::Schema.define(version: 20130906004338) do
     t.string   "zip"
     t.string   "phone"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "service_providers", force: true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "email"
+    t.string   "website"
+    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: household_associations
+#
+#  id                  :integer          not null, primary key
+#  household_id        :integer
+#  service_provider_id :integer
+#  clinic_id           :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  household_id: 1
+  service_provider_id: 1
+  clinic_id: 1
+
+two:
+  household_id: 1
+  service_provider_id: 1
+  clinic_id: 1

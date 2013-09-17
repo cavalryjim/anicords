@@ -40,4 +40,14 @@ class UserAssociation < ActiveRecord::Base
     end
   end
   
+  def type
+    if self.breeder_id
+      'breeder'
+    elsif self.household_id
+      'household'
+    elsif self.veterinarian_id
+      'veterinarian'
+    end
+  end
+  
 end
