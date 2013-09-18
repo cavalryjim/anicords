@@ -52,7 +52,11 @@
 		
 			
 	    
-	    <form action="#" class="button_to" ><div><input data-reveal-id="providerModal"  type="submit" value="Add Provider" /><input name="authenticity_token" type="hidden" value="pcnBqsjop4kbfZgRmookLmkdVfqNRv73TZyY2KzQiNg=" /></div></form>
+	    <form action="#" class="button_to" >
+	    	<div>
+	    		<input data-reveal-id="providerModal"  type="submit" value="Add Provider" />
+	    	</div>
+	    </form>
 	   
 	</fieldset>
   </div>
@@ -77,6 +81,25 @@
 
 <div id="providerModal" class="reveal-modal">
   <h3>Lookup Service Providers</h3>
+  <%= form_for(@household) do |f| %>
+  <fieldset>
+    <legend>Service Providers</legend>
+
+    <div class="row">
+      <div class="large-4 columns">
+        
+        <%= text_field_tag :service_provider, '' %>
+      </div>
+    </div>
+    
+    
+    <div class="actions">
+      <%= f.submit 'Add Provider' %>
+    </div>
+
+  </fieldset>
+    
+<% end %>
   
   <a class="close-reveal-modal">&#215;</a>
 </div>
