@@ -43,6 +43,17 @@
 			  <%= link_to provider.name, household_service_provider_path(@household, provider) %>		
 			</td>	
 			
+			<td> | </td>
+			
+			<td>
+			  <%= link_to 'communicate', '#' %>
+			</td>
+			
+			<td> | </td>
+			
+			<td>
+			  <%= link_to 'delete', '#', confirm: "Are you sure?" %>
+			</td>
 			
 		  </tr>
 					
@@ -81,18 +92,19 @@
 
 <div id="providerModal" class="reveal-modal">
   <h3>Lookup Service Providers</h3>
-  <%= form_for(@household) do |f| %>
+  <%= form_for @household, url: {action: 'add_service_provider'} do |f| %>
   <fieldset>
     <legend>Service Providers</legend>
 
     <div class="row">
       <div class="large-4 columns">
         
-        <%= text_field_tag :service_provider, '' %>
+        <%= text_field_tag :service_provider, '', data: {autocomplete_source: service_providers_path} %>
+        
       </div>
     </div>
     
-    
+    <%= hidden_field_tag :service_provider_id %>
     <div class="actions">
       <%= f.submit 'Add Provider' %>
     </div>

@@ -4,7 +4,12 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers
   # GET /service_providers.json
   def index
-    @service_providers = ServiceProvider.all
+    #@service_providers = ServiceProvider.all
+    @service_providers = ServiceProvider.order(:name).where("name like ?", "%#{params[:term]}%")
+    
+    #render json: @service_providers.map(&:name)
+    
+    render json: @service_providers
   end
 
   # GET /service_providers/1

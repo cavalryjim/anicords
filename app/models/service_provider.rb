@@ -17,4 +17,10 @@
 #
 
 class ServiceProvider < ActiveRecord::Base
+  
+  
+  def as_json options={}
+    { value: id, label: name }
+  end
+  
 end

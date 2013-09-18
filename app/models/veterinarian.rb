@@ -22,8 +22,8 @@ class Veterinarian < ActiveRecord::Base
   has_many  :animals
   accepts_nested_attributes_for :animals, allow_destroy: true
   
-  def create_association(user)
-    UserAssociation.where(user_id: user.id, veterinarian_id: self.id).first_or_create
+  def associate_user(user_id)
+    UserAssociation.where(user_id: user_id, veterinarian_id: self.id).first_or_create
   end
   
 end

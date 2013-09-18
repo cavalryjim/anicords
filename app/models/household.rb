@@ -24,8 +24,12 @@ class Household < ActiveRecord::Base
   has_many  :service_providers, through: :household_associations
   accepts_nested_attributes_for :animals, allow_destroy: true
   
-  def create_association(user)
-    UserAssociation.where(user_id: user.id, household_id: self.id).first_or_create
+  def associate_user(user_id)
+    UserAssociation.where(user_id: user_id, household_id: self.id).first_or_create
+  end
+  
+  def associate_service_provider(service_provider_id)
+    HouseholdAssociation.where(household_id: self.id, service_provider_id: service_provider_id).first_or_create
   end
   
 end

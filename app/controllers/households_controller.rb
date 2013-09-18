@@ -1,5 +1,5 @@
 class HouseholdsController < ApplicationController
-  before_action :set_household, only: [:show, :edit, :update, :destroy]
+  before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider]
 
   # GET /households
   # GET /households.json
@@ -28,7 +28,7 @@ class HouseholdsController < ApplicationController
     @household = Household.new(household_params)
 
     respond_to do |format|
-      if @household.save && @household.create_association(current_user)
+      if @household.save && @household.associate_user(current_user.id)
         session[:home_page] = household_path(@household)
         format.html { redirect_to @household, notice: 'Household was successfully created.' }
         format.json { render action: 'show', status: :created, location: @household }
@@ -61,6 +61,15 @@ class HouseholdsController < ApplicationController
       format.html { redirect_to households_url }
       format.json { head :no_content }
     end
+  end
+  
+  def add_service_provider
+    @household.associate_service_provider(params[:service_provider_id])
+    redirect_to @household, notice: 'Provider was successfully added.'
+  end
+  
+  def remove_service_provider
+    @household
   end
 
   private

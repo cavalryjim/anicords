@@ -5,6 +5,9 @@
 jQuery ->
   
   $('#service_provider').autocomplete
-    source: ['foo', 'food', 'four']
-
-  $('#service_provider').val("")
+    source: $('#service_provider').data('autocomplete-source')
+    select: (event, ui) ->
+      #alert(ui.item.label)
+      $('#service_provider_id').val(ui.item.value)
+      $('#service_provider').val(ui.item.label)
+      event.preventDefault()
