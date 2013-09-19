@@ -23,5 +23,9 @@ class Animal < ActiveRecord::Base
   belongs_to :animal_type
   belongs_to :breeder
   belongs_to :household
+  has_many   :documents, :dependent => :destroy
+  accepts_nested_attributes_for :documents, allow_destroy: true
+  
+  
   
 end

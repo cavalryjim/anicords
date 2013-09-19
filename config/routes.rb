@@ -5,12 +5,18 @@ Anicords::Application.routes.draw do
   resources :veterinarians
 
   resources :households do
-    resources :animals
+    resources :animals do
+      resources :documents
+    end
     resources :service_providers
     resources :household_associations
   end
 
-  resources :animals
+  resources :animals do
+    resources :documents
+  end
+  
+  resources :documents
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
                      controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"}

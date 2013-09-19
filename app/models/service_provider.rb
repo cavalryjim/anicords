@@ -20,7 +20,7 @@ class ServiceProvider < ActiveRecord::Base
   
   
   def as_json options={}
-    { value: id, label: name }
+    { value: id, label: name + ' ' + zip.to_s }
   end
   
 end

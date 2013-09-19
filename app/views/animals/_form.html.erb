@@ -1,10 +1,10 @@
-<%= form_for [@owner, @animal] do |f| %>
   
 	<div class="section-container auto" data-section>
 	  <section>
 	    <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
 	    <div class="content" data-section-content>
 	      
+		  <%= form_for [@owner, @animal] do |f| %>
 		    <div class="row">
 		      <div class="large-8 columns">
 		        <%= f.label :name %>
@@ -42,11 +42,27 @@
 		        <%= f.text_area :description %>
 		      </div>
 		    </div>
+	        <div class="actions">
+	          <%= f.submit %>
+	        </div>
+	  
+	
+	      <% if @owner.class.name == 'Household'%>
+	        <%= f.hidden_field :household_id, value: @owner.id %>
+	      <% end %>
+	      <% if @owner.class.name == 'Breeder'%>
+	        <%= f.hidden_field :breeder_id, value: @owner.id %>
+	      <% end %>
+	     <% end %>
 	    </div>
 	  </section>
 	  <section>
 	    <p class="title" data-section-title><a href="#panel2">Documents</a></p>
 	    <div class="content" data-section-content>
+	    	
+	      <% if @animal.id %>
+	        <%= render 'documents'%>
+	      <% end %>
 	      
 	    </div>
 	  </section>
@@ -62,15 +78,3 @@
     
     
     
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  
-
-  <% if @owner.class.name == 'Household'%>
-    <%= f.hidden_field :household_id, value: @owner.id %>
-  <% end %>
-  <% if @owner.class.name == 'Breeder'%>
-    <%= f.hidden_field :breeder_id, value: @owner.id %>
-  <% end %>
-<% end %>

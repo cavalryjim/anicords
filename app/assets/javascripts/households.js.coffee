@@ -11,3 +11,7 @@ jQuery ->
       $('#service_provider_id').val(ui.item.value)
       $('#service_provider').val(ui.item.label)
       event.preventDefault()
+
+  #$('#provider_reveal_button').click ->
+  #  $('#service_provider').focus
+    

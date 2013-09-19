@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: documents
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  file_path  :string(255)
+#  animal_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  file: MyString
+  animal_id: 1
+
+two:
+  name: MyString
+  file: MyString
+  animal_id: 1

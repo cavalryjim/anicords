@@ -17,6 +17,8 @@ gem 'zurb-foundation', '4.3.1'
 gem 'omniauth-twitter', '1.0.0'
 gem 'omniauth-facebook', '1.4.1'
 gem 'annotate', '2.5.0'
+#gem 'jquery-fileupload-rails', '0.4.1'
+gem 'carrierwave', '0.9.0'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
