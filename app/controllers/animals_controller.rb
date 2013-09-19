@@ -43,7 +43,7 @@ class AnimalsController < ApplicationController
   def update
     respond_to do |format|
       if @animal.update(animal_params)
-        format.html { redirect_to @owner, notice: 'Animal was successfully updated.' }
+        format.html { redirect_to @owner, notice: @animal.name + ' was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,7 +57,7 @@ class AnimalsController < ApplicationController
   def destroy
     @animal.destroy
     respond_to do |format|
-      format.html { redirect_to animals_url }
+      format.html { redirect_to @owner, notice: 'Animal was successfully updated.' }
       format.json { head :no_content }
     end
   end

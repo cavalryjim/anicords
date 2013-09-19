@@ -23,7 +23,7 @@
 			</td>
 			
 			<td>
-			  <%= link_to image_tag('cross.png', :alt => "del"), delete_household_animal_path(@household, animal), 
+			  <%= link_to image_tag('cross.png', :alt => "del"), household_animal_path(@household, animal), 
 					:confirm => "Select 'OK' to delete this animal. All system records will be lost.", :method => :delete%>
 			</td>
 		  </tr>
@@ -57,7 +57,8 @@
 			<td> | </td>
 			
 			<td>
-			  <%= link_to 'delete', '#', confirm: "Are you sure?" %>
+			  <%= link_to image_tag('cross.png', :alt => "del"), delete_path_help(@household.id, provider.id), 
+					:confirm => "Select 'OK' to remove this service provider.", :method => :delete%>
 			</td>
 			
 		  </tr>
