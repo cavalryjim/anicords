@@ -19,4 +19,12 @@ class Document < ActiveRecord::Base
     file_path.path
   end
   
+  def display_title
+    if self.title == nil || self.title == ''
+      self.file_path.file.filename
+    else
+      self.title
+    end
+  end
+  
 end

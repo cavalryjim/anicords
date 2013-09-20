@@ -1,24 +1,37 @@
 <fieldset>
   <legend><%= documents_legend_title(@animal.documents.count) %></legend>
-  <% for document in @animal.documents %>
-    <div>
-    	<%= image_tag 'Icon-Document03-Blue.png', size: '50x50'%>
-    	<%= link_to document.title, controller: 'documents', action: 'download_file', id: document.id %>
-    	<%= link_to 'remove', [@animal.owner, @animal, document], confirm: 'Are you sure?', method: :delete %>
-    </div>
-  <% end %>
+  <table>
+    <% for document in @animal.documents %>
+      <tr>
+    	<td><%= image_tag('Icon-Document03-Blue.png', size: '20x20')%></td>
+    	<td><%= link_to document.display_title, controller: 'documents', action: 'download_file', id: document.id %></td>
+    	<td><%= link_to image_tag('cross.png', :alt => "del"), [@animal.owner, @animal, document], confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
 </fieldset>
 
 <% if @animal.id %>	
 	<%= form_for [@animal.owner, @animal, Document.new], :html => {:multipart => true} do |f| %>
-	  <%= f.label :title %>
-	  <%= f.text_field :title %>
-	  
-	  <%= f.file_field :file_path %>
-	  
-	  <%= f.hidden_field :animal_id, value: @animal.id %>
-	  <%= f.submit 'Upload file' %>
 	
+	  <div class="row">
+        <div class="large-8 columns">
+	      <%= f.label :title %>
+	      <%= f.text_field :title, placeholder: "Enter title for the document" %>
+		</div>
+      </div>
+	  
+	  <div class="row">
+        <div class="large-8 columns">
+	      <%= f.file_field :file_path %>
+	    </div>
+	  </div>
+	  
+	  <div class="actions">       
+	    <%= f.submit 'Upload file' %>
+	  </div>
+	
+	  <%= f.hidden_field :animal_id, value: @animal.id %>
 	<% end %>
 <% end %>
 

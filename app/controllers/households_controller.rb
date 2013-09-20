@@ -10,7 +10,7 @@ class HouseholdsController < ApplicationController
   # GET /households/1
   # GET /households/1.json
   def show
-    
+    #@owner = @household
   end
 
   # GET /households/new

@@ -27,13 +27,21 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :documents, allow_destroy: true
   
   validates :name, presence: true 
-  validate :owner
+  validates :household_id, presence: true, if: :needs_owner?
   
   def owner
     if self.household_id
       Household.find(self.household_id)
     elsif self.breeder_id
       Breeder.find(self.breeder_id)
+    else
+      nil
+    end
+  end
+  
+  def needs_owner?
+    if self.breeder_id == nil 
+      true
     else
       false
     end

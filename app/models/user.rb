@@ -65,11 +65,23 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    user = User.where(email: auth.info.email).first
+    
+    if user
+      #user.update(auth.slice(:provider, :uid))
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = auth.info.email
+      user.save
+    else
+      where(auth.slice(:provider, :uid)).first_or_create do |fb_user|
+        fb_user.provider = auth.provider
+        fb_user.uid = auth.uid
+        fb_user.email = auth.info.email
+      end
+      user = fb_user
     end
+    
+    return user
   end
   
   def self.new_with_session(params, session)

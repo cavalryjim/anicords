@@ -1,5 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:new, :create]
 
   # GET /animals
   # GET /animals.json
@@ -28,7 +29,7 @@ class AnimalsController < ApplicationController
     
     respond_to do |format|
       if @animal.save 
-        format.html { redirect_to @animal.owner, notice: 'Animal was successfully created.' }
+        format.html { redirect_to @owner, notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
       else
         format.html { render action: 'new' }
@@ -65,6 +66,14 @@ class AnimalsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_animal
       @animal = Animal.find(params[:id])
+    end
+    
+    def set_owner
+      if params[:household_id]
+        @owner = Household.find(params[:household_id])
+      elsif params[:breeder_id]
+        @owner = Breeder.find(params[:breeder_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

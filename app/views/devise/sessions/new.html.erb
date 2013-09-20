@@ -12,8 +12,8 @@
         <%= f.text_field :email, autofocus: true %>	
       </div>
       <div class="small-3 columns">
-        or
-        <%= link_to image_tag('webicon-facebook-m.png'), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
+        
+        
       </div>
     </div>
  
@@ -38,6 +38,10 @@
       	  Remember me
         </label>
       </div>
+      <div class="small-3 columns">
+        <%= link_to image_tag('webicon-facebook-m.png'), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
+      </div>
+      <div class="small-4 columns"></div>
       	
     </div>
  
