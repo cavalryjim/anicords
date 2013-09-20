@@ -15,4 +15,8 @@ class Document < ActiveRecord::Base
   
   mount_uploader :file_path, FileUploader
   
+  def document_path
+    file_path.path
+  end
+  
 end

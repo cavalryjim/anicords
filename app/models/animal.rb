@@ -26,6 +26,17 @@ class Animal < ActiveRecord::Base
   has_many   :documents, :dependent => :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   
+  validates :name, presence: true 
+  validate :owner
   
+  def owner
+    if self.household_id
+      Household.find(self.household_id)
+    elsif self.breeder_id
+      Breeder.find(self.breeder_id)
+    else
+      false
+    end
+  end
   
 end

@@ -30,6 +30,7 @@ Anicords::Application.routes.draw do
   patch 'user/set_association' => 'users#set_association'
   patch 'households/:id/add_service_provider' => 'households#add_service_provider'
   patch 'households/:id/remove_service_provider' => 'households#remove_service_provider'
+  get 'documents/:id/download_file' => 'documents#download_file'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

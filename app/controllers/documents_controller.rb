@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
-  before_action :set_animal
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :download_file]
+  before_action :set_animal, only: [:create, :update, :destroy]
 
   # GET /documents
   # GET /documents.json
@@ -29,7 +29,7 @@ class DocumentsController < ApplicationController
     
     respond_to do |format|
       if @document.save 
-        format.html { redirect_to @owner, notice: 'Document was successfully created.' }
+        format.html { redirect_to return_path, notice: 'Document was successfully uploaded.' }
         format.json { render action: 'show', status: :created, location: @document }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @owner, notice: @document.name + ' was successfully updated.' }
+        format.html { redirect_to return_path, notice: @document.name + ' was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,15 +57,32 @@ class DocumentsController < ApplicationController
   def destroy
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to @owner, notice: 'Document was successfully updated.' }
+      format.html { redirect_to return_path, notice: 'Document was successfully removed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def download_file
+     send_file(@document.document_path,
+        :disposition => 'attachment',
+        :url_based_filename => false)
   end
 
   private
     def set_animal
       if params[:animal_id]
         @animal = Animal.find(params[:animal_id])
+        
+      end
+    end
+    
+    def return_path
+      if params[:household_id]
+        edit_household_animal_path(params[:household_id], @animal.id)
+      elsif params[:breeder_id]
+        edit_breeder_animal_path(params[:breeder_id], @animal.id)
+      else
+        edit_animal_path(@animal.id)
       end
     end
     
@@ -76,7 +93,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:name, :animal_id, :file_path)
+      params.require(:document).permit(:title, :animal_id, :file_path, :store_dir)
     end
   
 end

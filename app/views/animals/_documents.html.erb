@@ -1,22 +1,25 @@
 <fieldset>
-  <legend>No files uploaded</legend>
+  <legend><%= documents_legend_title(@animal.documents.count) %></legend>
   <% for document in @animal.documents %>
     <div>
-    	<%= image_tag 'PDF_file.png'%>
-    	<%= document.title %> <%= link_to 'remove', [@household, @animal, document], confirm: 'Are you sure?', method: :delete %>
+    	<%= image_tag 'Icon-Document03-Blue.png', size: '50x50'%>
+    	<%= link_to document.title, controller: 'documents', action: 'download_file', id: document.id %>
+    	<%= link_to 'remove', [@animal.owner, @animal, document], confirm: 'Are you sure?', method: :delete %>
     </div>
   <% end %>
 </fieldset>
 
-
-<%= form_for [@household, @animal, Document.new], :html => {:multipart => true} do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  
-  <%= f.file_field :file_path %>
-
-  <%= f.submit 'Upload file' %>
-
+<% if @animal.id %>	
+	<%= form_for [@animal.owner, @animal, Document.new], :html => {:multipart => true} do |f| %>
+	  <%= f.label :title %>
+	  <%= f.text_field :title %>
+	  
+	  <%= f.file_field :file_path %>
+	  
+	  <%= f.hidden_field :animal_id, value: @animal.id %>
+	  <%= f.submit 'Upload file' %>
+	
+	<% end %>
 <% end %>
 
 

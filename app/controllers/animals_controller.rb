@@ -1,6 +1,5 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
-  before_action :set_owner
 
   # GET /animals
   # GET /animals.json
@@ -29,7 +28,7 @@ class AnimalsController < ApplicationController
     
     respond_to do |format|
       if @animal.save 
-        format.html { redirect_to @owner, notice: 'Animal was successfully created.' }
+        format.html { redirect_to @animal.owner, notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
       else
         format.html { render action: 'new' }
@@ -43,7 +42,7 @@ class AnimalsController < ApplicationController
   def update
     respond_to do |format|
       if @animal.update(animal_params)
-        format.html { redirect_to @owner, notice: @animal.name + ' was successfully updated.' }
+        format.html { redirect_to @animal.owner, notice: @animal.name + ' was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,20 +56,12 @@ class AnimalsController < ApplicationController
   def destroy
     @animal.destroy
     respond_to do |format|
-      format.html { redirect_to @owner, notice: 'Animal was successfully updated.' }
+      format.html { redirect_to @animal.owner, notice: 'Animal was successfully updated.' }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_owner
-      if params[:breeder_id]
-        @owner = Breeder.find(params[:breeder_id])
-      elsif params[:household_id]
-        @owner = Household.find(params[:household_id])
-      end
-    end
-    
     # Use callbacks to share common setup or constraints between actions.
     def set_animal
       @animal = Animal.find(params[:id])
