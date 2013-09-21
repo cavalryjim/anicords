@@ -1,27 +1,28 @@
-<nav class="top-bar">
+
+<nav class="top-bar" >
   <ul class="title-area">
     <li class="name">
-	  <%= link_to image_tag('doolittl1.png'), "#" %>
+	  <%= link_to image_tag('doolittl1.png'), "#", size: '50x50' %>
 	</li>
+	<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
-	  
   <section class="top-bar-section">
     <ul class="right">
 	  <% if user_signed_in? %>
-	    
+	    <li class="divider"></li>
 	    <li><a href="#">Logged in as <%= current_user.email %>.</a></li>
-	    
+	    <li class="divider"></li>
 	    <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
-	    
+	    <li class="divider"></li>
 	  	<li> <%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
 	  <% else %>
+	    <li class="divider"></li>
 	    <li><%= link_to "What is DooLittl?", "#" %></li>
-	    
+	    <li class="divider"></li>
 	    <li><%= link_to "Join Today", new_user_registration_path %></li>
-	   
+	    <li class="divider"></li>
 	    <li><%= link_to "Login", new_user_session_path %></li>
-	 
-	  	<!--<li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>-->
 	  	 
 	  <% end %>
 	</ul>
