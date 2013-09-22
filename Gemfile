@@ -19,6 +19,9 @@ gem 'omniauth-facebook', '1.4.1'
 gem 'annotate', '2.5.0'
 #gem 'jquery-fileupload-rails', '0.4.1'
 gem 'carrierwave', '0.9.0'
+gem 'fog', '1.15.0'
+gem 'carrierwave_direct', '0.0.13'
+gem 'sidekiq', '2.14.1'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
