@@ -11,6 +11,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.json
   def show
+    
   end
 
   # GET /animals/new
@@ -20,6 +21,11 @@ class AnimalsController < ApplicationController
 
   # GET /animals/1/edit
   def edit
+    if params[:key]
+      
+    end
+    @uploader = Document.new.file_path
+    @uploader.success_action_redirect = edit_animal_url(@animal)
   end
 
   # POST /animals

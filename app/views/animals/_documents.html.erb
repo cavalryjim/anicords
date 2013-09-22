@@ -12,14 +12,7 @@
 </fieldset>
 
 <% if @animal.id %>	
-	<%= form_for [@animal.owner, @animal, Document.new], :html => {:multipart => true} do |f| %>
-	
-	  <div class="row">
-        <div class="large-8 columns">
-	      <%= f.label :title %>
-	      <%= f.text_field :title, placeholder: "Enter title for the document" %>
-		</div>
-      </div>
+	<%= direct_upload_form_for @uploader do |f| %>
 	  
 	  <div class="row">
         <div class="large-8 columns">
@@ -31,7 +24,6 @@
 	    <%= f.submit 'Upload file' %>
 	  </div>
 	
-	  <%= f.hidden_field :animal_id, value: @animal.id %>
 	<% end %>
 <% end %>
 
