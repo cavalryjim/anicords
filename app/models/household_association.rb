@@ -14,6 +14,8 @@ class HouseholdAssociation < ActiveRecord::Base
   belongs_to :household
   belongs_to :service_provider
   
+  validates :household_id, presence: true
+  
   def name
     if self.service_provider_id
       self.service_provider.name

@@ -18,6 +18,9 @@
 
 class ServiceProvider < ActiveRecord::Base
   
+  has_many  :households, through: :household_associations
+  
+  validates :name, presence: true
   
   def as_json options={}
     { value: id, label: name + ' ' + zip.to_s }

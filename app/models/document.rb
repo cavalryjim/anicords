@@ -13,6 +13,9 @@
 class Document < ActiveRecord::Base
   belongs_to :animal
   
+  validates :animal_id, presence: true
+  validates :key, presence: true
+  
   mount_uploader :file_path, FileUploader
   
   def document_path
