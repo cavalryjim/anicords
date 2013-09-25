@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :login]
   #before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:edit, :update, :destroy]
+  
 
   # GET /users
   # GET /users.json
@@ -68,10 +69,10 @@ class UsersController < ApplicationController
     #JDavis: this action will need logic to determine which household or breeder to redirect the routing
     if session[:home_page]
       redirect_to session[:home_page]
-    elsif current_user
+    elsif current_user && current_user.multiple_associations?
       redirect_to user_select_association_path
     else
-      redirect_to new_user_session_path
+      redirect_to new_user_registration_path
     end
   end
   

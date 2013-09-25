@@ -18,8 +18,9 @@ Anicords::Application.routes.draw do
   
   resources :documents
 
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
-                     controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"}
+  devise_for :users, 
+        path_names: {sign_in: "login", sign_out: "logout"}, 
+        controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"} 
   
   resources :breeders do
     resources :animals
@@ -39,6 +40,7 @@ Anicords::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'users#home'
+  #root 'devise/registrations#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
