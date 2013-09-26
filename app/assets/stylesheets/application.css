@@ -40,3 +40,7 @@ ul.ui-autocomplete {
 .welcome_header {
 	color: #FFF !important;
 }
+
+.white_background {
+	background-color: #FFF;
+}
