@@ -36,3 +36,7 @@ ul.ui-autocomplete {
   }
 }
 .ui-helper-hidden-accessible { display:none; }
+
+.welcome_header {
+	color: #FFF !important;
+}
