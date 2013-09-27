@@ -41,6 +41,20 @@ ul.ui-autocomplete {
 	color: #FFF !important;
 }
 
+.no_padding {
+  padding-left: 0px !important; /* change the values to anything that you want */
+  padding-right: 0px !important;
+}
+
 .white_background {
 	background-color: #FFF;
+}
+
+.green_background {
+	background-color: #93A889;
+	padding-bottom: 5px;
+}
+
+.blue_text {
+	color: blue !important;
 }

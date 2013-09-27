@@ -1,95 +1,114 @@
-<div class="row">
-  <div class="large-8 columns">
-    <div class="row">
-    	<div class="large-10 large-centered columns">
-    		<h2 class="welcome_header">ARF, MEOW, WELCOME!</h2>
-    	</div>
-    </div>
-  	<div class="row">
-    	<div class="large-5 large-centered columns">
-    		<h4>WHAT IS DOLITTL</h4>
-    	</div>
-    </div>
-    <div class="row">
-    	<div class="large-12 columns">
-    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    	</div>
-    </div>
-  </div>
-  
-  <div class="large-4 columns">
-  	
-	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-	  <%= devise_error_messages! %>
-	  
-	  <div class="row collapse">
-	    <div class="small-9 columns">
-	      <h4>register</h4>
+<section class="green_background">
+	<div class="row">
+	  <div class="large-8 columns">
+	    <div class="row">
+	    	<div class="large-10 large-centered columns">
+	    		<h2 class="welcome_header">ARF, MEOW, WELCOME!</h2>
+	    	</div>
 	    </div>
-	  </div>
-	
-	  <div class="row collapse">
-	    <div class="small-9 columns">
-	      <%= f.email_field :email, autofocus: true, placeholder: 'email address'  %>
+	    
+	    <div class="row">
+	    	<div class="large-6 large-centered columns">
+	    		<%= image_tag 'home_dog.bmp', size: '320x250'%>
+	    	</div>
 	    </div>
-	  </div>
-	
-	  <% if f.object.password_required? %>
-	    <div class="row collapse">
-	      
-	      <div class="small-9 columns">
-	        <%= f.password_field :password, placeholder: 'password' %>
-	      </div>
-	    </div>
-	
-	    <div class="row collapse">
-	      <div class="small-9 columns">
-	        <%= f.password_field :password_confirmation, placeholder: 'password confirmation' %>
-	      </div>
-	    </div>
-	  <% end %>
-	  
-	  <div class="row">
-	    <div class="small-3 columns"><%= f.submit "Sign up" %></div>
-	    <div class="small-3 columns">
-          <%= link_to image_tag('webicon-facebook-m.png'), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
-        </div>
-        <div class="small-6 columns"></div>
+	  	
 	  </div>
 	  
-	<% end %>
-	
-	
-  	
-  </div>
-</div>
-
-<fieldset class="white_background">
-	
-	<div class="row white_background">
-	  <div class="large-2 columns"></div>
-	  <div class="large-2 columns">
-	    <%= link_to image_tag('cloud.png'), '#'%>
+	  <div class="large-4 columns">
+	  	
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+		  <%= devise_error_messages! %>
+		  
+		  <div class="row collapse">
+		    <div class="small-9 columns">
+		      <h4>register</h4>
+		    </div>
+		  </div>
+		
+		  <div class="row collapse">
+		    <div class="small-9 columns">
+		      <%= f.email_field :email, autofocus: true, placeholder: 'email address'  %>
+		    </div>
+		  </div>
+		
+		  <% if f.object.password_required? %>
+		    <div class="row collapse">
+		      
+		      <div class="small-9 columns">
+		        <%= f.password_field :password, placeholder: 'password' %>
+		      </div>
+		    </div>
+		
+		    <div class="row collapse">
+		      <div class="small-9 columns">
+		        <%= f.password_field :password_confirmation, placeholder: 'password confirmation' %>
+		      </div>
+		    </div>
+		  <% end %>
+		  
+		  <div class="row">
+		    <div class="small-3 columns"><%= f.submit "Sign up" %></div>
+		    <div class="small-3 columns">
+	          <%= link_to image_tag('webicon-facebook-m.png'), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
+	        </div>
+	        <div class="small-6 columns"></div>
+		  </div>
+		  
+		<% end %>		
+	  	
 	  </div>
-	  
-	  <div class="large-2 columns">
-	    <%= link_to image_tag('dB.png'), '#'%>
-	  </div>
-	  
-	  <div class="large-2 columns">
-	    <%= link_to image_tag('location.png'), '#'%>
-	  </div>
-	  
-	  <div class="large-2 columns">
-	    <%= link_to image_tag('social.png'), '#'%>
-	  </div>
-	  <div class="large-2 columns"></div>
 	</div>
-</fieldset>
+</section>
+
+<section>
+  <div class="row">
+	 <div class="large-5 large-centered columns">
+	    <h4>WHAT IS DOLITTL?</h4>
+	  </div>
+  </div>
+  <div class="row">
+	 <div class="large-12 columns">
+	    <p>Doolittl allows users to improve the health and quality 
+	    	of life of their pets through social and medical technology.</p>
+	   </div>
+  </div>
+  <div class="row">
+	<div class="large-12 columns">
+	  <table>
+	  	<tr>
+	      <td align="center"><%= image_tag('cloud.png')%></br> Cloud Storage</td>
+	      <td>
+	      	Doolittl allows you to store and easily access your animal's health 
+	      	information from your PC or smartphone.
+	      </td>		
+	  	</tr>
+	  	<tr>
+	      <td><%= image_tag('dB.png')%></br> Data Management </td>
+	      <td>
+	      	Manage and share your animal's information with those involved in 
+	      	your pet's care such as your vet or kennel.
+	      </td>		
+	  	</tr>
+	  	<tr>
+	      <td><%= image_tag('location.png')%></br> Location Services</td>	
+	      <td>
+	      	Locate pet services, parks, pet friendly establishments, vendors, 
+	      	and other pets in your area.
+	      </td>	
+	  	</tr>
+	  	<tr>
+	      <td><%= image_tag('social.png')%></br> Social Networking</td>		
+	      <td>
+	      	We connect pets to pets, owners to owners, homes to those that care for their animals.
+	      </td>
+	  	</tr>
+	  	
+	  </table>
+	</div>
+  </div>
+	  
+</section>	
+
 
 
