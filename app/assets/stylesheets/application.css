@@ -58,3 +58,7 @@ ul.ui-autocomplete {
 .blue_text {
 	color: blue !important;
 }
+
+.border_top {
+	border-top: solid 1px black;
+}
