@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
     self.user_associations
   end
   
+  def no_associations?
+    self.user_associations.count == 0
+  end
+  
   def selected_association(association_id)
     ua = UserAssociation.find(association_id)
     if ua.breeder_id

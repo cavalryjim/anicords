@@ -29,6 +29,7 @@ Anicords::Application.routes.draw do
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'
+  get 'user/select_account_type' => 'users#select_account_type'
   patch 'households/:id/add_service_provider' => 'households#add_service_provider'
   patch 'households/:id/remove_service_provider' => 'households#remove_service_provider'
   get 'documents/:id/download_file' => 'documents#download_file'

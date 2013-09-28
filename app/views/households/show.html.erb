@@ -9,11 +9,11 @@
 		<% @household.animals.each do |animal| %>
 		  <tr>
 		  	<td>
-			  <%= link_to animal_image(animal), edit_household_animal_path(@household, animal) %><br/>
+			  <%= link_to animal_image(animal), edit_household_animal_path(@household, animal), 'data-no-turbolink' => true %><br/>
 		  	</td>
            
 			<td>
-			  <%= link_to animal.name, edit_household_animal_path(@household, animal) %>		
+			  <%= link_to animal.name, edit_household_animal_path(@household, animal), 'data-no-turbolink' => true %>		
 			</td>	
 			
 			<td> | </td>
@@ -22,10 +22,7 @@
 			  <%= link_to 'share', '#' %>
 			</td>
 			
-			<td>
-			  <%= link_to image_tag('cross.png', :alt => "del"), household_animal_path(@household, animal), 
-					:confirm => "Select 'OK' to delete this animal. All system records will be lost.", :method => :delete%>
-			</td>
+			
 		  </tr>
 					
 		<% end %>

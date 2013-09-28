@@ -78,13 +78,16 @@ class UsersController < ApplicationController
   
   def select_association
     @user = current_user
-    
   end
   
   def set_association
     session[:home_page] = url_for(current_user.selected_association(params[:user][:user_association_ids]))
     
     redirect_to session[:home_page]
+  end
+  
+  def select_account_type
+    
   end
 
   private
