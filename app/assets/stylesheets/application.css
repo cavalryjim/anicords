@@ -55,6 +55,11 @@ ul.ui-autocomplete {
 	padding-bottom: 5px;
 }
 
+.green_background a:link, .green_background a:visited {
+	color: blue !important;
+}     
+
+
 .blue_text {
 	color: blue !important;
 }
