@@ -54,8 +54,8 @@
 			<td> | </td>
 			
 			<td>
-			  <%= link_to image_tag('cross.png', :alt => "del"), delete_path_help(@household.id, provider.id), 
-					:confirm => "Select 'OK' to remove this service provider.", :method => :delete%>
+			  <%= link_to image_tag('cross.png', :alt => "del"), delete_path_help(@household.id, provider.id), method: :delete, 
+				 data: { confirm: 'Please confirm you want to remove ' + provider.name + ' as a service provider.' } %>
 			</td>
 			
 		  </tr>

@@ -53,6 +53,7 @@ ul.ui-autocomplete {
 .green_background {
 	background-color: #93A889;
 	padding-bottom: 5px;
+	border: solid 3px black;
 }
 
 .green_background a:link, .green_background a:visited {
@@ -66,4 +67,16 @@ ul.ui-autocomplete {
 
 .border_top {
 	border-top: solid 1px black;
+}
+
+table.no_border {
+	border: none !important;
+}
+
+table tr.no_bg {
+	background-color: transparent !important;
+}
+
+.picture_border_3 {
+	border: solid 3px black;
 }
