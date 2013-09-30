@@ -1,5 +1,6 @@
 class HouseholdsController < ApplicationController
   before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider]
+  before_filter :authenticate_user!
 
   # GET /households
   # GET /households.json

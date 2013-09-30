@@ -1,6 +1,7 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
   before_action :set_owner, only: [:new, :create]
+  before_filter :authenticate_user!, except: [:show]
 
   # GET /animals
   # GET /animals.json

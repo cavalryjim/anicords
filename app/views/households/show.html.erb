@@ -1,67 +1,41 @@
 
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-12 columns">
       	
 	<fieldset>
 		<legend><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household) %></small></legend>
-	    <table>
-	    	
+	    <ul class="large-block-grid-10">
+	      
 		<% @household.animals.each do |animal| %>
-		  <tr>
-		  	<td>
+		  <li>
 			  <%= link_to animal_image(animal), edit_household_animal_path(@household, animal), 'data-no-turbolink' => true %><br/>
-		  	</td>
-           
-			<td>
 			  <%= link_to animal.name, edit_household_animal_path(@household, animal), 'data-no-turbolink' => true %>		
-			</td>	
-			
-			<td> | </td>
-			
-			<td>
-			  <%= link_to 'share', '#' %>
-			</td>
-			
-			
-		  </tr>
+		  </li>
 					
 		<% end %>
-	    </table>
+	    </ul>
 			
 	    <%= button_to "Add Animal", new_household_animal_path(@household), method: :get %> 
 	</fieldset>
   </div>
-  
-  <div class="large-6 columns">
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
 	<fieldset>
 		<legend>Service Providers</legend>
-	    <table>
+	    <ul class="large-block-grid-10">
 	    	
 		<% @household.service_providers.each do |provider| %>
-		  <tr>
-		  	
-           
-			<td>
+		  <li>
+		  	  <%= link_to image_tag('doo_fav.png', class: 'th') %>
 			  <%= link_to provider.name, household_service_provider_path(@household, provider) %>		
-			</td>	
-			
-			<td> | </td>
-			
-			<td>
-			  <%= link_to 'communicate', '#' %>
-			</td>
-			
-			<td> | </td>
-			
-			<td>
-			  <%= link_to image_tag('cross.png', :alt => "del"), delete_path_help(@household.id, provider.id), method: :delete, 
-				 data: { confirm: 'Please confirm you want to remove ' + provider.name + ' as a service provider.' } %>
-			</td>
-			
-		  </tr>
+			  <!--<%= link_to image_tag('cross.png', :alt => "del"), delete_path_help(@household.id, provider.id), method: :delete, 
+				 data: { confirm: 'Please confirm you want to remove ' + provider.name + ' as a service provider.' } %>-->
+		  </li>
 					
 		<% end %>
-	    </table>
+	    </ul>
 	  
 		
 			

@@ -1,6 +1,6 @@
 class ServiceProvidersController < ApplicationController
   before_action :set_service_provider, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!, only: [:edit, :update]
   # GET /service_providers
   # GET /service_providers.json
   def index

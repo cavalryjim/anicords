@@ -54,9 +54,11 @@
 	        <div class="small-6 columns"></div>
 		  </div>
 		  
-		<% end %>		
-	  	
+		<% end %>	
+		
+	  	<p><a data-reveal-id="newProviderModal" class="button expand" style="margin-bottom: 0;">List My Business</a></p>
 	  </div>
+	 
 	</div>
 </section>
 
@@ -108,5 +110,10 @@
 	  
 </section>	
 
-
+<div id="newProviderModal" class="reveal-modal">
+  <h3>Register your business</h3>
+  <%= render 'new_provider'%>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
 
