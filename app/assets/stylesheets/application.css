@@ -95,3 +95,7 @@ table tr.no_bg {
 fieldset {
 	background-color: #fff;
 }
+
+.front_page_list {
+	padding-left: 20px;
+}
