@@ -54,6 +54,10 @@ ul.ui-autocomplete {
 	background-color: #93A889;
 }
 
+.brown_background {
+	background-color: #996600;
+}
+
 .main_content_section {
 	padding-bottom: 5px;
 	border: solid 3px black;
@@ -69,7 +73,7 @@ ul.ui-autocomplete {
 }
 
 .border_top {
-	border-top: solid 1px black;
+	border-top: solid 2px black !important;
 }
 
 table.no_border {

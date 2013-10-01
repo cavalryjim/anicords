@@ -33,11 +33,12 @@
 
   
     <section class="green_background">
-      
         <%= yield %>
-      
     </section>
-   
+    
+    <section class="brown_background border_top">
+      <%= render 'layouts/footer' %>
+    </section>
    
 
     <%= javascript_include_tag "application" %>
