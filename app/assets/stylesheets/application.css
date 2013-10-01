@@ -99,3 +99,7 @@ fieldset {
 .front_page_list {
 	padding-left: 20px;
 }
+
+li {
+   white-space: nowrap !important;
+}

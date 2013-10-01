@@ -1,41 +1,78 @@
+<h3>Are you a pet service provider? We’ll point our users to your services.</h3>
+
 <%= form_for(ServiceProvider.new) do |f| %>
   
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="large-6 columns">
+	  <%= f.select :service_provider_type_id, ServiceProviderType.all.map { |spt| [spt.name, spt.id] } %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :address1 %><br>
-    <%= f.text_field :address1 %>
+  
+  <div class="row">
+    <div class="large-10 columns">
+	  <%= f.text_field :name, placeholder: 'Business name' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :address2 %><br>
-    <%= f.text_field :address2 %>
+  
+  <div class="row">
+    <div class="large-10 columns">
+	  <%= f.text_field :address1, placeholder: 'Address1' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+  
+  <div class="row">
+    <div class="large-10 columns">
+	  <%= f.text_field :address2, placeholder: 'Address2' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
+  
+  <div class="row">
+    <div class="large-7 columns">
+	  <%= f.text_field :city, placeholder: 'City' %>
+    </div>
+  
+    <div class="large-2 columns">
+	  <%= f.select :state, us_states %>
+    </div>
+  
+    <div class="large-3 columns">
+	  <%= f.text_field :zip, placeholder: 'Zip' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :zip %><br>
-    <%= f.text_field :zip %>
+  
+  <div class="row">
+    <div class="large-6 columns">
+	  <%= f.text_field :email, placeholder: 'Business email' %>
+    </div>
+  
+    <div class="large-6 columns">
+	  <%= f.text_field :phone, placeholder: 'Business phone' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+ 
+  <div class="row">
+    <div class="large-10 columns">
+	  <%= f.text_field :website, placeholder: 'Website' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
+  
+  <fieldset>
+      <legend>Services provided</legend>
+  	
+	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
+	  <ul class=" large-block-grid-3">
+	   <% Service.all.each do |service| %>
+	     <li>
+	       <label for='<%=dom_id(service)%>'>
+		     <%= check_box_tag "service_provider[service_ids][]", service.id, nil, id: dom_id(service) %>
+		     <span class="custom checkbox"></span>
+		     <%= service.name %>
+		   </label>
+	     </li>
+		<% end %>
+	  </ul>
+  </fieldset>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -32,7 +32,7 @@
       </div>
       <div class="large-2 columns">
         <%= f.label :state  %>
-        <%= f.text_field :state, placeholder: "State" %>
+        <%= f.select :state, us_states %>
       </div>
       <div class="large-4 columns">
         <%= f.label :zip %>

@@ -21,7 +21,7 @@
 		  
 		  <div class="row collapse">
 		    <div class="small-9 columns">
-		      <h4>new user</h4>
+		      <h4>Create an account</h4>
 		    </div>
 		  </div>
 		
@@ -54,9 +54,13 @@
 	        <div class="small-6 columns"></div>
 		  </div>
 		  
+		  
 		<% end %>	
+		<div class="row">
+		  <div class="small-10 columns"><%= link_to 'Already have a Doolittl account?', new_user_session_path %></div>
+		</div>
 		
-	  	<p><a data-reveal-id="newProviderModal" class="button expand" style="margin-bottom: 0;">List My Business</a></p>
+	  	<p><a data-reveal-id="newProviderModal" class="button expand" style="margin-bottom: 0; margin-top: 10px">List My Business</a></p>
 	  </div>
 	 
 	</div>
@@ -70,7 +74,7 @@
   </div>
   <div class="row">
 	 <div class="large-12 columns">
-	    <p>Doolittl helps you gather, store, use, and share documentation and health information for your animals.</p>
+	    <p>DOOLITTL HELPS YOU ORGANIZE & SHARE YOUR ANIMAL HEALTH INFORMATION WITH THOSE INVOLVED IN THEIR CARE</p>
 	   </div>
   </div>
   <div class="row">
@@ -79,47 +83,35 @@
 	  	<tr class="no_bg">
 	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></br> Cloud Storage</td>
 	      <td>
-	      	Keep all of your animal’s documentation and health records in one place that's organized and available 
-	      	to you online through your smartphone or PC.
+	      	Keep all of your animal’s information in one place - organized and available to you online.
 	      </td>		
 	  	</tr>
 	  	<tr class="no_bg">
 	      <td align="center"><%= image_tag('dB_Icon.png', size: '50x50')%></br> Data Management </td>
 	      <td>
-	      	Be ready for vet appointments and others involved in your animal’s care by keeping track of health information 
-	      	in your family household account. You won't have to ask your veterinarian’s office to fax records 
-	      	(such as vaccination history) each time you need them.
-			Track:
-		    <ul class="front_page_list">
-				<li>Medications</li>
-				<li>Allergies</li>
-				<li>Health history</li>
-				<li>Fitness</li>
-				<li>Lab results</li>
-				<li>Diet</li>
-				<li>Conditions and illnesses</li>
-				<li>And many more kinds of health and wellness data</li>
-		    </ul>
+	      	Be ready for appointments with the kennel or groomer by keeping important information such as meds, 
+	      	allergies in your online account. No more calls to the your vet's office to fax records (such as vaccinations) 
+	      	each time you need them.
 	      </td>		
 	  	</tr>
 	  	<tr class="no_bg">
 	      <td align="center" class="no_bg"><%= image_tag('location_Icon.png', size: '50x50')%></br> Location Services</td>	
 	      <td>
-	      	Find local pet services and pet friendly establishment, communicate preferences to the kennel or groomer, or 
-	      	communicate acute medical issues with your veterinarian at the click of a button all from your smartphone.
+	      	Find local services and pet friendly establishments, communicate preferences to the kennel or groomer or 
+	      	acute medical issues with your vet at the click of a button from your smartphone.
 	      </td>	
 	  	</tr>
 	  	<tr class="no_bg">
 	      <td align="center" class="no_bg"><%= image_tag('social_Icon.png', size: '50x50')%></br> Social Networking</td>		
 	      <td>
-	      	We connect pets to pets, owners to owners, homes to those that care for their animals.
+	      	Get connected with other animal custodians.
 	      </td>
 	  	</tr>
 	  	
 	  	<tr class="no_bg">
 	      <td align="center" colspan="2" class="no_bg">
-	      	 <b>Capture it once, use it again and again, and never leave your animal’s info stranded in the veterinarian’s 
-	      	 or your home’s file cabinet again.</b>
+	      	 <b>CAPTURE IT ONCE, USE IT AGAIN AND AGAIN, AND NEVER LEAVE YOUR ANIMAL’S INFO STRANDED IN THE 
+	      	 	VETERINARIAN’S OR YOUR HOME’S FILE CABINET AGAIN.</b>
 	      </td>
 	  	</tr>
 	  	
@@ -130,7 +122,7 @@
 </section>	
 
 <div id="newProviderModal" class="reveal-modal">
-  <h3>Register your business</h3>
+  
   <%= render 'new_provider'%>
   
   <a class="close-reveal-modal">&#215;</a>

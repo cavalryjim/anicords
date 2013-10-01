@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130919205123) do
+ActiveRecord::Schema.define(version: 20131001020157) do
 
   create_table "animal_types", force: true do |t|
     t.string   "name"
@@ -78,6 +78,19 @@ ActiveRecord::Schema.define(version: 20130919205123) do
     t.datetime "updated_at"
   end
 
+  create_table "service_offerings", force: true do |t|
+    t.integer  "service_provider_id"
+    t.integer  "service_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "service_provider_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "service_providers", force: true do |t|
     t.string   "name"
     t.string   "address1"
@@ -88,6 +101,13 @@ ActiveRecord::Schema.define(version: 20130919205123) do
     t.string   "email"
     t.string   "website"
     t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "service_provider_type_id"
+  end
+
+  create_table "services", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
