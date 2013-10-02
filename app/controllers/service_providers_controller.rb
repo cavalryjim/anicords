@@ -33,7 +33,8 @@ class ServiceProvidersController < ApplicationController
 
     respond_to do |format|
       if @service_provider.save
-        format.html { redirect_to @service_provider, notice: 'Service provider was successfully created.' }
+        return_path = current_user ? @service_provider : new_user_registration_path
+        format.html { redirect_to return_path, notice: 'Service provider was successfully created.' }
         format.json { render action: 'show', status: :created, location: @service_provider }
       else
         format.html { render action: 'new' }
