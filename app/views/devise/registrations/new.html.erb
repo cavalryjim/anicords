@@ -1,69 +1,102 @@
-<section class="main_content_section">
-	<div class="row bottom_padding_5">
-	  <div class="large-8 columns">
-	    <div class="row">
-	    	<div class="large-10 large-centered columns">
-	    		<h2 class="welcome_header">MEOW, WOOF, WELCOME</h2>
-	    	</div>
-	    </div>
-	    
-	    <div class="row">
-	    	<div class="large-6 large-centered columns">
-	    		<%= image_tag 'home_dog.gif', size: '320x250', class: 'picture_border_2'%>
-	    	</div>
-	    </div>
-	  	
+<section class="main_content_section bottom_padding_5">
+  
+  	
+  <div class="row">
+	<div class="large-12  columns">
+	  <div class="row">
+	   <div class="large-7 large-centered columns">
+	    <h2 class="welcome_header">MEOW, WOOF, WELCOME</h2>
+	   </div>
 	  </div>
-	  
-	  <div class="large-4 columns">
+	    
+	  <div class="row">
+	   <div class="large-5 large-centered columns">
+	    <%= image_tag 'home_dog.gif', size: '320x250', class: 'picture_border_2'%>
+	   </div>
+	  </div>
+	    
 	  	
-		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+	</div>
+  </div>
+  
+  <div class="row">
+	  
+	<div class="large-12 columns">
+	  	
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 		  
-		  <div class="row collapse">
-		    <div class="small-9 columns">
-		      <h4>Create an account</h4>
-		    </div>
+		<div class="row collapse">
+		  <div class="small-5 columns">
+		    <h4>create an account</h4>
 		  </div>
-		
-		  <div class="row collapse">
-		    <div class="small-9 columns">
-		      <%= f.email_field :email, autofocus: true, placeholder: 'email address' %>
-		    </div>
-		  </div>
-		
-		  <% if f.object.password_required? %>
-		    <div class="row collapse">
-		      
-		      <div class="small-9 columns">
-		        <%= f.password_field :password, placeholder: 'password' %>
-		      </div>
-		    </div>
-		
-		    <div class="row collapse">
-		      <div class="small-9 columns">
-		        <%= f.password_field :password_confirmation, placeholder: 'password confirmation' %>
-		      </div>
-		    </div>
-		  <% end %>
-		  
-		  <div class="row">
-		    <div class="small-3 columns"><%= f.submit "Sign up" %></div>
-		    <div class="small-3 columns">
-	          <%= link_to image_tag('webicon-facebook-m.png'), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
-	        </div>
-	        <div class="small-6 columns"></div>
-		  </div>
-		  
-		  
-		<% end %>	
-		<div class="row">
-		  <div class="small-10 columns"><%= link_to 'Already have a Doolittl account?', new_user_session_path %></div>
 		</div>
 		
-	  	<p><a data-reveal-id="newProviderModal" class="button expand" style="margin-bottom: 0; margin-top: 10px">List My Business</a></p>
-	  </div>
-	 
+		<div class="row collapse">
+		  <div class="small-5 columns">
+		    <%= f.email_field :email, autofocus: true, placeholder: 'email address' %>
+		  </div>
+		</div>
+		
+		<% if f.object.password_required? %>
+		  <div class="row collapse">
+		      
+		    <div class="small-5 columns">
+		      <%= f.password_field :password, placeholder: 'password' %>
+		    </div>
+		  </div>
+		
+		  <div class="row collapse">
+		    <div class="small-5 columns">
+		      <%= f.password_field :password_confirmation, placeholder: 'password confirmation' %>
+		    </div>
+		  </div>
+	    <% end %>
+		
+		<div class="row collapse">
+		 <div class="small-6 columns">
+		  
+		  <div class="row collapse bottom_padding_5">
+		    <div class="small-3 columns"><%= f.submit "Sign up" %> or use</div>
+		    
+	        <div class="small-3 columns">
+	          <%= link_to image_tag('webicon-facebook-m.png'), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
+	        </div>
+	        <div class="small-3"></div>
+		  </div>
+	  <% end %>	
+		  
+		  <div class="row">
+		    <div class="small-4 columns">Already a member?</div>
+		    <div class="small-4 columns">
+	          <%= button_to 'Sign in' , new_user_session_path %>
+	        </div>
+	        <div class="small-4 columns"></div>
+	      </div>
+		</div>
+		
+		<div class="small-6 columns">
+		  <div class="row">
+	        <div class="small-10 columns no_padding">
+	  	       Are you an animal serice provider? Help DOOLITL point our users your way.	
+	        </div>
+		  </div>
+		  
+		  <div class="row">
+		  	
+	        <div class="small-12 columns">
+	  	      <p><a data-reveal-id="newProviderModal" class="button expand" style="margin-bottom: 0; margin-top: 10px">List My Business</a></p>
+	        	
+	        </div>
+		  </div>
+	  
+		</div>
+	   </div>
+		  
+		  
 	</div>
+	  
+	 
+  </div>
 </section>
 
 <section class="white_background">
