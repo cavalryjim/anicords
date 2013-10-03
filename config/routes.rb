@@ -19,7 +19,7 @@ Anicords::Application.routes.draw do
   resources :documents
 
   devise_for :users, 
-        path_names: {sign_in: "login", sign_out: "logout"}, 
+        path_names: {sign_in: "login", sign_out: "logout", sign_up: "welcome"}, 
         controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"} 
   
   resources :breeders do

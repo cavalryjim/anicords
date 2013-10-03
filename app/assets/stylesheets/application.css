@@ -80,10 +80,6 @@ table.no_border {
 	border: none !important;
 }
 
-table tr.no_bg {
-	background-color: transparent !important;
-}
-
 .picture_border_2 {
 	border: solid 2px black;
 }
@@ -96,6 +92,14 @@ table tr.no_bg {
 	padding-bottom: 5px;
 }
 
+.bottom_padding_10 {
+	padding-bottom: 10px;
+}
+
+.right_padding_3 {
+	padding-right: 3px;
+}
+
 fieldset {
 	background-color: #fff;
 }
@@ -106,4 +110,12 @@ fieldset {
 
 li {
    white-space: nowrap !important;
+}
+
+label.nav_dropdown {
+	width: 150px;
+}
+
+.no_bg {
+	background-color: transparent !important;
 }

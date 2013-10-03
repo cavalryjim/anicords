@@ -1,5 +1,5 @@
 
-<nav class="top-bar" >
+<nav class="top-bar" data-options="is_hover:false">
   <ul class="title-area">
     <li class="name">
 	  <%= link_to image_tag('doolittl1.png', size: '140x140'), "#" %>
@@ -7,8 +7,8 @@
 	<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
-  <section class="top-bar-section">
-    <ul class="right">
+  <section class="top-bar-section no_bg">
+    <ul class="right no_bg">
 	  <% if user_signed_in? %>
 	    
 	    <li><a href="#">Logged in as <%= current_user.email %>.</a></li>
@@ -17,9 +17,20 @@
 	    
 	  	<li> <%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
 	  <% else %>
-	    <li><%= link_to "About", "#", class: "blue_text" %></li>
-	    <li><%= link_to image_tag("arrow-34-512.png",  size: '20x20'), new_user_session_path %></li>
-	    <li><%= link_to "Login", new_user_session_path %></li>
+              
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "no_bg"} ) do |f| %>
+	      <li class="right_padding_3">
+		     <%= f.text_field :email, placeholder: "email address"%>
+          </li>
+          
+          <li class="right_padding_3">
+		     <%= f.password_field :password, placeholder: "password" %> 
+          </li>
+          
+          <li class="has-button no_bg">
+		    <%= f.submit "Login", class: "small button" %>
+          </li>
+		<% end %>
 	  	 
 	  <% end %>
 	</ul>
