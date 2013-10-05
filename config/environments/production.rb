@@ -29,6 +29,7 @@ Anicords::Application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
+  config.action_mailer.default_url_options = { :host => 'anicords.heroku.com' }
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
