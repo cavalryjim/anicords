@@ -8,7 +8,11 @@ class UserMailer < ActionMailer::Base
   #
   def signup_confirmation(user)
     @user = user
-
-    mail to: user.email, subject: "Welcome to Doolittl"
+    #puts @user.email + " at mailer!"
+    #mail to: user.email, subject: "Welcome to Doolittl"
+    
+    
+    mail to: 'james.davisphd@gmail.com', subject: @user.email + " signed up"
+    
   end
 end

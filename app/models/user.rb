@@ -103,4 +103,10 @@ class User < ActiveRecord::Base
     super && provider.blank?
   end
   
+  def self.signup_confirmation(user_id)
+    user = find(user_id)
+    puts "calling mailer for " + user.email
+    UserMailer.signup_confirmation(user).deliver
+  end
+  
 end

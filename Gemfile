@@ -24,6 +24,7 @@ gem 'carrierwave_direct', '0.0.13'
 gem 'sidekiq', '2.14.1'
 gem 'mandrill-api', '1.0.47'
 gem 'letter_opener', '1.1.2', group: :development
+gem 'queue_classic', '2.2.2'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
