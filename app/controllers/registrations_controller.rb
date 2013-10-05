@@ -3,7 +3,8 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
     
-    if Rails.env.production?
+    #if Rails.env.production?
+    if false
      QC.enqueue "User.signup_confirmation", @user.id
     else
       UserMailer.signup_confirmation(@user).deliver  

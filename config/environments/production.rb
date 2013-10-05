@@ -21,12 +21,13 @@ Anicords::Application.configure do
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {  
-    port:           '587',
     address:        'smtp.mandrillapp.com',
+    port:           '587',
+    domain:         'heroku.com',
     user_name:      ENV['MANDRILL_USERNAME'],
     password:       ENV['MANDRILL_APIKEY'],
-    domain:         'heroku.com',
-    authentication: :plain
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
