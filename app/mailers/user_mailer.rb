@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
-  default from: "no-reply@doolittl.com"
-          
+  default from: "no-reply@doolittl.com",
+          bcc: ['james.davisphd@gmail.com', 'tylercarruth@live.com']
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   def signup_confirmation(user)
     @user = user
     puts "At user_mailer sending email"
-    mail to: user.email, subject: "Welcome to DooLittl", bcc: ['james.davisphd@gmail.com', 'tylercarruth@live.com']
+    mail to: user.email, subject: "Welcome to DooLittl"
     
   end
 end
