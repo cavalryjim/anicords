@@ -2,11 +2,13 @@ class RegistrationsController < Devise::RegistrationsController
   
   def create
     super
-    UserMailer.signup_confirmation(@user).deliver
-    #QC.enqueue "UserMailer.signup_confirmation", @user.id
-    #QC.enqueue "User.signup_confirmation", @user.id
     
-    #session[:omniauth] = nil unless @user.new_record?
+    if Rails.env.production?
+     QC.enqueue "User.signup_confirmation", @user.id
+    else
+      UserMailer.signup_confirmation(@user).deliver  
+    end
+    
   end
   
   protected

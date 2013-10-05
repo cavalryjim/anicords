@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   
   def self.signup_confirmation(user_id)
     user = find(user_id)
-    puts "calling mailer for " + user.email
+    #puts "calling mailer for " + user.email
     UserMailer.signup_confirmation(user).deliver
   end
   
