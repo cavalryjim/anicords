@@ -35,10 +35,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  has_many  :user_associations, :dependent => :destroy
-  has_many  :breeders, :through => :user_associations
-  has_many  :households, :through => :user_associations
-  has_many  :veterinarians, :through => :user_associations
+  has_many  :user_associations, dependent: :destroy
+  has_many  :breeders, through: :user_associations
+  has_many  :households, through: :user_associations
+  has_many  :veterinarians, through: :user_associations
  
   def name
     first_name.to_s << ' ' << last_name.to_s
