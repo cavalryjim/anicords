@@ -117,13 +117,13 @@ class User < ActiveRecord::Base
     UserMailer.signup_confirmation(user).deliver
   end
   
-  def added_to_household(user_id, household_id)
+  def self.added_to_household(user_id, household_id)
     user = find(user_id)
     household = Household.find(household_id)
     UserMailer.added_to_household(user, household).deliver
   end
   
-  def created_and_added_to_household(user_id, password, household_id)
+  def self.created_and_added_to_household(user_id, password, household_id)
     user = find(user_id)
     household = Household.find(household_id)
     UserMailer.created_and_added_to_household(user, password, household).deliver
