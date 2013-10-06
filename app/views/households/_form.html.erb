@@ -49,27 +49,43 @@
       </div>
     </div>
     
-    <div class="row">
-      <div class="large-4 columns">
-      	<table>
-          <thead>
-            <tr>
-              <th width="200">Humans</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @household.users.each do |user| %>
-              <tr>
-              	<td><%= user.name%></td>
-                <td><%= user.email %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <!--<%= f.fields_for :user_associations do |builder| %>
+      <%= render 'user_association_fields', f: builder %>
+      
+    <% end %>
+    <%= link_to_add_fields 'Add Human', f, :user_associations %>-->
+    <% if (!@household.new_record?) %>
+	    <div class="row">
+	      <div class="large-5 columns">
+	      	<table>
+	          <thead>
+	            <tr>
+	              <th width="200">Humans</th>
+	              <th> <a href="#" class="small button" data-reveal-id="newHumanModal">Add Human</a> </th>
+	              <th width='100'></th>
+	            </tr>
+	          </thead>
+	
+	          <tbody>
+	            <% @household.user_associations.each do |ua| %>
+	              <tr>
+	              	<td><%= ua.user.name%></td>
+	                <td><%= ua.user.email %></td>
+	                <td>
+	                  <% if ua.user != current_user %>
+	                	<%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
+				 		data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
+				 	  <% end %>
+	                </td>
+	                <!--<%= hidden_field_tag 'humans[]', ua.user.email %>-->
+	              </tr>
+	            <% end %>
+	            
+	          </tbody>
+	        </table>
+	      </div>
+	    </div>
+    <% end %>
     
     <div class="actions">
       <%= f.submit %>
@@ -78,3 +94,35 @@
   </fieldset>
   
 <% end %>
+
+<div id="newHumanModal" class="reveal-modal">
+  <h3>Add members to your household</h3>
+  <%= form_for User.new, url: {action: "create_user"} do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.text_field :email, placeholder: "Email"  %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.text_field :first_name, placeholder: "First Name"  %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+      </div>
+    </div>
+    
+    <%= f.hidden_field :household_id, value: @household.id %>
+    
+    <div class="actions">
+      <%= f.submit "Add member" %>
+    </div>
+  
+  <% end %>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>

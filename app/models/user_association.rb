@@ -50,4 +50,8 @@ class UserAssociation < ActiveRecord::Base
     end
   end
   
+  def user_email
+    self.user ? user.email : nil
+  end
+  
 end

@@ -10,6 +10,7 @@ Anicords::Application.routes.draw do
     end
     resources :service_providers
     resources :household_associations
+    resources :user_associations
   end
 
   resources :animals do
@@ -33,6 +34,7 @@ Anicords::Application.routes.draw do
   patch 'households/:id/add_service_provider' => 'households#add_service_provider'
   patch 'households/:id/remove_service_provider' => 'households#remove_service_provider'
   get 'documents/:id/download_file' => 'documents#download_file'
+  post 'households/:id/create_user' => 'households#create_user'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

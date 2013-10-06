@@ -44,6 +44,14 @@ class User < ActiveRecord::Base
     first_name.to_s << ' ' << last_name.to_s
   end
   
+  def name_or_email
+    if first_name || last_name
+      first_name.to_s << ' ' << last_name.to_s
+    else
+      email
+    end
+  end
+  
   def multiple_associations?
     self.user_associations.count > 1
   end  
@@ -105,8 +113,20 @@ class User < ActiveRecord::Base
   
   def self.signup_confirmation(user_id)
     user = find(user_id)
-    puts "In model calling mailer for " + user.email
+    #puts "In model calling mailer for " + user.email
     UserMailer.signup_confirmation(user).deliver
+  end
+  
+  def added_to_household(user_id, household_id)
+    user = find(user_id)
+    household = Household.find(household_id)
+    UserMailer.added_to_household(user, household)
+  end
+  
+  def created_and_added_to_household(user_id, password, household_id)
+    user = find(user_id)
+    household = Household.find(household_id)
+    UserMailer.created_and_added_to_household(user, password, household)
   end
   
 end

@@ -30,7 +30,7 @@
 		  <li>
 		  	  <%= link_to image_tag('doo_fav.png', class: 'th') %>
 			  <%= link_to provider.name, household_service_provider_path(@household, provider) %>		
-			  <!--<%= link_to image_tag('cross.png', :alt => "del"), delete_path_help(@household.id, provider.id), method: :delete, 
+			  <!--<%= link_to image_tag('cross.png', :alt => "del"), remove_provider_path_help(@household.id, provider.id), method: :delete, 
 				 data: { confirm: 'Please confirm you want to remove ' + provider.name + ' as a service provider.' } %>-->
 		  </li>
 					

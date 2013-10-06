@@ -23,6 +23,7 @@ class Household < ActiveRecord::Base
   has_many  :household_associations, dependent: :destroy
   has_many  :service_providers, through: :household_associations
   accepts_nested_attributes_for :animals, allow_destroy: true
+  accepts_nested_attributes_for :user_associations, allow_destroy: true
   
   validates :name, presence: true 
   

@@ -11,7 +11,7 @@ module HouseholdsHelper
     end
   end
   
-  def delete_path_help(household_id, provider_id)
+  def remove_provider_path_help(household_id, provider_id)
     association = HouseholdAssociation.where(household_id: household_id, service_provider_id: provider_id).first
     household_household_association_path(household_id, association.id)
   end

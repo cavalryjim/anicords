@@ -1,5 +1,5 @@
 class HouseholdsController < ApplicationController
-  before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider]
+  before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider, :create_user]
   before_filter :authenticate_user!
 
   # GET /households
@@ -17,6 +17,7 @@ class HouseholdsController < ApplicationController
   # GET /households/new
   def new
     @household = Household.new
+    #@household.users << current_user
   end
 
   # GET /households/1/edit
@@ -27,7 +28,7 @@ class HouseholdsController < ApplicationController
   # POST /households.json
   def create
     @household = Household.new(household_params)
-
+    
     respond_to do |format|
       if @household.save && @household.associate_user(current_user.id)
         session[:home_page] = household_path(@household)
@@ -72,6 +73,22 @@ class HouseholdsController < ApplicationController
   def remove_service_provider
     @household
   end
+  
+  def create_user
+    user = User.find_by(email: params[:user][:email])
+    if user
+      Rails.env.production? ? QC.enqueue("User.added_to_household", [user.id, @household.id]) : UserMailer.added_to_household(user, @household).deliver  
+    elsif
+      generated_password = Devise.friendly_token.first(8)
+      user = User.create(email: params[:user][:email], password: generated_password, password_confirmation: generated_password)
+      Rails.env.production? ? QC.enqueue("User.created_and_added_to_household", [user.id, generated_password, @household.id]) : UserMailer.created_and_added_to_household(user, generated_password, @household).deliver 
+      
+    end
+    
+    @household.associate_user(user.id)
+    redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -81,6 +98,6 @@ class HouseholdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def household_params
-      params.require(:household).permit(:name, :address1, :address2, :phone)
+      params.require(:household).permit(:name, :address1, :address2, :phone, :user_associations_attributes)
     end
 end
