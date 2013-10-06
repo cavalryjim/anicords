@@ -17,6 +17,7 @@ class UserMailer < ActionMailer::Base
   def added_to_household(user, household)
     @user = user
     @household = household
+    puts "At user_mailer sending email"
     mail to: user.email, subject: "Added to DooLiddl Household"
   end
   
@@ -24,6 +25,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @household = household
     @password = password
+    puts "At user_mailer sending email"
     mail to: user.email, subject: "Welcome to DooLiddl"
   end
   
