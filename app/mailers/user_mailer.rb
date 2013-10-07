@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "no-reply@doolittl.com",
+  default from: "no-reply@dooliddl.com",
           bcc: ['james.davisphd@gmail.com', 'tylercarruth@live.com']
  
 
@@ -11,13 +11,13 @@ class UserMailer < ActionMailer::Base
   def signup_confirmation(user)
     @user = user
     #puts "At user_mailer sending email"
-    mail to: user.email, subject: "Welcome to DooLittl"
+    mail to: user.email, subject: "Welcome to DooLiddl"
   end
   
   def added_to_household(user, household)
     @user = user
     @household = household
-    puts "At user_mailer sending email"
+    #puts "At user_mailer sending email"
     mail to: user.email, subject: "Added to DooLiddl Household"
   end
   
@@ -25,7 +25,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @household = household
     @password = password
-    puts "At user_mailer sending email"
+    #puts "At user_mailer sending email"
     mail to: user.email, subject: "Welcome to DooLiddl"
   end
   

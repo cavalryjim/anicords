@@ -1,13 +1,12 @@
 class UserAssociationsController < ApplicationController
   before_action :set_user_association
-  #before_action :set_user
-
   
 
   # DELETE /household_associations/1
   # DELETE /households/1.json
   def destroy
     @user_association.destroy
+    
     if params[:household_id]
       @household = Household.find(params[:household_id])
       redirect_path = edit_household_path(@household)
@@ -16,7 +15,7 @@ class UserAssociationsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to redirect_path }
+      format.html { redirect_to redirect_path, notice: 'Relationship was successfully removed.' }
       format.json { head :no_content }
     end
   end
