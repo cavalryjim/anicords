@@ -18,20 +18,12 @@
 	  	<li> <%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
 	  <% else %>
               
-		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "no_bg"} ) do |f| %>
-	      <li class="right_padding_3">
-		     <%= f.text_field :email, placeholder: "email address"%>
-          </li>
-          
-          <li class="right_padding_3">
-		     <%= f.password_field :password, placeholder: "password" %> 
-          </li>
-          
-          <li class="has-button no_bg">
-		    <%= f.submit "Login", class: "small button" %>
-          </li>
-		<% end %>
-	  	 
+		<li> 
+	  	  <%= link_to image_tag('signup1.png', size: '120x120'), "#", "data-reveal-id" => "registerSigninModal" %>
+	    </li>
+		
+		<li><%= link_to image_tag('oruse.png', size: '120x120'), user_omniauth_authorize_path(:facebook) %></li>
+		
 	  <% end %>
 	</ul>
   </section>

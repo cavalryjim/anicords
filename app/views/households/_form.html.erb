@@ -95,34 +95,36 @@
   
 <% end %>
 
-<div id="newHumanModal" class="reveal-modal">
-  <h3>Add members to your household</h3>
-  <%= form_for User.new, url: {action: "create_user"} do |f| %>
-    <div class="row">
-      <div class="large-12 columns">
-        <%= f.text_field :email, placeholder: "Email"  %>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="large-12 columns">
-        <%= f.text_field :first_name, placeholder: "First Name"  %>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="large-12 columns">
-        <%= f.text_field :last_name, placeholder: "Last Name"  %>
-      </div>
-    </div>
-    
-    <%= f.hidden_field :household_id, value: @household.id %>
-    
-    <div class="actions">
-      <%= f.submit "Add member" %>
-    </div>
-  
-  <% end %>
-  
-  <a class="close-reveal-modal">&#215;</a>
-</div>
+<% if (!@household.new_record?) %>
+	<div id="newHumanModal" class="reveal-modal">
+	  <h3>Add members to your household</h3>
+	  <%= form_for User.new, url: {action: "create_user"} do |f| %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :email, placeholder: "Email"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :first_name, placeholder: "First Name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+	      </div>
+	    </div>
+	    
+	    <%= f.hidden_field :household_id, value: @household.id %>
+	    
+	    <div class="actions">
+	      <%= f.submit "Add member" %>
+	    </div>
+	  
+	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+<% end %>

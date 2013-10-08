@@ -119,3 +119,9 @@ label.nav_dropdown {
 .no_bg {
 	background-color: transparent !important;
 }
+
+.bottom_align {
+	display: table-cell !important;
+  	vertical-align: bottom !important;
+  	margin-top: 10%;
+}
