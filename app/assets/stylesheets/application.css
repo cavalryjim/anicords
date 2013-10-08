@@ -125,3 +125,7 @@ label.nav_dropdown {
   	vertical-align: bottom !important;
   	margin-top: 10%;
 }
+
+.panel {
+	border-color: #000000 !important;
+}
