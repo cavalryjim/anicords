@@ -1,11 +1,16 @@
-
-<div class="row">
+<section class="border_top">
+	
+ <div class="row">
   <div class="large-12 columns">
       	
 	<fieldset>
-		<legend><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household) %></small></legend>
+		<h4><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household) %></small></h4>
 	    <ul class="large-block-grid-10">
-	      
+	    	
+	    <% if @household.animals.count == 0 %>
+	      <li>Please add your household animals.</li>
+	    <% end %>
+	    
 		<% @household.animals.each do |animal| %>
 		  <li>
 			  <%= link_to animal_image(animal), edit_household_animal_path(@household, animal), 'data-no-turbolink' => true %><br/>
@@ -23,12 +28,16 @@
 <div class="row">
   <div class="large-12 columns">
 	<fieldset>
-		<legend>Service Providers</legend>
+		<h4>Service Providers</h4>
 	    <ul class="large-block-grid-10">
+	    
+	    <% if @household.service_providers.count == 0 %>
+	      <li>Add your animals' service providers (veterinarian, groomer, kennel, etc.)</li>
+	    <% end %>
 	    	
 		<% @household.service_providers.each do |provider| %>
 		  <li>
-		  	  <%= link_to image_tag('doo_fav.png', class: 'th') %>
+		  	  <%= link_to image_tag('doo_fav.png', class: 'th'), household_service_provider_path(@household, provider) %></br>
 			  <%= link_to provider.name, household_service_provider_path(@household, provider) %>		
 			  <!--<%= link_to image_tag('cross.png', :alt => "del"), remove_provider_path_help(@household.id, provider.id), method: :delete, 
 				 data: { confirm: 'Please confirm you want to remove ' + provider.name + ' as a service provider.' } %>-->
@@ -36,10 +45,7 @@
 					
 		<% end %>
 	    </ul>
-	  
-		
-			
-	    
+   
 	    <form action="#" class="button_to" >
 	    	<div>
 	    		<input data-reveal-id="providerModal"  type="submit" value="Add Provider" id="provider_reveal_button" />
@@ -48,7 +54,8 @@
 	   
 	</fieldset>
   </div>
-</div>
+ </div>
+</section>
 	
 <!--
 <div class="section-container auto" data-section>

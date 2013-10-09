@@ -123,9 +123,14 @@ label.nav_dropdown {
 .bottom_align {
 	display: table-cell !important;
   	vertical-align: bottom !important;
-  	margin-top: 10%;
+  	margin-top: 5%;
 }
 
 .panel {
 	border-color: #000000 !important;
+}
+
+.disabled {
+   pointer-events: none;
+   cursor: default;
 }

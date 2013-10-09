@@ -1,49 +1,81 @@
-<p id="notice"><%= notice %></p>
+<section class="border_top">
+	
+  <div class="row">
+    <div class="large-6 columns">
+  	
+	  <div class="row">
+	    <div class="large-12 columns">
+		  <h4><%= @service_provider.name %></h4>
+	    </div>
+	  </div>
+	
+	  <div class="row">
+	    <div class="large-12 columns">
+		  <p>Address: <%= @service_provider.address1 %></p>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-12 columns">
+		  <p>          <%= @service_provider.address2 %></p>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-12 columns">
+		  <p>City: <%= @service_provider.city %></p>
+	    </div>
+	  </div>
+	
+	  <div class="row">
+	    <div class="large-3 columns">
+		  <p>State: <%= @service_provider.state %> </p>
+	    </div>
+	    <div class="large-9 columns"><p> Zip: <%= @service_provider.zip %> </p> </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-12 columns">
+		  <p>Email: <%= @service_provider.email %></p>
+	    </div>
+	  </div>
+	
+	  <div class="row">
+	    <div class="large-12 columns">
+		  <p>Website: <%= @service_provider.website %></p>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-12 columns">
+		  <p>Phone: <%= @service_provider.phone %></p>
+	    </div>
+	  </div>
+	
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <%= link_to 'Back', :back %>
+	    </div>
+	  </div>
+    </div>
+  
+    <div class="large-6 columns">
+  	  <fieldset>
+	     <h5>Services provided</h5>
+		 <ul class=" large-block-grid-3">
+		   <% if @service_provider.services.count == 0 %>
+		     <li>This provider does not have any services listed.</li>
+		   <% end %>
+		   <% @service_provider.services.each do |service| %>
+		     <li>
+			     <%= service.name %>
+		     </li>
+			<% end %>
+		 </ul>
+	  </fieldset>
+  	
+    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @service_provider.name %>
-</p>
+  </div>
 
-<p>
-  <strong>Address1:</strong>
-  <%= @service_provider.address1 %>
-</p>
-
-<p>
-  <strong>Address2:</strong>
-  <%= @service_provider.address2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @service_provider.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @service_provider.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @service_provider.zip %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @service_provider.email %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @service_provider.website %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @service_provider.phone %>
-</p>
-
-<%= link_to 'Edit', edit_service_provider_path(@service_provider) %> |
-<%= link_to 'Back', '#' %>
+</section>

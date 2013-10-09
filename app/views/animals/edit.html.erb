@@ -1,10 +1,13 @@
-
-<fieldset>
-  <legend><%=@animal.name%></legend>
-  <%= render 'form' %>
-  
-  <%= link_to 'Delete this record', household_animal_path(@household, @animal), 
-					:confirm => "Select 'OK' to delete this animal. All system records will be lost.", method: :delete%>
-</fieldset>
-
-<%= link_to 'Back', @animal.owner %>
+<section class="border_top">
+  <div class="row">
+	<fieldset>
+	  <h4><%=@animal.name%></h4>
+	  <%= render 'form' %>
+	  
+	  <%= link_to 'Delete this record', household_animal_path(@household, @animal), 
+						:confirm => "Select 'OK' to delete this animal. All system records will be lost.", method: :delete%>
+	</fieldset>
+	
+	<%= link_to 'Back', @animal.owner %>
+  </div>
+</section>

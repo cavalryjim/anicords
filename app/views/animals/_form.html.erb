@@ -56,7 +56,8 @@
 	     <% end %>
 	    </div>
 	  </section>
-	  <section>
+	  
+	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
 	    <p class="title" data-section-title><a href="#panel2">Documents</a></p>
 	    <div class="content" data-section-content>
 	    	
@@ -65,14 +66,14 @@
 	      <% end %>
 	      
 	    </div>
-	  </section>
+	  <% end %>
 	  
-	  <section>
+	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
 	    <p class="title" data-section-title><a href="#panel2">Medical</a></p>
 	    <div class="content" data-section-content>
 	      <p>Animal medical information will go here.</p>
 	    </div>
-	  </section>
+	  <% end %>
 	</div>
 
     
