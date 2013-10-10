@@ -4,7 +4,7 @@
 	  <h4><%=@animal.name%></h4>
 	  <%= render 'form' %>
 	  
-	  <%= link_to 'Delete this record', household_animal_path(@household, @animal), 
+	  <%= link_to 'Delete this record', household_animal_path(@owner, @animal), 
 						:confirm => "Select 'OK' to delete this animal. All system records will be lost.", method: :delete%>
 	</fieldset>
 	

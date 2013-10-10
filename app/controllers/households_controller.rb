@@ -81,7 +81,7 @@ class HouseholdsController < ApplicationController
       #UserMailer.added_to_household(user, @household).deliver 
     else
       generated_password = Devise.friendly_token.first(8)
-      user = User.create(email: params[:user][:email], password: generated_password, password_confirmation: generated_password)
+      user = User.create(email: params[:user][:email], password: generated_password, password_confirmation: generated_password, first_name: params[:user][:first_name], last_name: params[:user][:last_name] )
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_household", user.id, generated_password, @household.id) : UserMailer.created_and_added_to_household(user, generated_password, @household).deliver 
       #UserMailer.created_and_added_to_household(user, generated_password, @household).deliver
     end

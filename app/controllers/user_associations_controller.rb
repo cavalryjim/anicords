@@ -10,6 +10,9 @@ class UserAssociationsController < ApplicationController
     if params[:household_id]
       @household = Household.find(params[:household_id])
       redirect_path = edit_household_path(@household)
+    elsif params[:user_id]
+      @user = User.find(params[:user_id])
+      redirect_path = edit_user_path(@user)
     else
       redirect_path = edit_user_path(@user_association.user)
     end

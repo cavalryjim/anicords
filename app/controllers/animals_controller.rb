@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
-  before_action :set_owner, only: [:new, :create]
+  before_action :set_owner, only: [:new, :create, :edit, :destroy]
   before_filter :authenticate_user!, except: [:show]
 
   # GET /animals
@@ -64,7 +64,7 @@ class AnimalsController < ApplicationController
   def destroy
     @animal.destroy
     respond_to do |format|
-      format.html { redirect_to @animal.owner, notice: 'Animal was successfully updated.' }
+      format.html { redirect_to @owner, notice: 'Animal was successfully updated.' }
       format.json { head :no_content }
     end
   end

@@ -3,7 +3,6 @@
 <%= form_for(@user) do |f| %>
 
   <fieldset>
-    <legend>Profile</legend>
 
     <div class="row">
       <div class="large-5 columns">
@@ -67,7 +66,7 @@
 	   <table>
 	      <thead>
 	        <tr>
-	          <th min-width="200" colspan="2">Associations</th>
+	          <th min-width="200" colspan="3">Associations</th>
 	        </tr>
 	      </thead>
 	
@@ -75,7 +74,9 @@
 	        <% @user.associations.each do |association| %>
 	          <tr>
 	            <td><%= link_to image(association), association.organization %></td>   
-	            <td><%= link_to association.name, association.organization %></td>       
+	            <td><%= link_to association.name, association.organization %></td> 
+	            <td><%= link_to image_tag('cross.png', alt:"del", size: '20x20'), user_user_association_path(@user, association), method: :delete, 
+				 		data: { confirm: 'Please confirm you want to remove ' + association.name + ' from your account.' } %></td>      
 	          </tr>
 	        <% end %>
 	      </tbody>

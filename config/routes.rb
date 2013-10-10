@@ -26,7 +26,9 @@ Anicords::Application.routes.draw do
   resources :breeders do
     resources :animals
   end
-  resources :users
+  resources :users do
+    resources :user_associations
+  end
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'
