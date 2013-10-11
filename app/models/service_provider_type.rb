@@ -9,7 +9,8 @@
 #
 
 class ServiceProviderType < ActiveRecord::Base
-  has_many :service_providers
+  has_many  :business_types
+  has_many :service_providers, through: :business_types
   
   validates :name, presence: true
   

@@ -1,8 +1,21 @@
-  <div class="row">
-    <div class="large-6 columns">
-	  <%= f.select :service_provider_type_id, ServiceProviderType.all.map { |spt| [spt.name, spt.id] } %>
-    </div>
-  </div>
+  
+  
+  <fieldset>
+      <legend>Business Type</legend>
+  	
+	  <%= hidden_field_tag "service_provider[service_provider_type_ids][]", nil %>
+	  <ul class=" large-block-grid-3">
+	   <% ServiceProviderType.all.each do |spt| %>
+	     <li>
+	       <label for='<%=dom_id(spt)%>'>
+		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, nil, id: dom_id(spt) %>
+		     <span class="custom checkbox"></span>
+		     <%= spt.name %>
+		   </label>
+	     </li>
+		<% end %>
+	  </ul>
+  </fieldset>
   
   <div class="row">
     <div class="large-10 columns">
@@ -60,7 +73,7 @@
 	   <% Service.all.each do |service| %>
 	     <li>
 	       <label for='<%=dom_id(service)%>'>
-		     <%= check_box_tag "service_provider[service_ids][]", service.id, nil, id: dom_id(service) %>
+		     <%= check_box_tag "service_provider[service_ids][]", service.id, service_selected(@service_provider, service.id), id: dom_id(service) %>
 		     <span class="custom checkbox"></span>
 		     <%= service.name %>
 		   </label>
