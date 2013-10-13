@@ -1,7 +1,8 @@
   
   
   <fieldset>
-      <legend>Business Type</legend>
+      <legend>Business Type <small>Select all that apply</small></legend>
+      
   	
 	  <%= hidden_field_tag "service_provider[service_provider_type_ids][]", nil %>
 	  <ul class=" large-block-grid-3">
@@ -66,7 +67,7 @@
   </div>
   
   <fieldset>
-      <legend>Services provided</legend>
+      <legend>Services provided <small>Select all that apply</small></legend>
 	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
 	  <ul id="available_services" class=" large-block-grid-3">
 	    <% if @service_provider %>

@@ -1,8 +1,9 @@
 <%= form_for(@service_provider) do |f| %>
-  
+ <fieldset>  
   <%= render 'fields', f: f %>
   
   <div class="actions">
     <%= f.submit %>
   </div>
+ </fieldset>
 <% end %>

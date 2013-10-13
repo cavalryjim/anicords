@@ -22,14 +22,19 @@
 		 </div>
 		 
 		 <div class="row collapse">
-		   <div class="small-8 columns">
+		   <div class="small-4 columns">
 		     <label for="user_remember_me">
       	       <%= f.check_box :remember_me %> 
       	       <span class="custom checkbox"></span> 
       	       Remember me
              </label>
 		   </div>
+		   <div class="small-8 columns">
+		     <small><%= link_to "Forgot password?", new_user_password_path %>	</small>
+		   	
+		   </div>
 		 </div>
+		 
           
          <div class="row collapse bottom_padding_10">
 		    <div class="small-4 columns"><%= f.submit "Login", class: "small button" %></div>

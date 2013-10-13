@@ -47,7 +47,6 @@ class ServiceProvidersController < ApplicationController
   # PATCH/PUT /service_providers/1.json
   def update
     
-    
     respond_to do |format|
       if @service_provider.update(service_provider_params)
         format.html { redirect_to @service_provider, notice: 'Service provider was successfully updated.' }
