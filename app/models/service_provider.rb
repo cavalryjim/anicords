@@ -30,4 +30,8 @@ class ServiceProvider < ActiveRecord::Base
     { value: id, label: name + ' ' + zip.to_s }
   end
   
+  def services_available
+    Service.where(service_provider_type_id: self.service_provider_type_ids).all
+  end
+  
 end

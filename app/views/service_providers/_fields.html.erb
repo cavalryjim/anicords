@@ -8,7 +8,7 @@
 	   <% ServiceProviderType.all.each do |spt| %>
 	     <li>
 	       <label for='<%=dom_id(spt)%>'>
-		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, nil, id: dom_id(spt) %>
+		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, business_selected(@service_provider, spt.id), id: dom_id(spt), class: "service_provider_type" %>
 		     <span class="custom checkbox"></span>
 		     <%= spt.name %>
 		   </label>
@@ -67,8 +67,16 @@
   
   <fieldset>
       <legend>Services provided</legend>
-  	
+      <div class="field" id="service_ids">
+		  <%= f.label :service_ids, "Services" %><br/>
+		  <%= f.collection_select :service_ids, @service_provider.services_available, :id, :name, {}, {multiple: true} %>
+		  
+		  
+	  </div>
+  	  <!--- 
+		  <%= f.hidden_field :service_ids %>
 	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
+	      <input type="hidden" id="service_provider_service_ids" />
 	  <ul class=" large-block-grid-3">
 	   <% Service.all.each do |service| %>
 	     <li>
@@ -80,5 +88,6 @@
 	     </li>
 		<% end %>
 	  </ul>
+  	  	-->
   </fieldset>
   

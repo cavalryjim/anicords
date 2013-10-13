@@ -46,6 +46,8 @@ class ServiceProvidersController < ApplicationController
   # PATCH/PUT /service_providers/1
   # PATCH/PUT /service_providers/1.json
   def update
+    
+    
     respond_to do |format|
       if @service_provider.update(service_provider_params)
         format.html { redirect_to @service_provider, notice: 'Service provider was successfully updated.' }
@@ -66,6 +68,7 @@ class ServiceProvidersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
