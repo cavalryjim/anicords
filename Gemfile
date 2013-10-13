@@ -8,7 +8,7 @@ gem 'rails', '4.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.16.0'
 
-gem 'sass-rails',   '4.0.0'
+gem 'sass-rails', '4.0.0'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.0'
 

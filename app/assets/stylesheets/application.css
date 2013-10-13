@@ -12,6 +12,7 @@
  *= require foundation_and_overrides
  *= require_tree .
  */
+
 ul.ui-autocomplete {
   position: absolute;
   background-color: #FFF !important;
