@@ -2,14 +2,15 @@
 #
 # Table name: user_associations
 #
-#  id              :integer          not null, primary key
-#  user_id         :integer
-#  breeder_id      :integer
-#  household_id    :integer
-#  administrator   :boolean
-#  created_at      :datetime
-#  updated_at      :datetime
-#  veterinarian_id :integer
+#  id                  :integer          not null, primary key
+#  user_id             :integer
+#  breeder_id          :integer
+#  household_id        :integer
+#  administrator       :boolean
+#  created_at          :datetime
+#  updated_at          :datetime
+#  veterinarian_id     :integer
+#  service_provider_id :integer
 #
 
 class UserAssociation < ActiveRecord::Base
@@ -17,6 +18,7 @@ class UserAssociation < ActiveRecord::Base
   belongs_to :breeder
   belongs_to :household
   belongs_to :veterinarian
+  belongs_to :service_provider
   
   validates :user_id, presence: true
   
@@ -27,6 +29,8 @@ class UserAssociation < ActiveRecord::Base
       self.household.name
     elsif self.veterinarian_id
       self.veterinarian.name
+    elsif self.service_provider_id
+      self.service_provider.name
     end
   end
   
@@ -37,6 +41,8 @@ class UserAssociation < ActiveRecord::Base
       self.household
     elsif self.veterinarian_id
       self.veterinarian
+    elsif self.service_provider_id
+      self.service_provider
     end
   end
   
@@ -47,6 +53,8 @@ class UserAssociation < ActiveRecord::Base
       'household'
     elsif self.veterinarian_id
       'veterinarian'
+    elsif self.service_provider_id
+      'provider'
     end
   end
   

@@ -2,14 +2,15 @@
 #
 # Table name: user_associations
 #
-#  id              :integer          not null, primary key
-#  user_id         :integer
-#  breeder_id      :integer
-#  household_id    :integer
-#  administrator   :boolean
-#  created_at      :datetime
-#  updated_at      :datetime
-#  veterinarian_id :integer
+#  id                  :integer          not null, primary key
+#  user_id             :integer
+#  breeder_id          :integer
+#  household_id        :integer
+#  administrator       :boolean
+#  created_at          :datetime
+#  updated_at          :datetime
+#  veterinarian_id     :integer
+#  service_provider_id :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

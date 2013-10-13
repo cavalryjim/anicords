@@ -30,9 +30,9 @@ class ServiceProvidersController < ApplicationController
   # POST /service_providers.json
   def create
     @service_provider = ServiceProvider.new(service_provider_params)
-
     respond_to do |format|
       if @service_provider.save
+        User.create_user_to_service_provider(@service_provider.email, @service_provider.id) if @service_provider.has_email?
         return_path = current_user ? @service_provider : new_user_registration_path
         format.html { redirect_to return_path, notice: 'Service provider was successfully created.' }
         format.json { render action: 'show', status: :created, location: @service_provider }

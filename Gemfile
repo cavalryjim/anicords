@@ -25,8 +25,8 @@ gem 'sidekiq', '2.14.1'
 gem 'mandrill-api', '1.0.47'
 gem 'letter_opener', '1.1.2', group: :development
 gem 'queue_classic', '2.2.2'
-gem 'chosen-rails', '1.0.1'
-gem 'compass-rails', github: 'Compass/compass-rails'
+#gem 'chosen-rails', '1.0.1'
+#gem 'compass-rails', github: 'Compass/compass-rails'
 #gem 'select2-rails', '3.5.0'
 
 

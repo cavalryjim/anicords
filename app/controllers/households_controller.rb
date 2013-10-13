@@ -75,20 +75,9 @@ class HouseholdsController < ApplicationController
   end
   
   def create_user
-    user = User.find_by(email: params[:user][:email])
-    if user
-      Rails.env.production? ? QC.enqueue("User.added_to_household", user.id, @household.id) : UserMailer.added_to_household(user, @household).deliver 
-      #UserMailer.added_to_household(user, @household).deliver 
-    else
-      generated_password = Devise.friendly_token.first(8)
-      user = User.create(email: params[:user][:email], password: generated_password, password_confirmation: generated_password, first_name: params[:user][:first_name], last_name: params[:user][:last_name] )
-      Rails.env.production? ? QC.enqueue("User.created_and_added_to_household", user.id, generated_password, @household.id) : UserMailer.created_and_added_to_household(user, generated_password, @household).deliver 
-      #UserMailer.created_and_added_to_household(user, generated_password, @household).deliver
-    end
+    current_user.create_user_to_household(params[:user][:email], @household.id, params[:user][:first_name], params[:user][:last_name] )
     
-    @household.associate_user(user.id)
     redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
-    
   end
 
   private

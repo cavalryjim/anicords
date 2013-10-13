@@ -29,6 +29,19 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Welcome to DooLiddl"
   end
   
+  def created_and_added_to_service_provider(user, password, service_provider)
+    @user = user
+    @service_provider = service_provider
+    @password = password
+    mail to: user.email, subject: "Welcome to DooLiddl"
+  end
+  
+  def added_to_service_provider(user, service_provider)
+    @user = user
+    @service_provider = service_provider
+    mail to: user.email, subject: "Added to DooLiddl Serive Provider"
+  end
+  
 private
   
   

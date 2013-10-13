@@ -67,27 +67,20 @@
   
   <fieldset>
       <legend>Services provided</legend>
-      <div class="field" id="service_ids">
-		  <%= f.label :service_ids, "Services" %><br/>
-		  <%= f.collection_select :service_ids, @service_provider.services_available, :id, :name, {}, {multiple: true} %>
-		  
-		  
-	  </div>
-  	  <!--- 
-		  <%= f.hidden_field :service_ids %>
 	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
-	      <input type="hidden" id="service_provider_service_ids" />
-	  <ul class=" large-block-grid-3">
-	   <% Service.all.each do |service| %>
-	     <li>
-	       <label for='<%=dom_id(service)%>'>
-		     <%= check_box_tag "service_provider[service_ids][]", service.id, service_selected(@service_provider, service.id), id: dom_id(service) %>
-		     <span class="custom checkbox"></span>
-		     <%= service.name %>
-		   </label>
-	     </li>
-		<% end %>
+	  <ul id="available_services" class=" large-block-grid-3">
+	    <% if @service_provider %>
+		   <% @service_provider.services_available.each do |service| %>
+		     <li class="child_of_<%=service.service_provider_type_id%>">
+		       <label for='<%=dom_id(service)%>'>
+			     <%= check_box_tag "service_provider[service_ids][]", service.id, service_selected(@service_provider, service.id), id: dom_id(service) %>
+			     <span class="custom checkbox"></span>
+			     <%= service.name %>
+			   </label>
+		     </li>
+			<% end %>
+	    <% end %>
 	  </ul>
-  	  	-->
+  	  
   </fieldset>
   
