@@ -39,12 +39,15 @@
     <section class="brown_background border_top">
       <%= render 'layouts/footer' %>
     </section>
-    <div id="registerSigninModal" class="reveal-modal">
-  
-	  <%= render 'devise/registrations/register_sign_in'%>
+    
+    <% if !user_signed_in? %>
+	    <div id="registerSigninModal" class="reveal-modal">
 	  
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
+		  <%= render 'devise/registrations/register_sign_in'%>
+		  
+		  <a class="close-reveal-modal">&#215;</a>
+		</div>
+	<% end %>
 
     <%= javascript_include_tag "application" %>
   </body>
