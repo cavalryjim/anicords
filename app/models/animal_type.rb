@@ -9,7 +9,11 @@
 #
 
 class AnimalType < ActiveRecord::Base
+  include ActiveModel::Validations
+  validates_presence_of :name
+  
   has_many  :animals
+  
   
   def to_s
     self.name

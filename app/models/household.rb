@@ -16,6 +16,7 @@
 #
 
 class Household < ActiveRecord::Base
+  include ActiveModel::Validations
   
   has_many  :user_associations, dependent: :destroy
   has_many  :users, through: :user_associations
@@ -25,7 +26,8 @@ class Household < ActiveRecord::Base
   accepts_nested_attributes_for :animals, allow_destroy: true
   accepts_nested_attributes_for :user_associations, allow_destroy: true
   
-  validates :name, presence: true 
+  validates_presence_of :name
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
   
   def associate_user(user_id)
     UserAssociation.where(user_id: user_id, household_id: self.id).first_or_create

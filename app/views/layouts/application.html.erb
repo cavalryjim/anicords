@@ -23,7 +23,7 @@
   <body>
   	<%= render 'layouts/header' %>
 	
-	
+	<%= devise_error_messages! %>
 	<% flash.each do |name, msg| %>
 	  <div class="alert-box <%= name == :notice ? "success" : "alert" %>" data-alert> 
 		  <%= msg %>

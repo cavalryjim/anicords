@@ -11,13 +11,13 @@
 		
 	     <div class="row collapse">
 		   <div class="small-8 columns">
-		     <%= f.text_field :email, placeholder: "email address"%>
+		     <%= f.text_field :email, placeholder: "email address" %>
 		   </div>
 		 </div>
 	      
 	     <div class="row collapse">
 		   <div class="small-8 columns">
-		     <%= f.password_field :password, placeholder: "password" %> 
+		     <%= f.password_field :password, placeholder: "password", 'required' => :required %> 
 		   </div>
 		 </div>
 		 
@@ -62,13 +62,13 @@
 		  <div class="row collapse">
 		      
 		    <div class="small-8 columns">
-		      <%= f.password_field :password, placeholder: 'password (6 or more characters)' %>
+		      <%= f.password_field :password, placeholder: 'password (6 or more characters)', 'required' => :required  %>
 		    </div>
 		  </div>
 		
 		  <div class="row collapse">
 		    <div class="small-8 columns">
-		      <%= f.password_field :password_confirmation, placeholder: 'password confirmation' %>
+		      <%= f.password_field :password_confirmation, placeholder: 'password confirmation', 'required' => :required %>
 		    </div>
 		  </div>
 	    <% end %>

@@ -26,8 +26,8 @@ class ServiceProvider < ActiveRecord::Base
   has_many  :user_associations, dependent: :destroy
   has_many  :users, through: :user_associations
   
-  validates :name, presence: true
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_presence_of :name
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
   
   def as_json options={}
     { value: id, label: name + ' ' + zip.to_s }

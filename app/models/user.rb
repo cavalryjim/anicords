@@ -29,6 +29,7 @@
 #
 
 class User < ActiveRecord::Base
+  #include ActiveModel::Validations
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -40,7 +41,10 @@ class User < ActiveRecord::Base
   has_many  :households, through: :user_associations
   has_many  :veterinarians, through: :user_associations
   
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_presence_of :email
+  #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"
+  #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, if: "provider.blank?" 
+  #validates_presence_of :password, if: "provider.blank?"        
  
   def name
     first_name.to_s << ' ' << last_name.to_s

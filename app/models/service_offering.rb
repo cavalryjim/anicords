@@ -13,4 +13,6 @@ class ServiceOffering < ActiveRecord::Base
   belongs_to :service_provider
   belongs_to :service
   
+  validates_presence_of :service_provider_id, :service_id
+  
 end

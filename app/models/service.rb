@@ -10,10 +10,13 @@
 #
 
 class Service < ActiveRecord::Base
+  include ActiveModel::Validations
+  
   belongs_to :service_provider_type
   has_many  :service_providers, through: :service_offerings
   has_many  :service_offerings, dependent: :destroy
   
-  validates :name, presence: true 
+  validates_presence_of :name, :service_provider_type_id
+  
   
 end

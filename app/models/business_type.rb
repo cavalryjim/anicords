@@ -13,6 +13,8 @@ class BusinessType < ActiveRecord::Base
   belongs_to :service_provider_type
   belongs_to :service_provider
   
+  validates_presence_of :service_provider_id, :service_provider_type_id
+  
   def name
     self.service_provider_type.name
   end

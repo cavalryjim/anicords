@@ -19,6 +19,7 @@
 #
 
 class Animal < ActiveRecord::Base
+  include ActiveModel::Validations
   
   belongs_to :animal_type
   belongs_to :breeder
@@ -26,7 +27,7 @@ class Animal < ActiveRecord::Base
   has_many   :documents, :dependent => :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   
-  validates :name, presence: true 
+  validates_presence_of :name
   validates :household_id, presence: true, if: :needs_owner?
   
   def owner
