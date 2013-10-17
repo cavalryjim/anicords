@@ -18,7 +18,14 @@
 //= require_tree .
 
 $(function(){ 
-  $(document).foundation(); 
+  $(document).foundation()
+  .foundation('abide', {
+    patterns: {
+      // generic password: upper-case, lower-case, number/special character, and min 8 characters
+      password : /(?=^.{6,}$).*$/
+
+    }
+   }); 
 	
   setTimeout(function(){
     $("div.success").fadeOut("slow", function () {

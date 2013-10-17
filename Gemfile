@@ -28,6 +28,8 @@ gem 'queue_classic', '2.2.2'
 gem 'simple_form', '3.0.0'
 gem 'html5_validators', '1.1.2'
 
+#gem 'activeadmin', github: 'gregbell/active_admin'
+
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

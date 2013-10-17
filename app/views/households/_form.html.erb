@@ -1,11 +1,12 @@
 
 
-<%= form_for(@household) do |f| %>
+<%= form_for(@household, html: { "data-abide" => '' }) do |f| %>
   <fieldset>
 
     <div class="row">
       <div class="large-12 columns">
         <%= f.text_field :name, placeholder: "Household name ex. Smith House"  %>
+        <small class="error">Household name required.</small>
       </div>
     </div>
     
@@ -95,10 +96,11 @@
 <% if (!@household.new_record?) %>
 	<div id="newHumanModal" class="reveal-modal">
 	  <h3>Add members to your household</h3>
-	  <%= form_for User.new, url: {action: "create_user"} do |f| %>
+	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
 	    <div class="row">
 	      <div class="large-12 columns">
 	        <%= f.text_field :email, placeholder: "Email"  %>
+	        <small class="error">Email required.</small>
 	      </div>
 	    </div>
 	    

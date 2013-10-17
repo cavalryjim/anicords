@@ -1,7 +1,7 @@
 <div class="row">
   
   <div class="large-6 columns">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "no_bg"} ) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "no_bg", "data-abide" => ''} ) do |f| %>
          <div class="row collapse">
 		  <div class="small-12 columns">
 		    <h4>already have an account</h4>
@@ -12,12 +12,14 @@
 	     <div class="row collapse">
 		   <div class="small-8 columns">
 		     <%= f.text_field :email, placeholder: "email address" %>
+		     <small class="error">Valid email required.</small>
 		   </div>
 		 </div>
 	      
 	     <div class="row collapse">
 		   <div class="small-8 columns">
-		     <%= f.password_field :password, placeholder: "password", 'required' => :required %> 
+		     <%= f.password_field :password, placeholder: "password", 'required' => :required %>
+		     <small class="error" >Password required.</small>
 		   </div>
 		 </div>
 		 
@@ -44,7 +46,7 @@
   </div>
   
   <div class="large-6 columns">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { "data-abide" => ''}) do |f| %>
 		  
 		<div class="row collapse">
 		  <div class="small-12 columns">
@@ -55,6 +57,7 @@
 		<div class="row collapse">
 		  <div class="small-8 columns">
 		    <%= f.email_field :email, autofocus: true, placeholder: 'email address' %>
+		    <small class="error">Valid email required.</small>
 		  </div>
 		</div>
 		
@@ -63,12 +66,14 @@
 		      
 		    <div class="small-8 columns">
 		      <%= f.password_field :password, placeholder: 'password (6 or more characters)', 'required' => :required  %>
+		      <small class="error" >Passwords must be at least 6 characters.</small>
 		    </div>
 		  </div>
 		
 		  <div class="row collapse">
 		    <div class="small-8 columns">
 		      <%= f.password_field :password_confirmation, placeholder: 'password confirmation', 'required' => :required %>
+		      <small class="error" >Confirmation required.</small>
 		    </div>
 		  </div>
 	    <% end %>

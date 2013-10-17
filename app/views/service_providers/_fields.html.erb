@@ -21,6 +21,7 @@
   <div class="row">
     <div class="large-10 columns">
 	  <%= f.text_field :name, placeholder: 'Business name' %>
+	  <small class="error">Name required.</small>
     </div>
   </div>
   
@@ -65,6 +66,8 @@
 	  <%= f.text_field :website, placeholder: 'Website' %>
     </div>
   </div>
+  
+
   
   <fieldset>
       <legend>Services provided <small>Select all that apply</small></legend>

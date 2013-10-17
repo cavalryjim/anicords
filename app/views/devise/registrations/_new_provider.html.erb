@@ -1,6 +1,6 @@
 <h3>Tell us about your business</h3>
 
-<%= form_for(ServiceProvider.new) do |f| %>
+<%= form_for(ServiceProvider.new, html: { "data-abide" => '' } ) do |f| %>
 
   <%= render 'service_providers/fields', f: f %>  
 
