@@ -69,6 +69,6 @@ class VeterinariansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def veterinarian_params
-      params.require(:veterinarian).permit(:clinic_name, :address1, :address2, :city, :state, :zip, :phone, :email)
+      params.require(:veterinarian).permit(:name, :address1, :address2, :city, :state, :zip, :phone, :email, :service_provider_id)
     end
 end

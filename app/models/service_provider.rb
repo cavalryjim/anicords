@@ -17,6 +17,7 @@
 #
 
 class ServiceProvider < ActiveRecord::Base
+  #attr_accessible :veterinarians_attributes
   has_many  :households, through: :household_associations
   has_many  :household_associations, dependent: :destroy
   has_many  :services, through: :service_offerings

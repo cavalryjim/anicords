@@ -1,6 +1,11 @@
 <fieldset>
-  <%= f.label :name, "Name" %>
-  <%= f.text_field :name %>
-  <%= f.hidden_field :_destroy %>
-  <%= link_to "remove", '#', class: "remove_fields" %>
+  <div class="row">
+  	<div class="columns large-10">
+	  <%= f.text_field :name, placeholder: "Veterinarian's name" %>
+	</div>
+	<div class="columns large-2">
+	  <%= f.hidden_field :_destroy %>
+  	  <%= link_to image_tag('cross.png'), '#', class: "remove_fields" %>
+  	</div>
+  </div>
 </fieldset>
