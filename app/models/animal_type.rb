@@ -21,6 +21,7 @@ class AnimalType < ActiveRecord::Base
   
   def short_name
     self.name[/(\S+\s+){#{1}}/].strip
+    
   end
   
 end

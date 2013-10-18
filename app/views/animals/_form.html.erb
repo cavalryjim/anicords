@@ -25,10 +25,10 @@
 		    </div>
 		    
 		    <div class="row">
-		      <div class="large-2 columns">
+		      <!---<div class="large-2 columns">
 		        <%= f.label :weight %>
 		        <%= f.text_field :weight %>
-		      </div>
+		      </div>--->
 		      <div class="large-4 columns">
 		      	<%= f.label :dob %>
 		        <%= f.date_field :dob %>
@@ -58,20 +58,26 @@
 	  </section>
 	  
 	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	    <p class="title" data-section-title><a href="#panel2">Documents</a></p>
+	    <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
 	    <div class="content" data-section-content>
-	    	
+	      <p>Animal medical information will go here.</p>
 	      <% if @animal.id %>
 	        <%= render 'documents'%>
 	      <% end %>
-	      
 	    </div>
 	  <% end %>
 	  
 	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	    <p class="title" data-section-title><a href="#panel2">Medical</a></p>
+	    <p class="title" data-section-title><a href="#panel3">Preferences</a></p>
 	    <div class="content" data-section-content>
-	      <p>Animal medical information will go here.</p>
+	      <p>Preference will go here.</p>
+	    </div>
+	  <% end %>
+	  
+	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
+	    <p class="title" data-section-title><a href="#panel4">Service Providers</a></p>
+	    <div class="content" data-section-content>
+	      <p>Service Provider information will go here.</p>
 	    </div>
 	  <% end %>
 	</div>

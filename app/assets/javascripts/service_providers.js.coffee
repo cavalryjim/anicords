@@ -13,6 +13,5 @@ jQuery ->
        $("li.child_of_"+this.value).remove()
     
            
-       
-      
+   
       

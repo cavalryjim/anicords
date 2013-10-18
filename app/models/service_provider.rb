@@ -25,6 +25,8 @@ class ServiceProvider < ActiveRecord::Base
   has_many  :service_provider_types, through: :business_types
   has_many  :user_associations, dependent: :destroy
   has_many  :users, through: :user_associations
+  has_many  :veterinarians, dependent: :destroy
+  accepts_nested_attributes_for :veterinarians, allow_destroy: true
   
   validates_presence_of :name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
