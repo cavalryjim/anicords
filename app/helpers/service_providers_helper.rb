@@ -17,4 +17,8 @@ module ServiceProvidersHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
   
+  def hide_veterinarians(service_provider)
+    'hidden' if !(service_provider && service_provider.is_veterinarian?)
+  end
+  
 end

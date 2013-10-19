@@ -14,4 +14,9 @@ jQuery ->
     
            
    
-      
+  $(".veterinarian").change ->
+    if @checked
+      $("#veterinarian_list").removeClass("hidden")
+    else
+      $("#veterinarian_list").addClass("hidden")
+

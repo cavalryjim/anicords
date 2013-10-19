@@ -19,4 +19,8 @@ class ServiceProviderType < ActiveRecord::Base
     self.name
   end
   
+  def add_css_classes
+    (self.name == 'Veterinarian') ? 'service_provider_type veterinarian' : 'service_provider_type'
+  end
+  
 end

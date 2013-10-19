@@ -135,3 +135,7 @@ label.nav_dropdown {
    pointer-events: none;
    cursor: default;
 }
+
+.hidden {
+	display: none
+}

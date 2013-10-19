@@ -48,4 +48,8 @@ class ServiceProvider < ActiveRecord::Base
     self.email != nil && self.email != ''
   end
   
+  def is_veterinarian?
+    self.service_provider_types.map{ |spt| spt.name }.include?("Veterinarian")
+  end
+  
 end

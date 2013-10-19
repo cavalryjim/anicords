@@ -9,7 +9,7 @@
 	   <% ServiceProviderType.all.each do |spt| %>
 	     <li>
 	       <label for='<%=dom_id(spt)%>'>
-		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, business_selected(@service_provider, spt.id), id: dom_id(spt), class: "service_provider_type" %>
+		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, business_selected(@service_provider, spt.id), id: dom_id(spt), class: spt.add_css_classes %>
 		     <span class="custom checkbox"></span>
 		     <%= spt.name %>
 		   </label>
@@ -67,11 +67,17 @@
     </div>
   </div>
   
-    <%= f.fields_for :veterinarians do |builder| %>
-      
-	  <%= render 'service_providers/veterinarian_fields', f: builder %>
-	<% end %>
-	<%= link_to_add_veterinarian_fields "Add Veterinarian", f, :veterinarians %>
+  
+  <div id="veterinarian_list" class="row <%= hide_veterinarians(@service_provider) %>">
+    <div class="large-10 columns">
+	  <%= f.fields_for :veterinarians do |builder| %>
+	      
+		<%= render 'service_providers/veterinarian_fields', f: builder %>
+      <% end %>
+      <%= link_to_add_veterinarian_fields "Add Veterinarian", f, :veterinarians %>
+	</div>
+  </div>
+ 
   
   <fieldset>
       <legend>Services provided <small>Select all that apply</small></legend>
