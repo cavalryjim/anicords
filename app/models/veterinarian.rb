@@ -19,6 +19,6 @@
 class Veterinarian < ActiveRecord::Base
   belongs_to  :service_provider
   
-  validates_presence_of :name, :service_provider_id
+  validates_presence_of :name
   
 end

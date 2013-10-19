@@ -30,7 +30,7 @@ class ServiceProvider < ActiveRecord::Base
   accepts_nested_attributes_for :veterinarians, allow_destroy: true
   
   validates_presence_of :name
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
+  #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
   
   def as_json options={}
     { value: id, label: name + ' ' + zip.to_s }

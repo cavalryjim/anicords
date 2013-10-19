@@ -31,9 +31,9 @@ class ServiceProvidersController < ApplicationController
   def create
     @service_provider = ServiceProvider.new(service_provider_params)
     respond_to do |format|
-      if @service_provider.save
+      if @service_provider.save!
         User.create_user_to_service_provider(@service_provider.email, @service_provider.id) if @service_provider.has_email?
-        return_path = current_user ? @service_provider : new_user_registration_path
+        return_path = (user_signed_in? ? service_provider_path(@service_provider) : new_user_registration_path)
         format.html { redirect_to return_path, notice: 'Service provider was successfully created.' }
         format.json { render action: 'show', status: :created, location: @service_provider }
       else
@@ -77,6 +77,6 @@ class ServiceProvidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_provider_params
-      params.require(:service_provider).permit(:name, :address1, :address2, :city, :state, :zip, :email, :website, :phone, veterinarians_attributes: [:id, :name, :service_provider_id, :_destroy], service_provider_type_ids: [], service_ids: [] )
+      params.require(:service_provider).permit(:name, :address1, :address2, :city, :state, :zip, :email, :website, :phone, veterinarians_attributes: [:name, :service_provider_id, :service_provider, :_destroy], service_provider_type_ids: [], service_ids: [] )
     end
 end

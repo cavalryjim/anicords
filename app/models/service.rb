@@ -18,5 +18,4 @@ class Service < ActiveRecord::Base
   
   validates_presence_of :name, :service_provider_type_id
   
-  
 end

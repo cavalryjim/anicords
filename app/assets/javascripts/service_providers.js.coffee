@@ -8,7 +8,7 @@ jQuery ->
       parent = this.value
       $.get "/services?spt[]="+parent, (data) -> 
         $.each data, (key, value) ->
-          $("#available_services").append $("<li class='child_of_"+parent+"'><label for='service_"+value.id+"'><input id='service_"+value.id+"' name='service_provider[service_ids][]' type='checkbox' value="+value.id+"/> <span class='custom checkbox'></span>"+value.text+"</label></li>")
+          $("#available_services").append $("<li class='child_of_"+parent+"'><label for='service_"+value.id+"'><input id='service_"+value.id+"' name='service_provider[service_ids][]' type='checkbox' value="+value.id+" /> <span class='custom checkbox'></span>"+value.text+"</label></li>")
     else
        $("li.child_of_"+this.value).remove()
     
