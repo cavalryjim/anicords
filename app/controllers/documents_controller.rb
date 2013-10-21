@@ -63,9 +63,13 @@ class DocumentsController < ApplicationController
   end
   
   def download_file
-     send_file(@document.document_path,
-        :disposition => 'attachment',
-        :url_based_filename => false)
+    url = @document.file_path.path
+    send_file( url, :disposition => 'inline' )
+     #require 'open-uri'
+     #url = @document.file_path.url
+     #data = open(url).read
+     #send_data data, :disposition => 'attachment', :filename=> @document.file_path.file.filename
+     
   end
 
   private

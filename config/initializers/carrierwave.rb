@@ -5,5 +5,6 @@ CarrierWave.configure do |config|
     aws_secret_access_key: "uY8qqMaEumS5RSnhOHKiGlG9EncLKymKUeUMxgaz"
   }
   config.fog_directory = "dooliddl"
+  config.fog_public = false
 end
 

@@ -70,9 +70,21 @@ class AnimalsController < ApplicationController
   end
   
   def download_file
-     send_file(@animal.pedigree.path,
-        :disposition => 'attachment',
-        :url_based_filename => false)
+    file = open(@animal.pedigree.url)
+    send_file(file, disposition: "attachment")
+     #send_file(@animal.pedigree.direct_fog_url(with_path: true),
+     #   :disposition => 'attachment',
+     #   :url_based_filename => true)
+     #redirect_to @animal.pedigree.url, :target => "_blank"
+     
+     #open(@animal.pedigree.url) {|file|
+     #  tmpfile = Tempfile.new("download.jpg")
+     #  File.open(tmpfile.path, 'wb') do |f| 
+     #    f.write img.read
+     #  end 
+     #  send_file tmpfile.path, :filename => "great-image.jpg"
+     # }   
+     
   end
 
   private
@@ -91,6 +103,6 @@ class AnimalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
-      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id, :dob, :pedigree)
+      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id, :dob, :pedigree, :store_dir)
     end
 end

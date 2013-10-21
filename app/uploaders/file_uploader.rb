@@ -8,7 +8,7 @@ class FileUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  # storage :fog  #JDavis: including CarrierWaveDirec::Uploader...do not need to specifically designate fog.
+  #storage :fog  #JDavis: including CarrierWaveDirec::Uploader...do not need to specifically designate fog.
 
   include CarrierWave::MimeTypes
   process :set_content_type

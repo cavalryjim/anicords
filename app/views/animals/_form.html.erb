@@ -40,7 +40,9 @@
 		      <div class="large-6 columns">
 		        <%= f.label :pedigree %>
 		        <% if @animal.pedigree.file %>
+		          <%= image_tag(@animal.pedigree.url) %>
 		          <%= link_to @animal.pedigree.file.filename, controller: 'animals', action: 'download_file', 'document'=> 'pedigree', id: @animal.id %>
+		          <%= link_to @animal.pedigree.file.filename, @animal.pedigree.url %>
 		        <% end %>
 		        <%= f.file_field :pedigree %>
 		      </div>
