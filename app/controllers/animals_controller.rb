@@ -70,7 +70,7 @@ class AnimalsController < ApplicationController
   end
   
   def download_file
-     send_file(params[:path],
+     send_file(@animal.pedigree.path,
         :disposition => 'attachment',
         :url_based_filename => false)
   end

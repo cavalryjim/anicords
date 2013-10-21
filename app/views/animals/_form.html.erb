@@ -39,7 +39,9 @@
 		    <div class="row">
 		      <div class="large-6 columns">
 		        <%= f.label :pedigree %>
-		        <%= link_to @animal.pedigree.file.filename, controller: 'animals', action: 'download_file', 'document'=> 'pedigree', id: @animal.id %>
+		        <% if @animal.pedigree.file %>
+		          <%= link_to @animal.pedigree.file.filename, controller: 'animals', action: 'download_file', 'document'=> 'pedigree', id: @animal.id %>
+		        <% end %>
 		        <%= f.file_field :pedigree %>
 		      </div>
 		      
