@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :edit, :update, :destroy]
+  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file]
   before_action :set_owner, only: [:new, :create, :edit, :destroy]
   before_filter :authenticate_user!, except: [:show]
 
@@ -68,6 +68,12 @@ class AnimalsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def download_file
+     send_file(params[:path],
+        :disposition => 'attachment',
+        :url_based_filename => false)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -85,6 +91,6 @@ class AnimalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
-      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id, :dob)
+      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id, :dob, :pedigree)
     end
 end

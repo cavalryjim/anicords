@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018000733) do
+ActiveRecord::Schema.define(version: 20131020163723) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20131018000733) do
     t.string   "food"
     t.decimal  "volume_per_serving"
     t.integer  "servings_per_day"
+    t.string   "image"
+    t.string   "pedigree"
+    t.string   "pedigree_chart"
+    t.string   "health_certification"
+    t.string   "vaccination_record"
+    t.string   "show_name"
+    t.string   "registration_number"
+    t.string   "shampoo"
+    t.string   "vitamin"
+    t.string   "treat"
   end
 
   create_table "breeders", force: true do |t|

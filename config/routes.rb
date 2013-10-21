@@ -40,6 +40,7 @@ Anicords::Application.routes.draw do
   get 'documents/:id/download_file' => 'documents#download_file'
   post 'households/:id/create_user' => 'households#create_user'
   #get 'service_providers/:id/services' => 'service_providers#services'
+  get 'animals/:id/download_file' => 'animals#download_file'
   
 
   # The priority is based upon order of creation: first created -> highest priority.
