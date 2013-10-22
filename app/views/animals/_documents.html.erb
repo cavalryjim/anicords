@@ -4,7 +4,8 @@
     <% for document in @animal.documents %>
       <tr>
     	<td><%= image_tag('Icon-Document03-Blue.png', size: '20x20')%></td>
-    	<td><%= link_to document.display_title, controller: 'documents', action: 'download_file', id: document.id %></td>
+    	<!--<td><%= link_to document.display_title, controller: 'documents', action: 'download_file', id: document.id %></td>-->
+    	<td><%= link_to document.display_title, document.file_path.url, target: '_blank' %></td>
     	<td><%= link_to image_tag('cross.png', :alt => "del"), [@animal.owner, @animal, document], confirm: 'Are you sure?', method: :delete %></td>
       </tr>
     <% end %>

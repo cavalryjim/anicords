@@ -37,17 +37,22 @@
 		    </div>
 		    
 		    <div class="row">
+		      
 		      <div class="large-6 columns">
-		        <%= f.label :pedigree %>
 		        <% if @animal.pedigree.file %>
-		          <%= image_tag(@animal.pedigree.url) %>
-		          <%= link_to @animal.pedigree.file.filename, controller: 'animals', action: 'download_file', 'document'=> 'pedigree', id: @animal.id %>
-		          <%= link_to @animal.pedigree.file.filename, @animal.pedigree.url %>
+		         <%= f.label :pedigree %>
+		         <table>
+		         	<tr>
+			         <td><%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.pedigree.url, target: '_blank') %></td>
+			         <td><%= f.file_field :pedigree %></td>
+		         	</tr>
+		         </table>
 		        <% end %>
-		        <%= f.file_field :pedigree %>
+		      </div>
+		      <div class="large-6 columns">
 		      </div>
 		      
-		      <div class="large-6 columns"></div>
+		      
 		    </div>
 		    
 		    <div class="row">
