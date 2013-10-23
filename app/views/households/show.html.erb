@@ -24,7 +24,7 @@
 		<% end %>
 	    </ul>
 			
-	    <%= button_to "Add Animal", new_household_animal_path(@household), method: :get %> 
+	    <%= button_to "Add Animal", "#", "data-reveal-id" => "newAnimalModal" %> 
 	</fieldset>
   </div>
 </div>
@@ -99,7 +99,38 @@
 
   </fieldset>
     
-<% end %>
+  <% end %>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="newAnimalModal" class="reveal-modal">
+  <h3>New Animal</h3>
+  <%= form_for [@household, Animal.new] do |f| %>
+  
+    <div class="row">
+	  <div class="large-12 columns">
+		<%= f.text_field :name, placeholder: "Animal's name" %>
+		<small class="error">Name required.</small>
+      </div>
+    </div>
+		    
+	<div class="row">
+	  <div class="large-6 columns">
+		  <%= f.label :type, 'Species' %>
+		  <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name %>
+	  </div>
+	  <div class="large-6 columns">
+		  <%= f.label :breed %>
+		  <%= f.text_field :breed %>
+	  </div>
+	</div>
+	<%= f.hidden_field :household_id, value: @household.id %>	      
+    <div class="actions">
+	  <%= f.submit %>
+	</div>
+    
+  <% end %>
   
   <a class="close-reveal-modal">&#215;</a>
 </div>
