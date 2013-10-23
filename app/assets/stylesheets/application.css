@@ -137,5 +137,9 @@ label.nav_dropdown {
 }
 
 .hidden {
-	display: none
+	display: none !important;
+}
+
+.center {
+	text-align:center;
 }

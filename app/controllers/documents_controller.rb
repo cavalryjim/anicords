@@ -82,11 +82,11 @@ class DocumentsController < ApplicationController
     
     def return_path
       if params[:household_id]
-        edit_household_animal_path(params[:household_id], @animal.id)
+        edit_household_animal_path(params[:household_id], @animal.id)+'#panel2'
       elsif params[:breeder_id]
         edit_breeder_animal_path(params[:breeder_id], @animal.id)
       else
-        edit_animal_path(@animal.id)
+        edit_animal_path(@animal.id)+'#panel2'
       end
     end
     

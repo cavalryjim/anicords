@@ -1,14 +1,24 @@
-  
+	<div class="hidden flash_alert alert-box success"  data-alert> 
+	  Animal infomration saved.
+	  <a href="" class="close">&times;</a>
+	</div>  
+	
 	<div class="section-container auto" data-section>
 	  <section>
 	    <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
 	    <div class="content" data-section-content>
 	      
-		  <%= form_for [@owner, @animal], html: {"data-abide" => ''} do |f| %>
+		  <%= form_for [@owner, @animal], remote: true, html: {id: 'animal_form', "data-abide" => ''} do |f| %>
 		    <div class="row">
 		      <div class="large-8 columns">
 		        <%= f.text_field :name, placeholder: "Animal's name" %>
 		        <small class="error">Name required.</small>
+		      </div>
+		    </div>
+		    
+		    <div class="row">
+		      <div class="large-8 columns">
+		        <%= f.text_field :show_name, placeholder: "Animal's show name" %>
 		      </div>
 		    </div>
 		    
@@ -39,15 +49,17 @@
 		    <div class="row">
 		      
 		      <div class="large-6 columns">
-		        <% if @animal.pedigree.file %>
-		         <%= f.label :pedigree %>
-		         <table>
-		         	<tr>
-			         <td><%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.pedigree.url, target: '_blank') %></td>
-			         <td><%= f.file_field :pedigree %></td>
-		         	</tr>
-		         </table>
-		        <% end %>
+		        <%= f.label :pedigree %>
+		        <%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.pedigree.url, target: '_blank') if @animal.pedigree? %>
+			    <%= f.file_field :pedigree %>
+		        
+		        <% if @animal.pedigree? %>
+		          <label>
+					<%= f.check_box :remove_pedigree %>
+					Remove pedigree
+			      </label>
+			    <% end %>
+
 		      </div>
 		      <div class="large-6 columns">
 		      </div>

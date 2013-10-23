@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require jquery-fileupload/basic
 //= require foundation
 //= require turbolinks
 //= require_tree .
@@ -30,7 +29,7 @@ $(function(){
 	
   setTimeout(function(){
     $("div.success").fadeOut("slow", function () {
-    $("div.success").remove();
+    $("div.success").hide();
         });
  
   }, 2000);

@@ -50,8 +50,8 @@ class AnimalsController < ApplicationController
   def update
     respond_to do |format|
       if @animal.update(animal_params)
-        format.html { redirect_to @animal.owner, notice: @animal.name + ' was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to return_path, notice: @animal.name + ' was successfully updated.' }
+        format.json { head json: return_path }
       else
         format.html { render action: 'edit' }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
@@ -100,9 +100,21 @@ class AnimalsController < ApplicationController
         @owner = Breeder.find(params[:breeder_id])
       end
     end
+    
+    def return_path
+      if params[:household_id]
+        edit_household_animal_path(params[:household_id], @animal.id)
+      elsif params[:breeder_id]
+        edit_breeder_animal_path(params[:breeder_id], @animal.id)
+      else
+        edit_animal_path(@animal.id)
+      end
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
-      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id, :dob, :pedigree, :store_dir)
+      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id,
+       :dob, :pedigree, :store_dir, :remove_pedigree, :show_name, :registration_number, :image, :pedigree_chart, :health_certification, 
+       :vaccination_record, :shampoo, :vitamin, :treat )
     end
 end

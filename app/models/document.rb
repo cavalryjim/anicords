@@ -24,10 +24,14 @@ class Document < ActiveRecord::Base
   
   def display_title
     if self.title == nil || self.title == ''
-      self.file_path.file.filename
+      self.file_name
     else
       self.title
     end
+  end
+  
+  def file_name
+    self.file_path.filename.split('/')[-1]
   end
   
 end
