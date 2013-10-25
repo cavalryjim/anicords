@@ -1,7 +1,17 @@
 <section class="border_top">
   <div class="row">
 	<fieldset>
-	  <h4><%=@animal.name%></h4>
+	  <div class="row">
+	  	<div class="large-9 columns">
+	  	  <h4><%=@animal.name%></h4>
+	  	</div>
+	  	<div class="large-3 columns">
+		  <div class="hidden flash_alert alert-box success"  data-alert> 
+			  Animal information saved.
+			  <a href="" class="close">&times;</a>
+		  </div>
+		</div>
+	  </div>
 	  <%= render 'form' %>
 	  
 	  <%= link_to 'Delete this record', household_animal_path(@owner, @animal), 

@@ -17,7 +17,7 @@ gem 'zurb-foundation', '4.3.1'
 gem 'omniauth-twitter', '1.0.0'
 gem 'omniauth-facebook', '1.4.1'
 gem 'annotate', '2.5.0'
-#gem 'jquery-fileupload-rails', '0.4.1'
+gem 'jquery-fileupload-rails', '0.4.1'
 gem 'carrierwave', '0.9.0'
 gem 'fog', '1.15.0'
 gem 'carrierwave_direct', '0.0.13'
@@ -27,6 +27,7 @@ gem 'letter_opener', '1.1.2', group: :development
 gem 'queue_classic', '2.2.2'
 gem 'simple_form', '3.0.0'
 gem 'html5_validators', '1.1.2'
+#gem 'remotipart', '1.2.1'
 
 #gem 'activeadmin', github: 'gregbell/active_admin'
 

@@ -41,6 +41,7 @@ class Animal < ActiveRecord::Base
   validates :household_id, presence: true, if: :needs_owner?
   
   mount_uploader :pedigree, FileUploader
+  mount_uploader :health_certification, FileUploader
   
   def owner
     if self.household_id

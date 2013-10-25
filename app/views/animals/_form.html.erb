@@ -1,117 +1,64 @@
-	<div class="hidden flash_alert alert-box success"  data-alert> 
-	  Animal infomration saved.
-	  <a href="" class="close">&times;</a>
-	</div>  
+  
 	
-	<div class="section-container auto" data-section>
-	  <section>
-	    <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
-	    <div class="content" data-section-content>
-	      
-		  <%= form_for [@owner, @animal], remote: true, html: {id: 'animal_form', "data-abide" => ''} do |f| %>
-		    <div class="row">
-		      <div class="large-8 columns">
-		        <%= f.text_field :name, placeholder: "Animal's name" %>
-		        <small class="error">Name required.</small>
-		      </div>
-		    </div>
-		    
-		    <div class="row">
-		      <div class="large-8 columns">
-		        <%= f.text_field :show_name, placeholder: "Animal's show name" %>
-		      </div>
-		    </div>
-		    
-		    <div class="row">
-		      <div class="large-4 columns">
-		        <%= f.label :type, 'Species' %>
-		        <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name %>
-		      </div>
-		      <div class="large-4 columns">
-		        <%= f.label :breed %>
-		        <%= f.text_field :breed %>
-		      </div>
-		      <div class="large-4 columns"></div>
-		    </div>
-		    
-		    <div class="row">
-		      <div class="large-2 columns">
-		        <%= f.label :weight %>
-		        <%= f.text_field :weight %>
-		      </div>
-		      <div class="large-4 columns">
-		      	<%= f.label :dob %>
-		        <%= f.date_field :dob %>
-		      </div>
-		      <div class="large-4 columns"></div>
-		    </div>
-		    
-		    <div class="row">
-		      
-		      <div class="large-6 columns">
-		        <%= f.label :pedigree %>
-		        <%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.pedigree.url, target: '_blank') if @animal.pedigree? %>
-			    <%= f.file_field :pedigree %>
-		        
-		        <% if @animal.pedigree? %>
-		          <label>
-					<%= f.check_box :remove_pedigree %>
-					Remove pedigree
-			      </label>
-			    <% end %>
-
-		      </div>
-		      <div class="large-6 columns">
-		      </div>
-		      
-		      
-		    </div>
-		    
-		    <div class="row">
-		      <div class="large-12 columns">
-		        <%= f.label :description %>
-		        <%= f.text_area :description %>
-		      </div>
-		    </div>
-	        <div class="actions">
-	          <%= f.submit %>
-	        </div>
-	  
+<%= form_for [@owner, @animal], remote: true, html: {id: 'animal_form', "data-abide" => ''} do |f| %>
 	
-	      <% if @owner.class.name == 'Household'%>
-	        <%= f.hidden_field :household_id, value: @owner.id %>
-	      <% end %>
-	      <% if @owner.class.name == 'Breeder'%>
-	        <%= f.hidden_field :breeder_id, value: @owner.id %>
-	      <% end %>
-	     <% end %>
-	    </div>
-	  </section>
-	  
-	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	    <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
-	    <div class="content" data-section-content>
-	      <%= render 'medical_fields' %>
-	      <% if @animal.id %>
-	        <%= render 'documents'%>
-	      <% end %>
-	    </div>
-	  <% end %>
-	  
-	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	    <p class="title" data-section-title><a href="#panel3">Preferences</a></p>
-	    <div class="content" data-section-content>
-	      <p>Preference will go here.</p>
-	    </div>
-	  <% end %>
-	  
-	  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	    <p class="title" data-section-title><a href="#panel4">Service Providers</a></p>
-	    <div class="content" data-section-content>
-	      <p>Service Provider information will go here.</p>
-	    </div>
-	  <% end %>
+ <div class="section-container auto" data-section>
+ 	
+  <%= content_tag :section do %>
+    <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
+	<div class="content" data-section-content>  	
+      <%= render 'demographics', f: f %>
 	</div>
+  <% end %>
+	
+	
+  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
+    <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
+	<div class="content" data-section-content>
+	  <%= render 'health_fields', f: f %>
+	  <% if false %>
+	    <%= render 'documents'%>
+	  <% end %>
+    </div>
+  <% end %>
+	  
+  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
+	<p class="title" data-section-title><a href="#panel3">Preferences</a></p>
+	<div class="content" data-section-content>
+	  <%= render 'preferences', f: f %>
+	</div>
+  <% end %>
+	  
+  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
+	<p class="title" data-section-title><a href="#panel4">Service Providers</a></p>
+	<div class="content" data-section-content>
+	  <%= render 'providers', f: f %>
+    </div>
+  <% end %>
+  
+ </div>
+	
+  <% if @owner.class.name == 'Household'%>
+    <%= f.hidden_field :household_id, value: @owner.id %>
+  <% end %>
+  <% if @owner.class.name == 'Breeder'%>
+	<%= f.hidden_field :breeder_id, value: @owner.id %>
+  <% end %>
+  
+  <div class="actions">
+	<%= f.submit "Save" %>
+  </div>
+  <%= token_tag form_authenticity_token %>
+<% end %>
+	
+	      
+		    
+	  
+	
+	      
+	    
+	  
+	  
 
     
     
