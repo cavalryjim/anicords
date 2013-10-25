@@ -52,7 +52,7 @@ class AnimalsController < ApplicationController
       if @animal.update(animal_params)
         format.html { redirect_to return_path, notice: @animal.name + ' was successfully updated.' }
         format.json { head json: return_path }
-        #format.js
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @animal.errors, status: :unprocessable_entity }

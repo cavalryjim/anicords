@@ -2,26 +2,24 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
+  
+  #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
+  #  $(".flash_alert").removeClass("hidden")
+  #  $(".flash_alert").show().delay(2000).fadeOut()
+  #  $("section.disabled").removeClass("disabled")
+  # ).on("ajax:error", (event, response, error) ->
+  #  alert "There was a problem.  Please try again later.")
+  
+  #$(".remove_file").change ->
+  #  if @checked
+  #    alert 'remove me, bitch'
+  #  else
+  #    alert 'no way, dude'
+      
+      
+       
   #$("form#animal_form").bind 'ajax:remotipartSubmit', (event, xhr, settings) =>
   #  settings.dataType = "html *" 
-  
-  $("form#animal_form").on("ajax:success", (event, data, status, response) ->
-    $(".flash_alert").removeClass("hidden")
-    $(".flash_alert").show().delay(2000).fadeOut()
-    $("section.disabled").removeClass("disabled")
-    #alert(response)
-    #$("div.file_class").update()
-    
-   ).on("ajax:error", (event, response, error) ->
-    alert "There was a problem.  Please try again later.")
-  
-  
-  $(".remove_file").change ->
-    if @checked
-      alert 'remove me, bitch'
-    else
-      alert 'no way, dude'
-       
   
       #$(".file_image").hide()
   #$("form#animal_form").trigger "submit.rails"

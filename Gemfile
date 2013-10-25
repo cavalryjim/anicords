@@ -27,7 +27,7 @@ gem 'letter_opener', '1.1.2', group: :development
 gem 'queue_classic', '2.2.2'
 gem 'simple_form', '3.0.0'
 gem 'html5_validators', '1.1.2'
-#gem 'remotipart', '1.2.1'
+gem 'remotipart', '1.2.1'
 
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
