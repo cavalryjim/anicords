@@ -1,7 +1,12 @@
 $("form#animal_form").on("ajax:success", function(event, data, status, response) {
   $(".flash_alert").removeClass("hidden");
   $(".flash_alert").show().delay(2000).fadeOut();
-  return $("section.disabled").removeClass("disabled");
+  $("section.disabled").removeClass("disabled");
+  $("#animal_pedigree_div").html('<%= j render("pedigree_file_upload") %>')
 }).on("ajax:error", function(event, response, error) {
   return alert("There was a problem.  Please try again later.");
 });
+
+
+
+  

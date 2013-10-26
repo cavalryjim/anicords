@@ -1,42 +1,9 @@
   
 	
 <%= form_for [@owner, @animal], remote: true, html: {id: 'animal_form', "data-abide" => ''} do |f| %>
-	
- <div class="section-container auto" data-section>
- 	
-  <%= content_tag :section do %>
-    <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
-	<div class="content" data-section-content>  	
-      <%= render 'demographics', f: f %>
-	</div>
-  <% end %>
-	
-	
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-    <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
-	<div class="content" data-section-content>
-	  <%= render 'health_fields', f: f %>
-	  <% if false %>
-	    <%= render 'documents'%>
-	  <% end %>
-    </div>
-  <% end %>
-	  
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel3">Preferences</a></p>
-	<div class="content" data-section-content>
-	  <%= render 'preferences', f: f %>
-	</div>
-  <% end %>
-	  
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel4">Service Providers</a></p>
-	<div class="content" data-section-content>
-	  <%= render 'providers', f: f %>
-    </div>
-  <% end %>
   
- </div>
+  <div id='sections'><%= render 'sections', f: f %></div>
+	
 	
   <% if @owner.class.name == 'Household'%>
     <%= f.hidden_field :household_id, value: @owner.id %>

@@ -1,0 +1,19 @@
+
+		  		      
+  <div class="file_class">
+	<%= label_tag 'Pedigree'%>
+		
+	<%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.pedigree.url, target: '_blank') if @animal.pedigree? %>
+	<%= file_field @animal, :pedigree, id: 'animal_pedigree', name: 'animal[pedigree]'%>
+				        
+	<% if @animal.pedigree? %>
+	  <label>
+		<input name="animal[remove_pedigree]" type="hidden" value="0" />
+		<input class="remove_file" id="animal_remove_pedigree" name="animal[remove_pedigree]" type="checkbox" value="1" />
+		Remove pedigree
+	  </label>
+	<% end %>
+	
+		
+  </div>
+  
