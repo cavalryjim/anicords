@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
+  $(document).ready ->
+  setTimeout (->
+    $("#stepsOverviewModal").foundation "reveal", "open"
+  ), 500
   
   $('#service_provider').autocomplete
     source: $('#service_provider').data('autocomplete-source')
@@ -15,5 +19,5 @@ jQuery ->
   #$('#provider_reveal_button').click ->
   #  $('#service_provider').focus
 
- 
+  
 

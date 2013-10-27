@@ -1,12 +1,66 @@
 <section class="border_top">
   <div class="row">
    <fieldset>
-    <h4>Step 2: Tell us about your household</h4>
+    <h4>Step 1: Tell us about your household</h4>
 
     <%= render 'form' %>
    </fieldset>
   </div>
 </section>
+
+<div id="stepsOverviewModal" class="reveal-modal">
+	
+  <div class="row">
+	<div class="large-7 large-centered columns">
+	    <%= image_tag 'mww.png'%>
+	</div>
+  </div>
+  <h3>Here's how it works:</h3>
+  <div class="row">
+	<div class="large-12 columns">
+	  <table class="no_border">
+	  	<tr class="no_bg">
+	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>
+	      <td>
+	      	Create a household.
+	      </td>		
+	  	</tr>
+	  	<tr class="no_bg">
+	      <td align="center"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>
+	      <td>
+	      	Add your animals to your household, complete the fields & upload documents such as 
+	      	pedigree charts & vaccination reocords.
+	      </td>		
+	  	</tr>
+	  	<tr class="no_bg">
+	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>	
+	      <td>
+	      	Add the service providers involved in the care of your animals.  It they are in our
+	      	directory, simply look them up and we'll populate.
+	      </td>	
+	  	</tr>
+	  	<tr class="no_bg">
+	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>		
+	      <td>
+	      	Let us make your role as animal custodian easier.  Schedule groomer or kennel stays.
+	      	Coordinate sitters.  No more calls to your vet's office to fax records (such as vaccinations)
+	      	each time you need them.
+	      </td>
+	  	</tr>
+
+	  </table>
+	  
+	</div>
+	
+	<div class="row">
+		<div class="large-12 offset-9 columns">
+			<%= link_to 'get started ->', '#', class: 'close-reveal-modal' %>
+		</div>
+	</div>
+  </div>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
 
 
 
