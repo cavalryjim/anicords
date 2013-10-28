@@ -1,0 +1,16 @@
+  
+<div class="file_class">  
+  <%= label_tag 'Health Certification'%>
+  <%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.health_certification.url, target: '_blank') if @animal.health_certification? %>
+  <%= file_field @animal, :health_certification, id: 'animal_health_certification', name: 'animal[health_certification]'%>
+  
+  
+  <% if @animal.health_certification? %>
+	  <label>
+		<input name="animal[remove_health_certification]" type="hidden" value="0" />
+		<input class="remove_file" id="animal_remove_health_certification" name="animal[remove_health_certification]" type="checkbox" value="1" />
+		Remove health certification
+	  </label>
+  <% end %>
+
+</div>  

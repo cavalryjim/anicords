@@ -3,6 +3,8 @@ $("form#animal_form").on("ajax:success", function(event, data, status, response)
   $(".flash_alert").show().delay(2000).fadeOut();
   $("section.disabled").removeClass("disabled");
   $("#animal_pedigree_div").html('<%= j render("pedigree_file_upload") %>')
+  $("#animal_health_cert_div").html('<%= j render("health_certification_upload") %>')
+  $("#animal_vaccination_div").html('<%= j render("vaccination_file_upload") %>')
 }).on("ajax:error", function(event, response, error) {
   return alert("There was a problem.  Please try again later.");
 });

@@ -1,0 +1,15 @@
+<div class="file_class">  
+  <%= label_tag 'Vaccination record'%>
+  <%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.vaccination_record.url, target: '_blank') if @animal.vaccination_record? %>
+  <%= file_field @animal, :vaccination_record, id: 'animal_vaccination_record', name: 'animal[vaccination_record]'%>
+  
+  
+  <% if @animal.vaccination_record? %>
+	  <label>
+		<input name="animal[remove_vaccination_record]" type="hidden" value="0" />
+		<input class="remove_file" id="animal_remove_vaccination_record" name="animal[remove_vaccination_record]" type="checkbox" value="1" />
+		Remove vaccination record
+	  </label>
+  <% end %>
+
+</div> 

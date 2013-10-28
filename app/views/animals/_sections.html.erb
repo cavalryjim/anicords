@@ -74,19 +74,11 @@
 		<div class="row">
 				      
 		  <div class="large-6 columns">
-			<%= f.label :health_certification %>
-			<%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.health_certification.url, target: '_blank') if @animal.health_certification? %>
-			<%= f.file_field :health_certification %>
-				        
-			<% if @animal.health_certification? %>
-			  <label>
-				<%= f.check_box :remove_health_certification %>
-				Remove health certification
-			  </label>
-			<% end %>
+		  	<div id="animal_health_cert_div"><%= render 'health_certification_upload'%></div>
 		
 		  </div>
 		  <div class="large-6 columns">
+		  	<div id="animal_vaccination_div"><%= render 'vaccination_file_upload'%></div>
 		  </div>
 				      	      
 		</div>

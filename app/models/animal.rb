@@ -42,6 +42,7 @@ class Animal < ActiveRecord::Base
   
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
+  mount_uploader :vaccination_record, FileUploader
   
   def owner
     if self.household_id
