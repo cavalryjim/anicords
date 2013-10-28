@@ -35,7 +35,7 @@ $(function(){
  
   }, 2000);
 
-
+  $("#stepsOverviewModal").foundation( "reveal", "open");
 	
 });
 

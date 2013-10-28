@@ -3,8 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  
-  $("#stepsOverviewModal").foundation( "reveal", "open")
+  #$("#stepsOverviewModal").foundation( "reveal", "open")
   
   $('#service_provider').autocomplete
     source: $('#service_provider').data('autocomplete-source')
