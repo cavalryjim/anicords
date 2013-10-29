@@ -7,6 +7,7 @@ Anicords::Application.routes.draw do
   resources :households do
     resources :animals do
       resources :documents
+      resources :animal_vaccinations
     end
     resources :service_providers
     resources :household_associations
@@ -15,6 +16,7 @@ Anicords::Application.routes.draw do
 
   resources :animals do
     resources :documents
+    resources :animal_vaccinations
   end
   
   resources :documents
@@ -31,6 +33,7 @@ Anicords::Application.routes.draw do
   end
   
   resources :services
+  resources :animal_vaccinations
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'

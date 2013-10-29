@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131020163723) do
+ActiveRecord::Schema.define(version: 20131029032433) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20131020163723) do
 
   create_table "animal_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "animal_vaccinations", force: true do |t|
+    t.integer  "animal_id"
+    t.integer  "vaccination_id"
+    t.date     "vaccination_date"
+    t.string   "dosage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -210,6 +219,14 @@ ActiveRecord::Schema.define(version: 20131020163723) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vaccinations", force: true do |t|
+    t.string   "name"
+    t.string   "frequency"
+    t.string   "recommended_dosage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "veterinarians", force: true do |t|
     t.string   "name"

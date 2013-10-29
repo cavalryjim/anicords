@@ -34,8 +34,11 @@ class Animal < ActiveRecord::Base
   belongs_to :animal_type
   belongs_to :breeder
   belongs_to :household
-  has_many   :documents, :dependent => :destroy
+  has_many   :documents, dependent: :destroy
+  has_many   :vaccinations, through: :animal_vaccinations
+  has_many   :animal_vaccinations, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
+  accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   
   validates_presence_of :name
   validates :household_id, presence: true, if: :needs_owner?

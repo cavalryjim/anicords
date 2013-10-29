@@ -21,3 +21,28 @@
 	<%= link_to 'Back', @animal.owner %>
   </div>
 </section>
+
+<div id="addVaccinationModal" class="reveal-modal">
+    <h3>Add vaccination</h3>
+	<%= form_for [@animal, AnimalVaccination.new], html: { "data-abide" => '' } do |f| %>
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <%= f.collection_select :vaccination_id, Vaccination.all, :id, :name  %>
+	    </div>
+	  </div>
+	    
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <%= f.date_field :vaccination_date %>
+	    </div>
+	  </div>
+	    
+	  
+	  <div class="actions">
+	    <%= f.submit "Add vaccination" %>
+	  </div>
+	  
+	<% end %>
+	  
+	<a class="close-reveal-modal">&#215;</a>
+</div>

@@ -82,6 +82,25 @@
 		  </div>
 				      	      
 		</div>
+		
+		<div class="row">	
+		  <div class="large-12 columns">
+			<table>
+				<tr>
+					<th><%= link_to 'Add Vaccination', '#', "data-reveal-id" => "addVaccinationModal" %></th>
+					<th>Date</th>
+				</tr>
+				<% @animal.animal_vaccinations.each do |animal_vaccination|%>
+				  <tr>
+				  	<td><%= animal_vaccination.name%></td>
+				  	<td><%= animal_vaccination.date %></td>
+				  </tr>
+				<% end %>
+				
+			</table>
+		  </div>
+		</div>
+		
 		  <% if false %>
 		    <%= render 'documents'%>
 		  <% end %>
