@@ -24,7 +24,7 @@
 
 <div id="addVaccinationModal" class="reveal-modal">
     <h3>Add vaccination</h3>
-	<%= form_for [@animal, AnimalVaccination.new], html: { "data-abide" => '' } do |f| %>
+	<%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => ''} do |f| %>
 	  <div class="row">
 	    <div class="large-12 columns">
 	      <%= f.collection_select :vaccination_id, Vaccination.all, :id, :name  %>
@@ -36,7 +36,8 @@
 	      <%= f.date_field :vaccination_date %>
 	    </div>
 	  </div>
-	    
+	  
+	  <%= f.hidden_field :animal_id, value: @animal.id %>  
 	  
 	  <div class="actions">
 	    <%= f.submit "Add vaccination" %>

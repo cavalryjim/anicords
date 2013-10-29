@@ -1,10 +1,16 @@
 class AnimalVaccinationsController < ApplicationController
   before_action :set_animal, only: [:create, :destroy]
-  before_action :set_animal_vaccination, only: [:create, :destroy]
+  before_action :set_animal_vaccination, only: [:destroy]
   
   
   def create
+    @animal_vaccination = AnimalVaccination.new(animal_vaccination_params)
     
+    respond_to do |format|
+      if @animal_vaccination.save 
+        format.js
+      end
+    end
   end
   
   def destroy
@@ -24,6 +30,10 @@ class AnimalVaccinationsController < ApplicationController
     
     def set_animal_vaccination
       @animal_vaccination = AnimalVaccination.find[:animal_vaccination_id]
+    end
+    
+    def animal_vaccination_params
+      params.require(:animal_vaccination).permit(:animal_id, :vaccination_id, :vaccination_date, :dosage)
     end
   
 end
