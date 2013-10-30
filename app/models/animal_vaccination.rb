@@ -12,8 +12,12 @@
 #
 
 class AnimalVaccination < ActiveRecord::Base
+  include ActiveModel::Validations
+  
   belongs_to :animal
   belongs_to :vaccination
+  
+  validates_presence_of :vaccination_date
   
   def name
     self.vaccination.name

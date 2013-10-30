@@ -26,14 +26,15 @@
     <h3>Add vaccination</h3>
 	<%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => ''} do |f| %>
 	  <div class="row">
-	    <div class="large-12 columns">
+	    <div class="large-11 columns">
 	      <%= f.collection_select :vaccination_id, Vaccination.all, :id, :name  %>
 	    </div>
 	  </div>
 	    
 	  <div class="row">
-	    <div class="large-12 columns">
+	    <div class="large-6 columns">
 	      <%= f.date_field :vaccination_date %>
+	      <small class="error">Vaccination date required.</small>
 	    </div>
 	  </div>
 	  

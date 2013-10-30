@@ -5,7 +5,6 @@ class AnimalVaccinationsController < ApplicationController
   
   def create
     @animal_vaccination = AnimalVaccination.new(animal_vaccination_params)
-    
     respond_to do |format|
       if @animal_vaccination.save 
         format.js
@@ -16,8 +15,9 @@ class AnimalVaccinationsController < ApplicationController
   def destroy
     @animal_vaccination.destroy
     respond_to do |format|
-      format.html { redirect_to @household }
-      format.json { head :no_content }
+      #format.html { redirect_to @household }
+      #format.json { head :no_content }
+      format.js
     end
   end
   
@@ -29,7 +29,7 @@ class AnimalVaccinationsController < ApplicationController
     end
     
     def set_animal_vaccination
-      @animal_vaccination = AnimalVaccination.find[:animal_vaccination_id]
+      @animal_vaccination = AnimalVaccination.find(params[:id])
     end
     
     def animal_vaccination_params
