@@ -37,6 +37,8 @@ class Animal < ActiveRecord::Base
   has_many   :documents, dependent: :destroy
   has_many   :vaccinations, through: :animal_vaccinations
   has_many   :animal_vaccinations, dependent: :destroy
+  has_many   :medical_diagnoses, through: :animal_diagnoses
+  has_many   :animal_diagnoses, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   

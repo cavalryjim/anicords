@@ -1,7 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-#jQuery ->
+jQuery ->
+  
+  $('#animal_medical_diagnosis_ids').select2()
   
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")

@@ -90,6 +90,12 @@
 		  </div>
 		</div>
 		
+		<div class="row">
+		  <div class="large-6 columns">
+		  	<%= f.collection_select :medical_diagnosis_ids, MedicalDiagnosis.order(:name), :id, :name, {}, {multiple: true} %>
+		  </div>
+		</div>
+		
 		  <% if false %>
 		    <%= render 'documents'%>
 		  <% end %>

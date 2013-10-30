@@ -16,6 +16,7 @@
 //= require jquery.remotipart
 //= require foundation
 //= require turbolinks
+//= require select2
 //= require_tree .
 
 $(function(){ 
