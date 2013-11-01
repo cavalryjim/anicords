@@ -5,6 +5,9 @@ jQuery ->
   
   $('#animal_medical_diagnosis_ids').select2
     placeholder: "Add medical diagnosis"
+    
+  $('#animal_medication_ids').select2
+    placeholder: "Add medications"
   
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")

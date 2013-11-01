@@ -97,6 +97,13 @@
 		  </div>
 		</div>
 		
+		<div class="row">
+		  <div class="large-6 columns">
+		  	<%= f.label :medication_ids, "Medications" %>
+		  	<%= f.collection_select :medication_ids, Medication.order(:name), :id, :name, {}, {multiple: true, style: 'width:100%'} %>
+		  </div>
+		</div>
+		
 		  <% if false %>
 		    <%= render 'documents'%>
 		  <% end %>

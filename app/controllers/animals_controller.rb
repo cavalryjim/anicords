@@ -117,6 +117,7 @@ class AnimalsController < ApplicationController
     def animal_params
       params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id,
        :dob, :pedigree, :store_dir, :remove_pedigree, :show_name, :registration_number, :image, :pedigree_chart, :health_certification, 
-       :vaccination_record, :shampoo, :vitamin, :treat, :remove_health_certification, :remove_vaccination_record, medical_diagnosis_ids: [] )
+       :vaccination_record, :shampoo, :vitamin, :treat, :remove_health_certification, :remove_vaccination_record, 
+       medical_diagnosis_ids: [], animal_medication_ids: [] )
     end
 end
