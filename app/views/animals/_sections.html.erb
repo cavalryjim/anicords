@@ -92,7 +92,8 @@
 		
 		<div class="row">
 		  <div class="large-6 columns">
-		  	<%= f.collection_select :medical_diagnosis_ids, MedicalDiagnosis.order(:name), :id, :name, {}, {multiple: true} %>
+		  	<%= f.label :medical_diagnosis_ids, "Medical diagnosis" %>
+		  	<%= f.collection_select :medical_diagnosis_ids, MedicalDiagnosis.order(:name), :id, :name, {}, {multiple: true, style: 'width:100%'} %>
 		  </div>
 		</div>
 		

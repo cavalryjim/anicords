@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
   
-  $('#animal_medical_diagnosis_ids').select2()
+  $('#animal_medical_diagnosis_ids').select2
+    placeholder: "Add medical diagnosis"
   
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")
