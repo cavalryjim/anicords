@@ -27,6 +27,7 @@
 #  shampoo_id           :integer
 #  treat_id             :integer
 #  vitamin_id           :integer
+#  weight_measure       :string(255)
 #
 
 class Animal < ActiveRecord::Base
