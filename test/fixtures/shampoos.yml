@@ -1,12 +1,12 @@
 # == Schema Information
 #
-# Table name: animal_foods
+# Table name: shampoos
 #
-#  id         :integer          not null, primary key
-#  animal_id  :integer
-#  food_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  animal_type_id :integer
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

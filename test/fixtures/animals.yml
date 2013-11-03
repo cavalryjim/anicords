@@ -23,9 +23,10 @@
 #  vaccination_record   :string(255)
 #  show_name            :string(255)
 #  registration_number  :string(255)
-#  shampoo              :string(255)
-#  vitamin              :string(255)
-#  treat                :string(255)
+#  serving_measure      :string(255)
+#  shampoo_id           :integer
+#  treat_id             :integer
+#  vitamin_id           :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

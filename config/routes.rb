@@ -37,6 +37,8 @@ Anicords::Application.routes.draw do
   resources :medical_diagnoses
   resources :medications
   resources :allergies
+  resources :foods
+  resources :shampoos
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'

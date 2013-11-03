@@ -92,7 +92,64 @@ jQuery ->
           dataType: "json"
         ).done (data) ->
           callback data
+          
+  $('#animal_food_ids').select2
+    #placeholder: "Add allergies"
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/foods"
+      dataType: "json"
+      data: (term, page) ->
+        q: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        food = ''
+        $.each ids, (index, value) ->
+          food = food + '&fd=' + value
+   
+        $.ajax("/foods?"+food,
+          dataType: "json"
+        ).done (data) ->
+          callback data
     
+  $('#animal_shampoo_id').select2
+    #placeholder: "Add allergies"
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/shampoos"
+      dataType: "json"
+      data: (term, page) ->
+        q: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/shampoos?shpo="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+          
   
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")

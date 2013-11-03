@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103044754) do
+ActiveRecord::Schema.define(version: 20131103192048) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -116,9 +116,10 @@ ActiveRecord::Schema.define(version: 20131103044754) do
     t.string   "vaccination_record"
     t.string   "show_name"
     t.string   "registration_number"
-    t.string   "shampoo"
-    t.string   "vitamin"
-    t.string   "treat"
+    t.string   "serving_measure"
+    t.integer  "shampoo_id"
+    t.integer  "treat_id"
+    t.integer  "vitamin_id"
   end
 
   create_table "breeders", force: true do |t|
@@ -232,6 +233,13 @@ ActiveRecord::Schema.define(version: 20131103044754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "service_provider_type_id"
+  end
+
+  create_table "shampoos", force: true do |t|
+    t.string   "name"
+    t.integer  "animal_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_associations", force: true do |t|

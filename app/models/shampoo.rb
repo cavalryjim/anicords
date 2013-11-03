@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: foods
+# Table name: shampoos
 #
 #  id             :integer          not null, primary key
 #  name           :string(255)
@@ -9,12 +9,11 @@
 #  updated_at     :datetime
 #
 
-class Food < ActiveRecord::Base
-  has_many  :animal_foods
+class Shampoo < ActiveRecord::Base
+  belongs_to  :animal_type
   
   def text
     self.name
   end
-  
   
 end
