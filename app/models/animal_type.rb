@@ -13,6 +13,7 @@ class AnimalType < ActiveRecord::Base
   validates_presence_of :name
   
   has_many  :animals
+  has_many  :foods
   
   
   def to_s

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101170820) do
+ActiveRecord::Schema.define(version: 20131103044754) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,9 +46,29 @@ ActiveRecord::Schema.define(version: 20131101170820) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "allergies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "animal_allergies", force: true do |t|
+    t.integer  "animal_id"
+    t.integer  "allergy_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "animal_diagnoses", force: true do |t|
     t.integer  "animal_id"
     t.integer  "medical_diagnosis_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "animal_foods", force: true do |t|
+    t.integer  "animal_id"
+    t.integer  "food_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -126,6 +146,13 @@ ActiveRecord::Schema.define(version: 20131101170820) do
     t.string   "title"
     t.string   "file_path"
     t.integer  "animal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "foods", force: true do |t|
+    t.string   "name"
+    t.integer  "animal_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

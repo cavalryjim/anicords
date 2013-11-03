@@ -93,14 +93,22 @@
 		<div class="row">
 		  <div class="large-6 columns">
 		  	<%= f.label :medical_diagnosis_ids, "Medical diagnosis" %>
-		  	<%= f.collection_select :medical_diagnosis_ids, MedicalDiagnosis.order(:name), :id, :name, {}, {multiple: true, style: 'width:100%'} %>
+		  	<%= f.text_field :medical_diagnosis_ids %>
+		  	
 		  </div>
 		</div>
 		
 		<div class="row">
 		  <div class="large-6 columns">
 		  	<%= f.label :medication_ids, "Medications" %>
-		  	<%= f.collection_select :medication_ids, Medication.order(:name), :id, :name, {}, {multiple: true, style: 'width:100%'} %>
+		  	<%= f.text_field :medication_ids %>
+		  </div>
+		</div>
+		
+		<div class="row">
+		  <div class="large-6 columns">
+		  	<%= f.label :allergy_ids, "Allergies" %>
+		  	<%= f.text_field :allergy_ids %>
 		  </div>
 		</div>
 		
@@ -113,7 +121,16 @@
   <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
 	<p class="title" data-section-title><a href="#panel3">Preferences</a></p>
 	<div class="content" data-section-content>
-	  
+	  <div class="row">
+		  <div class="large-4 columns">
+			<%= f.label :food %>
+			<%= f.select :food, options_for_select(Food.pluck(:name), @animal.food) %>
+		  </div>
+		  <div class="large-4 columns">
+			
+		  </div>
+		  <div class="large-4 columns"></div>
+		</div>
 	</div>
   <% end %>
 	  

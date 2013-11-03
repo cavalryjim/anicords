@@ -4,10 +4,95 @@
 jQuery ->
   
   $('#animal_medical_diagnosis_ids').select2
+    width: "100%"
     placeholder: "Add medical diagnosis"
+    multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/medical_diagnoses"
+      dataType: "json"
+      data: (term, page) ->
+        q: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        diagnoses = ''
+        $.each ids, (index, value) ->
+          diagnoses = diagnoses + '&md[]=' + value
+   
+        $.ajax("/medical_diagnoses?"+diagnoses,
+          dataType: "json"
+        ).done (data) ->
+          callback data
     
   $('#animal_medication_ids').select2
     placeholder: "Add medications"
+    width: "100%"
+    multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/medications"
+      dataType: "json"
+      data: (term, page) ->
+        q: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        medications = ''
+        $.each ids, (index, value) ->
+          medications = medications + '&meds[]=' + value
+   
+        $.ajax("/medications?"+medications,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+          
+  $('#animal_allergy_ids').select2
+    placeholder: "Add allergies"
+    width: "100%"
+    multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/allergies"
+      dataType: "json"
+      data: (term, page) ->
+        q: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        allergies = ''
+        $.each ids, (index, value) ->
+          allergies = allergies + '&alg[]=' + value
+   
+        $.ajax("/allergies?"+allergies,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+    
   
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")
