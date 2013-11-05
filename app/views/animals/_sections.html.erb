@@ -69,6 +69,7 @@
 			<%= f.text_field :weight %>
 		  </div>
 		  <div class="large-3 columns">
+		  	<%= f.label :weight_measure, ' ' %>
 			<%= f.select :weight_measure, options_for_select(["lbs", "ounces", "grams", "kg"], @animal.weight_measure)  %>
 		  </div>
 		  
