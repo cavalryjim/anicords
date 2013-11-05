@@ -1,0 +1,17 @@
+<table>
+	<tr>
+	  <th colspan="2"><%= link_to 'Add Provider', '#', "data-reveal-id" => "addAnimalProviderModal" %></th>
+	  
+	 
+	</tr>
+	
+	<% @animal.animal_associations.each do |animal_association|%>
+	  <tr>
+		<td><%= animal_association.name%></td>
+		
+		<td><%= link_to image_tag('cross.png', :alt => "del"), animal_animal_association_path(@animal, animal_association), method: :delete, remote: true, 
+				 data: { confirm: 'Please confirm you want to remove ' + animal_association.name + ' from the list.' } %></td>
+	  </tr>
+	<% end %>
+				
+</table>

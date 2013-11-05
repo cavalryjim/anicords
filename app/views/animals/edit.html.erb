@@ -48,3 +48,24 @@
 	  
 	<a class="close-reveal-modal">&#215;</a>
 </div>
+
+<div id="addAnimalProviderModal" class="reveal-modal">
+    <h3>Add Service Provider</h3>
+	<%= form_for [@animal, AnimalAssociation.new], remote: true, html: {id: 'animal_association_form', "data-abide" => ''} do |f| %>
+	  <div class="row">
+	    <div class="large-11 columns">
+	      <%= f.collection_select :service_provider_id, ServiceProvider.all, :id, :name  %>
+	    </div>
+	  </div>
+	    
+	  
+	  <%= f.hidden_field :animal_id, value: @animal.id %>  
+	  
+	  <div class="actions">
+	    <%= f.submit "Add provider" %>
+	  </div>
+	  
+	<% end %>
+	  
+	<a class="close-reveal-modal">&#215;</a>
+</div>

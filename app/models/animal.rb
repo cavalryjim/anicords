@@ -47,6 +47,8 @@ class Animal < ActiveRecord::Base
   has_many   :animal_allergies, dependent: :destroy
   has_many   :foods, through: :animal_foods
   has_many   :animal_foods, dependent: :destroy
+  has_many   :service_providers, through: :animal_associations
+  has_many   :animal_associations, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   

@@ -17,6 +17,7 @@ Anicords::Application.routes.draw do
   resources :animals do
     resources :documents
     resources :animal_vaccinations
+    resources :animal_associations
   end
   
   resources :documents

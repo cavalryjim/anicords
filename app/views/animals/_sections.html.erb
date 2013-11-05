@@ -63,11 +63,11 @@
   <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
     <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
 	<div class="content" data-section-content>
-	  <div class="row">
+	   <div class="row">
 		  <div class="large-3 columns">
 			<%= f.label :weight %>
 			<%= f.text_field :weight %>
-		 co </div>
+		  </div>
 		  <div class="large-3 columns">
 		  	<%= f.label :weight_measure, ' ' %>
 			<%= f.select :weight_measure, options_for_select(["lbs", "ounces", "grams", "kg"], @animal.weight_measure)  %>
@@ -184,7 +184,12 @@
   <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
 	<p class="title" data-section-title><a href="#panel4">Service Providers</a></p>
 	<div class="content" data-section-content>
-	  
+	     <div class="row">	
+		  <div class="large-12 columns">
+		  	<div id="animal_provider_table_div"><%= render 'provider_table'%></div>
+			
+		  </div>
+		</div>
     </div>
   <% end %>
   
