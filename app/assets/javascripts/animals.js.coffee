@@ -150,7 +150,58 @@ jQuery ->
         ).done (data) ->
           callback data
           
+  $('#animal_treat_id').select2
+    #placeholder: "Add allergies"
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/treats"
+      dataType: "json"
+      data: (term, page) ->
+        q: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/treats?trt="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data
   
+  $('#animal_vitamin_id').select2
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/vitamins"
+      dataType: "json"
+      data: (term, page) ->
+        q: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/vitamins?vit="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data     
+            
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")
   #  $(".flash_alert").show().delay(2000).fadeOut()

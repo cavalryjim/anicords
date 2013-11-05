@@ -67,7 +67,7 @@
 		  <div class="large-3 columns">
 			<%= f.label :weight %>
 			<%= f.text_field :weight %>
-		  </div>
+		 co </div>
 		  <div class="large-3 columns">
 		  	<%= f.label :weight_measure, ' ' %>
 			<%= f.select :weight_measure, options_for_select(["lbs", "ounces", "grams", "kg"], @animal.weight_measure)  %>
@@ -156,6 +156,24 @@
 		  <div class="large-10 columns">
 			<%= f.label :shampoo_id, "Shampoo preference" %>
 			<%= f.text_field :shampoo_id %>
+		  </div>
+		  <div class="large-2 columns"></div>
+		  
+	  </div>
+	  
+	  <div class="row">
+		  <div class="large-10 columns">
+			<%= f.label :treat_id, "Treat preference" %>
+			<%= f.text_field :treat_id %>
+		  </div>
+		  <div class="large-2 columns"></div>
+		  
+	  </div>
+	  
+	  <div class="row">
+		  <div class="large-10 columns">
+			<%= f.label :vitamin_id, "Vitamin preference" %>
+			<%= f.text_field :vitamin_id %>
 		  </div>
 		  <div class="large-2 columns"></div>
 		  

@@ -35,6 +35,8 @@ $(function(){
         });
  
   }, 2000);
+  
+  $('input.datepicker').Zebra_DatePicker();
 	
 });
 
