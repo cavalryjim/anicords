@@ -27,13 +27,13 @@
 	<%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => ''} do |f| %>
 	  <div class="row">
 	    <div class="large-11 columns">
-	      <%= f.collection_select :vaccination_id, Vaccination.all, :id, :name  %>
+	      <%= f.text_field :vaccination_id  %>
 	    </div>
 	  </div>
 	    
 	  <div class="row">
 	    <div class="large-6 columns">
-	      <%= f.text_field :vaccination_date, class: 'datepicker' %>
+	      <%= f.text_field :vaccination_date, class: "datepicker" %>
 	      <small class="error">Vaccination date required.</small>
 	    </div>
 	  </div>
@@ -54,7 +54,7 @@
 	<%= form_for [@animal, AnimalAssociation.new], remote: true, html: {id: 'animal_association_form', "data-abide" => ''} do |f| %>
 	  <div class="row">
 	    <div class="large-11 columns">
-	      <%= f.collection_select :service_provider_id, ServiceProvider.all, :id, :name  %>
+		  <%= f.text_field :service_provider_id %>
 	    </div>
 	  </div>
 	    

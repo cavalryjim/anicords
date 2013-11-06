@@ -42,6 +42,7 @@ Anicords::Application.routes.draw do
   resources :shampoos
   resources :treats
   resources :vitamins
+  resources :vaccinations
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'

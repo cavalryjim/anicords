@@ -14,7 +14,7 @@ jQuery ->
       url: "/medical_diagnoses"
       dataType: "json"
       data: (term, page) ->
-        q: term # search term
+        term: term # search term
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -44,7 +44,7 @@ jQuery ->
       url: "/medications"
       dataType: "json"
       data: (term, page) ->
-        q: term # search term
+        term: term # search term
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -74,7 +74,7 @@ jQuery ->
       url: "/allergies"
       dataType: "json"
       data: (term, page) ->
-        q: term # search term
+        term: term # search term
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -104,7 +104,7 @@ jQuery ->
       url: "/foods"
       dataType: "json"
       data: (term, page) ->
-        q: term # search term
+        term: term # search term
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -134,7 +134,7 @@ jQuery ->
       url: "/shampoos"
       dataType: "json"
       data: (term, page) ->
-        q: term # search term
+        term: term # search term
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -161,7 +161,7 @@ jQuery ->
       url: "/treats"
       dataType: "json"
       data: (term, page) ->
-        q: term # search term
+        term: term # search term
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -186,11 +186,10 @@ jQuery ->
       url: "/vitamins"
       dataType: "json"
       data: (term, page) ->
-        q: term # search term
+        term: term # search term
         page_limit: 10
 
-      results: (data, page) -> # parse the results into the format expected by Select2.
-        # since we are using custom formatting functions we do not need to alter remote JSON data
+      results: (data, page) -> 
         results: data
      
     initSelection: (element, callback) ->
@@ -201,7 +200,37 @@ jQuery ->
           dataType: "json"
         ).done (data) ->
           callback data     
-            
+  
+  $('#animal_association_service_provider_id').select2
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/service_providers"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> 
+        results: data
+        
+  $('#animal_vaccination_vaccination_id').select2
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/vaccinations"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> 
+        results: data
+    
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")
   #  $(".flash_alert").show().delay(2000).fadeOut()

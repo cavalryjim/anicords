@@ -8,7 +8,7 @@ class ShampoosController < ApplicationController
     elsif params[:shpos]
       #@services = Service.find_all_by_service_provider_type_id(params[:spt])
       @shampoos = Shampoo.where(id: params[:shpos]).all.map{|s| {id: s.id, text: s.name }}
-      render json: @foods
+      render json: @shampoos
     else
       @shampoos = Shampoo.order(:name).where("name like ?", "%#{params[:term]}%").map{|s| {id: s.id, text: s.name }}
       render json: @shampoos

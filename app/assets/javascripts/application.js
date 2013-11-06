@@ -36,7 +36,8 @@ $(function(){
  
   }, 2000);
   
-  $('input.datepicker').Zebra_DatePicker();
+  //$('input.datepicker').Zebra_DatePicker();
+  $( ".datepicker" ).datepicker();
 	
 });
 

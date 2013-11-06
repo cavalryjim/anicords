@@ -5,13 +5,13 @@
 jQuery ->
   $("#stepsOverviewModal").foundation( "reveal", "open")
   
-  $('#service_provider').autocomplete
-    source: $('#service_provider').data('autocomplete-source')
-    select: (event, ui) ->
+  #$('#service_provider').autocomplete
+  #  source: $('#service_provider').data('autocomplete-source')
+  #  select: (event, ui) ->
       #alert(ui.item.label)
-      $('#service_provider_id').val(ui.item.value)
-      $('#service_provider').val(ui.item.label)
-      event.preventDefault()
+  #    $('#service_provider_id').val(ui.item.value)
+  #    $('#service_provider').val(ui.item.label)
+  #    event.preventDefault()
 
   #$('#provider_reveal_button').click ->
   #  $('#service_provider').focus
