@@ -8,7 +8,7 @@
 	<% @animal.animal_vaccinations.each do |animal_vaccination|%>
 	  <tr>
 		<td><%= animal_vaccination.name%></td>
-		<td><%= animal_vaccination.date %></td>
+		<td><%= mo_da_yr(animal_vaccination.date) %></td>
 		<td><%= link_to image_tag('cross.png', :alt => "del"), animal_animal_vaccination_path(@animal, animal_vaccination), method: :delete, remote: true, 
 				 data: { confirm: 'Please confirm you want to remove ' + animal_vaccination.name + ' from the list.' } %></td>
 	  </tr>
