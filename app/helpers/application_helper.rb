@@ -9,6 +9,9 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
   
+  def mo_da_yr(d)
+    d.strftime("%m/%d/%Y") if d
+  end
   
   def us_states
     [

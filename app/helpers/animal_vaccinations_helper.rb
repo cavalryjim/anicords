@@ -1,2 +1,0 @@
-module AnimalVaccinationsHelper
-end

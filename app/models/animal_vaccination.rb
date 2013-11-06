@@ -17,6 +17,8 @@ class AnimalVaccination < ActiveRecord::Base
   belongs_to :animal
   belongs_to :vaccination
   
+  validates_presence_of :animal_id
+  validates_presence_of :vaccination_id
   validates_presence_of :vaccination_date
   
   def name

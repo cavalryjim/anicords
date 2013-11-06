@@ -36,8 +36,7 @@ $(function(){
  
   }, 2000);
   
-  //$('input.datepicker').Zebra_DatePicker();
-  $( ".datepicker" ).datepicker();
+  $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
 	
 });
 
