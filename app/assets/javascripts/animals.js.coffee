@@ -183,7 +183,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/vitamins"
+      url: "/remote_requests/vitamins"
       dataType: "json"
       data: (term, page) ->
         term: term # search term
@@ -196,7 +196,7 @@ jQuery ->
       if $(element).val() isnt ''
         ids = $(element).val()
    
-        $.ajax("/vitamins?vit="+ids,
+        $.ajax("/remote_requests/vitamins?vit="+ids,
           dataType: "json"
         ).done (data) ->
           callback data     

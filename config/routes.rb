@@ -54,6 +54,7 @@ Anicords::Application.routes.draw do
   #get 'service_providers/:id/services' => 'service_providers#services'
   get 'animals/:id/download_file' => 'animals#download_file'
   
+  get 'remote_requests/vitamins' => 'remote_requests#vitamins'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
