@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file]
-  before_action :set_owner, only: [:new, :create, :edit, :destroy]
+  before_action :set_owner, only: [:new, :show, :create, :edit, :destroy]
   before_filter :authenticate_user!, except: [:show]
 
   # GET /animals
@@ -12,7 +12,10 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.json
   def show
-    
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   # GET /animals/new
