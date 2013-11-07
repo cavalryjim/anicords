@@ -34,9 +34,9 @@ class ServiceProvider < ActiveRecord::Base
   validates_presence_of :name
   #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
   
-  def as_json options={}
-    { value: id, label: name + ' ' + zip.to_s }
-  end
+  #def as_json options={}
+  #  { value: id, label: name + ' ' + zip.to_s }
+  #end
   
   def services_available
     Service.where(service_provider_type_id: self.service_provider_type_ids).all
@@ -52,6 +52,10 @@ class ServiceProvider < ActiveRecord::Base
   
   def is_veterinarian?
     self.service_provider_types.map{ |spt| spt.name }.include?("Veterinarian")
+  end
+  
+  def text
+    self.name
   end
   
 end

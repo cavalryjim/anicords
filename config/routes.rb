@@ -33,16 +33,7 @@ Anicords::Application.routes.draw do
     resources :user_associations
   end
   
-  resources :services
   resources :animal_vaccinations
-  resources :medical_diagnoses
-  resources :medications
-  resources :allergies
-  resources :foods
-  resources :shampoos
-  resources :treats
-  resources :vitamins
-  resources :vaccinations
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'
@@ -55,6 +46,15 @@ Anicords::Application.routes.draw do
   get 'animals/:id/download_file' => 'animals#download_file'
   
   get 'remote_requests/vitamins' => 'remote_requests#vitamins'
+  get 'remote_requests/allergies' => 'remote_requests#allergies'
+  get 'remote_requests/foods' => 'remote_requests#foods'
+  get 'remote_requests/medical_diagnoses' => 'remote_requests#medical_diagnoses'
+  get 'remote_requests/shampoos' => 'remote_requests#shampoos'
+  get 'remote_requests/treats' => 'remote_requests#treats'
+  get 'remote_requests/medications' => 'remote_requests#medications'
+  get 'remote_requests/services' => 'remote_requests#services'
+  get 'remote_requests/vaccinations' => 'remote_requests#vaccinations'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

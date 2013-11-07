@@ -1,5 +1,87 @@
 class RemoteRequestsController < ApplicationController
   
+  def allergies
+    if params[:alg]
+      @allergies = Allergy.where(id: params[:alg]).all.map{|a| {id: a.id, text: a.name }}
+    else
+      @allergies = Allergy.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|a| {id: a.id, text: a.name }}
+    end
+    render json: @allergies
+  end
+  
+  def foods 
+    if params[:fd]
+      @food = Food.find(params[:fd])
+      render json: @food, only: [:id], methods: [:text]
+    elsif params[:fds]
+      #@services = Service.find_all_by_service_provider_type_id(params[:spt])
+      @foods = Food.where(id: params[:fds]).all.map{|f| {id: f.id, text: f.name }}
+      render json: @foods
+    else
+      @foods = Food.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|f| {id: f.id, text: f.name }}
+      render json: @foods
+    end
+  end
+  
+  def medical_diagnoses
+    if params[:md]
+      @medical_diagnoses = MedicalDiagnosis.where(id: params[:md]).all.map{|d| {id: d.id, text: d.name }}
+    else
+      @medical_diagnoses = MedicalDiagnosis.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|d| {id: d.id, text: d.name }}
+    end
+    render json: @medical_diagnoses
+  end
+  
+  def medications
+    if params[:meds]
+      @medications = Medication.where(id: params[:meds]).all.map{|m| {id: m.id, text: m.name }}
+    else
+      @medications = Medication.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|m| {id: m.id, text: m.name }}
+    end
+    render json: @medications
+  end
+  
+  def services
+    if params[:spt]
+      @services = Service.where(service_provider_type_id: params[:spt]).all
+    else
+      @services = Service.all
+    end
+    render json: @services.collect {|s| {id: s.id, text: s.name }}
+  end
+  
+  def shampoos
+    if params[:shpo]
+      @shampoo = Shampoo.find(params[:shpo])
+      render json: @shampoo, only: [:id], methods: [:text]
+    elsif params[:shpos]
+      @shampoos = Shampoo.where(id: params[:shpos]).all.map{|s| {id: s.id, text: s.name }}
+      render json: @shampoos
+    else
+      @shampoos = Shampoo.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|s| {id: s.id, text: s.name }}
+      render json: @shampoos
+    end
+  end
+  
+  def treats
+    if params[:trt]
+      @treat = Treat.find(params[:trt])
+      render json: @treat, only: [:id], methods: [:text]
+    elsif params[:trts]
+      @treats = Treat.where(id: params[:trts]).all.map{|t| {id: t.id, text: t.name }}
+      render json: @treats
+    else
+      @treats = Treat.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|t| {id: t.id, text: t.name }}
+      render json: @treats
+    end
+    
+  end
+  
+  def vaccinations
+    @vaccinations = Vaccination.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|v| {id: v.id, text: v.name }}
+    render json: @vaccinations
+  end
+  
   def vitamins
     if params[:vit]
       @vitamin = Vitamin.find(params[:vit])
@@ -8,7 +90,7 @@ class RemoteRequestsController < ApplicationController
       @vitamins = Vitamin.where(id: params[:vits]).all.map{|v| {id: v.id, text: v.name }}
       render json: @vitamins
     else
-      @vitamins = Vitamin.order(:name).where("name like ?", "%#{params[:term]}%").map{|v| {id: v.id, text: v.name }}
+      @vitamins = Vitamin.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|v| {id: v.id, text: v.name }}
       render json: @vitamins
     end
   end

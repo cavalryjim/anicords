@@ -11,7 +11,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/medical_diagnoses"
+      url: "/remote_requests/medical_diagnoses"
       dataType: "json"
       data: (term, page) ->
         term: term # search term
@@ -28,7 +28,7 @@ jQuery ->
         $.each ids, (index, value) ->
           diagnoses = diagnoses + '&md[]=' + value
    
-        $.ajax("/medical_diagnoses?"+diagnoses,
+        $.ajax("/remote_requests/medical_diagnoses?"+diagnoses,
           dataType: "json"
         ).done (data) ->
           callback data
@@ -41,7 +41,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/medications"
+      url: "/remote_requests/medications"
       dataType: "json"
       data: (term, page) ->
         term: term # search term
@@ -58,7 +58,7 @@ jQuery ->
         $.each ids, (index, value) ->
           medications = medications + '&meds[]=' + value
    
-        $.ajax("/medications?"+medications,
+        $.ajax("/remote_requests/medications?"+medications,
           dataType: "json"
         ).done (data) ->
           callback data
@@ -71,7 +71,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/allergies"
+      url: "/remote_requests/allergies"
       dataType: "json"
       data: (term, page) ->
         term: term # search term
@@ -88,7 +88,7 @@ jQuery ->
         $.each ids, (index, value) ->
           allergies = allergies + '&alg[]=' + value
    
-        $.ajax("/allergies?"+allergies,
+        $.ajax("/remote_requests/allergies?"+allergies,
           dataType: "json"
         ).done (data) ->
           callback data
@@ -101,7 +101,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/foods"
+      url: "/remote_requests/foods"
       dataType: "json"
       data: (term, page) ->
         term: term # search term
@@ -118,7 +118,7 @@ jQuery ->
         $.each ids, (index, value) ->
           food = food + '&fd=' + value
    
-        $.ajax("/foods?"+food,
+        $.ajax("/remote_requests/foods?"+food,
           dataType: "json"
         ).done (data) ->
           callback data
@@ -131,7 +131,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/shampoos"
+      url: "/remote_requests/shampoos"
       dataType: "json"
       data: (term, page) ->
         term: term # search term
@@ -145,7 +145,7 @@ jQuery ->
       if $(element).val() isnt ''
         ids = $(element).val()
    
-        $.ajax("/shampoos?shpo="+ids,
+        $.ajax("/remote_requests/shampoos?shpo="+ids,
           dataType: "json"
         ).done (data) ->
           callback data
@@ -158,7 +158,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/treats"
+      url: "/remote_requests/treats"
       dataType: "json"
       data: (term, page) ->
         term: term # search term
@@ -172,7 +172,7 @@ jQuery ->
       if $(element).val() isnt ''
         ids = $(element).val()
    
-        $.ajax("/treats?trt="+ids,
+        $.ajax("/remote_requests/treats?trt="+ids,
           dataType: "json"
         ).done (data) ->
           callback data
@@ -211,6 +211,9 @@ jQuery ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        city: $('#city_term').val()
+        state: $('#state_term').val()
+        zip: $('#zip_term').val()
         page_limit: 10
 
       results: (data, page) -> 
@@ -222,7 +225,7 @@ jQuery ->
       obj.id # use slug field for id
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/vaccinations"
+      url: "/remote_requests/vaccinations"
       dataType: "json"
       data: (term, page) ->
         term: term # search term

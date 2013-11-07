@@ -74,8 +74,8 @@ class UsersController < ApplicationController
       redirect_to user_select_association_path
     elsif current_user && current_user.no_associations?
       redirect_to user_select_account_type_path
-    elsif current_user
-      redirect_to current_user.associations.first
+    elsif current_user && current_user.households
+      redirect_to current_user.households.first
     else
       redirect_to new_user_registration_path
     end

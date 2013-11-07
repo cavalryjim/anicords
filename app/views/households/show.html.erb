@@ -17,8 +17,8 @@
 	    
 		<% @household.animals.each do |animal| %>
 		  <li>
-			  <%= link_to animal_image(animal), edit_household_animal_path(@household, animal), 'data-no-turbolink' => true %><br/>
-			  <%= link_to animal.name, edit_household_animal_path(@household, animal), 'data-no-turbolink' => true %>		
+			  <%= link_to animal_image(animal), household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
+			  <%= link_to animal.name, household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %>		
 		  </li>
 					
 		<% end %>
@@ -130,6 +130,12 @@
 	</div>
     
   <% end %>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="showAnimalModal" class="reveal-modal">
+  
   
   <a class="close-reveal-modal">&#215;</a>
 </div>

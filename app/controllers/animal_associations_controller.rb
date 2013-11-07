@@ -4,7 +4,7 @@ class AnimalAssociationsController < ApplicationController
   
   
   def create
-    @animal_association = AnimalAssociation.new(animal_association_params)
+    @animal_association = AnimalAssociation.find_or_initialize_by(animal_association_params)
     respond_to do |format|
       if @animal_association.save 
         format.js
