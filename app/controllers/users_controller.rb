@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :login]
   #before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
   
 
   # GET /users
@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = current_user
+    #@user = current_user
+    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @user )
   end
 
   # GET /users/new
