@@ -30,6 +30,9 @@
 
 class User < ActiveRecord::Base
   #include ActiveModel::Validations
+  include PublicActivity::Common
+  #tracked owner: ->(controller, model) { controller && controller.current_user }
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -47,12 +50,12 @@ class User < ActiveRecord::Base
   #validates_presence_of :password, if: "provider.blank?"        
  
   def name
-    first_name.to_s << ' ' << last_name.to_s
+    first_name.to_s + ' ' + last_name.to_s
   end
   
   def name_or_email
     if first_name || last_name
-      first_name.to_s << ' ' << last_name.to_s
+      first_name.to_s + ' ' + last_name.to_s
     else
       email
     end

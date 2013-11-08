@@ -1,4 +1,82 @@
-<p><%= @animal.name %></p>
+<div class="row">
+	
+  <!-- Right Side -->
+  <div class="large-6 columns">
+  	<div class="row">
+      <div class="large-12 columns">
+      	<%= animal_image(@animal) %></br>
+        <%= @animal.name %>
+      </div>	
+  	</div>
+  	<div class="row">
+  	  <div class="large-6 large-offset-4 columns">
+        
+        <table class="no_border">
+          <tr class="no_bg">
+          	<td align="right">
+              report medical issue
+          	</td>
+          </tr>
+          <tr class="no_bg">
+          	<td align="right">
+              schedule a service	
+          	</td>
+          </tr>
+          <tr class="no_bg">
+          	<td align="right">
+              track pet health	
+          	</td>
+          </tr>
+          <tr class="no_bg">
+          	<td align="right">
+              <%= link_to "edit pet info", edit_household_animal_path(@owner, @animal), 'data-no-turbolink' => true %>	
+          	</td>
+          </tr>
+          <tr class="no_bg">
+          	<td align="right">
+              contact service provider	
+          	</td>
+          </tr>
+          <tr class="no_bg">
+          	<td align="right">
+              upload photo	
+          	</td>
+          </tr>
+        </table>
+      </div>
+  	</div>
+  	
+     
+  	
+  	
+  </div>
+  
+  <!-- Right Side -->
+  <div class="large-6 columns">
+    <div class="row">
+      <div class="large-12">
+      	save | export | email | close
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12">
+      	<fieldset class="gray_background">
+      		<h4>Notifications</h4>
+      		
+      	</fieldset>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12">
+      	<%= image_tag('dooliddl_outline_colorful.png', size: '300x300')%>
+      </div>
+    </div>
+    
+  </div>
+</div>
 
 
-<%= link_to "Edit", edit_household_animal_path(@owner, @animal), 'data-no-turbolink' => true %>
+
+

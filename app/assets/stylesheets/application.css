@@ -107,6 +107,10 @@ fieldset {
 	background-color: #fff;
 }
 
+fieldset.gray_background {
+	background-color: #D3D3D3;
+}
+
 .front_page_list {
 	padding-left: 20px;
 }
@@ -144,4 +148,14 @@ label.nav_dropdown {
 
 .center {
 	text-align:center;
+}
+
+.activity {
+  border-bottom: solid 1px #CCC;
+  padding: 16px 0;
+  em {
+    color: #777;
+    font-size: 12px;
+    padding-left: 5px;
+  }
 }

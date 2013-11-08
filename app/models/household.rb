@@ -17,6 +17,8 @@
 
 class Household < ActiveRecord::Base
   include ActiveModel::Validations
+  include PublicActivity::Common
+  #tracked owner: ->(controller, model) { controller && controller.current_user }
   
   has_many  :user_associations, dependent: :destroy
   has_many  :users, through: :user_associations

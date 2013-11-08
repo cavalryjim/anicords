@@ -12,6 +12,7 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     #@owner = @household
+    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @household.user_ids || true)
   end
 
   # GET /households/new

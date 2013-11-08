@@ -29,6 +29,7 @@ gem 'simple_form', '3.0.0'
 gem 'html5_validators', '1.1.2'
 gem 'remotipart', '1.2.1'
 gem 'select2-rails', '3.5.0'
+gem 'public_activity', '1.4.0'
 
 #gem 'activeadmin', github: 'gregbell/active_admin'
 

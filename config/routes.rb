@@ -34,6 +34,7 @@ Anicords::Application.routes.draw do
   end
   
   resources :animal_vaccinations
+  resources :activities
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'
