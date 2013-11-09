@@ -9,6 +9,21 @@ class RemoteRequestsController < ApplicationController
     render json: @allergies
   end
   
+  def breeds
+    if params[:brd]
+      @breed = Breed.find(params[:brd])
+      render json: @breed, only: [:id], methods: [:text]
+    elsif params[:brds]
+      @breeds = Breed.where(id: params[:brds]).all.map{|s| {id: s.id, text: s.name }}
+      render json: @breeds
+    else
+      n = "%#{params[:term]}"
+      a = "#{params[:at_id]}"
+      @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
+      render json: @breeds
+    end
+  end
+  
   def foods 
     if params[:fd]
       @food = Food.find(params[:fd])

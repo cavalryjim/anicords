@@ -37,6 +37,8 @@ $(function(){
   }, 2000);
   
   $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  
+  $(".regular_select").select2({ minimumResultsForSearch: 55, width: '100%'});
 	
 });
 

@@ -14,6 +14,7 @@ class AnimalsController < ApplicationController
   def show
     respond_to do |format|
       format.js
+      format.html
     end
 
   end
@@ -55,7 +56,7 @@ class AnimalsController < ApplicationController
     params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids])
     params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids])
     params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids])
-    params[:animal][:food_ids] = @animal.fix_ids(params[:animal][:food_ids])
+    #params[:animal][:food_ids] = @animal.fix_ids(params[:animal][:food_ids])
     
     respond_to do |format|
       if @animal.update(animal_params)
@@ -127,7 +128,7 @@ class AnimalsController < ApplicationController
       params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id,
        :dob, :pedigree, :store_dir, :remove_pedigree, :show_name, :registration_number, :image, :pedigree_chart, :health_certification, 
        :vaccination_record, :shampoo_id, :vitamin_id, :treat_id, :remove_health_certification, :remove_vaccination_record, :food,
-       :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure,
-       medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], food_ids: [] )
+       :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :breed_id, :gender, :neutered, :food_id,
+       medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [] )
     end
 end

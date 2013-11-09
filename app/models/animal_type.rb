@@ -14,6 +14,7 @@ class AnimalType < ActiveRecord::Base
   
   has_many  :animals
   has_many  :foods
+  has_many  :breeds
   
   
   def to_s

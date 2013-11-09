@@ -50,7 +50,11 @@ class User < ActiveRecord::Base
   #validates_presence_of :password, if: "provider.blank?"        
  
   def name
-    first_name.to_s + ' ' + last_name.to_s
+    if first_name || lastname
+      first_name.to_s + ' ' + last_name.to_s
+    else
+      nil
+    end
   end
   
   def name_or_email

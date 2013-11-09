@@ -35,14 +35,14 @@ class UserAssociation < ActiveRecord::Base
   end
   
   def organization
-    if self.breeder_id
-      self.breeder
-    elsif self.household_id
+    if self.household_id
       self.household
-    elsif self.veterinarian_id
-      self.veterinarian
     elsif self.service_provider_id
       self.service_provider
+    elsif self.breeder_id
+      self.breeder
+    #elsif self.veterinarian_id
+    #  self.veterinarian
     end
   end
   

@@ -64,7 +64,7 @@
 	    </div>
 	    
 	    <div class="large-2 columns">
-		  <%= select_tag 'state_term', options_for_select(us_states), include_blank: true %>
+		  <%= select_tag 'state_term', options_for_select(us_states), include_blank: true, class:'regular_select', prompt: 'State' %>
 	    </div>
 	    
 	    <div class="large-3 columns">
@@ -77,7 +77,7 @@
 	  
 	  <div class="row">
 	    <div class="large-11 columns">
-		  <%= f.text_field :service_provider_id %>
+		  <%= f.text_field :service_provider_id, class: "select" %>
 	    </div>
 	  </div>
 	    

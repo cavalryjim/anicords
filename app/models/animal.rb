@@ -5,7 +5,6 @@
 #  id                   :integer          not null, primary key
 #  name                 :string(255)
 #  animal_type_id       :integer
-#  breed                :string(255)
 #  weight               :decimal(, )
 #  description          :text
 #  household_id         :integer
@@ -28,6 +27,10 @@
 #  treat_id             :integer
 #  vitamin_id           :integer
 #  weight_measure       :string(255)
+#  breed_id             :integer
+#  gender               :string(255)
+#  neutered             :boolean
+#  food_id              :integer
 #
 
 class Animal < ActiveRecord::Base
@@ -38,6 +41,7 @@ class Animal < ActiveRecord::Base
   belongs_to :animal_type
   belongs_to :breeder
   belongs_to :household
+  belongs_to :breed
   has_many   :documents, dependent: :destroy
   has_many   :vaccinations, through: :animal_vaccinations
   has_many   :animal_vaccinations, dependent: :destroy
@@ -47,8 +51,6 @@ class Animal < ActiveRecord::Base
   has_many   :animal_medications, dependent: :destroy
   has_many   :allergies, through: :animal_allergies
   has_many   :animal_allergies, dependent: :destroy
-  has_many   :foods, through: :animal_foods
-  has_many   :animal_foods, dependent: :destroy
   has_many   :service_providers, through: :animal_associations
   has_many   :animal_associations, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
@@ -86,6 +88,10 @@ class Animal < ActiveRecord::Base
   def fix_ids(ids)
     ids << ' '
     ids.split(']').last.split(',')
+  end
+  
+  def breed
+    
   end
   
 end

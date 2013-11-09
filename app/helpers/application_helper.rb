@@ -13,6 +13,22 @@ module ApplicationHelper
     d.strftime("%m/%d/%Y") if d
   end
   
+  def dooliddl_image
+    image_tag('dooliddl_outline_colorful.png', size: '180x180')
+  end
+  
+  def link_to_home
+    if current_user && current_user.no_associations?
+     link_to(dooliddl_image, user_select_account_type_path)
+    elsif current_user && current_user.user_associations.count == 1
+     link_to(dooliddl_image, current_user.user_associations.first.organization ) 
+    elsif current_user && current_user.multiple_associations?
+     link_to(dooliddl_image, "#", "data-dropdown"=>"top_org_list", "data-options"=>"is_hover:true" ) 
+    else 
+     link_to(dooliddl_image, "#" ) 
+    end
+  end
+  
   def us_states
     [
       ['Alabama', 'AL'],

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108035701) do
+ActiveRecord::Schema.define(version: 20131109194149) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -90,13 +90,6 @@ ActiveRecord::Schema.define(version: 20131108035701) do
     t.datetime "updated_at"
   end
 
-  create_table "animal_foods", force: true do |t|
-    t.integer  "animal_id"
-    t.integer  "food_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "animal_medications", force: true do |t|
     t.integer  "animal_id"
     t.integer  "medication_id"
@@ -122,7 +115,6 @@ ActiveRecord::Schema.define(version: 20131108035701) do
   create_table "animals", force: true do |t|
     t.string   "name"
     t.integer  "animal_type_id"
-    t.string   "breed"
     t.decimal  "weight"
     t.text     "description"
     t.integer  "household_id"
@@ -145,6 +137,10 @@ ActiveRecord::Schema.define(version: 20131108035701) do
     t.integer  "treat_id"
     t.integer  "vitamin_id"
     t.string   "weight_measure"
+    t.integer  "breed_id"
+    t.string   "gender"
+    t.boolean  "neutered"
+    t.integer  "food_id"
   end
 
   create_table "breeders", force: true do |t|
@@ -157,6 +153,13 @@ ActiveRecord::Schema.define(version: 20131108035701) do
     t.string   "phone"
     t.string   "website"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "breeds", force: true do |t|
+    t.string   "name"
+    t.integer  "animal_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

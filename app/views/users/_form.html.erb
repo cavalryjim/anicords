@@ -30,11 +30,10 @@
         
         <%= f.text_field :city, placeholder: "City" %>
       </div>
-      <div class="large-2 columns">
-        <%= f.label :state  %>
-        <%= f.select :state, us_states %>
+      <div class="large-3 columns">
+        <%= f.select :state, us_states, {include_blank: true, prompt: 'State'}, {class: 'regular_select'} %>
       </div>
-      <div class="large-4 columns">
+      <div class="large-3 columns">
         
         <%= f.text_field :zip, placeholder: "Zip" %>
        

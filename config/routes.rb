@@ -55,6 +55,7 @@ Anicords::Application.routes.draw do
   get 'remote_requests/medications' => 'remote_requests#medications'
   get 'remote_requests/services' => 'remote_requests#services'
   get 'remote_requests/vaccinations' => 'remote_requests#vaccinations'
+  get 'remote_requests/breeds' => 'remote_requests#breeds'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

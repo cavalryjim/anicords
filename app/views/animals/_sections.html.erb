@@ -15,23 +15,33 @@
 			<%= f.text_field :show_name, placeholder: "Animal's show name" %>
 		  </div>
 		</div>
-				    
+		
 		<div class="row">
 		  <div class="large-4 columns">
-			<%= f.label :type, 'Species' %>
-			<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name %>
+			<%= f.select :gender, options_for_select(["male", "female"], @animal.gender), {prompt:'gender'}, {class: "regular_select"}  %>
 		  </div>
 		  <div class="large-4 columns">
-			<%= f.label :breed %>
-			<%= f.text_field :breed %>
+		  	<%= f.label :neutered do %>
+			  <%= f.check_box :neutered %> Neutered?
+			<% end %>
 		  </div>
 		  <div class="large-4 columns"></div>
 		</div>
 				    
 		<div class="row">
 		  <div class="large-4 columns">
-			<%= f.label :dob %>
-			<%= f.text_field :dob, value: mo_da_yr(@animal.dob) , class: "datepicker" %>
+			<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'species'}, {class: "regular_select"} %>
+		  </div>
+		  <div class="large-4 columns">
+			<%= f.text_field :breed_id %>
+		  </div>
+		  <div class="large-4 columns"></div>
+		</div>
+				    
+		<div class="row">
+		  <div class="large-4 columns">
+			
+			<%= f.text_field :dob, value: mo_da_yr(@animal.dob) , class: "datepicker", placeholder: "date of birth" %>
 		  </div>
 		  <div class="large-8 columns"></div>
 		</div>
@@ -51,8 +61,8 @@
 				    
 		<div class="row">
 		  <div class="large-12 columns">
-			<%= f.label :description %>
-			<%= f.text_area :description %>
+			
+			<%= f.text_area :description, placeholder: "description of animal" %>
 		  </div>
 		</div>
 
@@ -65,12 +75,10 @@
 	<div class="content" data-section-content>
 	   <div class="row">
 		  <div class="large-3 columns">
-			<%= f.label :weight %>
-			<%= f.text_field :weight %>
+			<%= f.text_field :weight, placeholder:"Weight" %>
 		  </div>
 		  <div class="large-3 columns">
-		  	<%= f.label :weight_measure, ' ' %>
-			<%= f.select :weight_measure, options_for_select(["lbs", "ounces", "grams", "kg"], @animal.weight_measure)  %>
+			<%= f.select :weight_measure, options_for_select(["lbs", "ounces", "grams", "kg"], @animal.weight_measure), {prompt:"Weight measure"}, {class: "regular_select"}  %>
 		  </div>
 		  
 		  <div class="large-6 columns"></div>
@@ -128,8 +136,7 @@
 	<div class="content" data-section-content>
 	  <div class="row">
 		  <div class="large-10 columns">
-			<%= f.label :food_ids, "Food preference" %>
-			<%= f.text_field :food_ids %>
+			<%= f.text_field :food_id, class: 'select' %>
 		  </div>
 		  <div class="large-2 columns"></div>
 		  
@@ -137,16 +144,16 @@
 	  
 	  <div class="row">
 		  <div class="large-3 columns">
-			<%= f.label :volume_per_serving %>
+			
 			<%= f.text_field :volume_per_serving, placeholder: 'Amount per serving' %>
 		  </div>
 		  <div class="large-3 columns">
-			<%= f.label :serving_measure %>
-			<%= f.select :serving_measure,  options_for_select(["grams", "ounces", "lbs", "scoops"], @animal.serving_measure) %>
+			
+			<%= f.select :serving_measure,  options_for_select(["grams", "ounces", "lbs", "scoops"], @animal.serving_measure), {prompt:'Serving measure'}, {class:"regular_select"} %>
 		  </div>
 		  <div class="large-3 columns">
-			<%= f.label :servings_per_day %>
-			<%= f.text_field :servings_per_day, placeholder: 'Number of servings' %>
+		
+			<%= f.text_field :servings_per_day, placeholder: 'Servings per day' %>
 		  </div>
 		  <div class="large-3 columns"></div>
 		  
@@ -154,8 +161,8 @@
 	  
 	  <div class="row">
 		  <div class="large-10 columns">
-			<%= f.label :shampoo_id, "Shampoo preference" %>
-			<%= f.text_field :shampoo_id %>
+			
+			<%= f.text_field :shampoo_id, class: 'select' %>
 		  </div>
 		  <div class="large-2 columns"></div>
 		  
@@ -163,8 +170,8 @@
 	  
 	  <div class="row">
 		  <div class="large-10 columns">
-			<%= f.label :treat_id, "Treat preference" %>
-			<%= f.text_field :treat_id %>
+			
+			<%= f.text_field :treat_id, class: 'select' %>
 		  </div>
 		  <div class="large-2 columns"></div>
 		  
@@ -172,8 +179,8 @@
 	  
 	  <div class="row">
 		  <div class="large-10 columns">
-			<%= f.label :vitamin_id, "Vitamin preference" %>
-			<%= f.text_field :vitamin_id %>
+			
+			<%= f.text_field :vitamin_id, class: 'select' %>
 		  </div>
 		  <div class="large-2 columns"></div>
 		  

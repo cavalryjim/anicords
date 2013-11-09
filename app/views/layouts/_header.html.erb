@@ -2,8 +2,18 @@
 <nav class="top-bar" data-options="is_hover:false">
   <ul class="title-area">
     <li class="name">
-	  <%= link_to image_tag('dooliddl_outline_colorful.png', size: '180x180'), "#" %>
+      <%= link_to_home %>
+      
+      <% if current_user && current_user.multiple_associations? %>
+	    <ul id="top_org_list" class="f-dropdown" data-dropdown-content>
+	      <% current_user.associations.each do |ua|%>
+			<li><%= link_to ua.name, ua.organization %></li>
+		  <% end %>
+		</ul>
+	  <% end %>
+	  
 	</li>
+      
 	<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
