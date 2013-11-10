@@ -45,6 +45,7 @@ Anicords::Application.routes.draw do
   post 'households/:id/create_user' => 'households#create_user'
   #get 'service_providers/:id/services' => 'service_providers#services'
   get 'animals/:id/download_file' => 'animals#download_file'
+  get 'households/:household_id/animal/:id' => 'animals#transfer_ownership'
   
   get 'remote_requests/vitamins' => 'remote_requests#vitamins'
   get 'remote_requests/allergies' => 'remote_requests#allergies'

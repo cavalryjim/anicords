@@ -75,10 +75,10 @@
 	<div class="content" data-section-content>
 	   <div class="row">
 		  <div class="large-3 columns">
-			<%= f.text_field :weight, placeholder:"Weight" %>
+			<%= f.text_field :weight, placeholder:"weight" %>
 		  </div>
 		  <div class="large-3 columns">
-			<%= f.select :weight_measure, options_for_select(["lbs", "ounces", "grams", "kg"], @animal.weight_measure), {prompt:"Weight measure"}, {class: "regular_select"}  %>
+			<%= f.select :weight_measure, options_for_select(["lbs", "ounces", "grams", "kg"], @animal.weight_measure), {prompt:"weight measure"}, {class: "regular_select"}  %>
 		  </div>
 		  
 		  <div class="large-6 columns"></div>
@@ -149,7 +149,7 @@
 		  </div>
 		  <div class="large-3 columns">
 			
-			<%= f.select :serving_measure,  options_for_select(["grams", "ounces", "lbs", "scoops"], @animal.serving_measure), {prompt:'Serving measure'}, {class:"regular_select"} %>
+			<%= f.select :serving_measure,  options_for_select(["grams", "ounces", "lbs", "scoops"], @animal.serving_measure), {prompt:'serving measure'}, {class:"regular_select"} %>
 		  </div>
 		  <div class="large-3 columns">
 		

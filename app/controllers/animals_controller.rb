@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file]
-  before_action :set_owner, only: [:new, :show, :create, :edit, :destroy]
+  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership]
+  before_action :set_owner, only: [:new, :show, :create, :edit, :destroy, :transfer_ownership]
   before_filter :authenticate_user!, except: [:show]
 
   # GET /animals
@@ -97,6 +97,10 @@ class AnimalsController < ApplicationController
      #  send_file tmpfile.path, :filename => "great-image.jpg"
      # }   
      
+  end
+  
+  def transfer_ownership
+    
   end
 
   private

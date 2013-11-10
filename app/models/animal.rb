@@ -90,8 +90,5 @@ class Animal < ActiveRecord::Base
     ids.split(']').last.split(',')
   end
   
-  def breed
-    
-  end
   
 end

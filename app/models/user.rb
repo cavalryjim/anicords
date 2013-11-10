@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   has_many  :breeders, through: :user_associations
   has_many  :households, through: :user_associations
   has_many  :veterinarians, through: :user_associations
+  has_many  :service_providers, through: :user_associations
   
   validates_presence_of :email
   #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"
@@ -50,10 +51,10 @@ class User < ActiveRecord::Base
   #validates_presence_of :password, if: "provider.blank?"        
  
   def name
-    if first_name || lastname
+    if first_name && last_name
       first_name.to_s + ' ' + last_name.to_s
     else
-      nil
+      " "
     end
   end
   
