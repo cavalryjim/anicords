@@ -61,6 +61,11 @@ ul.ui-autocomplete {
 	background-color: #996600;
 }
 
+.black_background {
+	background-color: #000000;
+	color: #fff;
+}
+
 .main_content_section {
 	padding-bottom: 5px;
 	border: solid 3px black;

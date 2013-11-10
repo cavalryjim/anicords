@@ -12,7 +12,7 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     #@owner = @household
-    @activities = PublicActivity::Activity.order("created_at desc").where( owner_id: @household.user_ids )
+    @activities = PublicActivity::Activity.order("created_at desc").where( trackable_id: @household.animal_ids, trackable_type: "Animal" )
   end
 
   # GET /households/new
@@ -89,6 +89,6 @@ class HouseholdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def household_params
-      params.require(:household).permit(:name, :address1, :address2, :phone, :user_associations_attributes)
+      params.require(:household).permit(:name, :address1, :address2, :phone, :user_associations_attributes, :city, :state, :zip)
     end
 end

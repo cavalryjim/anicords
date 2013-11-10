@@ -29,8 +29,7 @@
         <%= f.text_field :city, placeholder: "City" %>
       </div>
       <div class="large-2 columns">
-        <%= f.label :state  %>
-        <%= f.select :state, us_states %>
+        <%= f.select :state, us_states, {include_blank: true, prompt: 'State'}, {class: 'regular_select'} %>
       </div>
       <div class="large-4 columns">
         

@@ -1235,11 +1235,12 @@ $alert-close-padding: 0px 4px 0px;
 
 // Background color for the top bar
 
-$topbar-bg: #996600 !default;
+//$topbar-bg: #996600 !default;
+$topbar-bg: #000000 !default;
 
 // Height and margin
 
-$topbar-height: 75px;
+$topbar-height: 55px;
 $topbar-margin-bottom: emCalc(0);
 
 // Control Input height for top bar

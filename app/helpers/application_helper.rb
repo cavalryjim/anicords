@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def dooliddl_image
-    image_tag('dooliddl_outline_colorful.png', size: '180x180')
+    image_tag('dooliddl_f.png', size: '180x180')
   end
   
   def link_to_home
