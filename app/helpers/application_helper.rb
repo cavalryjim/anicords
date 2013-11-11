@@ -18,7 +18,9 @@ module ApplicationHelper
   end
   
   def link_to_home
-    if current_user && current_user.no_associations?
+    if session[:home_page]
+     link_to(dooliddl_image, session[:home_page])
+    elsif current_user && current_user.no_associations?
      link_to(dooliddl_image, user_select_account_type_path)
     elsif current_user && current_user.user_associations.count == 1
      link_to(dooliddl_image, current_user.user_associations.first.organization ) 
