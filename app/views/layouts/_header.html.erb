@@ -1,23 +1,29 @@
 
 <nav class="top-bar" data-options="is_hover:false">
   <ul class="title-area">
-    <li class="name">
-      <%= link_to_home %>
-      
-      <% if current_user && current_user.multiple_associations? %>
-	    <ul id="top_org_list" class="f-dropdown" data-dropdown-content>
-	      <% current_user.associations.each do |ua|%>
-			<li><%= link_to ua.name, ua.organization %></li>
-		  <% end %>
-		</ul>
-	  <% end %>
-	  
-	</li>
+    
       
 	<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
   <section class="top-bar-section no_bg">
+  	<ul class="left">
+	 <% if current_user && current_user.multiple_associations? %>
+	  <li class="name has-dropdown" >
+	    <%= link_to_home %>   
+		  <ul class="dropdown" >
+		    <% current_user.associations.each do |ua|%>
+			  <li><%= link_to ua.name, ua.organization %></li>
+			<% end %>
+	      </ul>  
+	  </li>
+	 <% else %>
+	  <li class="name">
+	  	<%= link_to_home %> 
+	  </li>
+	 <% end %>
+  	</ul>
+  	
     <ul class="right no_bg">
 	  <% if user_signed_in? %>
 	    
@@ -29,10 +35,10 @@
 	  <% else %>
               
 		<li> 
-	  	  <%= link_to image_tag('uporin.png', size: '180x180'), "#", "data-reveal-id" => "registerSigninModal" %>
+	  	  <%= link_to image_tag('uporin.png', size: '180x180'), "#", "data-reveal-id" => "registerSigninModal", class: "no_padding" %>
 	    </li>
 		
-		<li><%= link_to image_tag('orusef.png', size: '180x180'), user_omniauth_authorize_path(:facebook) %></li>
+		<li><%= link_to image_tag('orusef.png', size: '180x180'), user_omniauth_authorize_path(:facebook), class: "no_padding" %></li>
 		
 	  <% end %>
 	</ul>

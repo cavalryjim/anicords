@@ -1,29 +1,31 @@
-<p id="notice"><%= notice %></p>
+<section class="border_top">
+  <div class="row">
+	<fieldset>
+	  <div class="row">
+	  	<div class="large-9 columns">
+	  	  <h4><%=@animal.name%></h4>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="large-9 columns">
+	  	  <%=@animal.animal_type%>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="large-9 columns">
+	  	  <%=@animal.breed_name%>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="large-9 columns">
+	  	  <%=@animal.description%>
+	  	</div>
+	  </div>
+    </fieldset>
+    <%= link_to 'Edit', [:edit, @owner, @animal] %> |
+    <%= link_to 'Back', @owner %>
+  </div>
+</section>
 
-<p>
-  <strong>Name:</strong>
-  <%= @animal.name %>
-</p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @animal.animal_type %>
-</p>
 
-<p>
-  <strong>Breed:</strong>
-  <%= @animal.breed %>
-</p>
-
-<p>
-  <strong>Weight:</strong>
-  <%= @animal.weight %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @animal.description %>
-</p>
-
-<%= link_to 'Edit', [:edit, @owner, @animal] %> |
-<%= link_to 'Back', @owner %>

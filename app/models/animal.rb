@@ -90,5 +90,9 @@ class Animal < ActiveRecord::Base
     ids.split(']').last.split(',')
   end
   
+  def breed_name
+    self.breed.name if self.breed
+  end
+  
   
 end

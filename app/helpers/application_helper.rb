@@ -22,10 +22,8 @@ module ApplicationHelper
      link_to(dooliddl_image, user_select_account_type_path)
     elsif current_user && current_user.user_associations.count == 1
      link_to(dooliddl_image, current_user.user_associations.first.organization ) 
-    elsif current_user && current_user.multiple_associations?
-     link_to(dooliddl_image, "#", "data-dropdown"=>"top_org_list", "data-options"=>"is_hover:true" ) 
     else 
-     link_to(dooliddl_image, "#" ) 
+     dooliddl_image 
     end
   end
   
