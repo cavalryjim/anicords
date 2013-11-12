@@ -51,7 +51,7 @@
 
 <div id="addAnimalProviderModal" class="reveal-modal">
     <h3>Add Service Provider</h3>
-	<%= form_for [@animal, AnimalAssociation.new], remote: true, html: {id: 'animal_association_form', "data-abide" => ''} do |f| %>
+	<%= form_for [@animal, AnimalAssociation.new], remote: true, html: {id: 'animal_association_form', "data-abide" => '', class: 'animal_association_form' } do |f| %>
 	  <div class="row">
 	    <div class="large-12 columns">
 		  Narrow your search results by entering a city, state, and/or zip
@@ -61,16 +61,13 @@
 	  <div class="row">
 	    <div class="large-6 columns">
 		  <%= text_field_tag 'city_term', nil, placeholder: "City" %>
-	    </div>
-	    
+	    </div>  
 	    <div class="large-2 columns">
 		  <%= select_tag 'state_term', options_for_select(us_states), include_blank: true, class:'regular_select', prompt: 'State' %>
 	    </div>
-	    
 	    <div class="large-3 columns">
 		  <%= text_field_tag 'zip_term', nil, placeholder: "zip" %>
 	    </div>
-	    
 	    <div class="large-1 columns"></div>
 	    
 	  </div>
@@ -80,8 +77,7 @@
 		  <%= f.text_field :service_provider_id, class: "select" %>
 	    </div>
 	  </div>
-	    
-	  
+
 	  <%= f.hidden_field :animal_id, value: @animal.id %>  
 	  
 	  <div class="actions">
@@ -89,6 +85,24 @@
 	  </div>
 	  
 	<% end %>
-	  
+	<p>
+	  Don't see the business you are look for?
+	  <%= link_to "Add new provider", "#", "data-reveal-id" => "addNewProviderModal" %>
+	</p>
 	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="addNewProviderModal" class="reveal-modal">
+    <h3>Tell us about the new provider</h3>
+
+	<%= form_for(ServiceProvider.new, remote: true, html: {id: 'new_animal_provider_form', "data-abide" => '', class: 'animal_association_form' } ) do |f| %>
+	
+	  <%= render 'service_providers/fields', f: f %>  
+	
+	  <%= hidden_field_tag 'animal_id', @animal.id %> 
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+	<% end %>
+    <a class="close-reveal-modal">&#215;</a>
 </div>

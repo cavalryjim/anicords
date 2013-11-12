@@ -46,6 +46,10 @@ class ServiceProvider < ActiveRecord::Base
     UserAssociation.where(user_id: user_id, service_provider_id: self.id).first_or_create
   end
   
+  def associate_animal(animal_id)
+    AnimalAssociation.where(animal_id: animal_id, service_provider_id: self.id).first_or_create
+  end
+  
   def has_email?
     self.email != nil && self.email != ''
   end
