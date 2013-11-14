@@ -1,5 +1,5 @@
 
-<nav class="top-bar" data-options="is_hover:false">
+<nav class="top-bar" data-options="is_hover:true">
   <ul class="title-area">
     <li class="name"><%= link_to_home %></li>
       
@@ -11,12 +11,14 @@
   	
     <ul class="right no_bg">
 	  <% if user_signed_in? %>
-	    
-	    <li><a href="#">Logged in as <%= current_user.email %>.</a></li>
-	    
-	    <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
-	    
-	  	<li> <%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
+	    <li> <%= link_to image_tag('white-flag-icone-6376-48.png', size: '25x25'), '#' %></li>
+	    <li class="has-dropdown"><%=link_to image_tag('persona-person-white.png', size: '25x25'), '#' %>
+	      <ul class="dropdown"> 	
+		    <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
+		  	<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
+	        <li><a href="#"> <%= current_user.name_or_email %></a></li>
+	      </ul>
+	    </li>
 	  <% else %>
               
 		<li> 

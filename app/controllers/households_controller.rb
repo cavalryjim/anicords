@@ -32,7 +32,7 @@ class HouseholdsController < ApplicationController
     @household = Household.new(household_params)
     respond_to do |format|
       if @household.save && @household.associate_user(current_user.id)
-        @household.add_another_human(params[:human_email], params[:human_first_name], params[:human_last_name]) if (params[:human_email] && (params[:human_email] != ""))
+        current_user.create_user_to_household(params[:human_email], @household.id, params[:human_first_name], params[:human_last_name] ) if (params[:human_email] != "")
         session[:home_page] = household_path(@household)
         format.html { redirect_to @household, notice: 'Household was successfully created.' }
         format.json { render action: 'show', status: :created, location: @household }
