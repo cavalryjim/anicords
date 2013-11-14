@@ -3,7 +3,7 @@ ruby '2.0.0'
 #ruby-gemset=anicords
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '0.16.0'
@@ -30,6 +30,7 @@ gem 'html5_validators', '1.1.2'
 gem 'remotipart', '1.2.1'
 gem 'select2-rails', '3.5.0'
 gem 'public_activity', '1.4.0'
+gem 'cancan', '1.6.10'
 
 #gem 'activeadmin', github: 'gregbell/active_admin'
 

@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
-  include PublicActivity::StoreController
-  
+  include PublicActivity::StoreController 
   protect_from_forgery with: :exception
+  #JDavis: this is a work-around for a Rails 4 and Cancan.
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
   
   
   def after_sign_in_path_for(resource)

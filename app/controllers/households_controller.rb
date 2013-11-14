@@ -19,6 +19,7 @@ class HouseholdsController < ApplicationController
   def new
     @household = Household.new
     #@household.users << current_user
+    1.times { @household.animals.build }
   end
 
   # GET /households/1/edit
@@ -29,9 +30,9 @@ class HouseholdsController < ApplicationController
   # POST /households.json
   def create
     @household = Household.new(household_params)
-    
     respond_to do |format|
       if @household.save && @household.associate_user(current_user.id)
+        @household.add_another_human(params[:human_email], params[:human_first_name], params[:human_last_name]) if (params[:human_email] && (params[:human_email] != ""))
         session[:home_page] = household_path(@household)
         format.html { redirect_to @household, notice: 'Household was successfully created.' }
         format.json { render action: 'show', status: :created, location: @household }
@@ -89,6 +90,7 @@ class HouseholdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def household_params
-      params.require(:household).permit(:name, :address1, :address2, :phone, :user_associations_attributes, :city, :state, :zip)
+      params.require(:household).permit(:name, :address1, :address2, :phone, :user_associations_attributes, :city, :state, :zip,
+        animals_attributes: [:name, :animal_type_id, :household, :household_id, :_destroy])
     end
 end

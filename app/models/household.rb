@@ -26,7 +26,7 @@ class Household < ActiveRecord::Base
   has_many  :household_associations, dependent: :destroy
   has_many  :service_providers, through: :household_associations
   accepts_nested_attributes_for :animals, allow_destroy: true
-  accepts_nested_attributes_for :user_associations, allow_destroy: true
+  #accepts_nested_attributes_for :user_associations, allow_destroy: true
   
   validates_presence_of :name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
@@ -37,6 +37,14 @@ class Household < ActiveRecord::Base
   
   def associate_service_provider(service_provider_id)
     HouseholdAssociation.where(household_id: self.id, service_provider_id: service_provider_id).first_or_create
+  end
+  
+  def add_another_human(email, first_name, last_name)
+    user = User.where(email: email).first_or_create
+    user.first_name = first_name if (user.first_name == nil)
+    user.last_name = last_name if (user.last_name == nil)
+    user.save if user.changed.any?
+    self.associate_user(user.id)
   end
   
 end

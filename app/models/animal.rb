@@ -57,7 +57,7 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   
   validates_presence_of :name
-  validates :household_id, presence: true, if: :needs_owner?
+  #validates :household_id, presence: true, if: :needs_owner?
   
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader

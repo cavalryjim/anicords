@@ -1,7 +1,7 @@
 <section class="border_top">
   <div class="row">
    <fieldset>
-    <h4>Step 1: Tell us about your household</h4>
+    <h4>Tell us about your household</h4>
 
     <%= render 'form' %>
     
@@ -10,8 +10,7 @@
   </div>
 </section>
 
-<div id="stepsOverviewModal" class="reveal-modal">
-	
+<div id="stepsOverviewModal" class="reveal-modal">	
   <div class="row">
 	<div class="large-7 large-centered columns">
 	    <%= image_tag 'mww.png'%>
@@ -24,13 +23,13 @@
 	  	<tr class="no_bg">
 	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>
 	      <td>
-	      	Create a household.
+	      	Create a household and add your animals.
 	      </td>		
 	  	</tr>
 	  	<tr class="no_bg">
 	      <td align="center"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>
 	      <td>
-	      	Add your animals to your household, complete the fields & upload documents such as 
+	      	Add information about your animal's health & upload documents such as 
 	      	pedigree charts & vaccination reocords.
 	      </td>		
 	  	</tr>
@@ -56,15 +55,58 @@
 	
 	<div class="row">
 		<div class="large-12 offset-9 columns">
-			<%= link_to 'get started ->', '#', class: 'close-reveal-modal' %>
+			<%= link_to 'get started ->', '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal"   %>
 		</div>
 	</div>
   </div>
-  
-  <a class="close-reveal-modal">&#215;</a>
+   
 </div>
 
+<div id="stepsOverviewModal2" class="reveal-modal">
+  <h4>Give your household a name & tell us about your animals</h4>
+  <%= form_for(@household, html: {id: "quick_household_form", "data-abide" => '' }) do |f| %>
 
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.text_field :name, placeholder: "Household name ex. Smith House"  %>
+        <small class="error">Household name required.</small>
+      </div>
+    </div>
+    
+    <%= f.fields_for :animals do |builder| %>
+  	  <%= render 'animal_fields', f: builder %>
+	<% end %>
+	<%= link_to_add_fields "Add another animal", f, :animals %>
+    
+    <div class="row">
+		<div class="large-12 offset-9 columns">
+			<%= link_to 'next ->', '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal"   %>
+		</div>
+	</div>
+</div>
 
-
-
+<div id="stepsOverviewModal3" class="reveal-modal">
+	<h4>Is there another human that will help manage the household?</h4>
+	<div class="row">
+      <div class="large-12 columns">
+        <%= text_field_tag 'human_email', nil, placeholder: "email (required to add a human)"  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= text_field_tag 'human_first_name', nil, placeholder: "first name"  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= text_field_tag 'human_last_name', nil, placeholder: "last name"  %>
+      </div>
+    </div>
+	
+	<div class="row">
+		<div class="large-12 offset-9 columns">
+			<%= link_to 'submit', '#', onclick: "$('#quick_household_form').submit()", class: "close-reveal-modal"  %>
+		</div>
+	</div>
+  <% end %>
+</div>
