@@ -86,7 +86,7 @@ class Animal < ActiveRecord::Base
   end
   
   def fix_ids(ids)
-    ids << ' '
+    ids << ","
     ids.split(']').last.split(',')
   end
   

@@ -15,8 +15,8 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require foundation
-//= require turbolinks
 //= require select2
+//= require turbolinks
 //= require_tree .
 
 $(function(){ 
@@ -40,5 +40,6 @@ $(function(){
   
   $(".regular_select").select2({ minimumResultsForSearch: 55, width: '100%'});
 	
+
 });
 

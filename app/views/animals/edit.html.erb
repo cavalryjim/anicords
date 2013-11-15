@@ -27,7 +27,7 @@
 	<%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => ''} do |f| %>
 	  <div class="row">
 	    <div class="large-11 columns">
-	      <%= f.text_field :vaccination_id  %>
+	      <%= f.text_field :vaccination_id, class: 'select'  %>
 	    </div>
 	  </div>
 	    

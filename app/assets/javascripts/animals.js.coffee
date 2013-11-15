@@ -105,6 +105,7 @@ jQuery ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.

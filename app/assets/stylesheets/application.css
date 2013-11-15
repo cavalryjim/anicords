@@ -168,3 +168,11 @@ label.nav_dropdown {
 .select, .regular_select {
   margin: 0 0 1em 0 !important;
 }
+
+.top-bar-section .has-dropdown > a:after {
+   border-color: transparent transparent transparent !important;
+}
+
+input.upload {
+    border: 1px solid #CCC !important;
+}
