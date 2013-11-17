@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
   end
   
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied."
+    redirect_to root_url
+  end
   
   def after_sign_in_path_for(resource)
     stored_location_for(resource) ||
@@ -25,11 +29,7 @@ class ApplicationController < ActionController::Base
         session[:home_page] = user_path(current_user)
       end
     end
-    
-    
-    
   end
-  
   
   
  private

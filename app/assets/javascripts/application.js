@@ -19,7 +19,8 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){ 
+$(function(){
+  
   $(document).foundation()
   .foundation('abide', {
     patterns: {
@@ -28,6 +29,14 @@ $(function(){
 
     }
    }); 
+   
+  //document.addEventListener("page:load", function(){
+    //Foundation.libs.dropdown.events();
+    //alert("here");
+    //$(document).foundation('dropdown', 'off');
+    //$(document).foundation('dropdown');
+  //});
+  
 	
   setTimeout(function(){
     $("div.success").fadeOut("slow", function () {

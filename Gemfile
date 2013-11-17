@@ -32,9 +32,7 @@ gem 'select2-rails', '3.5.0'
 gem 'public_activity', '1.4.0'
 gem 'cancan', '1.6.10'
 gem 'activeadmin', github: 'gregbell/active_admin'
-
-#gem 'activeadmin', github: 'gregbell/active_admin'
-
+#gem 'jquery-turbolinks', '2.0.1'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
