@@ -12,7 +12,7 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     #@owner = @household
-    @activities = PublicActivity::Activity.order("created_at desc").where( trackable_id: @household.animal_ids, trackable_type: "Animal" )
+    @activities = PublicActivity::Activity.order("created_at desc").where( trackable_id: @household.animal_ids, trackable_type: "Animal" ).last(10)
   end
 
   # GET /households/new

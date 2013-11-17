@@ -63,6 +63,10 @@ class Animal < ActiveRecord::Base
   mount_uploader :health_certification, FileUploader
   mount_uploader :vaccination_record, FileUploader
   
+  def to_s
+    name
+  end
+  
   def owner
     if self.household_id
       Household.find(self.household_id)

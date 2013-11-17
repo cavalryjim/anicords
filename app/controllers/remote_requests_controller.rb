@@ -17,7 +17,7 @@ class RemoteRequestsController < ApplicationController
       @breeds = Breed.where(id: params[:brds]).all.map{|s| {id: s.id, text: s.name }}
       render json: @breeds
     else
-      n = "%#{params[:term]}"
+      n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
       @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
       render json: @breeds
@@ -29,9 +29,9 @@ class RemoteRequestsController < ApplicationController
       @food = Food.find(params[:fd])
       render json: @food, only: [:id], methods: [:text]
     elsif params[:at_id]
-      n = "%#{params[:term]}"
+      n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
-      @foods = Food.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|f| {id: f.id, text: f.name }}
+      @foods = Food.order(:name).where("name ILIKE ? AND animal_type_id = ?", n, a).map{|f| {id: f.id, text: f.name }}
       render json: @foods
     else
       @foods = Food.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|f| {id: f.id, text: f.name }}

@@ -31,6 +31,9 @@ class Household < ActiveRecord::Base
   validates_presence_of :name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
   
+  def to_s
+    name
+  end
   def associate_user(user_id)
     UserAssociation.where(user_id: user_id, household_id: self.id).first_or_create
   end

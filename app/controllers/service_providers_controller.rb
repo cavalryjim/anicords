@@ -4,10 +4,10 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers
   # GET /service_providers.json
   def index
-    n = "%#{params[:term]}"
-    c = "%#{params[:city]}"
-    s = "%#{params[:state]}"
-    z = "%#{params[:zip]}"
+    n = "%#{params[:term]}%"
+    c = "%#{params[:city]}%"
+    s = "%#{params[:state]}%"
+    z = "%#{params[:zip]}%"
     #@service_providers = ServiceProvider.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|s| {id: s.id, text: s.name }}
     @service_providers = ServiceProvider.order(:name).where("name ILIKE ? AND city ILIKE ? AND state ILIKE ? AND zip ILIKE ?", n, c, s, z)
     render json: @service_providers, only: [:id], methods: [:text]

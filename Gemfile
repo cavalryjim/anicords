@@ -31,6 +31,7 @@ gem 'remotipart', '1.2.1'
 gem 'select2-rails', '3.5.0'
 gem 'public_activity', '1.4.0'
 gem 'cancan', '1.6.10'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 #gem 'activeadmin', github: 'gregbell/active_admin'
 

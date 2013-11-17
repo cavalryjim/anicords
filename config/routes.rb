@@ -1,5 +1,7 @@
 Anicords::Application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :service_providers
 
   resources :veterinarians
@@ -23,6 +25,7 @@ Anicords::Application.routes.draw do
   resources :documents
 
   devise_for :users, 
+  #ActiveAdmin.routes(self)
         path_names: {sign_in: "login", sign_out: "logout", sign_up: "welcome"}, 
         controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"} 
   

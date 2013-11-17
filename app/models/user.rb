@@ -190,4 +190,8 @@ class User < ActiveRecord::Base
     service_provider.associate_user(user.id)
   end
   
+  def admin?
+    self.class == AdminUser
+  end
+  
 end
