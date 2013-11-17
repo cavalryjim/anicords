@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116172601) do
+ActiveRecord::Schema.define(version: 20131117193826) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(version: 20131116172601) do
     t.string   "gender"
     t.boolean  "neutered"
     t.integer  "food_id"
+    t.text     "special_instructions"
+    t.string   "rfid"
   end
 
   create_table "breeders", force: true do |t|

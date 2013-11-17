@@ -94,7 +94,7 @@ jQuery ->
           callback data
           
   $('#animal_food_id').select2
-    placeholder: "food preference"
+    placeholder: "pet food brand"
     width: "100%"
     #multiple: true
     id: (obj) ->
@@ -122,7 +122,7 @@ jQuery ->
           callback data
     
   $('#animal_shampoo_id').select2
-    placeholder: "shampoo preference"
+    placeholder: "pet shampoo brand"
     width: "100%"
     #multiple: true
     id: (obj) ->
@@ -177,7 +177,7 @@ jQuery ->
           callback data    
   
   $('#animal_treat_id').select2
-    placeholder: "treat preference"
+    placeholder: "pet treat brand"
     width: "100%"
     #multiple: true
     id: (obj) ->
@@ -204,7 +204,7 @@ jQuery ->
           callback data
   
   $('#animal_vitamin_id').select2
-    placeholder: "vitamin preference"
+    placeholder: "pet vitamin brand"
     width: "100%"
     id: (obj) ->
       obj.id # use slug field for id

@@ -5,7 +5,7 @@
       
   	
 	  <%= hidden_field_tag "service_provider[service_provider_type_ids][]", nil %>
-	  <ul class=" large-block-grid-3">
+	  <ul class=" large-block-grid-6">
 	   <% ServiceProviderType.all.each do |spt| %>
 	     <li>
 	       <label for='<%=dom_id(spt)%>'>
@@ -82,7 +82,7 @@
   <fieldset>
       <legend>Services provided <small>Select all that apply</small></legend>
 	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
-	  <ul id="available_services" class=" large-block-grid-3">
+	  <ul id="available_services" class=" large-block-grid-6">
 	    <% if @service_provider %>
 		   <% @service_provider.services_available.each do |service| %>
 		     <li class="child_of_<%=service.service_provider_type_id%>">
