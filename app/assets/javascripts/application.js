@@ -16,7 +16,6 @@
 //= require jquery.remotipart
 //= require foundation
 //= require select2
-//= require turbolinks
 //= require_tree .
 
 $(function(){
@@ -33,8 +32,9 @@ $(function(){
   //document.addEventListener("page:load", function(){
     //Foundation.libs.dropdown.events();
     //alert("here");
-    //$(document).foundation('dropdown', 'off');
+    //$(".has_dropdown").foundation('dropdown', 'off');
     //$(document).foundation('dropdown');
+    //$(".has_dropdown").foundation('dropdown', 'on');
   //});
   
 	

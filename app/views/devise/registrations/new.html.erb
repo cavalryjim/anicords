@@ -3,7 +3,7 @@
   
   <div class="row">
 	<div class="large-5 large-centered columns ">  		
-	  <%= link_to image_tag('listing_box.png', size: '400x400'), "#", "data-reveal-id" => "newProviderModal" %>		       
+	  <%= link_to image_tag('listing_box.png', size: '400x400', class: 'selectable_image'), "#", "data-reveal-id" => "newProviderModal" %>		       
 	</div>
   </div>
 
@@ -20,38 +20,38 @@
 	    <p>DOOLIDDL HELPS YOU ORGANIZE & SHARE YOUR ANIMAL HEALTH INFORMATION WITH THOSE INVOLVED IN THEIR CARE</p>
 	   </div>
   </div>
+  
   <div class="row">
 	<div class="large-12 columns">
-	  <table class="no_border">
-	  	<tr class="no_bg">
-	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></br> Cloud Storage</td>
-	      <td>
-	      	Keep all of your animal’s information in one place - organized and available to you online.
-	      </td>		
-	  	</tr>
-	  	<tr class="no_bg">
-	      <td align="center"><%= image_tag('dB_Icon.png', size: '50x50')%></br> Data Management </td>
-	      <td>
-	      	Be ready for appointments with the kennel or groomer by keeping important information such as meds, 
-	      	allergies in your online account. No more calls to the your vet's office to fax records (such as vaccinations) 
-	      	each time you need them.
-	      </td>		
-	  	</tr>
-	  	<tr class="no_bg">
-	      <td align="center" class="no_bg"><%= image_tag('location_Icon.png', size: '50x50')%></br> Location Services</td>	
-	      <td>
-	      	Find local services and pet friendly establishments, communicate preferences to the kennel or groomer or 
-	      	acute medical issues with your vet at the click of a button from your smartphone.
-	      </td>	
-	  	</tr>
-	  	<tr class="no_bg">
-	      <td align="center" class="no_bg"><%= image_tag('social_Icon.png', size: '50x50')%></br> Social Networking</td>		
-	      <td>
-	      	Get connected with other animal custodians.
-	      </td>
-	  	</tr>
-	
-	  </table>
+      <ul class="small-block-grid-2 large-block-grid-4">
+		<li>
+	      <div class="panel callout front_page_callout">
+            <p>Organize your animal's health information.</p>
+          </div>
+		</li>
+		<li >
+	      <div class="panel callout front_page_callout"> 
+            <p>Be ready for veterinarian appointments or emergencies.</p>
+          </div>
+			
+		</li>
+		<li>
+	      <div class="panel callout front_page_callout">
+            <p>Connect with local service providers.</p>
+          </div>
+		</li>
+		<li>
+	      <div class="panel callout front_page_callout">
+            <p>Maintain instant access to vaccination records.</p>
+          </div>
+		</li>
+	  </ul>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+	<div class="large-12 columns">
 	  <p>
 	    <b>CAPTURE IT ONCE, USE IT AGAIN AND AGAIN, AND NEVER LEAVE YOUR ANIMAL’S INFO STRANDED IN THE 
 	       VETERINARIAN’S OR YOUR HOME’S FILE CABINET AGAIN.</b>

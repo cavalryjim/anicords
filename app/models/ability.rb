@@ -12,9 +12,16 @@ class Ability
       animal.owner.users.include?(user)
     end
     
+    can :view, ServiceProvider
+    
     can :manage, ServiceProvider do |provider|
       provider.new_record? or
       provider.users.include?(user)
+    end
+    
+    can :manage, User do |u|
+      u.new_record? or
+      u == user
     end
     
     # Define abilities for the passed in user here. For example:

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :login]
   #before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:edit, :update, :destroy, :show]
-  
+  authorize_resource
 
   # GET /users
   # GET /users.json
