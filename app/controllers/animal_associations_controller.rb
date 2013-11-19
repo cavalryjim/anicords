@@ -1,6 +1,7 @@
 class AnimalAssociationsController < ApplicationController
   before_action :set_animal, only: [:create, :destroy]
   before_action :set_animal_association, only: [:destroy]
+  before_filter :authenticate_user!
   
   
   def create

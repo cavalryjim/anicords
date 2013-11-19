@@ -1,4 +1,5 @@
 class RemoteRequestsController < ApplicationController
+  before_filter :authenticate_user!
   
   def allergies
     if params[:alg]

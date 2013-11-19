@@ -1,6 +1,7 @@
 class AnimalVaccinationsController < ApplicationController
   before_action :set_animal, only: [:create, :destroy]
   before_action :set_animal_vaccination, only: [:destroy]
+  before_filter :authenticate_user!
   
   
   def create

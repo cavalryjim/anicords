@@ -1,5 +1,6 @@
 class BreedersController < ApplicationController
   before_action :set_breeder, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /breeders
   # GET /breeders.json

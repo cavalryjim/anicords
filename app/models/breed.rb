@@ -13,6 +13,10 @@ class Breed < ActiveRecord::Base
   belongs_to  :animal_type
   has_many    :animals
   
+  def to_s
+    name
+  end
+  
   def text
     self.name
   end

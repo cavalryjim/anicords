@@ -31,6 +31,8 @@
 #  gender               :string(255)
 #  neutered             :boolean
 #  food_id              :integer
+#  special_instructions :text
+#  rfid                 :string(255)
 #
 
 class Animal < ActiveRecord::Base
