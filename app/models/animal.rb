@@ -98,5 +98,9 @@ class Animal < ActiveRecord::Base
     self.breed.name if self.breed
   end
   
+  def species
+    self.animal_type.short_name if self.animal_type
+  end
+  
   
 end

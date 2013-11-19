@@ -1,12 +1,13 @@
 module HouseholdsHelper
   def animal_image(animal)
-    if animal.animal_type.short_name == 'dog'
+    case animal.species
+    when 'dog'
       image_tag('dog_icon.png', size: '50x50', class: 'th')
-    elsif animal.animal_type.short_name == 'cat'
+    when 'cat'
       image_tag('cat_icon.png', size: '50x50', class: 'th')
-    elsif animal.animal_type.short_name == 'horse'
+    when 'horse'
       image_tag('horse_icon.png', size: '50x50', class: 'th')
-    elsif animal.animal_type.short_name == 'tiger'
+    when'tiger'
       image_tag('tiger_icon.png', size: '50x50', class: 'th')
     else
       image_tag('generic_icon.png', size: '50x50', class: 'th')
