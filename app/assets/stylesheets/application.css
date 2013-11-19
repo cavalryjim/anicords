@@ -177,7 +177,10 @@ input.upload {
 }
 
 div.front_page_callout { min-height: 120px; }
-div.front_page_callout:hover { background-color: #6F467A; }
+div.front_page_callout:hover { 
+  opacity:0.8;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
+}
 
 /*.selectable_image { border: solid 1px transparent; }*/
 .selectable_image:hover { 
