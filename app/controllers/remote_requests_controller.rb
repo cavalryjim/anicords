@@ -45,8 +45,7 @@ class RemoteRequestsController < ApplicationController
       @medical_diagnoses = MedicalDiagnosis.where(id: params[:md]).all.map{|d| {id: d.id, text: d.name }}
     else
       n = "%#{params[:term]}%"
-      a = params[:at_id]
-      
+      a = "#{params[:at_id]}"
       @medical_diagnoses = MedicalDiagnosis.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|d| {id: d.id, text: d.name }}
     end
     render json: @medical_diagnoses
