@@ -19,7 +19,7 @@ class RemoteRequestsController < ApplicationController
       render json: @breeds
     else
       n = "%#{params[:term]}%"
-      a = params[:at_id]
+      a = "#{params[:at_id]}"
       @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
       render json: @breeds
     end
