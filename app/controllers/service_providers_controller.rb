@@ -1,6 +1,6 @@
 class ServiceProvidersController < ApplicationController
   before_action :set_service_provider, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:index, :edit, :update]
   # GET /service_providers
   # GET /service_providers.json
   def index
@@ -8,8 +8,13 @@ class ServiceProvidersController < ApplicationController
     c = "%#{params[:city]}%"
     s = "%#{params[:state]}%"
     z = "%#{params[:zip]}%"
+    pt = params[:provider_type]
     #@service_providers = ServiceProvider.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|s| {id: s.id, text: s.name }}
-    @service_providers = ServiceProvider.order(:name).where("name ILIKE ? AND city ILIKE ? AND state ILIKE ? AND zip ILIKE ?", n, c, s, z)
+    if pt.present?
+      @service_providers = ServiceProviderType.find(pt).service_providers.order(:name).where("name ILIKE ? AND city ILIKE ? AND state ILIKE ? AND zip ILIKE ?", n, c, s, z)
+    else  
+      @service_providers = ServiceProvider.order(:name).where("name ILIKE ? AND city ILIKE ? AND state ILIKE ? AND zip ILIKE ?", n, c, s, z)
+    end
     render json: @service_providers, only: [:id], methods: [:text]
   end
 

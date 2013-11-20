@@ -16,6 +16,7 @@ jQuery ->
       data: (term, page) ->
         term: term # search term
         page_limit: 10
+        at_id: $('#animal_animal_type_id').val()
 
       results: (data, page) -> # parse the results into the format expected by Select2.
         # since we are using custom formatting functions we do not need to alter remote JSON data
@@ -242,6 +243,7 @@ jQuery ->
         city: $('#city_term').val()
         state: $('#state_term').val()
         zip: $('#zip_term').val()
+        provider_type: $('#provider_type_term').val()
         page_limit: 10
 
       results: (data, page) -> 
