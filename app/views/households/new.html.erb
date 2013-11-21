@@ -73,15 +73,22 @@
       </div>
     </div>
     
+    <div class="row">
+      <div class="large-12 columns">
     <%= f.fields_for :animals do |builder| %>
   	  <%= render 'animal_fields', f: builder %>
 	<% end %>
 	<%= link_to_add_fields "Add another animal", f, :animals %>
+	  </div>
+	</div>
     
     <div class="row">
-		<div class="large-12 offset-9 columns">
-			<%= link_to image_tag('next.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal"   %>
-		</div>
+      <div class="large-3 columns">
+      	<%= link_to image_tag('back.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal', class: "close-reveal-modal"   %>
+      </div>
+	  <div class="large-3 columns">
+		<%= link_to image_tag('next.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal"   %>
+	  </div>
 	</div>
 </div>
 
@@ -104,9 +111,12 @@
     </div>
 	
 	<div class="row">
-		<div class="large-12 offset-9 columns">
-			<%= link_to 'submit', '#', onclick: "$('#quick_household_form').submit()", class: "close-reveal-modal"  %>
-		</div>
+	  <div class="large-3 columns">
+      	<%= link_to image_tag('back.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal"   %>
+      </div>
+	  <div class="large-3 columns">
+		<%= link_to image_tag('next.png', size: '150x150'), '#', onclick: "$('#quick_household_form').submit()", class: "close-reveal-modal"  %>
+	  </div>
 	</div>
   <% end %>
 </div>

@@ -1,5 +1,6 @@
 <fieldset>
   <%= f.text_field :name, placeholder: "animal name" %>
+  <small class="error">Animal name required.</small>
   <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'species'}, {class: "regular_select"} %>
   <%= f.hidden_field :_destroy%>
   <%= link_to 'remove', '#', class: 'remove_fields' %>
