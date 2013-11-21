@@ -7,6 +7,10 @@
       	<%= animal_image(@animal) %></br>
         <%= @animal.name %>
       </div>	
+      <% if @animal.qr_code.present? %>
+        <%= image_tag( @animal.qr_code.url )%>
+      <% end %>
+        
   	</div>
   	<div class="row">
   	  <div class="large-6 large-offset-4 columns">

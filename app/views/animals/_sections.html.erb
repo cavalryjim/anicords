@@ -146,19 +146,16 @@
 	  </div>
 	  
 	  <div class="row">
-		  <div class="large-3 columns">
-			
-			<%= f.text_field :volume_per_serving, placeholder: 'Amount per serving' %>
+		  <div class="large-6 columns">
+            <input type="text" data-dropdown="drop2 ">
 		  </div>
-		  <div class="large-3 columns">
-			
+		  <div id="drop2" data-dropdown-content class="f-dropdown medium content">
+			<%= f.text_field :volume_per_serving, placeholder: 'Amount per serving','data-dropdown' => 'drop2' %>
 			<%= f.select :serving_measure,  options_for_select(["grams", "ounces", "lbs", "scoops"], @animal.serving_measure), {prompt:'serving measure'}, {class:"regular_select"} %>
-		  </div>
-		  <div class="large-3 columns">
-		
 			<%= f.text_field :servings_per_day, placeholder: 'Servings per day' %>
-		  </div>
-		  <div class="large-3 columns"></div>
+          </div>
+		  
+		  <div class="large-6 columns"></div>
 		  
 	  </div>
 	  

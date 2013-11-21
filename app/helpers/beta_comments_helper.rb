@@ -1,0 +1,2 @@
+module BetaCommentsHelper
+end

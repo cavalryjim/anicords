@@ -38,6 +38,7 @@ Anicords::Application.routes.draw do
   
   resources :animal_vaccinations
   resources :activities
+  resources :beta_comments
   
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'

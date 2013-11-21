@@ -32,7 +32,9 @@ gem 'select2-rails', '3.5.0'
 gem 'public_activity', '1.4.0'
 gem 'cancan', '1.6.10'
 gem 'activeadmin', github: 'gregbell/active_admin'
-#gem 'jquery-turbolinks', '2.0.1'
+gem 'rqrcode_png', '0.1.2'
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '0.9.15'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

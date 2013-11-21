@@ -33,6 +33,7 @@
 #  food_id              :integer
 #  special_instructions :text
 #  rfid                 :string(255)
+#  qr_code              :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

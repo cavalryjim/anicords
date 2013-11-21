@@ -66,6 +66,7 @@ GEM
       uuidtools
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    chunky_png (1.2.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -79,6 +80,9 @@ GEM
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
+    dragonfly (0.9.15)
+      multi_json (~> 1.0)
+      rack
     erubis (2.7.0)
     excon (0.25.3)
     execjs (2.0.2)
@@ -179,6 +183,8 @@ GEM
     queue_classic (2.2.2)
       pg (~> 0.16.0)
     rack (1.5.2)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.0)
@@ -212,6 +218,10 @@ GEM
     remotipart (1.2.1)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    rqrcode (0.4.2)
+    rqrcode_png (0.1.2)
+      chunky_png
+      rqrcode
     ruby-hmac (0.4.0)
     sass (3.2.12)
     sass-rails (4.0.0)
@@ -272,6 +282,7 @@ DEPENDENCIES
   carrierwave_direct (= 0.0.13)
   coffee-rails (= 4.0.0)
   devise (= 3.0.3)
+  dragonfly (= 0.9.15)
   fog (= 1.15.0)
   html5_validators (= 1.1.2)
   jbuilder (~> 1.2)
@@ -284,9 +295,11 @@ DEPENDENCIES
   pg (= 0.16.0)
   public_activity (= 1.4.0)
   queue_classic (= 2.2.2)
+  rack-cache
   rails (= 4.0.0)
   rails_12factor (= 0.0.2)
   remotipart (= 1.2.1)
+  rqrcode_png (= 0.1.2)
   sass-rails (= 4.0.0)
   sdoc
   select2-rails (= 3.5.0)

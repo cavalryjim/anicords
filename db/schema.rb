@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120040523) do
+ActiveRecord::Schema.define(version: 20131121054211) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -143,6 +143,16 @@ ActiveRecord::Schema.define(version: 20131120040523) do
     t.integer  "food_id"
     t.text     "special_instructions"
     t.string   "rfid"
+    t.string   "qr_code_uid"
+    t.string   "qr_code_name"
+  end
+
+  create_table "beta_comments", force: true do |t|
+    t.text     "comment"
+    t.string   "page_url"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "breeders", force: true do |t|

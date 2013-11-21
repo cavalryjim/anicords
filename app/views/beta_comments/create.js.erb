@@ -1,0 +1,7 @@
+$("form#beta_comment_form").on("ajax:success", function(event, data, status, response) {
+  $('#betaCommentModal').foundation('reveal', 'close');
+  $(".bottom_flash_alert").removeClass("hidden");
+  $(".bottom_flash_alert").show().delay(2000).fadeOut();
+}).on("ajax:error", function(event, response, error) {
+  return alert("There was a problem.  Please try again later.");
+});

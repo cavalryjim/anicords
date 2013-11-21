@@ -33,6 +33,7 @@
 #  food_id              :integer
 #  special_instructions :text
 #  rfid                 :string(255)
+#  qr_code              :string(255)
 #
 
 class Animal < ActiveRecord::Base
@@ -64,6 +65,8 @@ class Animal < ActiveRecord::Base
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
   mount_uploader :vaccination_record, FileUploader
+  #mount_uploader :qr_code, FileUploader
+  image_accessor :qr_code  
   
   def to_s
     name

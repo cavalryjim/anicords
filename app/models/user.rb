@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_many  :households, through: :user_associations
   has_many  :veterinarians, through: :user_associations
   has_many  :service_providers, through: :user_associations
+  has_many  :beta_comments
   
   validates_presence_of :email
   #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"
