@@ -10,6 +10,7 @@ ActiveAdmin.register Animal do
       link_to animal, edit_admin_animal_path(animal)
     end
     column :household
+    default_actions
   end
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
