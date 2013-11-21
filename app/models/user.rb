@@ -49,8 +49,12 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"
   #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, if: "provider.blank?" 
-  #validates_presence_of :password, if: "provider.blank?"        
- 
+  #validates_presence_of :password, if: "provider.blank?"    
+      
+  def to_s
+    name_or_email
+  end
+  
   def name
     if first_name && last_name
       first_name.to_s + ' ' + last_name.to_s
