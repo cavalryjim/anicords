@@ -35,6 +35,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'rqrcode_png', '0.1.2'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '0.9.15'
+gem 'prawn', '0.12.0'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

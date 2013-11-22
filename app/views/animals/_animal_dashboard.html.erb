@@ -18,7 +18,7 @@
         <table class="no_border">
           <tr class="no_bg">
           	<td align="right">
-              report medical issue
+              <%= link_to "edit pet info", edit_household_animal_path(@owner, @animal), 'data-no-turbolink' => true %>	
           	</td>
           </tr>
           <tr class="no_bg">
@@ -33,7 +33,7 @@
           </tr>
           <tr class="no_bg">
           	<td align="right">
-              <%= link_to "edit pet info", edit_household_animal_path(@owner, @animal), 'data-no-turbolink' => true %>	
+              <%= link_to "print medical record (pdf)", household_animal_path(@owner, @animal, format: "pdf") %>
           	</td>
           </tr>
           <tr class="no_bg">

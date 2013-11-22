@@ -16,6 +16,11 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       format.js
       format.html
+      format.pdf do
+        pdf = MedicalRecordPdf.new(@animal)
+        send_data pdf.render, filename: "#{@owner}_#{@animal}.pdf",
+                type: "application/pdf", disposition: "inline"
+      end
     end
 
   end

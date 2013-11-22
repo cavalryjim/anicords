@@ -107,6 +107,10 @@ class Animal < ActiveRecord::Base
     self.animal_type.short_name if self.animal_type
   end
   
+  def species_long_name
+    self.animal_type.name if self.animal_type
+  end
+  
   def feeding_comment
     if volume_per_serving && serving_measure && servings_per_day
       measure = (volume_per_serving > 1) ? serving_measure : serving_measure.singularize
