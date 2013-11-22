@@ -2,12 +2,13 @@ class MedicalRecordPdf < Prawn::Document
   def initialize(animal)
     super()
     @animal = animal
-    animal_name
+    top_header
     demographics
     vaccinations
   end
   
-  def animal_name
+  def top_header
+    image "#{Rails.root}/app/assets/images/dooliddl_f.png", at: [bounds.right - 200, bounds.top], width: 200
     text "#{@animal}", size: 30, style: :bold 
   end
   
