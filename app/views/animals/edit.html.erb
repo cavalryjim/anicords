@@ -14,8 +14,8 @@
 	  </div>
 	  <div id='animal_form_div'><%= render 'form' %></div>
 	  
-	  <%= link_to 'Delete this record', household_animal_path(@owner, @animal), 
-						:confirm => "Select 'OK' to delete this animal. All system records will be lost.", method: :delete%>
+	  <!---<%= link_to 'Delete this record', household_animal_path(@owner, @animal), 
+						:confirm => "Select 'OK' to delete this animal. All system records will be lost.", method: :delete%>--->
 	</fieldset>
 	
 	<%= link_to 'Back', @animal.owner %>

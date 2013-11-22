@@ -11,6 +11,7 @@
  *= require_self
  *= require foundation_and_overrides
  *= require select2
+ *= require jquery-ui.min
  *= require jquery-ui-1.10.3.custom
  */
 
@@ -186,6 +187,10 @@ div.front_page_callout:hover {
 .selectable_image:hover { 
   opacity:0.8;
   filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.ui-dialog {
+  font-size: 0.875em !important;
 }
 
 

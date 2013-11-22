@@ -264,7 +264,67 @@ jQuery ->
 
       results: (data, page) -> 
         results: data
-    
+  
+  # JDavis: jquery dialog form for capturing feeding information
+  updateTips = (t) ->
+    tips.text(t).addClass "ui-state-highlight"
+    setTimeout (->
+      tips.removeClass "ui-state-highlight", 1500
+    ), 500
+  checkNumeric = (n) ->
+    unless $.isNumeric n.val() 
+      n.addClass "ui-state-error"
+      updateTips "enter number, such as 2 cups"
+      false
+    else
+      true
+      
+  checkValue = (v) ->
+    unless v.val()
+      v.addClass "ui-state-error"
+      updateTips "all fields are required"
+      false
+    else
+      true
+      
+  amount = $("#feeding_volume")
+  measure = $("#feeding_measure")
+  frequency = $("#feeding_frequency")
+  allFields = $([]).add(amount).add(measure).add(frequency)
+  tips = $(".validateTips")
+  
+  $("#feeding_dialog").dialog
+    autoOpen: false
+    height: 250
+    width: 350
+    modal: true
+    buttons:
+      "Done": ->
+        bValid = true
+        text = ""
+        allFields.removeClass "ui-state-error"
+        bValid = bValid and checkNumeric(amount)
+        bValid = bValid and checkValue(measure)
+        bValid = bValid and checkValue(frequency)
+        if bValid
+          $("#animal_volume_per_serving").val amount.val()
+          $("#animal_serving_measure").val measure.val()
+          $("#animal_servings_per_day").val frequency.val()
+          text = amount.val() + ' ' + measure.val() + ' / ' + frequency.val() + ' x per day'
+          $("#feeding_display").val text
+          $(this).dialog "close"
+
+      Cancel: ->
+        $(this).dialog "close"
+
+    close: ->
+      allFields.val("").removeClass "ui-state-error"
+
+  $("#feeding_display").click ->
+    $("#feeding_dialog").dialog "open"
+  #----------end of jquery dialog----------------------#  
+  
+  
   #$("form#animal_form").on("ajax:success", (event, data, status, response) ->
   #  $(".flash_alert").removeClass("hidden")
   #  $(".flash_alert").show().delay(2000).fadeOut()

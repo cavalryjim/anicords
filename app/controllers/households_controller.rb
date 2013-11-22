@@ -6,7 +6,8 @@ class HouseholdsController < ApplicationController
   # GET /households
   # GET /households.json
   def index
-    @households = Household.all
+    #@households = Household.all
+    redirect_to root_url
   end
 
   # GET /households/1
