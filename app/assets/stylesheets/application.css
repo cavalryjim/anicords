@@ -193,4 +193,8 @@ div.front_page_callout:hover {
   font-size: 0.875em !important;
 }
 
+.new_account_nav {
+  position: relative !important;
+}
+
 
