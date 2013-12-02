@@ -21,14 +21,20 @@ Anicords::Application.configure do
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {  
-    address:        'smtp.mandrillapp.com',
-    port:           '587',
-    #domain:         'heroku.com',
+    # JDavis: for GoDaddy email account
+    address:        'smtpout.secureserver.net', 
+    port:           '80',
+    user_name:      'james@dooliddl.com',
+    password:       'd0071dd7',
+    # JDavis: for mandrill 
+    #address:        'smtp.mandrillapp.com',
+    #port:           '587',
+    #enable_starttls_auto: true,
+    #user_name:      ENV['MANDRILL_USERNAME'],
+    #password:       ENV['MANDRILL_APIKEY'],
+    
     domain:         'dooliddl.com',
-    user_name:      ENV['MANDRILL_USERNAME'],
-    password:       ENV['MANDRILL_APIKEY'],
-    authentication: :plain,
-    enable_starttls_auto: true
+    authentication: :plain
   }
   config.action_mailer.default_url_options = { :host => 'www.dooliddl.com' }
 
