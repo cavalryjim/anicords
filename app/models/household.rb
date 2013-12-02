@@ -34,6 +34,7 @@ class Household < ActiveRecord::Base
   def to_s
     name
   end
+  
   def associate_user(user_id)
     UserAssociation.where(user_id: user_id, household_id: self.id).first_or_create
   end
