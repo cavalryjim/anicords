@@ -167,13 +167,13 @@ class User < ActiveRecord::Base
     user = User.find_by(email: email)
     household = Household.find(household_id)
     if user
-      #Rails.env.production? ? QC.enqueue("User.added_to_household", user.id, household_id) : UserMailer.added_to_household(user, household).deliver 
-      UserMailer.added_to_household(user, household).deliver 
+      Rails.env.production? ? QC.enqueue("User.added_to_household", user.id, household_id) : UserMailer.added_to_household(user.id, household_id).deliver 
+      #UserMailer.added_to_household(user.id, household_id).deliver 
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
-      #Rails.env.production? ? QC.enqueue("User.created_and_added_to_household", user.id, generated_password, household.id) : UserMailer.created_and_added_to_household(user, generated_password, household).deliver 
-      UserMailer.created_and_added_to_household(user, generated_password, household).deliver
+      Rails.env.production? ? QC.enqueue("User.created_and_added_to_household", user.id, generated_password, household_id) : UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver 
+      #UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver
     end
     
     household.associate_user(user.id)
@@ -183,13 +183,11 @@ class User < ActiveRecord::Base
     user = User.find_by(email: email)
     service_provider = ServiceProvider.find(service_provider_id)
     if user
-      Rails.env.production? ? QC.enqueue("User.added_to_service_provider", user.id, service_provider_id) : UserMailer.added_to_service_provider(user, service_provider).deliver 
-      #UserMailer.added_to_household(user, @household).deliver 
+      Rails.env.production? ? QC.enqueue("User.added_to_service_provider", user.id, service_provider_id) : UserMailer.added_to_service_provider(user, service_provider_id).deliver 
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password )
-      Rails.env.production? ? QC.enqueue("User.created_and_added_to_service_provider", user.id, generated_password, service_provider.id) : UserMailer.created_and_added_to_service_provider(user, generated_password, service_provider).deliver 
-      #UserMailer.created_and_added_to_household(user, generated_password, @household).deliver
+      Rails.env.production? ? QC.enqueue("User.created_and_added_to_service_provider", user.id, generated_password, service_provider_id) : UserMailer.created_and_added_to_service_provider(user, generated_password, service_provider_id).deliver 
     end
     
     service_provider.associate_user(user.id)
