@@ -121,5 +121,9 @@ class Animal < ActiveRecord::Base
     end
   end
   
+  def transfer_ownership(email)
+    true
+  end
+  
   
 end

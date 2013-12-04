@@ -1,0 +1,7 @@
+
+<% if @success %>
+  $('#transferAnimalModal').foundation('reveal', 'close');
+<% else %>
+  $("#transfer_error").removeClass("hidden");
+  //return alert("There was a problem.  Please try again later.");
+<% end %>

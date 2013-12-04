@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="large-8 columns">
+    <h4>Transfer <%= @animal.name %> </h4>
+  </div>
+  <div class="large-4 columns">
+    <div id="transfer_error" class="hidden alert-box alert"  data-alert> 
+	  Email must be valid and match.
+	  <a href="" class="close">&times;</a>
+	</div>
+  </div>
+</div>
+
+
+<%= form_for @animal, remote: true, url: transfer_animal_path, html: { id: "animal_transfer_form", "data-abide" => '' } do |f| %>
+  <div class="row">
+    <div class="large-12 columns">
+      <%= text_field_tag 'transferee_email', nil, {placeholder: "email (required )", required: true}  %>
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="large-12 columns">
+      <%= text_field_tag 'transferee_email2', nil, {placeholder: "email confirmation (required)", required: true} %>
+     
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="large-12 columns">
+      <%= text_field_tag 'transferee_first_name', nil, placeholder: "first name"  %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="large-12 columns">
+      <%= text_field_tag 'transferee_last_name', nil, placeholder: "last name"  %>
+    </div>
+  </div>
+  
+  <div class="actions">
+	<%= f.submit 'transfer', confirm: 'Please confirm transfer?' %>
+  </div>
+  
+<% end %>

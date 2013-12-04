@@ -106,7 +106,14 @@ class AnimalsController < ApplicationController
   end
   
   def transfer_ownership
+    #breaker
+    @success = (params[:transferee_email] == params[:transferee_email2]) && params[:transferee_email].match(/^\S+@\S+\.\S+$/)
     
+    @animal.transfer_ownership(params[:transferee_email]) if @success
+    
+    respond_to do |format|
+      format.js 
+    end
   end
 
   private
