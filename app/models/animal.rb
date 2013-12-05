@@ -35,6 +35,9 @@
 #  rfid                 :string(255)
 #  qr_code_uid          :string(255)
 #  qr_code_name         :string(255)
+#  organization_id      :integer
+#  owner_id             :integer
+#  owner_type           :string(255)
 #
 
 class Animal < ActiveRecord::Base
@@ -42,9 +45,11 @@ class Animal < ActiveRecord::Base
   include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }
   
+  belongs_to :owner, polymorphic: true
   belongs_to :animal_type
   belongs_to :breeder
-  belongs_to :household
+  belongs_to :organization
+  #belongs_to :household
   belongs_to :breed
   has_many   :documents, dependent: :destroy
   has_many   :vaccinations, through: :animal_vaccinations
@@ -73,15 +78,15 @@ class Animal < ActiveRecord::Base
     name
   end
   
-  def owner
-    if self.household_id
-      Household.find(self.household_id)
-    elsif self.breeder_id
-      Breeder.find(self.breeder_id)
-    else
-      nil
-    end
-  end
+  #def owner
+  #  if self.household_id
+  #    Household.find(self.household_id)
+  #  elsif self.breeder_id
+  #    Breeder.find(self.breeder_id)
+  #  else
+  #    nil
+  #  end
+  #end
   
   def needs_owner?
     if self.breeder_id == nil 

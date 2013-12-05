@@ -35,6 +35,9 @@
 #  rfid                 :string(255)
 #  qr_code_uid          :string(255)
 #  qr_code_name         :string(255)
+#  organization_id      :integer
+#  owner_id             :integer
+#  owner_type           :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

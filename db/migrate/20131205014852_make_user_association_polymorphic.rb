@@ -1,6 +1,6 @@
 class MakeUserAssociationPolymorphic < ActiveRecord::Migration
   def change
-    add_column :user_associations, :groupable_id, :integer
-    add_column :user_associations, :groupable_type, :string
+    add_column :user_associations, :group_id, :integer
+    add_column :user_associations, :group_type, :string
   end
 end

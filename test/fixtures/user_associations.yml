@@ -11,8 +11,8 @@
 #  updated_at          :datetime
 #  veterinarian_id     :integer
 #  service_provider_id :integer
-#  groupable_id        :integer
-#  groupable_type      :string(255)
+#  group_id            :integer
+#  group_type          :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

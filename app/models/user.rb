@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   has_many  :households, through: :user_associations #JDavis: need to make this polymorphic like organizations
   has_many  :veterinarians, through: :user_associations #JDavis: need to make this polymorphic like organizations
   has_many  :service_providers, through: :user_associations  #JDavis: need to make this polymorphic like organizations
-  has_many  :organizations, through: :user_associations, source: :groupable, source_type: "Organization"
+  has_many  :organizations, through: :user_associations, source: :group, source_type: "Organization"
   has_many  :beta_comments, dependent: :destroy
   
   validates_presence_of :email
@@ -150,12 +150,12 @@ class User < ActiveRecord::Base
     user = User.find_by(email: email)
     
     if user
-      user_association_id = UserAssociation.where(user_id: user.id, groupable_id: entity_id, groupable_type: entity_type).first_or_create.id
+      user_association_id = UserAssociation.where(user_id: user.id, group_id: entity_id, group_type: entity_type).first_or_create.id
       Rails.env.production? ? QC.enqueue("User.added_to_entity", user_association_id) : UserMailer.added_to_entity(user_association_id).deliver  
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
-      user_association_id = UserAssociation.where(user_id: user.id, groupable_id: entity_id, groupable_type: entity_type).first_or_create.id
+      user_association_id = UserAssociation.where(user_id: user.id, group_id: entity_id, group_type: entity_type).first_or_create.id
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_entity", user_association_id, generated_password) : UserMailer.created_and_added_to_entity(user_association_id, generated_password).deliver 
       #UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver
     end

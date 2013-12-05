@@ -11,17 +11,17 @@
 #  updated_at          :datetime
 #  veterinarian_id     :integer
 #  service_provider_id :integer
-#  groupable_id        :integer
-#  groupable_type      :string(255)
+#  group_id            :integer
+#  group_type          :string(255)
 #
 
 class UserAssociation < ActiveRecord::Base
   belongs_to :user
-  belongs_to :breeder # JDavis: need to merge with groupable and remove
-  belongs_to :household # JDavis: need to merge with groupable and remove
-  belongs_to :veterinarian # JDavis: need to merge with groupable and remove
-  belongs_to :service_provider# JDavis: need to merge with groupable and remove
-  belongs_to :groupable, polymorphic: true
+  belongs_to :breeder # JDavis: need to merge with groupa and remove
+  belongs_to :household # JDavis: need to merge with group and remove
+  belongs_to :veterinarian # JDavis: need to merge with group and remove
+  belongs_to :service_provider# JDavis: need to merge with group and remove
+  belongs_to :group, polymorphic: true
   
   validates :user_id, presence: true
   
@@ -35,7 +35,7 @@ class UserAssociation < ActiveRecord::Base
     elsif self.service_provider_id
       self.service_provider.name
     else
-      groupable.name
+      group.name
     end
   end
   
@@ -49,7 +49,7 @@ class UserAssociation < ActiveRecord::Base
     #elsif self.veterinarian_id
     #  self.veterinarian
     else
-      groupable
+      group
     end
   end
   
@@ -63,7 +63,7 @@ class UserAssociation < ActiveRecord::Base
     elsif self.service_provider_id
       'provider'
     else
-      groupable_type.downcase
+      group_type.downcase
     end
   end
   

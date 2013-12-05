@@ -20,7 +20,7 @@ class Organization < ActiveRecord::Base
   include ActiveModel::Validations
   
   has_many  :animals, dependent: :destroy
-  has_many  :user_associations, as: :groupable, dependent: :destroy
+  has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
   accepts_nested_attributes_for :animals, allow_destroy: true
   
@@ -32,7 +32,7 @@ class Organization < ActiveRecord::Base
   end
   
   def associate_user(user_id)
-    UserAssociation.where(user_id: user_id, groupable: self).first_or_create
+    UserAssociation.where(user_id: user_id, group: self).first_or_create
   end
   
 end
