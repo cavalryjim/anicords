@@ -1,0 +1,47 @@
+
+
+<section class="border_top">
+ <div class="row">
+   <div class="large-12 columns">
+	
+	<%= render 'form' %>
+	
+	<%= link_to 'Back', @organization %> 
+   </div>
+ </div>
+</section>
+
+<% unless @organization.new_record? %>
+	<div id="newHumanModal" class="reveal-modal">
+	  <h3>Add users to your organization</h3>
+	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :email, placeholder: "Email"  %>
+	        <small class="error">Email required.</small>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :first_name, placeholder: "First Name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+	      </div>
+	    </div>
+	    
+	    <%= f.hidden_field :organization_id, value: @organization.id %>
+	    
+	    <div class="actions">
+	      <%= f.submit "Add member" %>
+	    </div>
+	  
+	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+<% end %>

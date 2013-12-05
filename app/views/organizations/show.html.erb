@@ -1,0 +1,71 @@
+<section class="border_top">
+	
+ <div class="row">
+  <fieldset>
+  	
+  <h4><%= @organization.name %> <small><%= link_to ' (edit)', edit_organization_path(@organization), 'data-no-turbolink' => true %></small></h4>
+  <div class="large-12 columns">
+	<fieldset>
+	  	<% if @organization.animals.count == 0 %>
+		  <h4>Tell us about your animals</h4>
+		<% end %>
+	    <ul class="large-block-grid-3">
+	    	
+	    <% if @organization.animals.count == 0 %>
+	      <li>Please add your organization animals.</li>
+	    <% end %>
+	    
+		<% @organization.animals.each do |animal| %>
+		  <li>
+			  <%= link_to animal_image(animal), organization_animal_path(@organization, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
+			  <%= link_to animal.name, organization_animal_path(@organization, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %>		
+		  </li>
+					
+		<% end %>
+	    </ul>
+			
+	    <%= button_to "Add Animal", "#", "data-reveal-id" => "newAnimalModal" %> 
+	</fieldset>
+   </div>
+  </fieldset>
+ </div>
+ 
+</section>
+
+
+<div id="newAnimalModal" class="reveal-modal">
+  <h3>New Animal</h3>
+  <%= form_for [@organization, Animal.new] do |f| %>
+  
+    <div class="row">
+	  <div class="large-12 columns">
+		<%= f.text_field :name, placeholder: "Animal's name" %>
+      </div>
+    </div>
+		    
+	<div class="row">
+	  <div class="large-6 columns">
+	    <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'Species'}, {class: "regular_select"} %>
+	  </div>
+	</div>
+	<%= f.hidden_field :organization_id, value: @organization.id %>	      
+    <div class="actions">
+	  <%= f.submit %>
+	</div>
+    
+  <% end %>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="showAnimalModal" class="reveal-modal">
+  <div id="animal_show_div"></div>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="transferAnimalModal" class="reveal-modal">
+  <div id="animal_transfer_div"></div>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>

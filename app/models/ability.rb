@@ -7,6 +7,11 @@ class Ability
       household.users.include?(user)
     end
     
+    can :manage, Organization do |organization|
+      organization.new_record? or
+      organization.users.include?(user)
+    end
+    
     can :manage, Animal do |animal|
       animal.new_record? or
       animal.owner.users.include?(user)
@@ -23,6 +28,7 @@ class Ability
       u.new_record? or
       u == user
     end
+    
     
     # Define abilities for the passed in user here. For example:
     #

@@ -33,7 +33,8 @@
 #  food_id              :integer
 #  special_instructions :text
 #  rfid                 :string(255)
-#  qr_code              :string(255)
+#  qr_code_uid          :string(255)
+#  qr_code_name         :string(255)
 #
 
 class Animal < ActiveRecord::Base

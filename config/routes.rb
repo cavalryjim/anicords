@@ -1,10 +1,15 @@
 Anicords::Application.routes.draw do
   
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :service_providers
 
   resources :veterinarians
+  resources :organizations do
+    resources :user_associations
+    resources :animals
+  end
 
   resources :households do
     resources :animals do
@@ -47,6 +52,7 @@ Anicords::Application.routes.draw do
   patch 'households/:id/remove_service_provider' => 'households#remove_service_provider'
   get 'documents/:id/download_file' => 'documents#download_file'
   post 'households/:id/create_user' => 'households#create_user'
+  post 'organizations/:id/create_user' => 'organizations#create_user'
   #get 'service_providers/:id/services' => 'service_providers#services'
   get 'animals/:id/download_file' => 'animals#download_file'
   patch 'animals/:id/transfer_ownership' => 'animals#transfer_ownership', as: :transfer_animal

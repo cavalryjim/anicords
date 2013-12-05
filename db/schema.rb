@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121054211) do
+ActiveRecord::Schema.define(version: 20131205060412) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20131121054211) do
     t.string   "rfid"
     t.string   "qr_code_uid"
     t.string   "qr_code_name"
+    t.integer  "organization_id"
   end
 
   create_table "beta_comments", force: true do |t|
@@ -233,6 +234,20 @@ ActiveRecord::Schema.define(version: 20131121054211) do
     t.datetime "updated_at"
   end
 
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "queue_classic_jobs", force: true do |t|
     t.text     "q_name",    null: false
     t.text     "method",    null: false
@@ -299,6 +314,8 @@ ActiveRecord::Schema.define(version: 20131121054211) do
     t.datetime "updated_at"
     t.integer  "veterinarian_id"
     t.integer  "service_provider_id"
+    t.integer  "groupable_id"
+    t.string   "groupable_type"
   end
 
   create_table "users", force: true do |t|

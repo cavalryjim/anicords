@@ -9,13 +9,13 @@ class UserAssociationsController < ApplicationController
     @user_association.destroy
     
     if params[:household_id]
-      @household = Household.find(params[:household_id])
-      redirect_path = edit_household_path(@household)
+      redirect_path = edit_household_path(params[:household_id])
     elsif params[:user_id]
-      @user = User.find(params[:user_id])
-      redirect_path = edit_user_path(@user)
+      redirect_path = edit_user_path(params[:user_id])
+    elsif params[:organization_id]
+      redirect_path = edit_organization_path(params[:organization_id])
     else
-      redirect_path = edit_user_path(@user_association.user)
+      redirect_path = edit_user_path(current_user)
     end
     
     respond_to do |format|
