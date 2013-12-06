@@ -1,4 +1,4 @@
-class UpdateAnimalOwner < ActiveRecord::Migration
+class UpdateAnimalPolymorphicOwner < ActiveRecord::Migration
   def self.up
     Animal.find(:all).each do |a|
       if a.household_id
