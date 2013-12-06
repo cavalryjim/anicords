@@ -38,6 +38,7 @@
 #  organization_id      :integer
 #  owner_id             :integer
 #  owner_type           :string(255)
+#  pending_transfer     :boolean
 #
 
 class Animal < ActiveRecord::Base
