@@ -6,16 +6,16 @@
   <h4><%= @organization.name %> <small><%= link_to ' (edit)', edit_organization_path(@organization), 'data-no-turbolink' => true %></small></h4>
   <div class="large-12 columns">
 	<fieldset>
-	  	<% if @organization.animals.count == 0 %>
+	  	<% if @organization.owned_animals.count == 0 %>
 		  <h4>Tell us about your animals</h4>
 		<% end %>
 	    <ul class="large-block-grid-3">
 	    	
-	    <% if @organization.animals.count == 0 %>
+	    <% if @organization.owned_animals.count == 0 %>
 	      <li>Please add your organization animals.</li>
 	    <% end %>
 	    
-		<% @organization.animals.each do |animal| %>
+		<% @organization.owned_animals.each do |animal| %>
 		  <li>
 			  <%= link_to animal_image(animal), organization_animal_path(@organization, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
 			  <%= link_to animal.name, organization_animal_path(@organization, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %>		
@@ -48,7 +48,8 @@
 	    <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'Species'}, {class: "regular_select"} %>
 	  </div>
 	</div>
-	<%= f.hidden_field :organization_id, value: @organization.id %>	      
+	<%= f.hidden_field :owner_id, value: @organization.id %>
+	<%= f.hidden_field :owner_type, value: @organization.class.name %>	      
     <div class="actions">
 	  <%= f.submit %>
 	</div>

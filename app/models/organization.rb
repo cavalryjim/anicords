@@ -19,7 +19,9 @@
 class Organization < ActiveRecord::Base
   include ActiveModel::Validations
   
-  has_many  :animals, dependent: :destroy
+  #has_many  :adopted_animals, -> { where 'owner_type != "Organization"' },
+  #          class_name: "Animal"
+  has_many  :animals, as: :owner, dependent: :destroy
   has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
   accepts_nested_attributes_for :animals, allow_destroy: true

@@ -123,18 +123,21 @@ class AnimalsController < ApplicationController
     end
     
     def set_owner
-      if params[:household_id]
+      if @animal && @animal.owner
+        @owner = @animal.owner
+      elsif params[:household_id]
         @owner = Household.find(params[:household_id])
+      elsif params[:organization_id]
+        @owner = Organization.find(params[:organization_id])
       elsif params[:breeder_id]
         @owner = Breeder.find(params[:breeder_id])
       end
     end
     
     def return_path
-      if params[:household_id]
-        edit_household_animal_path(params[:household_id], @animal.id)
-      elsif params[:breeder_id]
-        edit_breeder_animal_path(params[:breeder_id], @animal.id)
+      if @animal.owner
+        #edit_household_animal_path(params[:household_id], @animal.id)
+        polymorphic_path([@animal.owner, @animal], action: :edit)
       else
         edit_animal_path(@animal.id)
       end
@@ -147,7 +150,7 @@ class AnimalsController < ApplicationController
        :dob, :pedigree, :store_dir, :remove_pedigree, :show_name, :registration_number, :image, :pedigree_chart, :health_certification,
        :vaccination_record, :shampoo_id, :vitamin_id, :treat_id, :remove_health_certification, :remove_vaccination_record,
        :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :breed_id, :gender, :neutered, :food_id, 
-       :rfid, :special_instructions,
+       :rfid, :special_instructions, :owner_id, :owner_type, :owner,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [] )
     end
 end

@@ -14,17 +14,17 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Welcome to DooLiddl"
   end
   
-  def added_to_entity(user_association_id)
+  def added_to_group(user_association_id)
     user_association = UserAssociation.find(user_association_id)
     @user = user_association.user
-    @entity = user_association.group
+    @group = user_association.group
     mail to: @user.email, subject: "Added to DooLiddl " + user_association.group_type
   end
   
-  def created_and_added_to_entity(user_association_id, password)
+  def created_and_added_to_group(user_association_id, password)
     user_association = UserAssociation.find(user_association_id)
     @user = user_association.user
-    @entity = user_association.group
+    @group = user_association.group
     @password = password
     mail to: @user.email, subject: "Welcome to DooLiddl"
   end

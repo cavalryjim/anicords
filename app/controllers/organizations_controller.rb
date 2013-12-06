@@ -23,8 +23,7 @@ class OrganizationsController < InheritedResources::Base
   def create
     @organization = Organization.new(organization_params)
     respond_to do |format|
-      if @organization.save # && @organization.associate_user(current_user.id)
-        #current_user.create_user_to_organization(params[:human_email], @household.id, params[:human_first_name], params[:human_last_name] ) if (params[:human_email] != "")
+      if @organization.save && @organization.associate_user(current_user.id)
         session[:home_page] = organization_path(@organization)
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
@@ -60,7 +59,7 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def create_user
-    current_user.create_user_to_entity(params[:user][:email], @organization.id, @organization.class.name, params[:user][:first_name], params[:user][:last_name] )
+    current_user.create_user_to_group(params[:user][:email], @organization.id, @organization.class.name, params[:user][:first_name], params[:user][:last_name] )
     
     redirect_to edit_organization_path(@organization), notice: 'Human was successfully added.'
   end

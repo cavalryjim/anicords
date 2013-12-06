@@ -4,13 +4,9 @@
   
   <div id='sections'><%= render 'sections', f: f %></div>
 	
-	
-  <% if @owner.class.name == 'Household'%>
-    <%= f.hidden_field :household_id, value: @owner.id %>
-  <% end %>
-  <% if @owner.class.name == 'Breeder'%>
-	<%= f.hidden_field :breeder_id, value: @owner.id %>
-  <% end %>
+  <%= f.hidden_field :owner_id, value: @owner.id %>	 
+  <%= f.hidden_field :owner_type, value: @owner.class.name %> 
+  
   
   <div class="actions">
 	<%= f.submit "Save" %>

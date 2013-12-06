@@ -1,9 +1,0 @@
-<p><%= @user.name_or_email %>,</p>
-
-<p>You have been added to the <%=@entity.name%> account on Dooliddl.</p>
-
-<p>Login using your email: <%=@user.email%> and this temporary password: <%=@password%> or you can use the Facebook login.</p>
-
-<p><%= link_to "Manage your account here.", edit_user_url(@user) %></p>
-
-<p><%= link_to "Help manage the " + @entity.name  + " account here.", polymorphic_url(@entity) %></p>

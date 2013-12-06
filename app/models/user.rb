@@ -85,15 +85,7 @@ class User < ActiveRecord::Base
   end
   
   def selected_association(association_id)
-    ua = UserAssociation.find(association_id)
-    if ua.breeder_id
-      Breeder.find(ua.breeder_id)
-    elsif ua.household_id
-      Household.find(ua.household_id)
-    elsif ua.veterinarian_id
-      Veterinarian.find(ua.veterinarian_id)
-    end
-    
+    UserAssociation.find(association_id).group
   end
 
   def self.from_omniauth(auth)
@@ -136,104 +128,29 @@ class User < ActiveRecord::Base
     UserMailer.signup_confirmation(user).deliver
   end
   
-  def self.added_to_entity(user_association_id)
+  def self.added_to_group(user_association_id)
     #user_association = UserAssociation.find(user_association_id)
-    UserMailer.added_to_entity(user_association_id)
+    UserMailer.added_to_group(user_association_id)
   end
   
-  def self.created_and_added_to_entity(user_association_id, password)
+  def self.created_and_added_to_group(user_association_id, password)
     #user_association = UserAssociation.find(user_association_id)
     UserMailer.created_and_added_to_household(user_association_id, password).deliver
   end
   
-  def create_user_to_entity(email, entity_id, entity_type, first_name="", last_name="")
+  def create_user_to_group(email, group_id, group_type, first_name="", last_name="")
     user = User.find_by(email: email)
     
     if user
-      user_association_id = UserAssociation.where(user_id: user.id, group_id: entity_id, group_type: entity_type).first_or_create.id
-      Rails.env.production? ? QC.enqueue("User.added_to_entity", user_association_id) : UserMailer.added_to_entity(user_association_id).deliver  
+      user_association_id = UserAssociation.where(user_id: user.id, group_id: group_id, group_type: group_type).first_or_create.id
+      Rails.env.production? ? QC.enqueue("User.added_to_group", user_association_id) : UserMailer.added_to_group(user_association_id).deliver  
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
-      user_association_id = UserAssociation.where(user_id: user.id, group_id: entity_id, group_type: entity_type).first_or_create.id
-      Rails.env.production? ? QC.enqueue("User.created_and_added_to_entity", user_association_id, generated_password) : UserMailer.created_and_added_to_entity(user_association_id, generated_password).deliver 
+      user_association_id = UserAssociation.where(user_id: user.id, group_id: group_id, group_type: group_type).first_or_create.id
+      Rails.env.production? ? QC.enqueue("User.created_and_added_to_group", user_association_id, generated_password) : UserMailer.created_and_added_to_group(user_association_id, generated_password).deliver 
       #UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver
     end
-    
-  end
-  
-  def self.added_to_household(user_id, household_id) #JDavis: polymorphism will remove this
-    user = find(user_id)
-    household = Household.find(household_id)
-    #puts "In model calling mailer for " + user.email
-    UserMailer.added_to_household(user, household).deliver
-  end
-  
-  def self.created_and_added_to_household(user_id, password, household_id) #JDavis: polymorphism will remove this
-    user = find(user_id)
-    household = Household.find(household_id)
-    #puts "In model calling mailer for " + user.email
-    UserMailer.created_and_added_to_household(user, password, household).deliver
-  end
-  
-  def self.added_to_service_provider(user_id, service_provider_id) #JDavis: polymorphism will remove this
-    user = find(user_id)
-    service_provider = ServiceProvider.find(service_provider_id)
-    #puts "In model calling mailer for " + user.email
-    UserMailer.added_to_service_provider(user, service_provider).deliver
-  end
-  
-  def self.created_and_added_to_service_provider(user_id, password, service_provider_id) #JDavis: polymorphism will remove this
-    user = find(user_id)
-    service_provider = ServiceProvider.find(service_provider_id)
-    #puts "In model calling mailer for " + user.email
-    UserMailer.created_and_added_to_service_provider(user, password, service_provider).deliver
-  end
-  
-  def create_user_to_household(email, household_id, first_name="", last_name="") #JDavis: polymorphism will remove this
-    user = User.find_by(email: email)
-    household = Household.find(household_id)
-    if user
-      Rails.env.production? ? QC.enqueue("User.added_to_household", user.id, household_id) : UserMailer.added_to_household(user.id, household_id).deliver 
-      #UserMailer.added_to_household(user.id, household_id).deliver 
-    else
-      generated_password = Devise.friendly_token.first(8)
-      user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
-      Rails.env.production? ? QC.enqueue("User.created_and_added_to_household", user.id, generated_password, household_id) : UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver 
-      #UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver
-    end
-    
-    household.associate_user(user.id)
-  end
-  
-  def create_user_to_organization(email, organization_id, first_name="", last_name="") #JDavis: polymorphism will remove this
-    user = User.find_by(email: email)
-    organization = Organization.find(organization_id)
-    if user
-      Rails.env.production? ? QC.enqueue("User.added_to_organization", user.id, organization_id) : UserMailer.added_to_organization(user.id, organization_id).deliver 
-      #UserMailer.added_to_household(user.id, household_id).deliver 
-    else
-      generated_password = Devise.friendly_token.first(8)
-      user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
-      Rails.env.production? ? QC.enqueue("User.created_and_added_to_organization", user.id, generated_password, organization_id) : UserMailer.created_and_added_to_organization(user.id, generated_password, organization_id).deliver 
-      #UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver
-    end
-    
-    organization.associate_user(user.id)
-  end
-  
-  def self.create_user_to_service_provider(email, service_provider_id) #JDavis: polymorphism will remove this
-    user = User.find_by(email: email)
-    service_provider = ServiceProvider.find(service_provider_id)
-    if user
-      Rails.env.production? ? QC.enqueue("User.added_to_service_provider", user.id, service_provider_id) : UserMailer.added_to_service_provider(user, service_provider_id).deliver 
-    else
-      generated_password = Devise.friendly_token.first(8)
-      user = User.create(email: email, password: generated_password, password_confirmation: generated_password )
-      Rails.env.production? ? QC.enqueue("User.created_and_added_to_service_provider", user.id, generated_password, service_provider_id) : UserMailer.created_and_added_to_service_provider(user, generated_password, service_provider_id).deliver 
-    end
-    
-    service_provider.associate_user(user.id)
   end
   
   def admin?
