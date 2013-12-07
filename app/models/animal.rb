@@ -38,7 +38,6 @@
 #  organization_id      :integer
 #  owner_id             :integer
 #  owner_type           :string(255)
-#  pending_transfer     :boolean
 #
 
 class Animal < ActiveRecord::Base
@@ -52,6 +51,7 @@ class Animal < ActiveRecord::Base
   belongs_to :organization
   #belongs_to :household
   belongs_to :breed
+  has_one    :animal_transfer, dependent: :destroy
   has_many   :documents, dependent: :destroy
   has_many   :vaccinations, through: :animal_vaccinations
   has_many   :animal_vaccinations, dependent: :destroy
@@ -128,8 +128,23 @@ class Animal < ActiveRecord::Base
     end
   end
   
-  def transfer_ownership(email)
-    true
+  def transfer_ownership(email, first_name="", last_name="")
+    user = User.find_by(email: email)
+    
+    unless user
+      generated_password = Devise.friendly_token.first(8)
+      user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
+      user.new_account_notice(generated_password) if user
+    end
+    
+    if user
+      AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
+      user.animal_transfer_pending(self.id)
+    end
+  end
+  
+  def pending_transfer?
+    animal_transfer ? true : false
   end
   
   

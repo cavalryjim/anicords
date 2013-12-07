@@ -48,7 +48,11 @@
           </tr>
           <tr class="no_bg">
           	<td align="right">
-              <%= link_to "transfer ownership", "#", "data-reveal-id" => "transferAnimalModal", 'data-no-turbolink' => true, remote: true %>
+          	  <% if @animal.pending_transfer? %>
+                <%= link_to "cancel transfer", "#", remote: true %>
+              <% else %>
+                <%= link_to "transfer ownership", "#", "data-reveal-id" => "transferAnimalModal", 'data-no-turbolink' => true, remote: true %>
+              <% end %>
           	</td>
           </tr>
         </table>

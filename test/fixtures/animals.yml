@@ -38,7 +38,6 @@
 #  organization_id      :integer
 #  owner_id             :integer
 #  owner_type           :string(255)
-#  pending_transfer     :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

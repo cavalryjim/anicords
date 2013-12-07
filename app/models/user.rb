@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many  :service_providers, through: :user_associations  #JDavis: need to make this polymorphic like organizations
   has_many  :organizations, through: :user_associations, source: :group, source_type: "Organization"
   has_many  :beta_comments, dependent: :destroy
+  has_many  :animal_transfers,  as: :transferee, dependent: :destroy
   
   validates_presence_of :email
   #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"
@@ -123,6 +124,15 @@ class User < ActiveRecord::Base
     super && provider.blank?
   end
   
+  def new_account_notice(password)
+    Rails.env.production? ? QC.enqueue("User.send_new_account_notice", self.id, password) : UserMailer.new_account_notice(self, password).deliver
+  end
+  
+  def self.send_new_account_notice(user_id, password)
+    user = User.find_by(email: email)
+    UserMailer.new_account_notice(user, password).deliver
+  end
+  
   def self.signup_confirmation(user_id)
     user = find(user_id)
     UserMailer.signup_confirmation(user).deliver
@@ -151,6 +161,17 @@ class User < ActiveRecord::Base
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_group", user_association_id, generated_password) : UserMailer.created_and_added_to_group(user_association_id, generated_password).deliver 
       #UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver
     end
+  end
+  
+  def animal_transfer_pending(animal_id)
+    animal = Animal.find(animal_id) unless Rails.env.production?
+    Rails.env.production? ? QC.enqueue("User.send_animal_transfer_notice", self.id, animal_id) : UserMailer.animal_transfer_notice(self, animal).deliver
+  end
+  
+  def self.send_animal_transfer_notice(user_id, animal_id)
+    user = User.find(user_id)
+    animal = Animal.find(animal_id)
+    UserMailer.animal_transfer_notice(user, animal).deliver
   end
   
   def admin?

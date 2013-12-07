@@ -156,7 +156,6 @@ ActiveRecord::Schema.define(version: 20131206181911) do
     t.integer  "organization_id"
     t.integer  "owner_id"
     t.string   "owner_type"
-    t.boolean  "pending_transfer"
   end
 
   create_table "beta_comments", force: true do |t|

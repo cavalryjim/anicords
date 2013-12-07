@@ -14,6 +14,12 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Welcome to DooLiddl"
   end
   
+  def new_account_notice(user, password)
+    @user = user
+    @password = password
+    mail to: @user.email, subject: "Welcome to DooLiddl"
+  end
+  
   def added_to_group(user_association_id)
     user_association = UserAssociation.find(user_association_id)
     @user = user_association.user
@@ -55,6 +61,12 @@ class UserMailer < ActionMailer::Base
     @user = user
     @service_provider = service_provider
     mail to: user.email, subject: "Added to DooLiddl Serive Provider"
+  end
+  
+  def animal_transfer_notice(user, animal)
+    @user = user
+    @animal = animal
+    mail to: user.email, subject: "Health Record for " + @animal.name + " on DooLiddl"
   end
   
 private

@@ -1,6 +1,7 @@
 
 <% if @success %>
   $('#transferAnimalModal').foundation('reveal', 'close');
+  $("#animal<%=@animal.id.to_s%>").addClass("transfer_image");
 <% else %>
   $("#transfer_error").removeClass("hidden");
   //return alert("There was a problem.  Please try again later.");

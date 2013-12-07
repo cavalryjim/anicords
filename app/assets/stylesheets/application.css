@@ -197,4 +197,9 @@ div.front_page_callout:hover {
   position: relative !important;
 }
 
+img.transfer_image {
+  opacity:0.5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
+}
+
 
