@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
   has_many  :organizations, through: :user_associations, source: :group, source_type: "Organization"
   has_many  :beta_comments, dependent: :destroy
   has_many  :animal_transfers,  as: :transferee, dependent: :destroy
+  has_many  :notifications, as: :recipient, dependent: :destroy
   
   validates_presence_of :email
   #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"
@@ -71,6 +72,10 @@ class User < ActiveRecord::Base
     else
       email
     end
+  end
+  
+  def has_notifications?
+    self.notifications.count > 0 
   end
   
   def multiple_associations?

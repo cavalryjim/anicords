@@ -29,6 +29,20 @@ module ApplicationHelper
     end
   end
   
+  def user_notifications
+    if current_user.has_notifications?
+      html = ""
+      current_user.notifications.each do |n|
+        html = html + "<li>" + link_to(n.message, n.path) + "</li>"
+      end
+    else
+      html = "<li>" + link_to('No alerts', '#') + "</li>"
+    end
+    
+    return html
+    #html.html_safe
+  end
+  
   def us_states
     [
       ['Alabama', 'AL'],

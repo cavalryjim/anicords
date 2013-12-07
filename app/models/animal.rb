@@ -140,6 +140,7 @@ class Animal < ActiveRecord::Base
     if user
       AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
       user.animal_transfer_pending(self.id)
+      user.notifications.create(message: "transfer pending", path: animal_path(self.id) )
     end
   end
   
