@@ -17,7 +17,11 @@ class Ability
       animal.owner.users.include?(user)
     end
     
-    can :view, ServiceProvider
+    can :read, Animal do |animal|
+      user == animal.animal_transfer.transferee
+    end
+    
+    can :read, ServiceProvider
     
     can :manage, ServiceProvider do |provider|
       provider.new_record? or

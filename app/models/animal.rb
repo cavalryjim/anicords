@@ -128,7 +128,7 @@ class Animal < ActiveRecord::Base
     end
   end
   
-  def transfer_ownership(email, first_name="", last_name="")
+  def transfer_ownership(email, first_name="", last_name="", url="")
     user = User.find_by(email: email)
     
     unless user
@@ -139,8 +139,8 @@ class Animal < ActiveRecord::Base
     
     if user
       AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
-      user.animal_transfer_pending(self.id)
-      user.notifications.create(message: "transfer pending", path: animal_path(self.id) )
+      notification_id = user.notifications.create(message: "transfer pending", url: url ).id
+      user.animal_transfer_pending(self.id, notification_id)
     end
   end
   

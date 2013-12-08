@@ -21,7 +21,7 @@ class HouseholdsController < ApplicationController
   def new
     @household = Household.new
     #@household.users << current_user
-    1.times { @household.animals.build }
+    1.times { @household.animals.build } unless current_user.has_pending_transfers?
   end
 
   # GET /households/1/edit

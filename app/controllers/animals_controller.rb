@@ -109,7 +109,7 @@ class AnimalsController < ApplicationController
     #breaker
     @success = (params[:transferee_email] == params[:transferee_email2]) && params[:transferee_email].match(/^\S+@\S+\.\S+$/)
     
-    @animal.transfer_ownership(params[:transferee_email], params[:first_name], params[:last_name]) if @success
+    @animal.transfer_ownership(params[:transferee_email], params[:first_name], params[:last_name], animal_url(@animal.id)) if @success
     
     respond_to do |format|
       format.js 

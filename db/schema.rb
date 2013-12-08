@@ -248,7 +248,7 @@ ActiveRecord::Schema.define(version: 20131207153003) do
     t.integer  "recipient_id"
     t.string   "recipient_type"
     t.string   "message"
-    t.string   "path"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

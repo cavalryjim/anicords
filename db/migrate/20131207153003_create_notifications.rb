@@ -3,7 +3,7 @@ class CreateNotifications < ActiveRecord::Migration
     create_table :notifications do |t|
       t.references :recipient, polymorphic: true
       t.string :message
-      t.string :path
+      t.string :url
       t.timestamps
     end
   end

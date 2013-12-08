@@ -78,6 +78,10 @@ class User < ActiveRecord::Base
     self.notifications.count > 0 
   end
   
+  def has_pending_transfers?
+    self.animal_transfers.count > 0 
+  end
+  
   def multiple_associations?
     self.user_associations.count > 1
   end  
@@ -168,15 +172,15 @@ class User < ActiveRecord::Base
     end
   end
   
-  def animal_transfer_pending(animal_id)
+  def animal_transfer_pending(animal_id, notification_id)
     animal = Animal.find(animal_id) unless Rails.env.production?
-    Rails.env.production? ? QC.enqueue("User.send_animal_transfer_notice", self.id, animal_id) : UserMailer.animal_transfer_notice(self, animal).deliver
+    Rails.env.production? ? QC.enqueue("User.send_animal_transfer_notice", self.id, animal_id, notification_id) : UserMailer.animal_transfer_notice(self, animal, notification_id).deliver
   end
   
-  def self.send_animal_transfer_notice(user_id, animal_id)
+  def self.send_animal_transfer_notice(user_id, animal_id, notification_id)
     user = User.find(user_id)
     animal = Animal.find(animal_id)
-    UserMailer.animal_transfer_notice(user, animal).deliver
+    UserMailer.animal_transfer_notice(user, animal, notification_id).deliver
   end
   
   def admin?
