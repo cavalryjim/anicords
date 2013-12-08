@@ -20,7 +20,7 @@ class Household < ActiveRecord::Base
   include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }
   
-  has_many  :user_associations, dependent: :destroy
+  has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
   #has_many  :animals, dependent: :destroy
   has_many  :animals, as: :owner, dependent: :destroy
@@ -37,7 +37,7 @@ class Household < ActiveRecord::Base
   end
   
   def associate_user(user_id)
-    UserAssociation.where(user_id: user_id, household_id: self.id).first_or_create
+    UserAssociation.where(user_id: user_id, group: self).first_or_create
   end
   
   def associate_service_provider(service_provider_id)
@@ -50,6 +50,21 @@ class Household < ActiveRecord::Base
     user.last_name = last_name if (user.last_name == nil)
     user.save if user.changed.any?
     self.associate_user(user.id)
+  end
+  
+  def transfer_animals(transfers)
+    transfers.each do |transfer_id, decline_transfer|
+      self.add_animal_from_transfer(transfer_id) unless decline_transfer == 1 # JDavis: the transfer was accepted
+    end
+  end
+  
+  def add_animal_from_transfer(transfer_id)
+    transfer = AnimalTransfer.find(transfer_id)
+    if transfer
+      animal = transfer.animal
+      animal.owner = self
+      transfer.destroy if animal.save
+    end
   end
   
 end

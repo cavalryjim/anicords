@@ -99,12 +99,26 @@
       </div>
     </div>
     
+    <% if current_user.has_pending_transfers? %>
+      <% current_user.animal_transfers.each do |transfer| %>
+        <div class="row">
+          <div class="large-12 columns">
+            <fieldset>
+              <%= transfer.display_name %>
+              <%= hidden_field_tag 'animal_transfers['+transfer.id.to_s+']' , 0 %>
+              <%= link_to 'remove', '#', class: 'remove_fields' %>
+            </fieldset>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    
     <div class="row">
       <div class="large-12 columns">
-    <%= f.fields_for :animals do |builder| %>
-  	  <%= render 'animal_fields', f: builder %>
-	<% end %>
-	<%= link_to_add_fields "Add another animal", f, :animals %>
+       <%= f.fields_for :animals do |builder| %>
+  	     <%= render 'animal_fields', f: builder %>
+	   <% end %>
+	   <%= link_to_add_fields "Add another animal", f, :animals %>
 	  </div>
 	</div>
     

@@ -2,23 +2,28 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, Household do |household|
-      household.new_record? or
-      household.users.include?(user)
-    end
-    
-    can :manage, Organization do |organization|
-      organization.new_record? or
-      organization.users.include?(user)
-    end
-    
     can :manage, Animal do |animal|
       animal.new_record? or
       animal.owner.users.include?(user)
     end
     
-    can :read, Animal do |animal|
-      user == animal.animal_transfer.transferee
+    can [:read, :change_owner], Animal do |animal|
+      user == animal.animal_transfer.transferee if animal.pending_transfer?
+    end
+    
+    can :manage, Household do |household|
+      household.new_record? or
+      household.users.include?(user)
+    end
+    
+    can :manage, Notification do |notification|
+      notification.new_record? or
+      notification.recipient == user
+    end
+    
+    can :manage, Organization do |organization|
+      organization.new_record? or
+      organization.users.include?(user)
     end
     
     can :read, ServiceProvider

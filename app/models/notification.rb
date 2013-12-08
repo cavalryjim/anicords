@@ -9,8 +9,11 @@
 #  url            :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  event_id       :integer
+#  event_type     :string(255)
 #
 
 class Notification < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
+  belongs_to :event,     polymorphic: true
 end

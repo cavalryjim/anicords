@@ -172,15 +172,15 @@ class User < ActiveRecord::Base
     end
   end
   
-  def animal_transfer_pending(animal_id, notification_id)
+  def animal_transfer_pending(animal_id)
     animal = Animal.find(animal_id) unless Rails.env.production?
-    Rails.env.production? ? QC.enqueue("User.send_animal_transfer_notice", self.id, animal_id, notification_id) : UserMailer.animal_transfer_notice(self, animal, notification_id).deliver
+    Rails.env.production? ? QC.enqueue("User.send_animal_transfer_notice", self.id, animal_id) : UserMailer.animal_transfer_notice(self, animal).deliver
   end
   
-  def self.send_animal_transfer_notice(user_id, animal_id, notification_id)
+  def self.send_animal_transfer_notice(user_id, animal_id)
     user = User.find(user_id)
     animal = Animal.find(animal_id)
-    UserMailer.animal_transfer_notice(user, animal, notification_id).deliver
+    UserMailer.animal_transfer_notice(user, animal).deliver
   end
   
   def admin?

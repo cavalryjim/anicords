@@ -34,7 +34,7 @@ module ApplicationHelper
       html = ""
       current_user.notifications.each do |n|
         #JDavis: need to add the notification.id to the path.
-        html = html + "<li>" + link_to(n.message, n.url+"?notice="+n.id.to_s) + "</li>"
+        html = html + "<li>" + link_to(n.message, n.url) + "</li>"
       end
     else
       html = "<li>" + link_to('No alerts', '#') + "</li>"

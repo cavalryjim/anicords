@@ -1,8 +1,8 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership]
+  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer]
   before_action :set_owner, only: [:new, :show, :create, :edit, :destroy, :transfer_ownership]
   before_filter :authenticate_user!, except: [:show]
-  authorize_resource
+  authorize_resource except: [:accept_transfer]
   
   # GET /animals
   # GET /animals.json
@@ -13,6 +13,8 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.json
   def show
+    @transfer_id = AnimalTransfer.where(animal_id: @animal.id, transferee: current_user).first.id if current_user.animal_transfers.map{|at| at.animal_id}.include?(@animal.id)
+    
     respond_to do |format|
       format.js
       format.html
@@ -114,6 +116,20 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       format.js 
     end
+  end
+  
+  def accept_transfer
+    association = UserAssociation.find(params[:association])
+    transfer = AnimalTransfer.find(params[:animal_transfer_id])
+    notice = 'There was a problem with the transfer.'
+
+    @animal.owner = association.group
+    if can?(:change_owner, @animal) && @animal.save
+      transfer.destroy if transfer
+      notice = 'Animal was successfully transferred.' 
+    end
+    
+    redirect_to association.group, notice: notice
   end
 
   private

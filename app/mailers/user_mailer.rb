@@ -63,10 +63,9 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Added to DooLiddl Serive Provider"
   end
   
-  def animal_transfer_notice(user, animal, notification_id)
+  def animal_transfer_notice(user, animal)
     @user = user
     @animal = animal
-    @notification_id = notification_id
     mail to: user.email, subject: "Health Record for " + @animal.name + " on DooLiddl"
   end
   

@@ -138,9 +138,9 @@ class Animal < ActiveRecord::Base
     end
     
     if user
-      AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
-      notification_id = user.notifications.create(message: "transfer pending", url: url ).id
-      user.animal_transfer_pending(self.id, notification_id)
+      transfer = AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
+      user.notifications.create(message: "transfer pending", url: url, event: transfer )
+      user.animal_transfer_pending(self.id)
     end
   end
   

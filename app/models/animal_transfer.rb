@@ -13,5 +13,10 @@
 class AnimalTransfer < ActiveRecord::Base
   belongs_to :animal
   belongs_to :transferee, polymorphic: true
+  has_many   :notifications, as: :event, dependent: :destroy
+
+  def display_name
+    animal.name + " from " + animal.owner.name
+  end
 
 end
