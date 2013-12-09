@@ -11,7 +11,15 @@
   	
     <ul class="right no_bg">
 	  <% if user_signed_in? %>
-	    <li class="has-dropdown"><%= link_to image_tag('white-flag-icone-6376-48.png', size: '25x25'), '#' %>
+	    <li class="has-dropdown">
+	      <%= link_to('#') do %>
+	        <div class="notifications">
+             <%= number_of_notifications %>
+	        </div>
+          <% end %>
+	    
+	    
+	    
 	      <ul class="dropdown"> 
 	      	<%= raw user_notifications %>	
 	      </ul>

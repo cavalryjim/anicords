@@ -29,6 +29,11 @@ module ApplicationHelper
     end
   end
   
+  def number_of_notifications
+    #(current_user.notifications.count > 0) ? current_user.notifications.count : " "
+    current_user.notifications.count
+  end
+  
   def user_notifications
     if current_user.has_notifications?
       html = ""
