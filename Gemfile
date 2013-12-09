@@ -3,7 +3,7 @@ ruby '2.0.0'
 #ruby-gemset=anicords
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '0.16.0'

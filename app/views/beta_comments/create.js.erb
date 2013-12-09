@@ -1,4 +1,5 @@
 $("form#beta_comment_form").on("ajax:success", function(event, data, status, response) {
+  $('#beta_comment_comment').val('');
   $('#betaCommentModal').foundation('reveal', 'close');
   $(".bottom_flash_alert").removeClass("hidden");
   $(".bottom_flash_alert").show().delay(2000).fadeOut();

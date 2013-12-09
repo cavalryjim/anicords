@@ -24,7 +24,7 @@ class BetaCommentsController < ApplicationController
   private
   
     def beta_comment_params
-      params.require(:beta_comment).permit!
+      params.require(:beta_comment).permit(:comment, :page_url, :user_id)
     end
   
   
