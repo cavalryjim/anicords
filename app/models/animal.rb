@@ -148,5 +148,13 @@ class Animal < ActiveRecord::Base
     animal_transfer ? true : false
   end
   
+  def fixed
+    neutered ? 'Yes' : 'No'
+  end
+  
+  def food_preference
+    food_id ? Food.find(food_id).name : "None"
+  end
+  
   
 end
