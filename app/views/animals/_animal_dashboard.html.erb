@@ -3,17 +3,19 @@
   <!-- Left Side -->
   <div class="large-6 columns">
   	<div class="row">
-      <div class="large-12 columns">
+      <div class="large-4 columns">
       	<%= animal_image(@animal) %></br>
         <%= @animal.name %>
       </div>	
+      <div class="large-4 columns">
       <% if @animal.qr_code.present? %>
-        <%= image_tag( @animal.qr_code.url )%>
+        <%= image_tag( @animal.qr_code.url, size: '75x75' )%>
       <% end %>
-        
+      </div>
+      <div class="large-4 columns"></div>
   	</div>
   	<div class="row">
-  	  <div class="large-6 large-offset-4 columns">
+  	  <div class="large-7 large-offset-4 columns">
         
         <table class="no_border">
           <tr class="no_bg">
@@ -23,12 +25,7 @@
           </tr>
           <tr class="no_bg">
           	<td align="right">
-              schedule a service	
-          	</td>
-          </tr>
-          <tr class="no_bg">
-          	<td align="right">
-              track pet health	
+              schedule an appointment (coming soon!)	
           	</td>
           </tr>
           <tr class="no_bg">
@@ -38,12 +35,12 @@
           </tr>
           <tr class="no_bg">
           	<td align="right">
-              contact service provider	
+              upload photo (coming soon!)
           	</td>
           </tr>
           <tr class="no_bg">
           	<td align="right">
-              upload photo	
+              <%= link_to "print sitter instructions (pdf)", animal_sitter_instructions_path(@animal, format: "pdf") %>
           	</td>
           </tr>
           <tr class="no_bg">

@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer]
-  before_action :set_owner, only: [:new, :show, :create, :edit, :destroy, :transfer_ownership]
+  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, :sitter_instructions]
+  before_action :set_owner, only: [:new, :show, :create, :edit, :destroy, :transfer_ownership, :sitter_instructions]
   before_filter :authenticate_user!, except: [:show]
   authorize_resource except: [:accept_transfer]
   
@@ -130,6 +130,16 @@ class AnimalsController < ApplicationController
     end
     
     redirect_to association.group, notice: notice
+  end
+  
+  def sitter_instructions
+    respond_to do |format|
+      format.pdf do
+        pdf = SitterInstructionsPdf.new(@animal)
+        send_data pdf.render, filename: "#{@animal}_sitter_instructions.pdf",
+                type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   private

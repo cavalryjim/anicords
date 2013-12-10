@@ -57,6 +57,7 @@ Anicords::Application.routes.draw do
   get 'animals/:id/download_file' => 'animals#download_file'
   patch 'animals/:id/transfer_ownership' => 'animals#transfer_ownership', as: :transfer_animal
   patch 'animals/:id/accept_transfer' => 'animals#accept_transfer', as: :accept_transfer
+  get 'animals/:id/sitter_instructions' => 'animals#sitter_instructions', as: :animal_sitter_instructions
   
   get 'remote_requests/vitamins' => 'remote_requests#vitamins'
   get 'remote_requests/allergies' => 'remote_requests#allergies'
