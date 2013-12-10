@@ -203,11 +203,15 @@ img.transfer_image {
 }
 
 div.notifications {
-  color: red;
-  width:30px;
   text-align: center;
-  background:url('white-flag-icone-6376-48.png') no-repeat center;
+  width: 30px;
+  background: url('white-flag-icone-6376-48.png') no-repeat center;
   background-size:contain;
+}
+
+div.notifications_text {
+  color: 000;
+  background: url('box_red_16.png') no-repeat center;
 }
 
 
