@@ -305,7 +305,7 @@ DEPENDENCIES
   jquery-rails (= 2.2.1)
   letter_opener (= 1.1.2)
   mandrill-api (= 1.0.47)
-  newrelic_rpm
+  newrelic_rpm (= 3.7.0.177)
   omniauth-facebook (= 1.4.1)
   omniauth-twitter (= 1.0.0)
   pg (= 0.16.0)
