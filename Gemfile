@@ -37,6 +37,7 @@ gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '0.9.15'
 gem 'prawn', '0.12.0'
 gem 'newrelic_rpm', '3.7.0.177'
+gem 'unicorn', '4.7.0'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
