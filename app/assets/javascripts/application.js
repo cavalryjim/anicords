@@ -45,10 +45,46 @@ $(function(){
  
   }, 2000);
   
-  $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  $( ".datepicker" ).datepicker({ 
+  	dateFormat: 'yy-mm-dd',
+  	changeMonth: true,
+  	changeYear: true
+  });
   
   $(".regular_select").select2({ minimumResultsForSearch: 55, width: '100%'});
+  
+  $(".state_select").select2({ 
+  	minimumResultsForSearch: 55, 
+  	width: '100%',
+    matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; }
+  });
 	
 
 });
+
+function validateFiles(inputFile) {
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var extErrorMessage = "Only .pdf or .tif files are allowed";
+  var allowedExtension = ["pdf", "tif", "tiff"];
+ 
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+ 
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+ 
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
 

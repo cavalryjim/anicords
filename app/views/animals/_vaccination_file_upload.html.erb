@@ -1,7 +1,8 @@
 <div class="file_class">  
   <%= label_tag 'Vaccination record'%>
   <%= link_to(image_tag('Icon-Document03-Blue.png', size: '20x20'), @animal.vaccination_record.url, target: '_blank') if @animal.vaccination_record? %>
-  <%= file_field @animal, :vaccination_record, id: 'animal_vaccination_record', name: 'animal[vaccination_record]'%>
+  <%= file_field @animal, :vaccination_record, id: 'animal_vaccination_record', name: 'animal[vaccination_record]', class: 'upload', 
+		:data => { :max_file_size => 5.megabytes }%>
   
   
   <% if @animal.vaccination_record? %>

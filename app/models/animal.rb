@@ -68,6 +68,7 @@ class Animal < ActiveRecord::Base
   
   validates_presence_of :name
   #validates :household_id, presence: true, if: :needs_owner?
+  validate :file_size_validation
   
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
@@ -78,16 +79,6 @@ class Animal < ActiveRecord::Base
   def to_s
     name
   end
-  
-  #def owner
-  #  if self.household_id
-  #    Household.find(self.household_id)
-  #  elsif self.breeder_id
-  #    Breeder.find(self.breeder_id)
-  #  else
-  #    nil
-  #  end
-  #end
   
   def needs_owner?
     if self.breeder_id == nil 
@@ -154,6 +145,14 @@ class Animal < ActiveRecord::Base
   
   def food_preference
     food_id ? Food.find(food_id).name : "None"
+  end
+  
+  private
+  
+  def file_size_validation
+    errors[:pedigree] << "should be less than 5MB" if pedigree.size > 5.megabytes
+    errors[:health_certification] << "should be less than 5MB" if health_certification.size > 5.megabytes
+    errors[:vaccination_record] << "should be less than 5MB" if vaccination_record.size > 5.megabytes
   end
   
   

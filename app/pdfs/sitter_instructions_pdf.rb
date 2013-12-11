@@ -5,8 +5,8 @@ class SitterInstructionsPdf < Prawn::Document
     @owner = animal.owner
     top_header
     demographics
-    vaccinations
     feeding_info
+    special_instructions
   end
   
   def top_header
@@ -25,29 +25,17 @@ class SitterInstructionsPdf < Prawn::Document
     text "description: #{@animal.description}" if @animal.description
   end
   
-  def vaccinations
-    move_down 21
-    table vaccination_rows do
-      row(0).font_style = :bold
-      columns(1..3).align = :right
-      self.row_colors = ["DDDDDD", "FFFFFF"]
-      self.header = true
-    end
-  end
-
-  def vaccination_rows
-    [["vaccination", "date"]] +
-    @animal.animal_vaccinations.map do |vaccination|
-      [vaccination.name, vaccination.date]
-    end
-  end
-  
   def feeding_info
     move_down 15
     text "Feeding Information", size: 20, style: :bold 
     text "Preferred food: #{@animal.food_preference}"
     text "#{@animal.feeding_comment}"
-    
+  end
+  
+  def special_instructions
+    move_down 15
+    text "Special Instructions", size: 20, style: :bold 
+    text "#{@animal.special_instructions}"
   end
   
 end

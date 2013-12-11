@@ -322,6 +322,8 @@ jQuery ->
 
   $("#feeding_display").click ->
     $("#feeding_dialog").dialog "open"
+    
+  $(".upload").change -> validateFiles(this)
   #----------end of jquery dialog----------------------#  
   
   
