@@ -233,6 +233,7 @@ GEM
     remotipart (1.2.1)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    rmagick (2.13.2)
     rqrcode (0.4.2)
     rqrcode_png (0.1.2)
       chunky_png
@@ -322,6 +323,7 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails_12factor (= 0.0.2)
   remotipart (= 1.2.1)
+  rmagick (= 2.13.2)
   rqrcode_png (= 0.1.2)
   sass-rails (= 4.0.0)
   sdoc

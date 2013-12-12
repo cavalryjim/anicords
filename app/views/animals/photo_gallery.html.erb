@@ -1,0 +1,29 @@
+<fieldset>
+  <legend>Pictures</legend>
+  <table>
+    <% for picture in @animal.pictures %>
+      <tr>
+    	
+    	<!--<td><%= link_to document.display_title, controller: 'documents', action: 'download_file', id: document.id %></td>-->
+    	<td><%= picture.default_name %></td>
+    	<td><%= link_to image_tag('cross.png', :alt => "del"), [@animal.owner, @animal, document], confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</fieldset>
+
+<% if @animal.id %>	
+	<%= direct_upload_form_for @uploader do |f| %>
+	  
+	  <div class="row">
+        <div class="large-8 columns">
+	      <%= f.file_field :file_path %>
+	    </div>
+	  </div>
+	  
+	  <div class="actions">       
+	    <%= f.submit 'Upload file' %>
+	  </div>
+	
+	<% end %>
+<% end %>

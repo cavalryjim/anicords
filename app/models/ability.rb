@@ -26,6 +26,13 @@ class Ability
       organization.users.include?(user)
     end
     
+    can :manage, Picture do |picture|
+      picture.new_record? or
+      picture.animal.owner.users.include?(user)
+    end
+    
+    can :read, Picture
+    
     can :read, ServiceProvider
     
     can :manage, ServiceProvider do |provider|

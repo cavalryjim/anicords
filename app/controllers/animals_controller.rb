@@ -1,5 +1,6 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, :sitter_instructions]
+  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, 
+                                      :sitter_instructions, :photo_gallery]
   before_action :set_owner, only: [:new, :show, :create, :edit, :destroy, :transfer_ownership, :sitter_instructions]
   before_filter :authenticate_user!, except: [:show]
   authorize_resource except: [:accept_transfer]
@@ -141,6 +142,17 @@ class AnimalsController < ApplicationController
                 type: "application/pdf", disposition: "inline"
       end
     end
+  end
+  
+  def photo_gallery
+    @pictures = @animal.pictures
+    # JDavis: need to make this work for pictures
+    if params[:key]
+      Document.create(animal_id: @animal.id, key: params[:key])
+    end
+    @uploader = Document.new.file_path
+    #@uploader.success_action_redirect = url_for([@owner, @animal]) + '/edit'
+    @uploader.success_action_redirect = polymorphic_path([@owner, @animal], method: :edit)
   end
 
   private
