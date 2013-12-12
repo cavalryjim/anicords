@@ -30,7 +30,7 @@
           </tr>
           <tr class="no_bg">
           	<td align="right">
-              <%= link_to "print medical record (pdf)", household_animal_path(@owner, @animal, format: "pdf") %>
+              <%= link_to "print medical record (pdf)", household_animal_path(@owner, @animal, format: "pdf"), target: '_blank' %>
           	</td>
           </tr>
           <tr class="no_bg">
@@ -40,7 +40,7 @@
           </tr>
           <tr class="no_bg">
           	<td align="right">
-              <%= link_to "print sitter instructions (pdf)", animal_sitter_instructions_path(@animal, format: "pdf") %>
+              <%= link_to "print sitter instructions (pdf)", animal_sitter_instructions_path(@animal, format: "pdf"), target: '_blank' %>
           	</td>
           </tr>
           <tr class="no_bg">
