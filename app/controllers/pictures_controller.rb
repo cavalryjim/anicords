@@ -1,8 +1,14 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy, :download_file]
-  before_action :set_animal, only: [:create, :update, :destroy]
+  before_action :set_animal, only: [:index, :create, :update, :destroy]
 
-  
+  def index
+    Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
+    
+    #@pictures = @animal.pictures
+    @uploader = Picture.new.image
+    @uploader.success_action_redirect = animal_pictures_url(@animal)
+  end
 
   # GET /pictures/1
   # GET /pictures/1.json
@@ -21,6 +27,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
+    #breaker
     @picture = Picture.new(picture_params)
     
     respond_to do |format|
@@ -28,6 +35,7 @@ class PicturesController < ApplicationController
         format.html { redirect_to return_path, notice: 'Picture was successfully uploaded.' }
         format.json { render action: 'show', status: :created, location: @picture }
       else
+        #breaker_not
         format.html { render action: 'new' }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
@@ -93,7 +101,8 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:name, :image, :animal_id, :file_path, :store_dir)
+      #params.require(:picture).permit(:name, :image, :animal_id, :store_dir, :key)
+      params.require(:picture).permit!
     end
   
 end

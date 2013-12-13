@@ -173,7 +173,7 @@ label.nav_dropdown {
    border-color: transparent transparent transparent !important;
 }
 
-input.upload {
+input.upload_file, input.upload_picture {
   border: 1px solid #CCC !important;
 }
 

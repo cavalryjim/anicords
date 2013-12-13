@@ -149,6 +149,27 @@ class Animal < ActiveRecord::Base
     food_id ? Food.find(food_id).name : "None"
   end
   
+  def remove_pedigree!
+    begin
+      super
+    rescue Fog::Storage::Rackspace::NotFound
+    end
+  end
+  
+  def remove_health_certification!
+    begin
+      super
+    rescue Fog::Storage::Rackspace::NotFound
+    end
+  end
+  
+  def remove_vaccination_record!
+    begin
+      super
+    rescue Fog::Storage::Rackspace::NotFound
+    end
+  end
+  
   private
   
   def file_size_validation

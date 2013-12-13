@@ -62,10 +62,16 @@ $(function(){
 
 });
 
-function validateFiles(inputFile) {
+function validateFiles(inputFile, type) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
-  var extErrorMessage = "Only .pdf or .tif files are allowed";
-  var allowedExtension = ["pdf", "tif", "tiff"];
+  
+  if (type == 'picture') {
+  	var extErrorMessage = "Only .bmp, .jpg, or .png files are allowed";
+    var allowedExtension = ["bmp", "jpg", "jpeg", "png"];
+  } else {
+    var extErrorMessage = "Only .pdf or .tif files are allowed";
+    var allowedExtension = ["pdf", "tif", "tiff"];
+  };
  
   var extName;
   var maxFileSize = $(inputFile).data('max-file-size');

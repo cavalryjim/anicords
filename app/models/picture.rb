@@ -13,10 +13,18 @@
 class Picture < ActiveRecord::Base
   belongs_to :animal
   mount_uploader :image, ImageUploader
+  #mount_uploader :image, FileUploader
+  
+  validates_presence_of :animal_id
+  validates_presence_of :key
 
   before_create :default_name
 
   def default_name
     self.name ||= File.basename(image.filename, '.*').titleize if image
+  end
+  
+  def image_path
+    image.path
   end
 end

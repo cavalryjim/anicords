@@ -323,7 +323,8 @@ jQuery ->
   $("#feeding_display").click ->
     $("#feeding_dialog").dialog "open"
     
-  $(".upload").change -> validateFiles(this)
+  $(".upload_file").change -> validateFiles(this, 'file')
+  $(".upload_picture").change -> validateFiles(this, 'picture')
   #----------end of jquery dialog----------------------#  
   
   

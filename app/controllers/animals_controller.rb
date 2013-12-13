@@ -110,7 +110,6 @@ class AnimalsController < ApplicationController
   end
   
   def transfer_ownership
-    #breaker
     @success = (params[:transferee_email] == params[:transferee_email2]) && params[:transferee_email].match(/^\S+@\S+\.\S+$/)
     
     @animal.transfer_ownership(params[:transferee_email], params[:first_name], params[:last_name], animal_url(@animal.id)) if @success
@@ -145,14 +144,11 @@ class AnimalsController < ApplicationController
   end
   
   def photo_gallery
-    @pictures = @animal.pictures
-    # JDavis: need to make this work for pictures
-    if params[:key]
-      Document.create(animal_id: @animal.id, key: params[:key])
-    end
-    @uploader = Document.new.file_path
-    #@uploader.success_action_redirect = url_for([@owner, @animal]) + '/edit'
-    @uploader.success_action_redirect = polymorphic_path([@owner, @animal], method: :edit)
+    Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
+    
+    #@pictures = @animal.pictures
+    @uploader = Picture.new.image
+    @uploader.success_action_redirect = animal_photo_gallery_url(@animal)
   end
 
   private
