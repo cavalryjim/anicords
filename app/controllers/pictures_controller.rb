@@ -61,19 +61,14 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     respond_to do |format|
-      format.html { redirect_to return_path, notice: 'Picture was successfully removed.' }
+      format.html { redirect_to animal_pictures_path(@animal), notice: 'Picture was successfully removed.' }
       format.json { head :no_content }
     end
   end
   
   def download_file
-    url = @picture.file_path.path
+    url = @picture.image.path
     send_file( url, :disposition => 'inline' )
-     #require 'open-uri'
-     #url = @picture.file_path.url
-     #data = open(url).read
-     #send_data data, :disposition => 'attachment', :filename=> @picture.file_path.file.filename
-     
   end
 
   private

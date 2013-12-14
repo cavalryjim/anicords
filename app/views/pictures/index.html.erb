@@ -7,7 +7,8 @@
 		  <li>
 		  	
 	    	<%= image_tag picture.image, class: 'th' %>
-	    	<%= link_to image_tag('cross.png', :alt => "del"), '#', confirm: 'Are you sure?' %>
+	    	<%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, 
+	    		confirm: 'Remove this picture?' %>
 		  </li>
 		  
 	    <% end %>
