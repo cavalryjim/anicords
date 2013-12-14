@@ -18,3 +18,6 @@
 
 # Ignore any local precompiled files
 /public/assets
+
+# JDavis: Ignore environmental variables
+/config/initializers/app_environment_variables.rb

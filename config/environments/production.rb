@@ -24,8 +24,8 @@ Anicords::Application.configure do
     # JDavis: for GoDaddy email account
     address:        'smtpout.secureserver.net', 
     port:           '80',
-    user_name:      'james@dooliddl.com',
-    password:       'd0071dd7',
+    user_name:      ENV['SECURESERVER_USERNAME'],
+    password:       ENV['SECURESERVER_PASSWORD'],
     # JDavis: for mandrill 
     #address:        'smtp.mandrillapp.com',
     #port:           '587',

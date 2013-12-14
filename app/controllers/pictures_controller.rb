@@ -5,7 +5,6 @@ class PicturesController < ApplicationController
   def index
     Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
     
-    #@pictures = @animal.pictures
     @uploader = Picture.new.image
     @uploader.success_action_redirect = animal_pictures_url(@animal)
   end
@@ -73,10 +72,7 @@ class PicturesController < ApplicationController
 
   private
     def set_animal
-      if params[:animal_id]
-        @animal = Animal.find(params[:animal_id])
-        
-      end
+      @animal = Animal.find(params[:animal_id]) if params[:animal_id]
     end
     
     def return_path
@@ -96,8 +92,8 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      #params.require(:picture).permit(:name, :image, :animal_id, :store_dir, :key)
-      params.require(:picture).permit!
+      params.require(:picture).permit(:name, :image, :animal_id, :store_dir, :key)
+      #params.require(:picture).permit!
     end
   
 end
