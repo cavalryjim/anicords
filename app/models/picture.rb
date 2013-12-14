@@ -11,6 +11,8 @@
 #
 
 class Picture < ActiveRecord::Base
+  include ActiveModel::Validations
+  
   belongs_to :animal
   mount_uploader :image, ImageUploader
   #mount_uploader :image, FileUploader

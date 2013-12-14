@@ -14,10 +14,11 @@
 	  </ul>
 	  
 		
-	  <%= direct_upload_form_for @uploader do |f| %>
+	  <%= direct_upload_form_for(@uploader, html: { "data-abide" => '' }) do |f| %>
 		<div class="row">
 	      <div class="large-8 columns">
 		    <%= f.file_field :image, class: 'upload_picture' %>
+		    <small class="error">Household name required.</small>
 		  </div>
 		</div>
 		  
