@@ -8,11 +8,11 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.16.0'
 
-gem 'sass-rails', '4.0.0'
+gem 'sass-rails', '4.0.1'
 gem 'uglifier', '2.1.1'
-gem 'coffee-rails', '4.0.0'
+gem 'coffee-rails', '4.0.1'
 
-gem 'devise', '3.0.3'
+gem 'devise', '3.2.2'
 gem 'zurb-foundation', '4.3.1'
 gem 'omniauth-twitter', '1.0.0'
 gem 'omniauth-facebook', '1.4.1'
@@ -39,6 +39,7 @@ gem 'prawn', '0.12.0'
 gem 'newrelic_rpm', '3.7.0.177'
 gem 'unicorn', '4.7.0'
 gem 'rmagick', '2.13.2'
+gem 'petfinder', '1.0.0'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

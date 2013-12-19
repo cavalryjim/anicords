@@ -9,6 +9,7 @@
 #  dosage           :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  vaccination_due  :date
 #
 
 class AnimalVaccination < ActiveRecord::Base
@@ -27,6 +28,10 @@ class AnimalVaccination < ActiveRecord::Base
   
   def date
     self.vaccination_date
+  end
+  
+  def due
+    self.vaccination_due
   end
     
 end

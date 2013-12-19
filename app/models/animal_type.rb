@@ -15,6 +15,7 @@ class AnimalType < ActiveRecord::Base
   has_many  :animals
   has_many  :foods
   has_many  :breeds
+  has_many  :vaccinations
   
   
   def to_s

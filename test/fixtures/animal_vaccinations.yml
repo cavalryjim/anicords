@@ -9,6 +9,7 @@
 #  dosage           :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  vaccination_due  :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

@@ -1,7 +1,9 @@
 <table>
 	<tr>
-	  <th colspan="3"><%= link_to 'Add Vaccination', '#', "data-reveal-id" => "addVaccinationModal" %></th>
-	  
+	  <th><%= link_to 'Add Vaccination', '#', "data-reveal-id" => "addVaccinationModal" %></th>
+	  <th>Date</th>
+	  <th>Due</th>
+	  <th></th>
 	 
 	</tr>
 	
@@ -9,6 +11,7 @@
 	  <tr>
 		<td><%= animal_vaccination.name%></td>
 		<td><%= mo_da_yr(animal_vaccination.date) %></td>
+		<td><%= mo_da_yr(animal_vaccination.due) %></td>
 		<td><%= link_to image_tag('cross.png', :alt => "del"), animal_animal_vaccination_path(@animal, animal_vaccination), method: :delete, remote: true, 
 				 data: { confirm: 'Please confirm you want to remove ' + animal_vaccination.name + ' from the list.' } %></td>
 	  </tr>
