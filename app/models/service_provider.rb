@@ -19,13 +19,12 @@
 class ServiceProvider < ActiveRecord::Base
   #attr_accessible :veterinarians_attributes
   has_many  :households, through: :household_associations
-  has_many  :household_associations, as: :group, dependent: :destroy
+  has_many  :household_associations, dependent: :destroy
   has_many  :services, through: :service_offerings
   has_many  :service_offerings, dependent: :destroy
   has_many  :business_types
   has_many  :service_provider_types, through: :business_types
-  has_many  :user_associations, dependent: :destroy
-  #has_many  :users, through: :user_associations
+  has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
   has_many  :veterinarians, dependent: :destroy
   has_many  :animals, through: :animal_associations

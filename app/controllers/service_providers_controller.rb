@@ -15,6 +15,7 @@ class ServiceProvidersController < ApplicationController
     else  
       @service_providers = ServiceProvider.order(:name).where("name ILIKE ? AND city ILIKE ? AND state ILIKE ? AND zip ILIKE ?", n, c, s, z)
     end
+    
     render json: @service_providers, only: [:id], methods: [:text]
   end
 

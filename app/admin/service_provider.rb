@@ -5,9 +5,7 @@ ActiveAdmin.register ServiceProvider do
   filter :created_at
    
   index do
-    column :service_provider do |provider|
-      link_to provider, edit_admin_service_provider_path(provider)
-    end
+    column :name
     column :email
     column :city
     column :state
