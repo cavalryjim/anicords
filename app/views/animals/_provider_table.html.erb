@@ -1,13 +1,15 @@
 <table>
 	<tr>
-	  <th colspan="2"><%= link_to 'Add Provider', '#', "data-reveal-id" => "addAnimalProviderModal" %></th>
+	  <th colspan="3"><%= link_to 'Add Provider', '#', "data-reveal-id" => "addAnimalProviderModal" %></th>
 	  
 	 
 	</tr>
 	
 	<% @animal.animal_associations.each do |animal_association|%>
 	  <tr>
-		<td><%= animal_association.name%></td>
+		<td><%= link_to animal_association.name, animal_association.service_provider %></td>
+		
+		<td><%= animal_association.provider_types %></td>
 		
 		<td><%= link_to image_tag('cross.png', :alt => "del"), animal_animal_association_path(@animal, animal_association), method: :delete, remote: true, 
 				 data: { confirm: 'Please confirm you want to remove ' + animal_association.name + ' from the list.' } %></td>

@@ -34,6 +34,8 @@ class ServiceProvider < ActiveRecord::Base
   validates_presence_of :name
   #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
   
+  before_save :replace_nils_with_blank
+  
   #def as_json options={}
   #  { value: id, label: name + ' ' + zip.to_s }
   #end
@@ -64,6 +66,12 @@ class ServiceProvider < ActiveRecord::Base
   
   def text
     self.name
+  end
+  
+  def replace_nils_with_blank # JDavis: need blanks to properly search for providers by city, state, and zip.
+    self.city = '' if self.city.nil?
+    self.state = '' if self.state.nil?
+    self.zip = '' if self.zip.nil?
   end
   
 end

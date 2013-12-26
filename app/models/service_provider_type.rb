@@ -9,7 +9,7 @@
 #
 
 class ServiceProviderType < ActiveRecord::Base
-  has_many  :business_types
+  has_many :business_types
   has_many :service_providers, through: :business_types
   has_many :services, dependent: :destroy
   

@@ -20,4 +20,9 @@ class AnimalAssociation < ActiveRecord::Base
     self.service_provider.name
   end
   
+  def provider_types
+    #self.service_provider.service_provider_types.map {|t| t.name }.join(",")
+    self.service_provider.service_provider_types.map {|t| t.name }.to_sentence
+  end
+  
 end
