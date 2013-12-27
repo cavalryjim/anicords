@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219044807) do
+ActiveRecord::Schema.define(version: 20131227033710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20131219044807) do
     t.integer  "organization_id"
     t.integer  "owner_id"
     t.string   "owner_type"
+    t.date     "neutered_date"
   end
 
   create_table "beta_comments", force: true do |t|

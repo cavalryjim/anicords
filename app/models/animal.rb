@@ -38,6 +38,7 @@
 #  organization_id      :integer
 #  owner_id             :integer
 #  owner_type           :string(255)
+#  neutered_date        :date
 #
 
 class Animal < ActiveRecord::Base
@@ -143,6 +144,10 @@ class Animal < ActiveRecord::Base
   
   def fixed
     neutered ? 'Yes' : 'No'
+  end
+  
+  def neutered_term
+    (self.gender == 'female') ? 'Spayed' : 'Neutered'
   end
   
   def food_preference

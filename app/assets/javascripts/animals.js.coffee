@@ -325,6 +325,10 @@ jQuery ->
     
   $(".upload_file").change -> validateFiles(this, 'file')
   $(".upload_picture").change -> validateFiles(this, 'picture')
+  
+  $("#animal_gender").change ->
+    $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
+    
   #----------end of jquery dialog----------------------#  
   
   
