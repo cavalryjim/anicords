@@ -39,6 +39,9 @@
 #  owner_id             :integer
 #  owner_type           :string(255)
 #  neutered_date        :date
+#  registration_club_id :integer
+#  fur_color            :string(255)
+#  disposition          :string(255)
 #
 
 class Animal < ActiveRecord::Base

@@ -185,7 +185,8 @@ class AnimalsController < ApplicationController
        :dob, :pedigree, :store_dir, :remove_pedigree, :show_name, :registration_number, :image, :pedigree_chart, :health_certification,
        :vaccination_record, :shampoo_id, :vitamin_id, :treat_id, :remove_health_certification, :remove_vaccination_record,
        :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :breed_id, :gender, :neutered, :food_id, 
-       :rfid, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date,
+       :rfid, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
+       :fur_color, :disposition,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [] )
     end
 end

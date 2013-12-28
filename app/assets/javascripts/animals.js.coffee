@@ -176,6 +176,35 @@ jQuery ->
           dataType: "json"
         ).done (data) ->
           callback data    
+          
+  $('#animal_registration_club_id').select2
+    placeholder: "registration club"
+    minimumResultsForSearch: 15
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/registration_clubs"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        at_id: $('#animal_animal_type_id').val()
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/remote_requests/registration_clubs?clb="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data    
   
   $('#animal_treat_id').select2
     placeholder: "pet treat brand"

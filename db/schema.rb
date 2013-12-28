@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131227033710) do
+ActiveRecord::Schema.define(version: 20131228185243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,9 @@ ActiveRecord::Schema.define(version: 20131227033710) do
     t.integer  "owner_id"
     t.string   "owner_type"
     t.date     "neutered_date"
+    t.integer  "registration_club_id"
+    t.string   "fur_color"
+    t.string   "disposition"
   end
 
   create_table "beta_comments", force: true do |t|
@@ -290,6 +293,13 @@ ActiveRecord::Schema.define(version: 20131227033710) do
   end
 
   add_index "queue_classic_jobs", ["q_name", "id"], name: "idx_qc_on_name_only_unlocked", where: "(locked_at IS NULL)", using: :btree
+
+  create_table "registration_clubs", force: true do |t|
+    t.string   "name"
+    t.integer  "animal_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "service_offerings", force: true do |t|
     t.integer  "service_provider_id"

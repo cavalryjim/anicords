@@ -25,6 +25,21 @@ class RemoteRequestsController < ApplicationController
     end
   end
   
+  def registration_clubs
+    if params[:clb]
+      @club = RegistrationClub.find(params[:clb])
+      render json: @club, only: [:id], methods: [:text]
+    elsif params[:clbs]
+      @clubs = RegistrationClub.where(id: params[:clbs]).all.map{|s| {id: s.id, text: s.name }}
+      render json: @clubs
+    else
+      n = "%#{params[:term]}%"
+      a = "#{params[:at_id]}"
+      @clubs = RegistrationClub.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
+      render json: @clubs
+    end
+  end
+  
   def foods 
     if params[:fd]
       @food = Food.find(params[:fd])
