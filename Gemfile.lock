@@ -83,9 +83,12 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    dragonfly (0.9.15)
+    dragonfly (1.0.2)
       multi_json (~> 1.0)
       rack
+    dragonfly-s3_data_store (1.0.2)
+      dragonfly (~> 1.0)
+      fog
     erubis (2.7.0)
     excon (0.25.3)
     execjs (2.0.2)
@@ -308,7 +311,8 @@ DEPENDENCIES
   carrierwave_direct (= 0.0.13)
   coffee-rails (= 4.0.1)
   devise (= 3.2.2)
-  dragonfly (= 0.9.15)
+  dragonfly (= 1.0.2)
+  dragonfly-s3_data_store (= 1.0.2)
   fog (= 1.15.0)
   html5_validators (= 1.1.2)
   jbuilder (~> 1.2)

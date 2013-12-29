@@ -44,7 +44,7 @@
 		<div class="row">
 		  <div class="large-2 columns">
 		  	<%= f.label :neutered, id: 'dynamic_neutered_label' do %>
-			  <%= f.check_box :neutered %><span id="neutered_label"> <%= @animal.neutered_term %>?</span> 
+			  <%= f.check_box :neutered %><span id="neutered_label"> <%= neutered_term(@animal.gender) %>?</span> 
 			<% end %>
 		  </div>
 		  <div class="large-4 columns">

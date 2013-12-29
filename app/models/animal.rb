@@ -80,7 +80,15 @@ class Animal < ActiveRecord::Base
   mount_uploader :health_certification, FileUploader
   mount_uploader :vaccination_record, FileUploader
   #mount_uploader :qr_code, FileUploader
-  image_accessor :qr_code  
+  #image_accessor :qr_code
+  dragonfly_accessor :qr_code do
+    storage_options do |attachment|
+      {
+        path: "qr_codes/#{id}.png"
+      }
+    end
+  end
+ 
   
   def to_s
     name
@@ -176,6 +184,12 @@ class Animal < ActiveRecord::Base
       super
     rescue Fog::Storage::Rackspace::NotFound
     end
+  end
+  
+  def create_qr_code(url)
+    #@animal.update_attribute :qr_code, RQRCode::QRCode.new(animal_url(@animal), :size => 4, :level => :h ).to_img
+    qr_code_img = RQRCode::QRCode.new(url, :size => 4, :level => :h ).to_img
+    self.update_attribute :qr_code, qr_code_img.to_string
   end
   
   private

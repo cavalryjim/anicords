@@ -34,12 +34,13 @@ gem 'cancan', '1.6.10'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'rqrcode_png', '0.1.2'
 gem 'rack-cache', :require => 'rack/cache'
-gem 'dragonfly', '0.9.15'
+gem 'dragonfly', '1.0.2'
 gem 'prawn', '0.12.0'
 gem 'newrelic_rpm', '3.7.0.177'
 gem 'unicorn', '4.7.0'
 gem 'rmagick', '2.13.2'
 gem 'petfinder', '1.0.0'
+gem 'dragonfly-s3_data_store', '1.0.2'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
