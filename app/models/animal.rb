@@ -165,7 +165,7 @@ class Animal < ActiveRecord::Base
   
   def create_qr_code(url)
     #@animal.update_attribute :qr_code, RQRCode::QRCode.new(animal_url(@animal), :size => 4, :level => :h ).to_img
-    qr_code_img = RQRCode::QRCode.new(url, :size => 4, :level => :h ).to_img
+    qr_code_img = RQRCode::QRCode.new(url, :level => :h ).to_img
     self.update_attribute :qr_code, qr_code_img.to_string
   end
   
