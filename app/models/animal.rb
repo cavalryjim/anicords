@@ -83,9 +83,7 @@ class Animal < ActiveRecord::Base
   #image_accessor :qr_code
   dragonfly_accessor :qr_code do
     storage_options do |attachment|
-      {
-        path: "qr_codes/#{id}.png"
-      }
+      { path: "qr_codes/#{Rails.env}/#{id}.png" }
     end
   end
  
