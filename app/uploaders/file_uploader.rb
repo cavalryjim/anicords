@@ -50,5 +50,14 @@ class FileUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  
+   # Override to silently ignore trying to remove missing
+  # previous avatar.
+  def remove!
+    begin
+      super
+    rescue CarrierWave::Storage::Fog::File
+    end
+  end
 
 end
