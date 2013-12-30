@@ -15,6 +15,10 @@ module AnimalsHelper
     
   end
   
+  def complete_profile_message(animal)
+    animal.name + "s' profile is only " + animal.profile_completion + "% complete."
+  end
+  
   def feeding_frequency_options
     [
       ['Once a day', 1],

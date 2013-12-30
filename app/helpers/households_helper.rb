@@ -2,7 +2,7 @@ module HouseholdsHelper
   def animal_image(animal)
     case animal.species
     when 'dog'
-      image_tag('dog_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: animal.pending_transfer? ? 'transfer_image' : 'th' )
+      image_tag('dog_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal) )
     when 'cat'
       image_tag('cat_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: animal.pending_transfer? ? 'transfer_image' : 'th')
     when 'horse'
@@ -17,5 +17,10 @@ module HouseholdsHelper
   def remove_provider_path_help(household_id, provider_id)
     association = HouseholdAssociation.where(household_id: household_id, service_provider_id: provider_id).first
     household_household_association_path(household_id, association.id)
+  end
+  
+  def image_classes(animal)
+    classes = animal.pending_transfer? ? 'transfer_image' : 'th'
+    classes << ' animal_alert' if (animal.profile_completion < 50)
   end
 end

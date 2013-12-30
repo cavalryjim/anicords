@@ -202,6 +202,10 @@ img.transfer_image {
   filter:alpha(opacity=50); /* For IE8 and earlier */
 }
 
+img.animal_alert {
+  border: solid 4px #FF0000;
+}
+
 div.notifications {
   text-align: center;
   width: 30px;

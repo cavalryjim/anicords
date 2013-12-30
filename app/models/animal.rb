@@ -182,6 +182,10 @@ class Animal < ActiveRecord::Base
     end
   end
   
+  def profile_completion
+    (self.attributes.values.select(&:nil?).count.to_f / self.attributes.count.to_f) * 100
+  end
+  
   private
   
   def file_size_validation
