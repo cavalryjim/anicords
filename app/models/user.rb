@@ -59,19 +59,15 @@ class User < ActiveRecord::Base
   end
   
   def name
-    if first_name && last_name
-      first_name.to_s + ' ' + last_name.to_s
-    else
-      " "
-    end
-  end
-  
-  def name_or_email
     if first_name || last_name
       first_name.to_s + ' ' + last_name.to_s
     else
       email
     end
+  end
+  
+  def name_or_email
+    self.name
   end
   
   def has_notifications?

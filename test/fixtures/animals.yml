@@ -7,7 +7,6 @@
 #  animal_type_id       :integer
 #  weight               :decimal(, )
 #  description          :text
-#  household_id         :integer
 #  breeder_id           :integer
 #  created_at           :datetime
 #  updated_at           :datetime

@@ -7,7 +7,6 @@
 #  animal_type_id       :integer
 #  weight               :decimal(, )
 #  description          :text
-#  household_id         :integer
 #  breeder_id           :integer
 #  created_at           :datetime
 #  updated_at           :datetime
@@ -73,14 +72,12 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :pictures, allow_destroy: true
   
   validates_presence_of :name
-  #validates :household_id, presence: true, if: :needs_owner?
   validate :file_size_validation
   
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
   mount_uploader :vaccination_record, FileUploader
-  #mount_uploader :qr_code, FileUploader
-  #image_accessor :qr_code
+  
   dragonfly_accessor :qr_code do
     storage_options do |attachment|
       { path: "qr_codes/#{Rails.env}/#{id}.png" }
@@ -91,14 +88,6 @@ class Animal < ActiveRecord::Base
   
   def to_s
     name
-  end
-  
-  def needs_owner?
-    if self.breeder_id == nil 
-      true
-    else
-      false
-    end
   end
   
   def pedigree_path
