@@ -4,13 +4,13 @@ module HouseholdsHelper
     when 'dog'
       image_tag('dog_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal) )
     when 'cat'
-      image_tag('cat_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: animal.pending_transfer? ? 'transfer_image' : 'th')
+      image_tag('cat_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
     when 'horse'
-      image_tag('horse_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: animal.pending_transfer? ? 'transfer_image' : 'th')
+      image_tag('horse_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
     when'tiger'
-      image_tag('tiger_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: animal.pending_transfer? ? 'transfer_image' : 'th')
+      image_tag('tiger_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
     else
-      image_tag('generic_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: animal.pending_transfer? ? 'transfer_image' : 'th')
+      image_tag('generic_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
     end
   end
   
