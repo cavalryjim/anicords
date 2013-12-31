@@ -67,4 +67,9 @@ class Household < ActiveRecord::Base
     end
   end
   
+  def activities
+    #PublicActivity::Activity.where( trackable_id: @household.animal_ids, trackable_type: "Animal" ).order("created_at desc").first(10)
+    PublicActivity::Activity.where(recipient: self).order("created_at desc")
+  end
+  
 end

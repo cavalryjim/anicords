@@ -14,7 +14,7 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     #@owner = @household
-    @activities = PublicActivity::Activity.order("created_at desc").where( trackable_id: @household.animal_ids, trackable_type: "Animal" ).last(10)
+    @activities = @household.activities.first(10)
   end
 
   # GET /households/new
@@ -81,8 +81,8 @@ class HouseholdsController < ApplicationController
   end
   
   def create_user
-    current_user.create_user_to_group(params[:user][:email], @household.id, @household.class.name, params[:user][:first_name], params[:user][:last_name] )
-    
+    new_user = current_user.create_user_to_group(params[:user][:email], @household.id, @household.class.name, params[:user][:first_name], params[:user][:last_name] )
+    new_user.create_activity :added_to_group, owner: current_user, recipient: @household
     redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
   end
 

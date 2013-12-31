@@ -1,0 +1,9 @@
+has been added to the household. 
+
+<% if activity.trackable %>
+  <% if activity.trackable_type == 'User'%>
+    <%= activity.trackable.name_or_email %>
+  <% end %>
+<% else %>
+  which has since been removed
+<% end %>

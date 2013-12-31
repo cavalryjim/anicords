@@ -50,6 +50,7 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       if @animal.save 
         @animal.create_qr_code(animal_url(@animal))
+        @animal.create_activity :create, owner: current_user, recipient: @animal.owner
         format.html { redirect_to return_path, notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
       else
@@ -71,7 +72,7 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       if @animal.update(animal_params)
         @animal.create_qr_code(animal_url(@animal))unless @animal.qr_code.present?
-        @animal.create_activity :update, owner: current_user
+        #@animal.create_activity :update, owner: current_user
         format.html { redirect_to return_path, notice: @animal.name + ' was successfully updated.' }
         format.json { head json: return_path }
         format.js

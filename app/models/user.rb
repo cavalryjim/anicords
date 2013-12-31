@@ -170,6 +170,8 @@ class User < ActiveRecord::Base
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_group", user_association_id, generated_password) : UserMailer.created_and_added_to_group(user_association_id, generated_password).deliver 
       #UserMailer.created_and_added_to_household(user.id, generated_password, household_id).deliver
     end
+    
+    return user
   end
   
   def animal_transfer_pending(animal_id)

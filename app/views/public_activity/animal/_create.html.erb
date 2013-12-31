@@ -1,0 +1,11 @@
+created a record for 
+
+<% if activity.trackable %>
+  <% if activity.trackable_type == 'Animal'%>
+    <%= link_to activity.trackable.name, [activity.trackable.owner, activity.trackable] %>
+  <% else %>
+    <%= link_to activity.trackable.name, activity.trackable %>
+  <% end %>
+<% else %>
+  which has since been removed
+<% end %>
