@@ -206,6 +206,10 @@ img.animal_alert {
   border: solid 4px #FF0000;
 }
 
+.blink_border {
+  border: solid 4px #FFCC00 !important;
+}
+
 div.notifications {
   text-align: center;
   width: 30px;

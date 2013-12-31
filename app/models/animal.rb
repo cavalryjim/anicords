@@ -184,7 +184,7 @@ class Animal < ActiveRecord::Base
   end
 
   def profile_completion
-    (self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.values.select(&:present?).count.to_f / self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.count.to_f) * 100
+    ((self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.values.select(&:present?).count.to_f / self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.count.to_f) * 100).round
   end
   
   private

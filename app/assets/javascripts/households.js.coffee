@@ -16,5 +16,23 @@ jQuery ->
   #$('#provider_reveal_button').click ->
   #  $('#service_provider').focus
 
+    
+  blink_border = (elem, times, speed) ->
+    if times > 0 or times < 0
+      if $(elem).hasClass("blink_border")
+        $(elem).removeClass "blink_border"
+      else
+        $(elem).addClass "blink_border"
+    clearTimeout ->
+      blink_border elem, times, speed
   
+    if times > 0 or times < 0
+      setTimeout (->
+        blink_border elem, times, speed
+      ), speed
+      times -= .5
+        
+  $(window).bind "load", ->
+    #alert 'window loaded'
+    blink_border ".animal_alert", 2, 600
 
