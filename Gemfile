@@ -41,6 +41,7 @@ gem 'unicorn', '4.7.0'
 gem 'rmagick', '2.13.2'
 gem 'petfinder', '1.0.0'
 gem 'dragonfly-s3_data_store', '1.0.2'
+gem 'possessive', '1.0.1'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

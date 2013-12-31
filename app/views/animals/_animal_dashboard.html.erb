@@ -9,7 +9,14 @@
       </div>	
       <div class="large-4 columns">
       <% if @animal.qr_code.present? %>
-        <%= image_tag( @animal.qr_code.url, size: '75x75' )%>
+        <%= image_tag( @animal.qr_code.url, size: '50x50', class: 'th', id: 'qr_code_img' ) %>
+        <div id="largeQRCode" title= "<%= @animal.name%>'s QR Code">
+		  <p>This is a downloadable QR code.</p>
+		  <p align="center">
+		    <%= link_to image_tag( @animal.qr_code.url, size: '100x100', class: 'picture_border_3'), @animal.qr_code.remote_url %> 
+		  </p>
+		  
+		</div>
       <% end %>
       </div>
       <div class="large-4 columns"></div>
@@ -68,7 +75,9 @@
       <div class="large-12">
       	<fieldset class="gray_background">
       		<h4>Notifications</h4>
-      		
+      		<h6><%=@animal.name.possessive%> profile is <%= @animal.profile_completion.round(2) %>% complete</h6>
+      		<div class="<%=progress_bar_classes(@animal)%>"><span class="meter" style="width: <%=@animal.profile_completion%>%"></span></div>
+      		<h6> Select <%= link_to 'edit pet info', edit_household_animal_path(@owner, @animal), 'data-no-turbolink' => true%> to complete the profile. </h6>
       		<p>More notifications coming soon.</p>
       	</fieldset>
       </div>
@@ -83,6 +92,16 @@
   </div>
 </div>
 
+<script>
+$("#qr_code_img").click(function() {
+  $( "#largeQRCode" ).dialog( "open" );
+});
+
+$("#largeQRCode").dialog({
+  autoOpen: false,
+  buttons: {"close": function() { $( this ).dialog( "close" ); }}
+});
+</script>
 
 
 

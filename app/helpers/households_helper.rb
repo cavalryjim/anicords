@@ -14,13 +14,24 @@ module HouseholdsHelper
     end
   end
   
+  def progress_bar_classes(animal)
+    classes = "radius progress "
+    classes << "alert" if animal.profile_completion < 50
+    return classes
+  end
+  
   def remove_provider_path_help(household_id, provider_id)
     association = HouseholdAssociation.where(household_id: household_id, service_provider_id: provider_id).first
     household_household_association_path(household_id, association.id)
   end
   
   def image_classes(animal)
-    classes = animal.pending_transfer? ? 'transfer_image' : 'th'
+    if animal.pending_transfer? 
+      classes = 'transfer_image' 
+    else
+      classes = 'th'
+    end
     classes << ' animal_alert' if (animal.profile_completion < 50)
+    return classes
   end
 end

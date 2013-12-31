@@ -87,6 +87,7 @@ class Animal < ActiveRecord::Base
     end
   end
  
+  EXCEPT_ATTRS = %w{ household_id breeder_id pedigree_chart health_certification show_name registration_number treat_id rfid organization_id registration_club_id }
   
   def to_s
     name
@@ -181,9 +182,9 @@ class Animal < ActiveRecord::Base
       self.update_attribute :qr_code, qr_code_img.to_string
     end
   end
-  
+
   def profile_completion
-    (self.attributes.values.select(&:nil?).count.to_f / self.attributes.count.to_f) * 100
+    (self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.values.select(&:present?).count.to_f / self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.count.to_f) * 100
   end
   
   private

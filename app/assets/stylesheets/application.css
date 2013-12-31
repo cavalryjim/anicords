@@ -218,6 +218,10 @@ div.notifications_text {
   background: url('box_red_16.png') no-repeat center;
 }
 
+.progress {
+   background-color: #FFFFFF !important;
+}
+
 
 
 
