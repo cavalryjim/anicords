@@ -78,7 +78,8 @@
       		<h6><%=@animal.name.possessive%> profile is <%= @animal.profile_completion %>% complete</h6>
       		<div class="<%=progress_bar_classes(@animal)%>"><span class="meter" style="width: <%=@animal.profile_completion%>%"></span></div>
       		<h6> Select <%= link_to 'edit pet info', edit_household_animal_path(@owner, @animal), 'data-no-turbolink' => true%> to complete the profile. </h6>
-      		<p>More notifications coming soon.</p>
+      		<%= animal_notifications(@animal) %>
+      		
       	</fieldset>
       </div>
     </div>

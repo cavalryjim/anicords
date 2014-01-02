@@ -34,4 +34,13 @@ module HouseholdsHelper
     classes << ' animal_alert' if (animal.profile_completion < 50)
     return classes
   end
+  
+  def animal_notifications(animal)
+    notifications = "<ul class='notifications'>"
+    notifications << "<li>Schedule appointments by adding service providers.</li>" if animal.service_providers.count == 0
+    notifications << "<li>Order food and supplies by updating the preferences tab.</li>" if true
+    notifications << "<li>Recieve alerts regarding heartworm meds or vaccinations by updating the health & wellness tab.</li>" if true
+    notifications << "<ul>"
+    return notifications.html_safe
+  end
 end
