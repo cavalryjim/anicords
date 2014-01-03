@@ -16,4 +16,8 @@ class Shampoo < ActiveRecord::Base
     self.name
   end
   
+  def self.new_submission(shampoo, animal_type_id)
+    Shampoo.create(name: shampoo, animal_type_id: animal_type_id).id
+  end
+  
 end

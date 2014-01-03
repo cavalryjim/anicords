@@ -1,6 +1,6 @@
 ActiveAdmin.register Animal do
   filter :name
-  filter :household
+  #filter :owner
   filter :breed
   filter :created_at
   
@@ -9,7 +9,7 @@ ActiveAdmin.register Animal do
     column :name do |animal|
       link_to animal, edit_admin_animal_path(animal)
     end
-    column :household
+    column :owner
     default_actions
   end
   

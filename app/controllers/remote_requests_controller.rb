@@ -48,11 +48,7 @@ class RemoteRequestsController < ApplicationController
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
       @foods = Food.order(:name).where("name ILIKE ? AND animal_type_id = ?", n, a).map{|f| {id: f.id, text: f.name }}
-      if @foods.empty?
-        render json: [{id: params[:term], text: "New: " + params[:term]}]
-      else
-        render json: @foods
-      end
+      @foods.empty? ? (render json: [{id: params[:term], text: "New: " + params[:term]}]) : (render json: @foods)
     else
       @foods = Food.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|f| {id: f.id, text: f.name }}
       render json: @foods
@@ -97,7 +93,7 @@ class RemoteRequestsController < ApplicationController
       render json: @shampoos
     else
       @shampoos = Shampoo.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|s| {id: s.id, text: s.name }}
-      render json: @shampoos
+      @shampoos.empty? ? (render json: [{id: params[:term], text: "New: " + params[:term]}] ) : (render json: @shampoos)
     end
   end
   

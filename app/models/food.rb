@@ -16,5 +16,9 @@ class Food < ActiveRecord::Base
     self.name
   end
   
+  def self.new_submission(food, animal_type_id)
+    Food.create(name: food, animal_type_id: animal_type_id).id
+  end
+  
   
 end

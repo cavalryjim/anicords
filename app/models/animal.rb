@@ -184,9 +184,6 @@ class Animal < ActiveRecord::Base
     food_id.blank? || volume_per_serving.blank? || servings_per_day.blank? || serving_measure.blank? 
   end
   
-  def create_new_food(food)
-    Food.create(name: food, animal_type_id: self.animal_type_id).id
-  end
   
   private
   
