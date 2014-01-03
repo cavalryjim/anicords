@@ -34,5 +34,5 @@ jQuery ->
         
   $(window).bind "load", ->
     #alert 'window loaded'
-    blink_border ".animal_alert", 2, 600
+    blink_border ".animal_alert", 1, 600
 

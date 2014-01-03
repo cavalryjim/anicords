@@ -48,7 +48,11 @@ class RemoteRequestsController < ApplicationController
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
       @foods = Food.order(:name).where("name ILIKE ? AND animal_type_id = ?", n, a).map{|f| {id: f.id, text: f.name }}
-      render json: @foods
+      if @foods.empty?
+        render json: [{id: params[:term], text: "New: " + params[:term]}]
+      else
+        render json: @foods
+      end
     else
       @foods = Food.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|f| {id: f.id, text: f.name }}
       render json: @foods

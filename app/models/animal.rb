@@ -176,6 +176,18 @@ class Animal < ActiveRecord::Base
     ((self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.values.select(&:present?).count.to_f / self.attributes.reject{|attr| EXCEPT_ATTRS.include?(attr)}.count.to_f) * 100).round
   end
   
+  def needs_vaccination_info?
+     vaccinations.count == 0 
+  end
+  
+  def needs_diet_info?
+    food_id.blank? || volume_per_serving.blank? || servings_per_day.blank? || serving_measure.blank? 
+  end
+  
+  def create_new_food(food)
+    Food.create(name: food, animal_type_id: self.animal_type_id).id
+  end
+  
   private
   
   def file_size_validation

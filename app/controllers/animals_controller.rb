@@ -63,6 +63,7 @@ class AnimalsController < ApplicationController
   # PATCH/PUT /animals/1
   # PATCH/PUT /animals/1.json
   def update
+    params[:animal][:food_id] = @animal.create_new_food(params[:animal][:food_id]) unless (Integer(params[:animal][:food_id]) rescue false)
     # JDavis: Select2 is a pain and insists upon screwing up the submission of selected items.  This is a fix.
     params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids])
     params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids])
