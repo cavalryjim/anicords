@@ -16,4 +16,8 @@ class Treat < ActiveRecord::Base
     self.name
   end
   
+  def self.new_submission(treat, animal_type_id)
+    Treat.create(name: treat, animal_type_id: animal_type_id).id
+  end
+  
 end

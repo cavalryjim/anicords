@@ -106,7 +106,7 @@ class RemoteRequestsController < ApplicationController
       render json: @treats
     else
       @treats = Treat.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|t| {id: t.id, text: t.name }}
-      render json: @treats
+      @treats.empty? ? (render json: [{id: params[:term], text: "New: " + params[:term]}]) : (render json: @treats)
     end
     
   end
@@ -125,7 +125,7 @@ class RemoteRequestsController < ApplicationController
       render json: @vitamins
     else
       @vitamins = Vitamin.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|v| {id: v.id, text: v.name }}
-      render json: @vitamins
+      @vitamins.empty? ? (render json: [{id: params[:term], text: "New: " + params[:term]}]) : (render json: @vitamins)
     end
   end
   

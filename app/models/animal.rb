@@ -94,11 +94,6 @@ class Animal < ActiveRecord::Base
     self.pedigree.path
   end
   
-  def fix_ids(ids)
-    ids << ","
-    ids.split(']').last.split(',')
-  end
-  
   def breed_name
     self.breed.name if self.breed
   end
@@ -184,6 +179,26 @@ class Animal < ActiveRecord::Base
     food_id.blank? || volume_per_serving.blank? || servings_per_day.blank? || serving_measure.blank? 
   end
   
+  def inspect_params(params)
+    # JDavis: want to move the logic here...not working at the moment.
+    # JDavis: creating these preferences if they do not exist.
+    params[:food_id] = Food.new_submission(params[:food_id], params[:animal_type_id]) unless (Integer(params[:food_id]) rescue false)
+    params[:shampoo_id] = Shampoo.new_submission(params[:shampoo_id], params[:animal_type_id]) unless (Integer(params[:shampoo_id]) rescue false)
+    params[:treat_id] = Treat.new_submission(params[:treat_id], params[:animal_type_id]) unless (Integer(params[:treat_id]) rescue false)
+    params[:vitamin_id] = Vitamin.new_submission(params[:vitamin_id], params[:animal_type_id]) unless (Integer(params[:vitamin_id]) rescue false)
+    # JDavis: Select2 is a pain and insists upon screwing up the submission of selected items.  This is a fix.
+    #params[:medical_diagnosis_ids] = self.fix_ids(params[:medical_diagnosis_ids]) unless params[:medical_diagnosis_ids] == "[]"
+    params[:medical_diagnosis_ids] = [5, 7, 26]
+    params[:medication_ids] = self.fix_ids(params[:medication_ids]) unless params[:medication_ids] == "[]"
+    params[:allergy_ids] = self.fix_ids(params[:allergy_ids]) unless params[:allergy_ids] == "[]"
+    
+    return params
+  end
+  
+  def fix_ids(ids)
+    ids << ","
+    ids.split(']').last.split(',')
+  end
   
   private
   
