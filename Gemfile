@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
-#ruby-gemset=anicords
+#ruby=2.0.0-p247@anicords
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
