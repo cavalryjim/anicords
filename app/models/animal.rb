@@ -67,6 +67,8 @@ class Animal < ActiveRecord::Base
   has_many   :service_providers, through: :animal_associations
   has_many   :animal_associations, dependent: :destroy
   has_many   :pictures, dependent: :destroy
+  has_many   :personality_types, through: :dispositions
+  has_many   :dispositions, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   accepts_nested_attributes_for :pictures, allow_destroy: true

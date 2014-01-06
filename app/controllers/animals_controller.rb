@@ -63,9 +63,8 @@ class AnimalsController < ApplicationController
   # PATCH/PUT /animals/1
   # PATCH/PUT /animals/1.json
   def update
-    # JDavis: all of this parameter stuff needs to be moved elsewhere
+    # JDavis: all of this params fix stuff needs to be moved elsewhere
     #params[:animal] = @animal.inspect_params(params[:animal])  <--- such as here.
-    
     params[:animal][:food_id] = Food.new_submission(params[:animal][:food_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:food_id]) rescue false)
     params[:animal][:shampoo_id] = Shampoo.new_submission(params[:animal][:shampoo_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:shampoo_id]) rescue false)
     params[:animal][:treat_id] = Treat.new_submission(params[:animal][:treat_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:treat_id]) rescue false)
