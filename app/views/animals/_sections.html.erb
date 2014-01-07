@@ -88,9 +88,9 @@
 		</div>
 		
 		<div class="row">
-		  <div class="large-4 columns">
-		  	<%= f.label :disposition, 'disposition' %>
-		  	<%= f.select :disposition, options_for_select(["playful", "nervous", "aggressive", "dangerous"], @animal.disposition), {prompt:'disposition'}, {class: "regular_select"}  %>
+		  <div class="large-4 columns bottom_padding_10">
+		  	<%= f.label :personality_type_ids, "dispostion" %>
+		  	<%= f.text_field :personality_type_ids %>
 		  </div>	
 		</div>
 				    
@@ -139,7 +139,7 @@
 		</div>
 		
 		<div class="row">
-		  <div class="large-6 columns">
+		  <div class="large-6 columns bottom_padding_10">
 		  	<%= f.label :medical_diagnosis_ids, "medical diagnosis" %>
 		  	<%= f.text_field :medical_diagnosis_ids %>
 		  	
@@ -147,7 +147,7 @@
 		</div>
 		
 		<div class="row">
-		  <div class="large-6 columns">
+		  <div class="large-6 columns bottom_padding_10">
 		  	<%= f.label :medication_ids, "medications" %>
 		  	<%= f.text_field :medication_ids %>
 		  </div>

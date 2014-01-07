@@ -73,6 +73,7 @@ class AnimalsController < ApplicationController
     params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids]) 
     params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids]) 
     params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids]) 
+    params[:animal][:personality_type_ids] = @animal.fix_ids(params[:animal][:personality_type_ids])
     #params[:animal][:food_ids] = @animal.fix_ids(params[:animal][:food_ids])
     
     respond_to do |format|
@@ -195,6 +196,7 @@ class AnimalsController < ApplicationController
        :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :breed_id, :gender, :neutered, :food_id, 
        :rfid, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
        :fur_color, :disposition,
-       :medical_diagnosis_ids, :medication_ids, :allergy_ids, medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [] )
+       :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids,
+       medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], personality_type_ids: [] )
     end
 end

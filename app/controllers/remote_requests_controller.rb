@@ -75,6 +75,20 @@ class RemoteRequestsController < ApplicationController
     render json: @medications
   end
   
+  def personality_types
+    if params[:pt]
+      @personality_types = PersonalityType.where(id: params[:pt]).all.map{|pt| {id: pt.id, text: pt.name }}
+    elsif params[:at_id]
+      n = "%#{params[:term]}%"
+      a = "#{params[:at_id]}"
+      @personality_types = PersonalityType.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|pt| {id: pt.id, text: pt.name }}
+    else
+      n = "%#{params[:term]}%"
+      @personality_types = PersonalityType.order(:name).where("name ILIKE ?", n).map{|pt| {id: pt.id, text: pt.name }}
+    end
+    render json: @personality_types
+  end
+  
   def services
     if params[:spt]
       @services = Service.where(service_provider_type_id: params[:spt]).all
