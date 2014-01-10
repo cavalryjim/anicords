@@ -62,6 +62,7 @@ Anicords::Application.routes.draw do
   patch 'animals/:id/accept_transfer' => 'animals#accept_transfer', as: :accept_transfer
   get 'animals/:id/sitter_instructions' => 'animals#sitter_instructions', as: :animal_sitter_instructions
   match 'animals/:id/photo_gallery' => 'animals#photo_gallery', via: [:get, :post], as: :animal_photo_gallery
+  patch 'pictures/:id/crop' => 'pictures#crop'
   
   get 'remote_requests/vitamins' => 'remote_requests#vitamins'
   get 'remote_requests/allergies' => 'remote_requests#allergies'

@@ -2,7 +2,8 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWaveDirect::Uploader
-  include CarrierWave::RMagick
+  #include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   #include Sprockets::Helpers::RailsHelper
@@ -17,8 +18,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+  
+  
+  process resize_to_fit: [600, 600]
+  
+  
+  #version :large do
+  #  resize_to_limit(600, 600)
+  #end
 
-  version :thumb do
-    process resize_to_fill: [200, 200]
-  end
 end

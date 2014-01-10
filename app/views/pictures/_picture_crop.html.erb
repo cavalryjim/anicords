@@ -1,0 +1,51 @@
+<h4><%= @animal.name %></h4>
+
+<div class="row">
+  <%= image_tag @picture.image_url, id: "cropbox" %>
+	
+</div>
+
+<%= form_for @picture, url: {action: 'crop'} do |f| %>
+  <div class="actions">
+    <% %w[x y w h].each do |attribute| %>
+      <%= f.text_field "crop_#{attribute}"%>
+    <% end %>
+    <%= f.submit "Crop" %>
+  </div>
+<% end %>
+
+<script>
+$(function() {
+  $('#cropbox').Jcrop({
+  	onChange: update,
+	onSelect: update,
+  	aspectRatio: 1,
+    setSelect: [0, 0, 100, 100]
+  });
+});
+
+function update(c)
+{
+	$('#picture_crop_x').val(c.x);
+	$('#picture_crop_y').val(c.y);
+	//$('#x2').val(c.x2);
+	//$('#y2').val(c.y2);
+	$('#picture_crop_w').val(c.w);
+	$('#picture_crop_h').val(c.h);
+	//updatePreview(c);
+}
+
+/*function updatePreview(coords)
+{
+  var rx = 100 / coords.w;
+  var ry = 100 / coords.h;
+
+  $('#preview').css({
+		width: Math.round(rx * $('#cropbox').width()) + 'px',
+		height: Math.round(ry * 370) + 'px',
+		marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+		marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+}*/
+
+</script>

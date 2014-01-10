@@ -38,10 +38,12 @@ gem 'dragonfly', '1.0.2'
 gem 'prawn', '0.12.0'
 gem 'newrelic_rpm', '3.7.0.177'
 gem 'unicorn', '4.7.0'
-gem 'rmagick', '2.13.2'
+#gem 'rmagick', '2.13.2'
 gem 'petfinder', '1.0.0'
 gem 'dragonfly-s3_data_store', '1.0.2'
 gem 'possessive', '1.0.1'
+gem 'jcrop-rails-v2', '0.9.12.3'
+gem 'mini_magick', '3.7.0'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

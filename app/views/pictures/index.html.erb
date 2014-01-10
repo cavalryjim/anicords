@@ -7,7 +7,7 @@
 	    <% for picture in @animal.pictures %>
 		  <li>
 		  	
-	    	<%= image_tag picture.image, class: 'th' %>
+	    	<%= link_to image_tag(picture.image.url, class: 'th'), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", 'data-no-turbolink' => true, remote: true %>
 	    	<%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, 
 	    		confirm: 'Remove this picture?' %>
 		  </li>
@@ -33,3 +33,9 @@
 	</fieldset>
   </div>
 </section>
+
+<div id="editPictureModal" class="reveal-modal">
+  <div id="picture_edit_div"></div>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>

@@ -16,6 +16,7 @@
 //= require jquery.remotipart
 //= require foundation
 //= require select2
+//= require jquery.Jcrop
 //= require_tree .
 
 $(function(){

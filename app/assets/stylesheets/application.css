@@ -13,6 +13,7 @@
  *= require select2
  *= require jquery-ui.min
  *= require jquery-ui-1.10.3.custom
+ *= require jquery.Jcrop
  */
 
 ul.ui-autocomplete {
@@ -237,6 +238,13 @@ ul.notifications li{
   margin: .25em 0;*/
   padding: 0 0 0 15px;
   background:url('scho-arrow.gif') no-repeat 0 7px;
+}
+
+div.preview {
+  width:100px;
+  height:100px;
+  overflow:hidden;
+  margin-left:5px;
 }
 
 

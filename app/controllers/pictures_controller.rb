@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show, :edit, :update, :destroy, :download_file]
-  before_action :set_animal, only: [:index, :create, :update, :destroy]
+  before_action :set_picture, only: [:show, :edit, :update, :destroy, :download_file, :crop]
+  before_action :set_animal, only: [:index, :edit, :create, :update, :destroy, ]
 
   def index
     Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
@@ -21,6 +21,9 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /pictures
@@ -69,6 +72,11 @@ class PicturesController < ApplicationController
     url = @picture.image.path
     send_file( url, :disposition => 'inline' )
   end
+  
+  def crop
+    breakage
+  end
+  
 
   private
     def set_animal
@@ -92,8 +100,8 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:name, :image, :animal_id, :store_dir, :key)
-      #params.require(:picture).permit!
+      #params.require(:picture).permit(:name, :image, :animal_id, :store_dir, :key, :thumb, :large)
+      params.require(:picture).permit!
     end
   
 end
