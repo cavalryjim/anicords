@@ -14,7 +14,7 @@
 #  food                 :string(255)
 #  volume_per_serving   :decimal(, )
 #  servings_per_day     :integer
-#  image                :string(255)
+#  avatar               :string(255)
 #  pedigree             :string(255)
 #  pedigree_chart       :string(255)
 #  health_certification :string(255)

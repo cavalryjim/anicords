@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy, :download_file, :crop]
-  before_action :set_animal, only: [:index, :edit, :create, :update, :destroy, ]
+  before_action :set_animal, only: [:index, :edit, :create, :update, :destroy ]
 
   def index
     Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
@@ -74,7 +74,20 @@ class PicturesController < ApplicationController
   end
   
   def crop
-    breakage
+    x = params[:picture][:crop_x].to_i
+    y = params[:picture][:crop_y].to_i
+    w = params[:picture][:crop_w].to_i
+    h = params[:picture][:crop_h].to_i
+    @picture.crop(x,y,w,h)
+    
+    #animal = @picture.animal
+    
+    #img = @picture.image
+    #img = Magick::Image.read(@picture.image_url)[0]
+    #animal.image = Picture.last
+    #animal.save
+    
+    redirect_to @picture.animal.owner
   end
   
 

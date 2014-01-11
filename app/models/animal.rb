@@ -14,7 +14,7 @@
 #  food                 :string(255)
 #  volume_per_serving   :decimal(, )
 #  servings_per_day     :integer
-#  image                :string(255)
+#  avatar               :string(255)
 #  pedigree             :string(255)
 #  pedigree_chart       :string(255)
 #  health_certification :string(255)
@@ -79,10 +79,17 @@ class Animal < ActiveRecord::Base
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
   mount_uploader :vaccination_record, FileUploader
+  #mount_uploader :image, AvatarUploader
   
   dragonfly_accessor :qr_code do
     storage_options do |attachment|
       { path: "qr_codes/#{Rails.env}/#{id}.png" }
+    end
+  end
+  
+  dragonfly_accessor :avatar do
+    storage_options do |attachment|
+      { path: "avatars/#{Rails.env}/#{id}.png" }
     end
   end
  

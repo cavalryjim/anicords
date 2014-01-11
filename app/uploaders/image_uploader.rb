@@ -2,8 +2,8 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWaveDirect::Uploader
-  #include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
+  #include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   #include Sprockets::Helpers::RailsHelper
@@ -22,6 +22,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   process resize_to_fit: [600, 600]
   
+  def crop(x, y, w, h)
+    #require 'RMagick'
+    #self.crop(x, y, w, h)
+    true
+  end
   
   #version :large do
   #  resize_to_limit(600, 600)

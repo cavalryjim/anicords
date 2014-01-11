@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106175829) do
+ActiveRecord::Schema.define(version: 20140111175512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 20140106175829) do
     t.string   "food"
     t.decimal  "volume_per_serving"
     t.integer  "servings_per_day"
-    t.string   "image"
     t.string   "pedigree"
     t.string   "pedigree_chart"
     t.string   "health_certification"
@@ -163,6 +162,8 @@ ActiveRecord::Schema.define(version: 20140106175829) do
     t.integer  "registration_club_id"
     t.string   "fur_color"
     t.string   "disposition"
+    t.string   "avatar_uid"
+    t.string   "avatar_name"
   end
 
   create_table "beta_comments", force: true do |t|
@@ -292,10 +293,11 @@ ActiveRecord::Schema.define(version: 20140106175829) do
 
   create_table "pictures", force: true do |t|
     t.string   "name"
-    t.string   "image"
     t.integer  "animal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_uid"
+    t.string   "image_name"
   end
 
   create_table "queue_classic_jobs", force: true do |t|
