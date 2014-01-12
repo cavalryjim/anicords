@@ -20,7 +20,7 @@ class Picture < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   
   validates_presence_of :animal_id
-  #validates_presence_of :key
+  validates_presence_of :image_uid
 
   #before_create :default_name
   
