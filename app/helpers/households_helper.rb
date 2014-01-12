@@ -1,5 +1,7 @@
 module HouseholdsHelper
   def animal_image(animal)
+    return image_tag(animal.avatar.url, size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal) ) if animal.avatar_stored?
+    
     case animal.species
     when 'dog'
       image_tag('dog_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal) )

@@ -4,10 +4,11 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
-#  image      :string(255)
 #  animal_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  image_uid  :string(255)
+#  image_name :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -1,7 +1,7 @@
 <h4><%= @animal.name %></h4>
 
 <div class="row">
-  <%= image_tag @picture.image_url, id: "cropbox" %>
+  <%= image_tag @picture.image.url, id: "cropbox" %>
 	
 </div>
 
@@ -10,6 +10,7 @@
     <% %w[x y w h].each do |attribute| %>
       <%= f.hidden_field "crop_#{attribute}"%>
     <% end %>
+    <%= f.hidden_field :animal_id, value: @animal.id %>
     <%= f.submit "Crop" %>
   </div>
 <% end %>

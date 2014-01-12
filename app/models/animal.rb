@@ -14,7 +14,6 @@
 #  food                 :string(255)
 #  volume_per_serving   :decimal(, )
 #  servings_per_day     :integer
-#  avatar               :string(255)
 #  pedigree             :string(255)
 #  pedigree_chart       :string(255)
 #  health_certification :string(255)
@@ -41,6 +40,8 @@
 #  registration_club_id :integer
 #  fur_color            :string(255)
 #  disposition          :string(255)
+#  avatar_uid           :string(255)
+#  avatar_name          :string(255)
 #
 
 class Animal < ActiveRecord::Base
@@ -89,7 +90,7 @@ class Animal < ActiveRecord::Base
   
   dragonfly_accessor :avatar do
     storage_options do |attachment|
-      { path: "avatars/#{Rails.env}/#{id}.png" }
+      { path: "avatars/#{Rails.env}/#{id}.png?rnd=#{rand(36**4).to_s(36)}" }
     end
   end
  

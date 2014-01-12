@@ -1,12 +1,13 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy, :download_file, :crop]
-  before_action :set_animal, only: [:index, :edit, :create, :update, :destroy ]
+  before_action :set_animal, only: [:index, :edit, :create, :update, :destroy, :crop ]
 
   def index
-    Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
-    
-    @uploader = Picture.new.image
-    @uploader.success_action_redirect = animal_pictures_url(@animal)
+    #Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
+    @pictures = @animal.pictures
+    @picture = Picture.new
+    #@uploader = Picture.new.image
+    #@uploader.success_action_redirect = animal_pictures_url(@animal)
   end
 
   # GET /pictures/1
@@ -34,7 +35,7 @@ class PicturesController < ApplicationController
     
     respond_to do |format|
       if @picture.save 
-        format.html { redirect_to return_path, notice: 'Picture was successfully uploaded.' }
+        format.html { redirect_to animal_pictures_path(@animal.id), notice: 'Picture was successfully uploaded.' }
         format.json { render action: 'show', status: :created, location: @picture }
       else
         #breaker_not
@@ -74,10 +75,10 @@ class PicturesController < ApplicationController
   end
   
   def crop
-    x = params[:picture][:crop_x].to_i
-    y = params[:picture][:crop_y].to_i
-    w = params[:picture][:crop_w].to_i
-    h = params[:picture][:crop_h].to_i
+    x = params[:picture][:crop_x]
+    y = params[:picture][:crop_y]
+    w = params[:picture][:crop_w]
+    h = params[:picture][:crop_h]
     @picture.crop(x,y,w,h)
     
     #animal = @picture.animal
@@ -87,7 +88,7 @@ class PicturesController < ApplicationController
     #animal.image = Picture.last
     #animal.save
     
-    redirect_to @picture.animal.owner
+    redirect_to animal_pictures_path(@picture.animal_id)
   end
   
 
@@ -113,8 +114,8 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      #params.require(:picture).permit(:name, :image, :animal_id, :store_dir, :key, :thumb, :large)
-      params.require(:picture).permit!
+      params.require(:picture).permit(:name, :image, :animal_id, :store_dir, :image_uid, :image_name, :crop_x, :crop_y, :crop_w, :crop_h)
+      #params.require(:picture).permit!
     end
   
 end
