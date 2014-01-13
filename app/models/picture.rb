@@ -49,13 +49,13 @@ class Picture < ActiveRecord::Base
     #puts x
     geometry = w + "x" + h + "+" + x + "+" + y
     img = self.image
-    avatar = img.process(:thumb, geometry, 'format' => 'png')
+    avatar = img.process(:thumb, geometry, 'format' => 'jpg')
     #avatar = img.thumb('100x100', 'format' => 'png')
     #avatar = img_thumb.process(:thumb,'50x50', 'format' => 'png')
     animal = self.animal
     animal.update_attribute :avatar, nil if animal.avatar_stored?
      
-    animal.avatar = avatar
+    animal.avatar = avatar.process(:thumb, '100x100')
     animal.save
     #Animal.find(self.animal_id).update_attribute :avatar, avatar.url
     
