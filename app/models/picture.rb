@@ -18,9 +18,12 @@ class Picture < ActiveRecord::Base
   #mount_uploader :image, ImageUploader
   #mount_uploader :image, FileUploader
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  
+   
   validates_presence_of :animal_id
-  validates_presence_of :image_uid
+  validates_presence_of :image
+  validates_size_of :image, maximum: 2048.kilobytes
+  validates_property :format, of: :image, in: ['jpeg', 'jpg', 'png', 'gif']
+  
 
   #before_create :default_name
   

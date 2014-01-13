@@ -30,7 +30,6 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    #breaker
     @picture = Picture.new(picture_params)
     
     respond_to do |format|
@@ -39,7 +38,7 @@ class PicturesController < ApplicationController
         format.json { render action: 'show', status: :created, location: @picture }
       else
         #breaker_not
-        format.html { render action: 'new' }
+        format.html { redirect_to animal_pictures_path(@animal.id), alert: 'File must be a jpg, png, or bmp less than 2mb.' }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end

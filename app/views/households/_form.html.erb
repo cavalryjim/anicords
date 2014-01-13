@@ -47,24 +47,23 @@
     
     <% if (!@household.new_record?) %>
 	    <div class="row">
-	      <div class="large-5 columns">
-	      	<table>
+	      <div class="large-8 columns">
+	      	<table class="margin-bottom_25em">
 	          <thead>
 	            <tr>
-	              
-	              <th colspan="3" class="center" > 
-	              	<%= link_to image_tag('add_human.png', size: '150x150'), '#', "data-reveal-id" => "newHumanModal" %> 
-	              	<!--<a href="#" class="small button" data-reveal-id="newHumanModal">Add Human</a> -->
-	              </th>
-	              
+	              <th>Name</th>
+	              <th>Email</th>
+	              <th>Phone</th>
+	              <th></th>
 	            </tr>
 	          </thead>
 	
 	          <tbody>
 	            <% @household.user_associations.each do |ua| %>
 	              <tr>
-	              	<td><%= ua.user.name%></td>
+	              	<td><%= ua.user.name %></td>
 	                <td><%= ua.user.email %></td>
+	                <td><%= ua.user.phone %></td>
 	                <td>
 	                  <% if ua.user != current_user %>
 	                	<%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
@@ -76,6 +75,7 @@
 	            
 	          </tbody>
 	        </table>
+	        <div class="bottom_padding_1em"><%= link_to 'Add Human', '#', "data-reveal-id" => "newHumanModal" %> </div>
 	      </div>
 	    </div>
     <% end %>

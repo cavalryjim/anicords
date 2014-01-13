@@ -37,7 +37,7 @@ class AnimalVaccinationsController < ApplicationController
     end
     
     def animal_vaccination_params
-      params.require(:animal_vaccination).permit(:animal_id, :vaccination_id, :vaccination_date, :dosage)
+      params.require(:animal_vaccination).permit(:animal_id, :vaccination_id, :vaccination_date, :dosage, :tag_number)
     end
   
 end

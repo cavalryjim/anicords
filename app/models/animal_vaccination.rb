@@ -10,6 +10,7 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  vaccination_due  :date
+#  tag_number       :string(255)
 #
 
 class AnimalVaccination < ActiveRecord::Base

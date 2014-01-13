@@ -85,6 +85,10 @@ ul.ui-autocomplete {
   border-top: solid 2px black !important;
 }
 
+table.margin-bottom_25em {
+  margin-bottom: 0.25em;
+}
+
 table.no_border {
   border: none !important;
 }
@@ -99,6 +103,10 @@ table.no_border {
 
 .bottom_padding_5 {
   padding-bottom: 5px;
+}
+
+.bottom_padding_1em {
+  padding-bottom: 1em;
 }
 
 .bottom_padding_10 {
@@ -168,6 +176,10 @@ label.nav_dropdown {
 
 .select, .regular_select {
   margin: 0 0 1em 0 !important;
+}
+
+nav.top-bar {
+  /*border: 3px solid #000 !important;*/
 }
 
 .top-bar-section .has-dropdown > a:after {
@@ -246,6 +258,7 @@ div.preview {
   overflow:hidden;
   margin-left:5px;
 }
+
 
 
 

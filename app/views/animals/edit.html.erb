@@ -38,6 +38,12 @@
 	    </div>
 	  </div>
 	  
+	  <div class="row">
+	    <div class="large-4 columns">
+	      <%= f.text_field :tag_number, placeholder: "Vaccination number (ex: rabies tag #)" %>
+	    </div>
+	  </div>
+	  
 	  <%= f.hidden_field :animal_id, value: @animal.id %>  
 	  
 	  <div class="actions">
