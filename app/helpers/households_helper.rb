@@ -1,19 +1,23 @@
 module HouseholdsHelper
   def animal_image(animal)
-    return image_tag(animal.avatar.url, size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal) ) if animal.avatar_stored?
+    return image_tag(animal.avatar.url, size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) ) if animal.avatar_stored?
     
     case animal.species
     when 'dog'
-      image_tag('dog_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal) )
+      image_tag('dog_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) )
     when 'cat'
-      image_tag('cat_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('cat_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     when 'horse'
-      image_tag('horse_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('horse_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     when'tiger'
-      image_tag('tiger_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('tiger_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     else
-      image_tag('generic_icon.png', size: '50x50', id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('generic_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     end
+  end
+  
+  def avatar_size
+    '100x100'
   end
   
   def progress_bar_classes(animal)

@@ -44,7 +44,7 @@ gem 'petfinder', '1.0.0'
 gem 'dragonfly-s3_data_store', '1.0.2'
 gem 'possessive', '1.0.1'
 gem 'jcrop-rails-v2', '0.9.12.3'
-#gem 'mini_magick', '3.7.0'
+gem 'exception_notification', '4.0.1'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

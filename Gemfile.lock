@@ -90,6 +90,9 @@ GEM
       dragonfly (~> 1.0)
       fog
     erubis (2.7.0)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     excon (0.25.3)
     execjs (2.0.2)
     faraday (0.8.8)
@@ -315,6 +318,7 @@ DEPENDENCIES
   devise (= 3.2.2)
   dragonfly (= 1.0.2)
   dragonfly-s3_data_store (= 1.0.2)
+  exception_notification (= 4.0.1)
   fog (= 1.15.0)
   html5_validators (= 1.1.2)
   jbuilder (~> 1.2)

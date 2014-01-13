@@ -97,4 +97,12 @@ Anicords::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  # JDavis: notifications for exceptions
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[Dooliddl_error] ",
+    :sender_address => %{"notifier" <notifier@dooliddl.com>},
+    :exception_recipients => %w{james.davisphd@gmail.com, tylercarruth@live.com}
+  }
 end
