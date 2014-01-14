@@ -18,7 +18,7 @@
                <div class="notifications_text"><%= number_of_notifications %></div>
 	         </div>
 	        <% else %>
-	         <%= image_tag 'white-flag-icone-6376-48.png', size: '25x25' %>
+	         <%= image_tag 'https://s3-us-west-2.amazonaws.com/dooliddl/app_images/white-flag-icone-6376-48.png', size: '25x25' %>
             <% end %>
           <% end %>
 	    
@@ -28,7 +28,7 @@
 	      	<%= raw user_notifications %>	
 	      </ul>
 	    </li>
-	    <li class="has-dropdown"><%=link_to image_tag('persona-person-white.png', size: '25x25'), '#' %>
+	    <li class="has-dropdown"><%=link_to image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/persona-person-white.png', size: '25x25'), '#' %>
 	      <ul class="dropdown"> 	
 		    <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
 		  	<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
@@ -38,10 +38,10 @@
 	  <% else %>
               
 		<li> 
-	  	  <%= link_to image_tag('uporin.png', size: '180x180', class: 'selectable_image'), "#", "data-reveal-id" => "registerSigninModal", class: "no_padding" %>
+	  	  <%= link_to image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/uporin.png', size: '180x180', class: 'selectable_image'), "#", "data-reveal-id" => "registerSigninModal", class: "no_padding" %>
 	    </li>
 		
-		<li><%= link_to image_tag('orusef.png', size: '180x180', class: 'selectable_image'), user_omniauth_authorize_path(:facebook), class: "no_padding" %></li>
+		<li><%= link_to image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/orusef.png', size: '180x180', class: 'selectable_image'), user_omniauth_authorize_path(:facebook), class: "no_padding" %></li>
 		
 	  <% end %>
 	</ul>

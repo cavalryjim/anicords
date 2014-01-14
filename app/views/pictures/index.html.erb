@@ -2,7 +2,7 @@
 <section class="border_top">
   <div class="row">
 	<fieldset>
-	  <h4>Pictures <%= image_tag(@animal.avatar.url, size: '50x50') if @animal.avatar_stored? %></h4>
+	  <h4><%= image_tag(@animal.avatar.url, size: '50x50', class: "picture_border_2") if @animal.avatar_stored? %> Pictures</h4>
 	  
 	  <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 	    <% for picture in @pictures %>

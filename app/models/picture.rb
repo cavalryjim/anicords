@@ -31,6 +31,7 @@ class Picture < ActiveRecord::Base
     storage_options do |attachment|
       { path: "images/#{Rails.env}/animal_#{animal_id}/#{rand(36**5).to_s(36)}_#{image_name}" }
     end
+    after_assign { |pic| self.image = pic.thumb('600x600>', 'format' => 'jpg') } # JDavis: resize the picture to 600x600
   end
 
   #def default_name

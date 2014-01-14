@@ -4,15 +4,15 @@ module HouseholdsHelper
     
     case animal.species
     when 'dog'
-      image_tag('dog_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) )
+      image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/dog_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) )
     when 'cat'
-      image_tag('cat_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/cat_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     when 'horse'
-      image_tag('horse_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/horse_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     when'tiger'
-      image_tag('tiger_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/tiger_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     else
-      image_tag('generic_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
+      image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/generic_icon.png', size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
     end
   end
   

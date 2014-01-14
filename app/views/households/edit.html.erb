@@ -1,12 +1,10 @@
 <section class="border_top">
- <div class="row">
-   <div class="large-12 columns">
-	
-	<%= render 'form' %>
-	
-	<%= link_to 'Back', @household %> 
-   </div>
- </div>
+  <div class="row">
+    <fieldset>
+      <div class="large-12 columns"><%= render 'form' %></div>
+      <%= link_to 'Back', @household %>
+    </fieldset>
+  </div>
 </section>
 
 <% unless @household.new_record? %>
