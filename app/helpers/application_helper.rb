@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def dooliddl_image
-    image_tag('https://s3-us-west-2.amazonaws.com/dooliddl/app_images/dooliddl_f.png', size: '300x300')
+    image_tag(s3_url('dooliddl_f.png'), size: '300x300')
   end
   
   def link_to_home
@@ -27,6 +27,10 @@ module ApplicationHelper
     else 
      dooliddl_image 
     end
+  end
+  
+  def s3_url(file_name)
+    'https://s3-us-west-2.amazonaws.com/dooliddl/app_images/' << file_name
   end
   
   def number_of_notifications
