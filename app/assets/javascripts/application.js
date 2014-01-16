@@ -17,6 +17,9 @@
 //= require foundation
 //= require select2
 //= require jquery.Jcrop
+//= require angular
+//= require angular-resource
+//= require dooliddlApp
 //= require_tree .
 
 $(function(){

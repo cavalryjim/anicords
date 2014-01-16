@@ -5,7 +5,7 @@ Anicords::Application.routes.draw do
   ActiveAdmin.routes(self)
   resources :service_providers
 
-  resources :veterinarians
+#  resources :veterinarians
   resources :organizations do
     resources :user_associations
     resources :animals
@@ -29,19 +29,24 @@ Anicords::Application.routes.draw do
     resources :animal_associations
   end
   
-  resources :documents
-  resources :pictures
+  #resources :documents
+  #resources :pictures
 
   devise_for :users, 
-  #ActiveAdmin.routes(self)
-        path_names: {sign_in: "login", sign_out: "logout", sign_up: "welcome"}, 
-        controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"} 
+    path_names: {sign_in: "login", sign_out: "logout", sign_up: "welcome"}, 
+    controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"} 
   
   resources :breeders do
     resources :animals
   end
   resources :users do
     resources :user_associations
+  end
+  
+  scope :api, defaults: {format: :json} do
+    resources :organizations, only: [:show] do
+      resources :animals, only: [:index, :create, :update, :destroy]
+    end
   end
   
   resources :animal_vaccinations

@@ -1,14 +1,18 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, 
                                       :sitter_instructions, :photo_gallery]
-  before_action :set_owner, only: [:new, :show, :create, :edit, :destroy, :transfer_ownership, :sitter_instructions]
+  before_action :set_owner, only: [:index, :new, :show, :create, :edit, :destroy, :transfer_ownership, :sitter_instructions]
   before_filter :authenticate_user!, except: [:show]
   authorize_resource except: [:accept_transfer]
   
   # GET /animals
   # GET /animals.json
   def index
-    @animals = Animal.all
+    #@animals = Animal.all
+    @animals = @owner.animals
+    respond_to do |format|
+      format.json { render :json => @animals }
+    end
   end
 
   # GET /animals/1

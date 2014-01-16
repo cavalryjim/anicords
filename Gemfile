@@ -45,6 +45,9 @@ gem 'dragonfly-s3_data_store', '1.0.2'
 gem 'possessive', '1.0.1'
 gem 'jcrop-rails-v2', '0.9.12.3'
 gem 'exception_notification', '4.0.1'
+gem 'angularjs-rails', '1.2.7'
+#gem 'rescuegroups', '~> 0.0.1'  #JDavis: this is an API gem to communicate with an adoptable pet repository.
+gem 'active_model_serializers', '0.8.1'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
