@@ -22,6 +22,8 @@
   </div>
 </section>
 
+<!-----------------------#JDavis: modals follow------------------------------->
+
 <div id="addVaccinationModal" class="reveal-modal">
     <h3>Add vaccination</h3>
 	<%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => ''} do |f| %>

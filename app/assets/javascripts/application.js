@@ -17,9 +17,6 @@
 //= require foundation
 //= require select2
 //= require jquery.Jcrop
-//= require angular
-//= require angular-resource
-//= require dooliddlApp
 //= require_tree .
 
 $(function(){
@@ -33,15 +30,6 @@ $(function(){
     }
    }); 
    
-  //document.addEventListener("page:load", function(){
-    //Foundation.libs.dropdown.events();
-    //alert("here");
-    //$(".has_dropdown").foundation('dropdown', 'off');
-    //$(document).foundation('dropdown');
-    //$(".has_dropdown").foundation('dropdown', 'on');
-  //});
-  
-	
   setTimeout(function(){
     $("div.success").fadeOut("slow", function () {
     $("div.success").hide();

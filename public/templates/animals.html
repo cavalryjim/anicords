@@ -1,0 +1,10 @@
+<div class="row">
+	<h3>All Animals</h3>
+	<ul>
+		<li ng-repeat="animal in animals">
+			<a href="" ng-click="setAnimal(animal.id)">{{animal.id}} - {{animal.name}}</a>
+		</li>
+	</ul>
+
+</div>
+<div ng-include src="sidebarURL"></div>

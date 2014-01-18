@@ -8,9 +8,10 @@ class AnimalsController < ApplicationController
   # GET /animals
   # GET /animals.json
   def index
-    #@animals = Animal.all
     @animals = @owner.animals
+    #@animals = Animal.all
     respond_to do |format|
+      format.html
       format.json { render :json => @animals }
     end
   end
@@ -43,7 +44,6 @@ class AnimalsController < ApplicationController
       Document.create(animal_id: @animal.id, key: params[:key])
     end
     @uploader = Document.new.file_path
-    #@uploader.success_action_redirect = url_for([@owner, @animal]) + '/edit'
     @uploader.success_action_redirect = polymorphic_path([@owner, @animal], method: :edit)
   end
 
@@ -107,19 +107,6 @@ class AnimalsController < ApplicationController
   def download_file
     file = open(@animal.pedigree.url)
     send_file(file, disposition: "attachment")
-     #send_file(@animal.pedigree.direct_fog_url(with_path: true),
-     #   :disposition => 'attachment',
-     #   :url_based_filename => true)
-     #redirect_to @animal.pedigree.url, :target => "_blank"
-     
-     #open(@animal.pedigree.url) {|file|
-     #  tmpfile = Tempfile.new("download.jpg")
-     #  File.open(tmpfile.path, 'wb') do |f| 
-     #    f.write img.read
-     #  end 
-     #  send_file tmpfile.path, :filename => "great-image.jpg"
-     # }   
-     
   end
   
   def transfer_ownership

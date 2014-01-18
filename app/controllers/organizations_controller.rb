@@ -13,6 +13,16 @@ class OrganizationsController < InheritedResources::Base
     
     #1.times { @organization.animals.build }
   end
+  
+  # GET /organizations/1
+  # GET /organizations/1.json
+  def show
+    respond_to do |format|     
+      format.html
+      format.json
+    end
+
+  end
 
   # GET /organizations/1/edit
   def edit
