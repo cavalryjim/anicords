@@ -44,9 +44,10 @@
       </div>
     </div>
     
-    <% if (!@household.new_record?) %>
+    
+    <% unless @household.new_record? %>
 	    <div class="row">
-	      <div class="large-8 columns">
+	      <div class="large-10 columns">
 	      	<table class="margin-bottom_25em">
 	          <thead>
 	            <tr>

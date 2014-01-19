@@ -7,16 +7,18 @@
 			
 	    <ul class="small-block-grid-3 large-block-grid-3">
 	      <li>
-		   <%= link_to new_household_path, 'data-no-turbolink' => true do %>
+		   <%= link_to new_household_path do %>
 		    <div class="panel callout front_page_callout">
 	          <p>Household (anyone with an animal family member)</p>
 	        </div>
 	       <% end %>
 		  </li>
 		  <li >
-		    <div class="panel callout front_page_callout"> 
-	          <p>Animal group (such as a pet rescue). <u>Coming soon!</u></p>
+		  	 <%= link_to new_organization_path do %>
+		    <div class="panel callout front_page_callout">
+	          <p>Animal group (such as a pet rescue).</p>
 	        </div>
+	       <% end %>
 		  </li>
 		  <li>
 		    <div class="panel callout front_page_callout">

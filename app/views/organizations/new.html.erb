@@ -33,7 +33,7 @@
 		</li>
 		<li>
 	      <div class="panel callout front_page_callout">
-            <p>3. Import animals from Petfinder, .</p>
+            <p>3. Import animals.</p>
           </div>
 		</li>
 		<li>
@@ -42,39 +42,6 @@
           </div>
 		</li>
 	  </ul>
-	  <!--
-	  <table class="no_border">
-	  	<tr class="no_bg">
-	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>
-	      <td>
-	      	Create a household and add your animals.
-	      </td>		
-	  	</tr>
-	  	<tr class="no_bg">
-	      <td align="center"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>
-	      <td>
-	      	Add information about your animal's health & upload documents such as 
-	      	pedigree charts & vaccination reocords.
-	      </td>		
-	  	</tr>
-	  	<tr class="no_bg">
-	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>	
-	      <td>
-	      	Add the service providers involved in the care of your animals.  It they are in our
-	      	directory, simply look them up and we'll populate.
-	      </td>	
-	  	</tr>
-	  	<tr class="no_bg">
-	      <td align="center" class="no_bg"><%= image_tag('cloud_Icon.png', size: '50x50')%></td>		
-	      <td>
-	      	Let us make your role as animal custodian easier.  Schedule groomer or kennel stays.
-	      	Coordinate sitters.  No more calls to your vet's office to fax records (such as vaccinations)
-	      	each time you need them.
-	      </td>
-	  	</tr>
-
-	  </table>
-	  -->
 	  
 	</div>
 	
@@ -89,38 +56,21 @@
 </div>
 
 <div id="stepsOverviewModal2" class="reveal-modal">
-  <h4>Give your household a name & tell us about your animals</h4>
-  <%= form_for(@household, html: {id: "quick_household_form", "data-abide" => '' }) do |f| %>
+  <h4>Give us your organization's name & info</h4>
+  <%= form_for(@organization, html: {id: "quick_organization_form", "data-abide" => '' }) do |f| %>
 
     <div class="row">
       <div class="large-12 columns">
-        <%= f.text_field :name, placeholder: "Household name ex. Smith House"  %>
-        <small class="error">Household name required.</small>
+        <%= f.text_field :name, placeholder: "Organization name ex. Pet Haven"  %>
+        <small class="error">Organization name required.</small>
       </div>
     </div>
     
-    <% if current_user.has_pending_transfers? %>
-      <% current_user.animal_transfers.each do |transfer| %>
-        <div class="row">
-          <div class="large-12 columns">
-            <fieldset>
-              <%= transfer.display_name %>
-              <%= hidden_field_tag 'animal_transfers['+transfer.id.to_s+']' , 0 %>
-              <%= link_to 'remove', '#', class: 'remove_fields' %>
-            </fieldset>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-    
     <div class="row">
       <div class="large-12 columns">
-       <%= f.fields_for :animals do |builder| %>
-  	     <%= render 'animal_fields', f: builder %>
-	   <% end %>
-	   <%= link_to_add_fields "Add another animal", f, :animals %>
-	  </div>
-	</div>
+        <%= f.text_field :petfinder_shelter_id, placeholder: "Pet Finder Shelter ID ex 'LA123'"  %>
+      </div>
+    </div>
     
     <div class="row">
       <div class="large-3 columns">
@@ -133,29 +83,47 @@
 </div>
 
 <div id="stepsOverviewModal3" class="reveal-modal">
-	<h4>Is there another human that will help manage the household?</h4>
-	<div class="row">
-      <div class="large-12 columns">
-        <%= text_field_tag 'human_email', nil, placeholder: "email (required to add a human)"  %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <%= text_field_tag 'human_first_name', nil, placeholder: "first name"  %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <%= text_field_tag 'human_last_name', nil, placeholder: "last name"  %>
-      </div>
-    </div>
+	<h4>Are there another admin users that will help manage the account?</h4>
+	<h6>Don't worry, you can add more later!</h6>
+	<fieldset>
+	    <div class="row">
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin1_first_name', nil, placeholder: "first name"  %>
+	      </div>
+	    
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin1_last_name', nil, placeholder: "last name"  %>
+	      </div>
+	    </div>
+		<div class="row">
+	      <div class="large-12 columns">
+	        <%= text_field_tag 'admin1_email', nil, placeholder: "email (required to add an admin)"  %>
+	      </div>
+	    </div>
+	</fieldset>
+	<fieldset>
+	    <div class="row">
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin2_first_name', nil, placeholder: "first name"  %>
+	      </div>
+	    
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin2_last_name1', nil, placeholder: "last name"  %>
+	      </div>
+	    </div>
+		<div class="row">
+	      <div class="large-12 columns">
+	        <%= text_field_tag 'admin2_email1', nil, placeholder: "email (required to add an admin)"  %>
+	      </div>
+	    </div>
+	</fieldset>
 	
 	<div class="row">
 	  <div class="large-3 columns">
       	<%= link_to image_tag('back.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
       </div>
 	  <div class="large-3 columns">
-		<%= link_to image_tag('next.png', size: '150x150'), '#', onclick: "$('#quick_household_form').submit()", class: "close-reveal-modal new_account_nav"  %>
+		<%= link_to image_tag('next.png', size: '150x150'), '#', onclick: "$('#quick_organization_form').submit()", class: "close-reveal-modal new_account_nav"  %>
 	  </div>
 	</div>
   <% end %>

@@ -17,14 +17,16 @@
 			  <th>Animal</th>
 			  <th>Species</th>
 			  <th>Breed</th>
+			  <th>Transfer</th>
 			</tr>
 		  </thead>
 		  <tbody>
 		    <% @animals.each do |animal| %>
 		      <tr>
-			    <td><%= link_to animal.name, organization_animal_path(@organization, animal) %></td>
+			    <td><%= link_to animal.name, edit_organization_animal_path(@organization, animal) %></td>
 			    <td><%= animal.species %></td>
 			    <td><%= animal.breed %></td>
+			    <td><%= link_to transfer_button, organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>
 			  </tr>
 			<% end %>
 		  </tbody>
@@ -54,8 +56,8 @@
 	    <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'Species'}, {class: "regular_select"} %>
 	  </div>
 	</div>
-	<%= f.hidden_field :owner_id, value: @organization.id %>
-	<%= f.hidden_field :owner_type, value: @organization.class.name %>	      
+	<%= f.hidden_field :owner_id, value: @organization.id %>	 
+	<%= f.hidden_field :owner_type, value: @organization.class.name %>       
     <div class="actions">
 	  <%= f.submit %>
 	</div>

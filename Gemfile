@@ -46,6 +46,7 @@ gem 'possessive', '1.0.1'
 gem 'jcrop-rails-v2', '0.9.12.3'
 gem 'exception_notification', '4.0.1'
 gem 'jquery-datatables-rails', '1.12.2'
+#gem 'rescuegroups', '~> 0.0.1'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
