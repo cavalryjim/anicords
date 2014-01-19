@@ -10,20 +10,25 @@
 	  	<% if @organization.animals.count == 0 %>
 		  <h4>Tell us about your animals</h4>
 		<% end %>
-	    <ul class="large-block-grid-3">
-	    	
-	    <% if @organization.animals.count == 0 %>
-	      <li>Please add your organization animals.</li>
-	    <% end %>
 	    
-		<% @organization.animals.each do |animal| %>
-		  <li>
-			  <%= link_to animal_image(animal), organization_animal_path(@organization, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
-			  <%= link_to animal.name, organization_animal_path(@organization, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %>		
-		  </li>
-					
-		<% end %>
-	    </ul>
+	    <table class="datatable">
+		  <thead>
+			<tr>
+			  <th>Animal</th>
+			  <th>Species</th>
+			  <th>Breed</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		    <% @animals.each do |animal| %>
+		      <tr>
+			    <td><%= link_to animal.name, organization_animal_path(@organization, animal) %></td>
+			    <td><%= animal.species %></td>
+			    <td><%= animal.breed %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
 			
 	    <%= button_to "Add Animal", "#", "data-reveal-id" => "newAnimalModal" %> 
 	</fieldset>

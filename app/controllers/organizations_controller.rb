@@ -7,6 +7,12 @@ class OrganizationsController < InheritedResources::Base
     redirect_to root_url
   end
   
+  # GET /organizations/1
+  # GET /organizations/1.json
+  def show
+    @animals = @organization.animals
+  end
+  
   # GET /organizations/new
   def new
     @organization = Organization.new

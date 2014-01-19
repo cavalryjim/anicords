@@ -17,9 +17,12 @@
 //= require foundation
 //= require select2
 //= require jquery.Jcrop
+//= require dataTables/jquery.dataTables
+//= dataTables.foundation
 //= require_tree .
 
 $(function(){
+  
   
   $(document).foundation()
   .foundation('abide', {
@@ -28,7 +31,11 @@ $(function(){
       password : /(?=^.{8,}$).*$/
 
     }
-   }); 
+   });
+   
+  $('.datatable').dataTable({
+    "sPaginationType": "foundation"
+  });
    
   //document.addEventListener("page:load", function(){
     //Foundation.libs.dropdown.events();

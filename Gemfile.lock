@@ -126,6 +126,8 @@ GEM
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jcrop-rails-v2 (0.9.12.3)
+    jquery-datatables-rails (1.12.2)
+      jquery-rails
     jquery-fileupload-rails (0.4.1)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -323,6 +325,7 @@ DEPENDENCIES
   html5_validators (= 1.1.2)
   jbuilder (~> 1.2)
   jcrop-rails-v2 (= 0.9.12.3)
+  jquery-datatables-rails (= 1.12.2)
   jquery-fileupload-rails (= 0.4.1)
   jquery-rails (= 2.2.1)
   letter_opener (= 1.1.2)
