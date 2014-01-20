@@ -1,8 +1,8 @@
 <% content_for :title, "Update Profile" %>
 
-<%= form_for(@user, html: {"data-abide" => ''}) do |f| %>
 
-  <fieldset>
+<fieldset>
+  <%= form_for(@user, html: {"data-abide" => ''}) do |f| %>
     <div class="row">
       <div class="large-5 columns">
 	    <%= f.text_field :first_name, placeholder: "First Name"  %>
@@ -57,32 +57,36 @@
       
     </div>
     
-    <div class="row">
-	  <div class="large-4 columns">
-	   <table>
-	      <thead>
-	        <tr>
-	          <th min-width="200" colspan="3">Associations</th>
-	        </tr>
-	      </thead>
+  	<%= f.submit 'save' %>
+  <% end %>
+    
+  <div class="row">
+	<div class="large-4 columns">
+	 <table>
+	    <thead>
+	      <tr>
+	        <th min-width="200" colspan="3">Associations</th>
+	      </tr>
+	    </thead>
 	
-	      <tbody>
-	        <% @user.associations.each do |association| %>
-	          <tr>
-	            <td><%= link_to image(association), association.organization %></td>   
-	            <td><%= link_to association.name, association.organization %></td> 
-	            <td><%= link_to image_tag('cross.png', alt:"del", size: '20x20'), user_user_association_path(@user, association), method: :delete, 
-				 		data: { confirm: 'Please confirm you want to remove ' + association.name + ' from your account.' } %></td>      
-	          </tr>
-	        <% end %>
-	      </tbody>
-	    </table>
-	  </div>
+	    <tbody>
+	      <% @user.associations.each do |association| %>
+	        <tr>
+	          <td><%= link_to image(association), association.organization %></td>   
+	          <td><%= link_to association.name, association.organization %></td> 
+	          <td><%= link_to image_tag('cross.png', alt:"del", size: '20x20'), user_user_association_path(@user, association), method: :delete, 
+				   data: { confirm: 'Please confirm you want to remove ' + association.name + ' from your account.' } %></td>      
+	        </tr>
+	      <% end %>
+	    </tbody>
+	  </table>
 	</div>
-    
-    
-  	<%= f.button :submit %>
-    
-  </fieldset>
+  </div>
   
-<% end %>
+  <div class="row">
+  	<div class="large-3 columns"><%= link_to fun_button_small('create another account'), user_select_account_type_path %></div>
+  </div>
+  
+    
+</fieldset>
+  

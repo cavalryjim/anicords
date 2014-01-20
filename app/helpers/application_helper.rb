@@ -33,6 +33,18 @@ module ApplicationHelper
     'https://s3-us-west-2.amazonaws.com/dooliddl/app_images/' << file_name
   end
   
+  def button_small(text)
+    ("<button class='small'>"+text+"</button>").html_safe
+  end
+  
+  def fun_button_small(text)
+    ("<button class='small round fun_font'>"+text+"</button>").html_safe
+  end
+  
+  def fun_button_tiny(text)
+    ("<button class='tiny round fun_font'>"+text+"</button>").html_safe
+  end
+  
   def number_of_notifications
     (current_user.notifications.count > 0) ? current_user.notifications.count : false
     #current_user.notifications.count

@@ -260,6 +260,14 @@ div.preview {
   margin-left:5px;
 }
 
+.fun_font {
+  color: #00FF40;
+  font-family: 'Finger Paint', cursive !important;
+  font-weight: normal;
+  text-shadow: 2px 2px #000000;
+}
+
+
 
 
 

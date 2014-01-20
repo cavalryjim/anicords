@@ -12,11 +12,11 @@
 
 <div id="stepsOverviewModal" class="reveal-modal">	
   <div class="row">
-	<div class="large-7 large-centered columns">
-	    <%= image_tag 'mww.png'%>
+	<div class="large-12 large-centered columns">
+	    <h1 class="fun_font">meow, woof, welcome!</h1>
+        <h3>Here's how it works:</h3>
 	</div>
   </div>
-  <h3>Here's how it works:</h3>
   <div class="row">
 	<div class="large-12 columns">
 	  <ul class="small-block-grid-2 large-block-grid-4">
@@ -48,7 +48,7 @@
 	<div class="row">
 		<div class="large-3 columns"></div>
 		<div class="large-3 columns">
-			<%= link_to image_tag('getstarted.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
+			<%= link_to fun_button_tiny('get started'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
 		</div>
 	</div>
   </div>
@@ -74,10 +74,10 @@
     
     <div class="row">
       <div class="large-3 columns">
-      	<%= link_to image_tag('back.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal', class: "close-reveal-modal new_account_nav"   %>
+      	<%= link_to fun_button_tiny('back'), '#', 'data-reveal-id'=>'stepsOverviewModal', class: "close-reveal-modal new_account_nav"   %>
       </div>
 	  <div class="large-3 columns">
-		<%= link_to image_tag('next.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal new_account_nav"   %>
+		<%= link_to fun_button_tiny('next'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal new_account_nav"   %>
 	  </div>
 	</div>
 </div>
@@ -120,10 +120,10 @@
 	
 	<div class="row">
 	  <div class="large-3 columns">
-      	<%= link_to image_tag('back.png', size: '150x150'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
+      	<%= link_to fun_button_tiny('back'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
       </div>
 	  <div class="large-3 columns">
-		<%= link_to image_tag('next.png', size: '150x150'), '#', onclick: "$('#quick_organization_form').submit()", class: "close-reveal-modal new_account_nav"  %>
+		<%= link_to fun_button_tiny('submit'), '#', onclick: "$('#quick_organization_form').submit()", class: "close-reveal-modal new_account_nav"  %>
 	  </div>
 	</div>
   <% end %>

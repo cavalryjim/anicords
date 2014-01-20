@@ -26,7 +26,7 @@
 			    <td><%= link_to animal.name, edit_organization_animal_path(@organization, animal) %></td>
 			    <td><%= animal.species %></td>
 			    <td><%= animal.breed %></td>
-			    <td><%= link_to transfer_button, organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>
+			    <td><%= link_to button_small("transfer"), organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>
 			  </tr>
 			<% end %>
 		  </tbody>

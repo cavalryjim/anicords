@@ -34,7 +34,8 @@ $(function(){
    });
    
   $('.datatable').dataTable({
-    "sPaginationType": "foundation"
+    "sPaginationType": "foundation",
+    "bStateSave": true
   });
    
   //document.addEventListener("page:load", function(){
