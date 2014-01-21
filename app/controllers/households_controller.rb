@@ -34,8 +34,8 @@ class HouseholdsController < ApplicationController
     #breakage
     @household = Household.new(household_params)
     respond_to do |format|
-      if @household.save && @household.associate_user(current_user.id)
-        current_user.create_user_to_group(params[:human_email], @household, params[:human_first_name], params[:human_last_name] ) if (params[:human_email] != "")
+      if @household.save && @household.associate_user(current_user.id, true)
+        User.create_user_to_group(params[:human_email], @household, params[:human_first_name], params[:human_last_name], true ) if (params[:human_email] != "")
         session[:home_page] = household_path(@household)
         @household.transfer_animals(params[:animal_transfers]) if params[:animal_transfers]
         format.html { redirect_to @household, notice: 'Household was successfully created.' }
@@ -81,7 +81,7 @@ class HouseholdsController < ApplicationController
   end
   
   def create_user
-    new_user = current_user.create_user_to_group(params[:user][:email], @household, params[:user][:first_name], params[:user][:last_name] )
+    new_user = User.create_user_to_group(params[:user][:email], @household, params[:user][:first_name], params[:user][:last_name])
     new_user.create_activity :added_to_group, owner: current_user, recipient: @household
     redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
   end

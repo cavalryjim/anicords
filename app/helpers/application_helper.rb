@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def dooliddl_image
-    image_tag(s3_url('dooliddl_f.png'), size: '300x300')
+    image_tag(s3_url('dooliddl_f.png'), size: '250x250')
   end
   
   def link_to_home

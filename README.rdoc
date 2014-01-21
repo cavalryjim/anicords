@@ -1,28 +1,112 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version - 2.0.0p247
 
-Things you may want to cover:
+* Rails version - 4.0.*
 
-* Ruby version
+* System dependencies - Yeah we got those.  Postgres & Imagemagick are the two biggest.  See the build instructions & gemfile for others.
 
-* System dependencies
+* Configuration - In general, this is a standard Rails 4.0 application and follows the Rails way of doing business.
 
-* Configuration
+* Database creation - Get postgres installed.  Update database.yml if needed, then run 'rake db:create'.
 
-* Database creation
+* How to run the test suite - use your browser!  Yeah, I said it!
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+* Services (job queues, cache servers, search engines, etc.) - This application uses queue_classic and Heroku's scheduler add-on.
+See lib/tasks/scheduler.rake for the current tasks.
 
 * Deployment instructions
+ While it is possible to conduct ruby & rails development on the MAC or Windows OS, this document will only cover the steps 
+ required for Ubuntu 12.04 LTS.  In general, the following steps must be accomplished:
+  - install postgres
+  - install git
+  - install ruby
+  - install java (optional)
+  - install Aptana (optional) or another IDE
+  - obtain a copy of the code from the repository
+  - install the required ruby gems
+  
+  '$' indicates to execute at the command prompt in a terminal session.
 
-* ...
+Start a terminal session in Ubuntu
+On the right side dashboard of Ubuntu, the top icon is the 'Dash Home' application.
+Select 'Dash Home', type 'terminal', and then select the 'Terminal' application.
+You can also drag & drop frequently used applications onto the dashboard.  I would recommend doing this with the terminal app.
+
+Install the Postgresql DB
+$ sudo apt-get install postgresql
+$ sudo apt-get install pgadmin3
+ (optional.  PG admin is a powerful gui tool for interfacing with the postgres db)
+$ sudo apt-get install libpq-dev
+$ sudo -u postgres psql postgres
+\password postgres  (note: this is inside the postgres prompt)
+use the password 'ap1194'  (because this is the password required for the development database...a much more robust authentication is used in production)
+confirm password
+Type Control+D to exit postgres
+
+Install Git 
+$ sudo apt-get install git git-core git-gui
+Find additional instructions on setting up git here: http://help.github.com/
+
+Install dev packages, RVM, and Ruby 2
+$ sudo apt-get install imagemagick imagemagick-common libmagickcore-dev libmagickwand-dev
+
+$ sudo apt-get install curl
+$ \curl -sSL https://get.rvm.io | bash -s stable
+Close the terminal and open a new one.
+$ source /etc/profile
+$ source ~/.rvm/scripts/rvm
+If installation and configuration were successful, RVM should now load whenever you open a new shell. This can be tested by executing the following command which should output 'rvm is a function' .
+$ type rvm | head -n 1
+$ rvm install 2.0.0-p247
+$  rvm use 2.0.0-p247@anicords --create
+$  rvm use 2.0.0-p247@anicords –-default
+$ which gem  (if you did not use RVM, you will need to install RubyGems)
+          output should look like this:
+          /home/james/.rvm/rubies/ruby-2.0.0-p247/bin/gem
+
+Install Rails 4
+Once you’ve installed RVM (or RubyGems), installing Rails should be easy. Dooliddl was developed using Rails 4.0.2, and is installed as follows: 
+$ gem install rails --version 4.0.2
+To verify that this worked, run the following command: $ rails -v
+          Output: Rails 4.0.2
+
+Install Java (installing Java per Aptana's perquisites)
+$  sudo add-apt-repository ppa:webupd8team/java
+$  sudo apt-get update
+$  sudo apt-get install oracle-java7-installer
+$  java -version  (confirm java installation)
+
+Install IDE 
+  - While any text editor will allow you to write Ruby code, I prefer Aptana 3.
+  - If you already have a working version of Eclipse, you can install the Aptana plug-in instead.
+  - Download Aptana Studio 3.4, at http://aptana.com/products/studio3/download 
+  - Extract the package
+  - Double click on 'AptanaStudio3' to launch the application
+  - Jollow the application setup
+  - Once installed, Select 'Import Project' 
+  - Select 'Git Repository as New Project'
+  - URI: git@github.com:cavalryjim/anicords.git  
+  - Destination: ~/Projects/anicords  (the location does not matter...just remember where you put it)
+
+Install Gems, Create & Migrate Database 
+$  cd Projects/anicords  (or the directory where you downloaded the project)
+Projects/anicords$ bundle install  (this will install all of the gems associated with the project)
+Note: depending on the different versions of rails & rake gems you have on your machine, you may have to use 'bundle exec' in front of the rake command to specify you want the command ran against your bundled environment.
+Projects/anicords$ sudo apt-get install nodejs
+Projects/anicords$ rake db:create  (this will create the Postgres database)
+Projects/anicords$ rake db:migrate (this creates the tables and structure of the db and may need to ran periodically as new objects are added.)
+Projects/anicords$ rake db:seed (as of the initial writing, this will have no effect as there is nothing in the seed file)
+
+Run Dooliddl 
+Projects/anicords$ unicorn_rails   (this will start the application's web server on your development machine.)
+Goto http://localhost:8080/ and you should see the application running. 
+Use 'ctrl c' to stop the web server.
+  
+These instructions are mostly complete with the exception of intalling RVM (you may have to do some research on properly setting it up).  
+If you have any questions, contact me.
+
+* James - james.davisphd@gmail.com
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+

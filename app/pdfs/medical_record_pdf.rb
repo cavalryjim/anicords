@@ -3,6 +3,7 @@ class MedicalRecordPdf < Prawn::Document
     super()
     @animal = animal
     @owner = animal.owner
+    #font "http://fonts.googleapis.com/css?family=Life+Savers"
     top_header
     demographics
     vaccinations

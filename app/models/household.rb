@@ -36,20 +36,21 @@ class Household < ActiveRecord::Base
     name
   end
   
-  def associate_user(user_id)
-    UserAssociation.where(user_id: user_id, group: self).first_or_create
+  def associate_user(user_id, administrator=false)
+    user_association = UserAssociation.where(user_id: user_id, group: self).first_or_create
+    user_association.update_attribute :administrator, administrator if administrator
   end
   
   def associate_service_provider(service_provider_id)
     HouseholdAssociation.where(household_id: self.id, service_provider_id: service_provider_id).first_or_create
   end
   
-  def add_another_human(email, first_name, last_name)
+  def add_another_human(email, first_name, last_name, administrator=false)
     user = User.where(email: email).first_or_create
     user.first_name = first_name if (user.first_name == nil)
     user.last_name = last_name if (user.last_name == nil)
     user.save if user.changed.any?
-    self.associate_user(user.id)
+    self.associate_user(user.id, administrator)
   end
   
   def transfer_animals(transfers)
