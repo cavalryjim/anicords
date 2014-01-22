@@ -18,7 +18,8 @@
 //= require select2
 //= require jquery.Jcrop
 //= require dataTables/jquery.dataTables
-//= dataTables.foundation
+//= require dataTables/jquery.dataTables.foundation
+//= require dataTables.foundation
 //= require_tree .
 
 $(function(){
@@ -33,8 +34,11 @@ $(function(){
     }
    });
    
-  $('.datatable').dataTable({
+  $('#animal_table').dataTable({
     "sPaginationType": "foundation",
+    "sScrollX": "100%",
+    "sScrollXInner": "110%",
+    "bScrollCollapse": true,
     "bStateSave": true
   });
    

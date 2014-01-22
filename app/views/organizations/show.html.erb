@@ -11,22 +11,34 @@
 		  <h4>Tell us about your animals</h4>
 		<% end %>
 	    
-	    <table class="datatable">
+	    <table id="animal_table" cellpadding="0" cellspacing="0" border="0" >
 		  <thead>
 			<tr>
+			  <th>Shelter ID</th>
 			  <th>Animal</th>
 			  <th>Species</th>
 			  <th>Breed</th>
-			  <th>Transfer</th>
+			  <th>Date In</th>
+			  <th>Intake Reason</th>
+			  <th>Location</th>
+			  <th>Gender</th>
+			  <th>Neutered/Spayed</th>
+			  <!--<th>Transfer</th>-->
 			</tr>
 		  </thead>
 		  <tbody>
 		    <% @animals.each do |animal| %>
 		      <tr>
+		      	<td>C323</td>
 			    <td><%= link_to animal.name, edit_organization_animal_path(@organization, animal) %></td>
 			    <td><%= animal.species %></td>
-			    <td><%= animal.breed %></td>
-			    <td><%= link_to button_small("transfer"), organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>
+			    <td>Golden retriever</td>
+			    <td>12/12/2013</td>
+			    <td>surrendered</td>
+			    <td>Davis Family</td>
+			    <td>male</td>
+			    <td>yes</td>
+			    <!--<td><%= link_to button_small("transfer"), organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>-->
 			  </tr>
 			<% end %>
 		  </tbody>
