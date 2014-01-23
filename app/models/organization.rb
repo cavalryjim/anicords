@@ -25,6 +25,8 @@ class Organization < ActiveRecord::Base
   has_many  :animals, as: :owner, dependent: :destroy
   has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
+  has_many  :foster_homes, dependent: :destroy
+  has_many  :households, through: :foster_homes
   accepts_nested_attributes_for :animals, allow_destroy: true
   
   validates_presence_of :name

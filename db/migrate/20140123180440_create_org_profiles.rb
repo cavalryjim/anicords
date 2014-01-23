@@ -1,6 +1,8 @@
-class CreateOrgRecords < ActiveRecord::Migration
+class CreateOrgProfiles < ActiveRecord::Migration
   def change
-    create_table :org_records do |t|
+    drop_table :animal_org_profiles if self.table_exists?("animal_org_profiles")
+    
+    create_table :org_profiles do |t|
       t.integer     :animal_id
       t.date        :intake_date
       t.integer     :intake_reason
