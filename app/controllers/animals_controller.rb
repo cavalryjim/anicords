@@ -197,6 +197,9 @@ class AnimalsController < ApplicationController
        :rfid, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
        :fur_color, :disposition,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids,
+       org_record_attributes: [ :animal_id, :intake_date, :intake_reason, :location, :foster_household_id, :neuter_location_id,
+         :neuter_location_type, :neuter_location, :intake_weight, :intake_weight_measure, :_destroy],
        medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], personality_type_ids: [] )
     end
 end
+

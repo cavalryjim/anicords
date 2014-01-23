@@ -32,7 +32,7 @@ gem 'remotipart', '1.2.1'
 gem 'select2-rails', '3.5.0'
 gem 'public_activity', '1.4.0'
 gem 'cancan', '1.6.10'
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'cavalryjim/active_admin'
 gem 'rqrcode_png', '0.1.2'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '1.0.2'
@@ -45,7 +45,8 @@ gem 'dragonfly-s3_data_store', '1.0.2'
 gem 'possessive', '1.0.1'
 gem 'jcrop-rails-v2', '0.9.12.3'
 gem 'exception_notification', '4.0.1'
-gem 'jquery-datatables-rails', '1.12.2'
+gem 'jquery-datatables-rails', github: 'cavalryjim/jquery-datatables-rails' #JDavis: my version of the gem.
+#gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 #gem 'rescuegroups', '~> 0.0.1'
 
 

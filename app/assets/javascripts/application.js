@@ -19,7 +19,6 @@
 //= require jquery.Jcrop
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
-//= require dataTables.foundation
 //= require_tree .
 
 $(function(){
@@ -36,9 +35,9 @@ $(function(){
    
   $('#animal_table').dataTable({
     "sPaginationType": "foundation",
-    "sScrollX": "100%",
-    "sScrollXInner": "110%",
-    "bScrollCollapse": true,
+    //"sScrollX": "100%",
+    //"sScrollXInner": "110%",
+    //"bScrollCollapse": true,
     "bStateSave": true
   });
    

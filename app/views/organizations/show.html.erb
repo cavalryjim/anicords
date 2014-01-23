@@ -7,15 +7,18 @@
   <h4><%= @organization.name %> <small><%= link_to ' (edit)', edit_organization_path(@organization), 'data-no-turbolink' => true %></small></h4>
   <div class="large-12 columns">
 	<fieldset>
-	  	<% if @organization.animals.count == 0 %>
-		  <h4>Tell us about your animals</h4>
-		<% end %>
+	  <% if @organization.animals.count == 0 %>
+	    <h4>Tell us about your animals</h4>
+      <% end %>
+      
+      <div class="row">
+       <div class="large-12 columns">
+       	
 	    
-	    <table id="animal_table" cellpadding="0" cellspacing="0" border="0" >
+	    <table id="animal_table" cellpadding="0" cellspacing="0" border="0" class="display" >
 		  <thead>
 			<tr>
-			  <th>Shelter ID</th>
-			  <th>Animal</th>
+			  <th>Name</th>
 			  <th>Species</th>
 			  <th>Breed</th>
 			  <th>Date In</th>
@@ -23,26 +26,27 @@
 			  <th>Location</th>
 			  <th>Gender</th>
 			  <th>Neutered/Spayed</th>
-			  <!--<th>Transfer</th>-->
+			  <th>Transfer</th>
 			</tr>
 		  </thead>
 		  <tbody>
 		    <% @animals.each do |animal| %>
 		      <tr>
-		      	<td>C323</td>
 			    <td><%= link_to animal.name, edit_organization_animal_path(@organization, animal) %></td>
 			    <td><%= animal.species %></td>
-			    <td>Golden retriever</td>
+			    <td><%= animal.breed %></td>
 			    <td>12/12/2013</td>
 			    <td>surrendered</td>
 			    <td>Davis Family</td>
 			    <td>male</td>
 			    <td>yes</td>
-			    <!--<td><%= link_to button_small("transfer"), organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>-->
+			    <td><%= link_to button_small("transfer"), organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>
 			  </tr>
 			<% end %>
 		  </tbody>
 		</table>
+       </div>
+      </div>
 			
 	    <%= button_to "Add Animal", "#", "data-reveal-id" => "newAnimalModal" %> 
 	</fieldset>

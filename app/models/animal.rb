@@ -56,6 +56,7 @@ class Animal < ActiveRecord::Base
   #belongs_to :household
   belongs_to :breed
   has_one    :animal_transfer, dependent: :destroy
+  has_one    :org_record, dependent: :destroy
   has_many   :documents, dependent: :destroy
   has_many   :vaccinations, through: :animal_vaccinations
   has_many   :animal_vaccinations, dependent: :destroy
@@ -73,6 +74,7 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   accepts_nested_attributes_for :pictures, allow_destroy: true
+  accepts_nested_attributes_for :org_record, allow_destroy: true
   
   validates_presence_of :name
   validate :file_size_validation
