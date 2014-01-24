@@ -39,7 +39,7 @@ $(function(){
     //"sScrollXInner": "110%",
     //"bScrollCollapse": true,
     "bStateSave": true
-  });
+  }).show();
    
   //document.addEventListener("page:load", function(){
     //Foundation.libs.dropdown.events();
@@ -70,6 +70,11 @@ $(function(){
   	width: '100%',
     matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; }
   });
+  
+  // JDavis: this needs to be moved to the organization.js.coffee file
+  //$( document ).ready(function() {
+  //  $('#animal_table').dataTable().fnAdjustColumnSizing()
+  //});
 	
 
 });

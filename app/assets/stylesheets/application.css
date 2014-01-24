@@ -271,6 +271,8 @@ div.preview {
   border-collapse: separate;
 }
 
+.fouc {display: none;} /* JDavis: this class is applied to several of the jQuery UI items to stop flashing unformatted content */
+
 
 
 
