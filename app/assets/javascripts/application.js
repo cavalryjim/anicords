@@ -23,7 +23,6 @@
 
 $(function(){
   
-  
   $(document).foundation()
   .foundation('abide', {
     patterns: {
@@ -71,13 +70,20 @@ $(function(){
     matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; }
   });
   
-  // JDavis: this needs to be moved to the organization.js.coffee file
-  //$( document ).ready(function() {
-  //  $('#animal_table').dataTable().fnAdjustColumnSizing()
+  //$('#org_animal_edit_div').on('show', function() {
+  	//$(document).foundation();
+    //alert("ehool");
+    //$(".regular_select2").select2("destroy");
+    //$(".org_regular_select2").select2({ minimumResultsForSearch: 55, width: '100%'});
+    //$(".org_animal_breed").select2({
+    //  data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
+    //});
   //});
-	
 
 });
+
+
+
 
 function validateFiles(inputFile, type) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";

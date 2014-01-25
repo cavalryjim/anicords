@@ -1,0 +1,131 @@
+<h4><%= @animal.name %></h4>
+
+<div class="section-container auto" data-section>
+  <section class="active">
+    <p class="title" data-section-title><a href="#panel1">Section 1</a></p>
+    <div class="content" data-section-content>
+     
+     <%= form_for [@organization, @animal], remote: true, html: {id: 'organization_animal_form', "data-abide" => ''} do |f| %>
+      <div class="row">
+		<div class="large-8 columns">
+		  <%= f.label :name, 'name' %>
+	      <%= f.text_field :name, placeholder: "animal's name" %>
+		  <small class="error">Name required.</small>
+		</div>
+	  </div>
+		
+	  <div class="row">
+	    <div class="large-4 columns">
+		  <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'species'}, {class: "regular_select " } %>
+		</div>
+		<div class="large-4 columns">
+		  <%= f.text_field :breed_id, class: 'org_animal_breed' %>
+		</div>
+	    <div class="large-4 columns"></div>
+	  </div>
+				
+	  <div class="row">
+		<div class="large-4 columns">
+		  <%= f.label :dob, 'date of birth' %>
+		  <%= f.text_field :dob, value: mo_da_yr(@animal.dob) , class: "datepicker", placeholder: "date of birth" %>
+		</div>
+	    <div class="large-8 columns"></div>
+	  </div>
+		
+	  <div class="row">
+	    <div class="large-3 columns">
+		  <%= f.select :gender, options_for_select(["male", "female"], @animal.gender), {prompt:'gender'}, {class: "egular_select"}  %>
+		</div>
+	  </div>
+		
+	  <div class="row">
+	    <div class="large-2 columns">
+		  <%= f.label :neutered, id: 'dynamic_neutered_label' do %>
+		    <%= f.check_box :neutered %><span id="neutered_label"> <%= neutered_term(@animal.gender) %>?</span> 
+		  <% end %>
+		</div>
+		<div class="large-4 columns">
+		  	<%= f.label :neutered_date, 'neuter / spay date' %>
+		  	<%= f.text_field :neutered_date, value: mo_da_yr(@animal.neutered_date) , class: "datepicker", placeholder: "date neutered / spayed" %>
+		</div>
+		<div class="large-3 columns"></div>
+	  </div>
+	    
+	  <div class="row">
+		<div class="large-4 columns">
+		  <div id="animal_pedigree_div"><%= render 'pedigree_file_upload'%></div>
+		</div>
+	  </div>
+		  
+	  <div class="row">
+		<div class="large-4 columns">
+		  <%= f.label :registration_club_id, 'registration club' %>
+		  <%= f.text_field :registration_club_id %>
+		</div>
+		  
+		<div class="large-4 columns">
+		  <%= f.label :registration_number, 'registration number' %>
+		  <%= f.text_field :registration_number, placeholder: "registration number" %>
+		</div>
+		  
+		<div class="large-4 columns">
+		  <%= f.label :rfid, 'microchip id number' %>
+		  <%= f.text_field :rfid, placeholder: "microchip id number" %>
+		</div>		      	      
+	  </div>
+		
+	  <div class="row">
+		<div class="large-4 columns">
+		  <%= f.label :fur_color, 'fur color' %>
+		  <%= f.text_field :fur_color, placeholder: "fur color" %>
+		</div>	
+	  </div>
+		
+	  <div class="row">
+		<div class="large-4 columns bottom_padding_10">
+		  <%= f.label :personality_type_ids, "dispostion" %>
+		  <%= f.text_field :personality_type_ids %>
+		</div>	
+	  </div>
+				    
+	  <div class="row">
+		<div class="large-12 columns">
+		  <%= f.text_area :description, placeholder: "description of animal" %>
+		</div>
+	  </div>
+     <% end %>
+    
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel2">Section 2</a></p>
+    <div class="content" data-section-content>
+      <p>Content of section 2.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+//$("#qr_code_img").click(function() {
+//  $( "#largeQRCode" ).dialog( "open" );
+//});
+
+//$("#largeQRCode").dialog({
+//  autoOpen: false,
+//  buttons: {"close": function() { $( this ).dialog( "close" ); }}
+//});
+//$(function() {
+//  $( "#tabs" ).tabs();
+  
+//});
+
+
+$(function(){
+  //$(document).foundation();
+  //alert($('#animal_animal_type_id').val());
+  //$("#joe_id").change(function() {
+   
+   //alert($(this).val());
+  //});
+});
+</script>

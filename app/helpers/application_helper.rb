@@ -142,4 +142,8 @@ module ApplicationHelper
     end
   end
   
+  def wt_options
+    ["lbs", "kg"]
+  end
+  
 end

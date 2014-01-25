@@ -10,6 +10,8 @@ class OrganizationsController < InheritedResources::Base
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @animal = Animal.new
+    @animal.build_org_profile
     @animals = @organization.animals
   end
   

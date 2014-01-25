@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FosterHomeTest < ActiveSupport::TestCase
+class OrganizationLocationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

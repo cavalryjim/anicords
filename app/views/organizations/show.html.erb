@@ -32,12 +32,12 @@
 		  <tbody>
 		    <% @animals.each do |animal| %>
 		      <tr>
-			    <td><%= link_to animal.name, edit_organization_animal_path(@organization, animal) %></td>
+			    <td><%= link_to animal.name, edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true %></td>
 			    <td><%= animal.species %></td>
 			    <td><%= animal.breed %></td>
-			    <td>12/12/2013</td>
-			    <td>surrendered</td>
-			    <td>Davis Family</td>
+			    <td><%= mo_da_yr(animal.org_profile.intake_date) %></td>
+			    <td><%= animal.org_profile.intake_reason %></td>
+			    <td><%= location(animal) %></td>
 			    <td>male</td>
 			    <td>yes</td>
 			    <td><%= link_to button_small("transfer"), organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>
@@ -48,7 +48,7 @@
        </div>
       </div>
 			
-	    <%= button_to "Add Animal", "#", "data-reveal-id" => "newAnimalModal" %> 
+	    <%= link_to "Add Animal", new_organization_animal_path(@organization), "data-reveal-id" => "animalModal", remote: true %> 
 	</fieldset>
    </div>
   </fieldset>
@@ -57,34 +57,14 @@
 </section>
 
 
-<div id="newAnimalModal" class="reveal-modal">
-  <h3>New Animal</h3>
-  <%= form_for [@organization, Animal.new] do |f| %>
-  
-    <div class="row">
-	  <div class="large-12 columns">
-		<%= f.text_field :name, placeholder: "Animal's name" %>
-      </div>
-    </div>
-		    
-	<div class="row">
-	  <div class="large-6 columns">
-	    <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'Species'}, {class: "regular_select"} %>
-	  </div>
-	</div>
-	<%= f.hidden_field :owner_id, value: @organization.id %>	 
-	<%= f.hidden_field :owner_type, value: @organization.class.name %>       
-    <div class="actions">
-	  <%= f.submit %>
-	</div>
-    
-  <% end %>
+<div id="animalModal" class="reveal-modal">
+  <div id="org_animal_div" class="org_animal_div"></div>
   
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
-<div id="showAnimalModal" class="reveal-modal">
-  <div id="animal_show_div"></div>
+<div id="editAnimalModal" class="reveal-modal">
+  <div id="org_animal_edit_div" class="org_animal_div"></div>
   
   <a class="close-reveal-modal">&#215;</a>
 </div>

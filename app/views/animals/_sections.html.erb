@@ -113,7 +113,7 @@
 			<%= f.text_field :weight, placeholder:"weight" %>
 		  </div>
 		  <div class="large-3 columns">
-			<%= f.select :weight_measure, options_for_select(["lbs", "kg"], @animal.weight_measure), {prompt:"weight measure"}, {class: "regular_select"}  %>
+			<%= f.select :weight_measure, options_for_select(wt_options, @animal.weight_measure), {prompt:"weight measure"}, {class: "regular_select"}  %>
 		  </div>
 		  
 		  <div class="large-6 columns"></div>

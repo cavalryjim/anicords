@@ -40,10 +40,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many  :user_associations, dependent: :destroy
-  has_many  :breeders, through: :user_associations #JDavis: need to make this polymorphic like organizations
-  has_many  :households, through: :user_associations #JDavis: need to make this polymorphic like organizations
-  has_many  :veterinarians, through: :user_associations #JDavis: need to make this polymorphic like organizations
-  has_many  :service_providers, through: :user_associations  #JDavis: need to make this polymorphic like organizations
+  has_many  :breeders, through: :user_associations, source: :group, source_type: "Breeder"
+  has_many  :households, through: :user_associations, source: :group, source_type: "Household"
+  has_many  :veterinarians, through: :user_associations , source: :group, source_type: "Veterinarian"
+  has_many  :service_providers, through: :user_associations, source: :group, source_type: "ServiceProvider"
   has_many  :organizations, through: :user_associations, source: :group, source_type: "Organization"
   has_many  :beta_comments, dependent: :destroy
   has_many  :animal_transfers,  as: :transferee, dependent: :destroy

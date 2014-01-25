@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123181301) do
+ActiveRecord::Schema.define(version: 20140124210036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,13 +225,6 @@ ActiveRecord::Schema.define(version: 20140123181301) do
     t.datetime "updated_at"
   end
 
-  create_table "foster_homes", force: true do |t|
-    t.integer  "household_id"
-    t.integer  "organization_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "household_associations", force: true do |t|
     t.integer  "household_id"
     t.integer  "service_provider_id"
@@ -249,6 +242,20 @@ ActiveRecord::Schema.define(version: 20140123181301) do
     t.string   "zip"
     t.string   "phone"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -281,13 +288,20 @@ ActiveRecord::Schema.define(version: 20140123181301) do
   create_table "org_profiles", force: true do |t|
     t.integer  "animal_id"
     t.date     "intake_date"
-    t.integer  "intake_reason"
-    t.string   "location"
-    t.integer  "foster_household_id"
+    t.string   "intake_reason"
     t.integer  "neuter_location_id"
     t.string   "neuter_location_type"
     t.float    "intake_weight"
     t.string   "intake_weight_measure"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organization_location_id"
+  end
+
+  create_table "organization_locations", force: true do |t|
+    t.integer  "organization_id"
+    t.integer  "location_id"
+    t.string   "location_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

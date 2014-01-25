@@ -31,6 +31,7 @@ class AnimalsController < ApplicationController
   # GET /animals/new
   def new
     @animal = Animal.new
+    @animal.build_org_profile if @owner.class.name == "Organization"
   end
 
   # GET /animals/1/edit
@@ -47,6 +48,7 @@ class AnimalsController < ApplicationController
   # POST /animals.json
   def create
     @animal = Animal.new(animal_params)
+    return_path = @owner if @owner.class.name == "Organization"
     respond_to do |format|
       if @animal.save 
         @animal.create_qr_code(animal_url(@animal, qrc: 'true'))
@@ -197,7 +199,7 @@ class AnimalsController < ApplicationController
        :rfid, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
        :fur_color, :disposition,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids,
-       org_record_attributes: [ :animal_id, :intake_date, :intake_reason, :location, :foster_household_id, :neuter_location_id,
+       org_profile_attributes: [ :animal_id, :intake_date, :intake_reason, :organization_location_id, :neuter_location_id,
          :neuter_location_type, :neuter_location, :intake_weight, :intake_weight_measure, :_destroy],
        medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], personality_type_ids: [] )
     end
