@@ -72,10 +72,10 @@ class AnimalsController < ApplicationController
     params[:animal][:treat_id] = Treat.new_submission(params[:animal][:treat_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:treat_id]) rescue false)
     params[:animal][:vitamin_id] = Vitamin.new_submission(params[:animal][:vitamin_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:vitamin_id]) rescue false)
     # JDavis: Select2 is a pain and insists upon screwing up the submission of selected items.  This is a fix.
-    params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids]) 
-    params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids]) 
-    params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids]) 
-    params[:animal][:personality_type_ids] = @animal.fix_ids(params[:animal][:personality_type_ids])
+    params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids]) if (params[:animal][:medical_diagnosis_ids]).present?
+    params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids]) if (params[:animal][:medication_ids]).present?
+    params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids]) if (params[:animal][:allergy_ids]).present?
+    params[:animal][:personality_type_ids] = @animal.fix_ids(params[:animal][:personality_type_ids]) if (params[:animal][:personality_type_ids]).present?
     #params[:animal][:food_ids] = @animal.fix_ids(params[:animal][:food_ids])
     
     respond_to do |format|
