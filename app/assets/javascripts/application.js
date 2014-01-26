@@ -32,21 +32,11 @@ $(function(){
     }
    });
    
+  // JDavis: must redeclare this datatable in animals/update.js.erb
   $('#animal_table').dataTable({
     "sPaginationType": "foundation",
-    //"sScrollX": "100%",
-    //"sScrollXInner": "110%",
-    //"bScrollCollapse": true,
     "bStateSave": true
   }).show();
-   
-  //document.addEventListener("page:load", function(){
-    //Foundation.libs.dropdown.events();
-    //alert("here");
-    //$(".has_dropdown").foundation('dropdown', 'off');
-    //$(document).foundation('dropdown');
-    //$(".has_dropdown").foundation('dropdown', 'on');
-  //});
   
 	
   setTimeout(function(){

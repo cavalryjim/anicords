@@ -1,7 +1,7 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, 
                                       :sitter_instructions, :photo_gallery]
-  before_action :set_owner, only: [:new, :show, :create, :edit, :destroy, :transfer_ownership, :sitter_instructions]
+  before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions]
   before_filter :authenticate_user!, except: [:show]
   authorize_resource except: [:accept_transfer]
   
@@ -77,6 +77,10 @@ class AnimalsController < ApplicationController
     params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids]) if (params[:animal][:allergy_ids]).present?
     params[:animal][:personality_type_ids] = @animal.fix_ids(params[:animal][:personality_type_ids]) if (params[:animal][:personality_type_ids]).present?
     #params[:animal][:food_ids] = @animal.fix_ids(params[:animal][:food_ids])
+    if (@owner && @owner.class.name == "Organization")
+      @organization = @owner
+      @animals = @organization.animals
+    end
     
     respond_to do |format|
       if @animal.update(animal_params)
@@ -105,19 +109,6 @@ class AnimalsController < ApplicationController
   def download_file
     file = open(@animal.pedigree.url)
     send_file(file, disposition: "attachment")
-     #send_file(@animal.pedigree.direct_fog_url(with_path: true),
-     #   :disposition => 'attachment',
-     #   :url_based_filename => true)
-     #redirect_to @animal.pedigree.url, :target => "_blank"
-     
-     #open(@animal.pedigree.url) {|file|
-     #  tmpfile = Tempfile.new("download.jpg")
-     #  File.open(tmpfile.path, 'wb') do |f| 
-     #    f.write img.read
-     #  end 
-     #  send_file tmpfile.path, :filename => "great-image.jpg"
-     # }   
-     
   end
   
   def transfer_ownership
