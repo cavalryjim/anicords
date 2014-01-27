@@ -53,16 +53,18 @@ class Organization < ActiveRecord::Base
   end
   
   def pets_petfinder_ids
-    self.animals.map{|a|  a.org_profile.petfinder_id }.compact
+    self.animals.map{|a|  a.petfinder_id }.compact
   end
   
   def petfinder_import
+    petfinder = Petfinder::Client.new
     pets = petfinder.shelter_pets(self.petfinder_shelter_id, {count: 250})
     petfinder_ids = self.pets_petfinder_ids
     pets.each do |pet|
       #JDavis: check to see if the animal is already in dooliddl.
       next if (petfinder_ids.include? pet.id) # && animal.updated_at < pet.last_update
       animal = Animal.create(name: pet.name, owner: self)
+      animal.build_org_profile
       case pet.animal
       when 'Dog'
         animal.animal_type_id = 1
@@ -76,8 +78,12 @@ class Organization < ActiveRecord::Base
       when 'F'
         animal.gender = 'female'
       end
-      animal.breed_id = Breed.where(name: pet.breeds.first, animal_type_id: animal.animal_type_id).id if pet.breeds
+      if pet.breeds
+        breed = Breed.where(name: pet.breeds.first, animal_type_id: animal.animal_type_id).first
+        animal.breed_id = breed.id if breed
+      end
       animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
+      animal.description = pet.description
       animal.save
     end
 

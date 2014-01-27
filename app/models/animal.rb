@@ -212,6 +212,10 @@ class Animal < ActiveRecord::Base
     ids.split(']').last.split(',')
   end
   
+  def petfinder_id
+    self.org_profile.petfinder_id if self.org_profile
+  end
+  
   private
   
   def file_size_validation

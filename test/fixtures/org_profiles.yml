@@ -15,6 +15,7 @@
 #  organization_location_id :integer
 #  petfinder_id             :integer
 #  shelter_specific_id      :string(255)
+#  thumbnail_url            :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

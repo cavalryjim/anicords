@@ -16,4 +16,8 @@ module OrganizationsHelper
     end
   end
   
+  def thumbnail(animal)
+    animal.org_profile.thumbnail_url if animal.org_profile
+  end
+  
 end
