@@ -13,6 +13,8 @@
 #  created_at               :datetime
 #  updated_at               :datetime
 #  organization_location_id :integer
+#  petfinder_id             :integer
+#  shelter_specific_id      :string(255)
 #
 
 class OrgProfile < ActiveRecord::Base

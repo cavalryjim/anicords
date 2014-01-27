@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140126232318) do
+ActiveRecord::Schema.define(version: 20140127035005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -298,6 +298,7 @@ ActiveRecord::Schema.define(version: 20140126232318) do
     t.integer  "organization_location_id"
     t.integer  "petfinder_id"
     t.string   "shelter_specific_id"
+    t.string   "thumbnail_url"
   end
 
   create_table "organization_locations", force: true do |t|
