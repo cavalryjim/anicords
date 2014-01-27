@@ -3,8 +3,16 @@
 	
  <div class="row">
   <fieldset>
+  <div class="row">
+  	<div class="large-7 columns">
+      <h4><%= @organization.name %> <small><%= link_to ' (edit)', edit_organization_path(@organization), 'data-no-turbolink' => true %></small></h4>
+  	</div>
+  	<div class="large-3 columns">
+  	  <%= link_to button_small("import from Petfinder"), organizaiton_petfinder_import_path(@organization) %>
+  	</div>
   	
-  <h4><%= @organization.name %> <small><%= link_to ' (edit)', edit_organization_path(@organization), 'data-no-turbolink' => true %></small></h4>
+  </div>
+    
   <div class="large-12 columns">
 	<fieldset>
 	  <% if @organization.animals.count == 0 %>

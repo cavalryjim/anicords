@@ -1,5 +1,5 @@
 class OrganizationsController < InheritedResources::Base
-  before_action :set_organization, only: [:show, :edit, :update, :destroy, :create_user]
+  before_action :set_organization, only: [:show, :edit, :update, :destroy, :create_user, :petfinder_import]
   before_filter :authenticate_user! 
   authorize_resource 
   
@@ -72,6 +72,12 @@ class OrganizationsController < InheritedResources::Base
     User.create_user_to_group(params[:user][:email], @organization, params[:user][:first_name], params[:user][:last_name], true )
     
     redirect_to edit_organization_path(@organization), notice: 'Human was successfully added.'
+  end
+  
+  def petfinder_import
+    @organization.petfinder_import
+    
+    redirect_to @organization, notice: 'Pulled animals from Petfinder.'
   end
   
   private

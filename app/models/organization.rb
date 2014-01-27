@@ -52,4 +52,8 @@ class Organization < ActiveRecord::Base
     OrganizationLocation.create(organization_id: self.id, location: self)
   end
   
+  def petfinder_import
+    true
+  end
+  
 end

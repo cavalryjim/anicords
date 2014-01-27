@@ -1,6 +1,7 @@
 <table id="animal_table" class="fouc"  >
   <thead>
 	<tr>
+	  <th></th>
 	  <th>Name</th>
 	  <th>Species</th>
 	  <th>Breed</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @animals.each do |animal| %>
 	  <tr>
+	  	<td><%= image_tag "http://photos.petfinder.com/photos/US/LA/LA35/28346309/LA35.28346309-2-fpm.jpg"%></td>
 		<td><%= link_to animal.name, edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true %></td>
 		<td><%= animal.species %></td>
 		<td><%= animal.breed %></td>

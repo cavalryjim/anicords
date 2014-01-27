@@ -1,7 +1,10 @@
+<section class="dooliddl_image_bar">
+	<%= link_to_home %>
+</section>
 
 <nav class="top-bar" data-options="is_hover:true">
   <ul class="title-area">
-    <li class="name"><%= link_to_home %></li>
+    <li class="name"></li>
       
 	<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -38,10 +41,10 @@
 	  <% else %>
               
 		<li> 
-	  	  <%= link_to image_tag(s3_url('uporin.png'), size: '180x180', class: 'selectable_image'), "#", "data-reveal-id" => "registerSigninModal", class: "no_padding" %>
+	  	  <%= link_to image_tag(s3_url('uporin.png'), size: '140x140', class: 'selectable_image'), "#", "data-reveal-id" => "registerSigninModal", class: "no_padding" %>
 	    </li>
 		
-		<li><%= link_to image_tag(s3_url('orusef.png'), size: '180x180', class: 'selectable_image'), user_omniauth_authorize_path(:facebook), class: "no_padding" %></li>
+		<li><%= link_to image_tag(s3_url('orusef.png'), size: '140x140', class: 'selectable_image'), user_omniauth_authorize_path(:facebook), class: "no_padding" %></li>
 		
 	  <% end %>
 	</ul>
