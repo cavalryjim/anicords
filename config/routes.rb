@@ -29,8 +29,8 @@ Anicords::Application.routes.draw do
     resources :animal_associations
   end
   
-  resources :documents
-  resources :pictures
+  #resources :documents
+  #resources :pictures
 
   devise_for :users, 
   #ActiveAdmin.routes(self)

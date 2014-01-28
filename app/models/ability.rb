@@ -47,12 +47,12 @@ class Ability
       organization.users.include?(user)
     end
     
+    can :read, Picture
+    
     can :manage, Picture do |picture|
       picture.new_record? or
       picture.animal.owner.users.include?(user)
     end
-    
-    can :read, Picture
     
     can :read, ServiceProvider
     
@@ -71,6 +71,8 @@ class Ability
       association.user == user or
       association.group.users.include?(user)
     end
+    
+    can :read, Veterinarian
     
     can :manage, Veterinarian do |veterinarian|
       veterinarian.new_record? or
