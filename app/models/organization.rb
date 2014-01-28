@@ -52,19 +52,20 @@ class Organization < ActiveRecord::Base
     OrganizationLocation.create(organization_id: self.id, location: self)
   end
   
-  def pets_petfinder_ids
+  def petfinder_ids
     self.animals.map{|a|  a.petfinder_id }.compact
   end
   
   def petfinder_import
     petfinder = Petfinder::Client.new
     pets = petfinder.shelter_pets(self.petfinder_shelter_id, {count: 250})
-    petfinder_ids = self.pets_petfinder_ids
+    org_petfinder_ids = self.petfinder_ids
     pets.each do |pet|
       #JDavis: check to see if the animal is already in dooliddl.
-      next if (petfinder_ids.include? pet.id) # && animal.updated_at < pet.last_update
+      next if (org_petfinder_ids.include? pet.id.to_i) # && animal.updated_at < pet.last_update
       animal = Animal.create(name: pet.name, owner: self)
       animal.build_org_profile
+      animal.org_profile.petfinder_id = pet.id
       case pet.animal
       when 'Dog'
         animal.animal_type_id = 1
