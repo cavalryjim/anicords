@@ -60,6 +60,7 @@ class Organization < ActiveRecord::Base
     petfinder = Petfinder::Client.new
     pets = petfinder.shelter_pets(self.petfinder_shelter_id, {count: 250})
     org_petfinder_ids = self.petfinder_ids
+    pull_count = 0
     pets.each do |pet|
       #JDavis: check to see if the animal is already in dooliddl.
       next if (org_petfinder_ids.include? pet.id.to_i) # && animal.updated_at < pet.last_update
@@ -85,9 +86,9 @@ class Organization < ActiveRecord::Base
       end
       animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
       animal.description = Sanitize.clean(pet.description)
-      animal.save
+      pull_count += 1 if animal.save
     end
-
+    "Pulled information for #{pull_count} animals from Petfinder."
   end
   
   

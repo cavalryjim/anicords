@@ -1,3 +1,4 @@
+# JDavis: need to add admin_users to household, organization, service_provider, breeder, veterinarian etc.
 class Ability
   include CanCan::Ability
 
@@ -9,6 +10,26 @@ class Ability
     
     can [:read, :change_owner], Animal do |animal|
       user == animal.animal_transfer.transferee if animal.pending_transfer?
+    end
+    
+    can :manage, AnimalAssociation do |association|
+      association.new_record? or
+      association.animal.owner.users.include?(user)
+    end
+    
+    can :manage, AnimalVaccination do |vaccination|
+      vaccination.new_record? or
+      vaccination.animal.owner.users.include?(user)
+    end
+    
+    can :manage, Breeder do |breeder|
+      breeder.new_record? or
+      breeder.users.include?(user)
+    end
+    
+    can :manage, Document do |document|
+      document.new_record? or
+      document.animal.owner.users.include?(user)
     end
     
     can :manage, Household do |household|
@@ -43,6 +64,17 @@ class Ability
     can :manage, User do |u|
       u.new_record? or
       u == user
+    end
+    
+    can :manage, UserAssociation do |association|
+      association.new_record? or
+      association.user == user or
+      association.group.users.include?(user)
+    end
+    
+    can :manage, Veterinarian do |veterinarian|
+      veterinarian.new_record? or
+      veterinarian.users.include?(user)
     end
     
     

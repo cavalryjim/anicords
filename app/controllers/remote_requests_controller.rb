@@ -20,7 +20,11 @@ class RemoteRequestsController < ApplicationController
     else
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
-      @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
+      if params[:at_id].present?
+        @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
+      else
+        @breeds = '[{"id":"","text":"select a species!"}]'
+      end
       render json: @breeds
     end
   end
@@ -35,7 +39,11 @@ class RemoteRequestsController < ApplicationController
     else
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
-      @clubs = RegistrationClub.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
+      if params[:at_id].present?
+        @clubs = RegistrationClub.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
+      else
+        @clubs = '[{"id":"","text":"select a species!"}]'
+      end
       render json: @clubs
     end
   end
@@ -47,8 +55,13 @@ class RemoteRequestsController < ApplicationController
     elsif params[:at_id]
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
-      @foods = Food.order(:name).where("name ILIKE ? AND animal_type_id = ?", n, a).map{|f| {id: f.id, text: f.name }}
-      @foods.empty? ? (render json: [{id: params[:term], text: "New: " + params[:term]}]) : (render json: @foods)
+      if params[:at_id].present?
+        @foods = Food.order(:name).where("name ILIKE ? AND animal_type_id = ?", n, a).map{|f| {id: f.id, text: f.name }}
+        @foods.empty? ? (render json: [{id: params[:term], text: "New: " + params[:term]}]) : (render json: @foods)
+      else
+        @clubs = '[{"id":"","text":"select a species!"}]'
+        render json: @foods
+      end
     else
       @foods = Food.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|f| {id: f.id, text: f.name }}
       render json: @foods
@@ -61,7 +74,11 @@ class RemoteRequestsController < ApplicationController
     else
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
-      @medical_diagnoses = MedicalDiagnosis.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|d| {id: d.id, text: d.name }}
+      if params[:at_id].present?
+        @medical_diagnoses = MedicalDiagnosis.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|d| {id: d.id, text: d.name }}
+      else
+        @medical_diagnoses = '[{"id":"","text":"select a species!"}]'
+      end
     end
     render json: @medical_diagnoses
   end

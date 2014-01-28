@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy, :download_file]
   before_action :set_animal, only: [:create, :update, :destroy]
+  authorize_resource
 
   # GET /documents
   # GET /documents.json

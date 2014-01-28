@@ -1,7 +1,7 @@
 class UserAssociationsController < ApplicationController
   before_action :set_user_association
   before_filter :authenticate_user!
-  
+  authorize_resource
 
   # DELETE /household_associations/1
   # DELETE /households/1.json

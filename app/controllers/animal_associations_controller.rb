@@ -2,7 +2,7 @@ class AnimalAssociationsController < ApplicationController
   before_action :set_animal, only: [:create, :destroy]
   before_action :set_animal_association, only: [:destroy]
   before_filter :authenticate_user!
-  
+  authorize_resource
   
   def create
     @animal_association = AnimalAssociation.find_or_initialize_by(animal_association_params)

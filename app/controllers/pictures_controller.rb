@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy, :download_file, :crop]
   before_action :set_animal, only: [:index, :edit, :create, :update, :destroy, :crop ]
+  authorize_resource
 
   def index
     #Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]

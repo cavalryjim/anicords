@@ -1,6 +1,7 @@
 class VeterinariansController < ApplicationController
   before_action :set_veterinarian, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  authorize_resource
 
   # GET /veterinarians
   # GET /veterinarians.json

@@ -75,9 +75,9 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def petfinder_import
-    @organization.petfinder_import
+    notice = @organization.petfinder_import if @organization.petfinder_shelter_id.present?
     
-    redirect_to @organization, notice: 'Pulled animals from Petfinder.'
+    redirect_to @organization, notice: notice
   end
   
   private
