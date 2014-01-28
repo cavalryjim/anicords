@@ -83,7 +83,7 @@ class Organization < ActiveRecord::Base
         animal.breed_id = breed.id if breed
       end
       animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
-      animal.description = HTML::FullSanitizer.new.sanitize(pet.description)
+      animal.description = Sanitize.clean(pet.description)
       animal.save
     end
 

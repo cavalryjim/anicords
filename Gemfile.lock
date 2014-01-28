@@ -269,6 +269,8 @@ GEM
       rqrcode
     ruby-hmac (0.4.0)
     ruby-rc4 (0.1.5)
+    sanitize (2.1.0)
+      nokogiri (>= 1.4.4)
     sass (3.2.14)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -364,6 +366,7 @@ DEPENDENCIES
   remotipart (= 1.2.1)
   rmagick (= 2.13.2)
   rqrcode_png (= 0.1.2)
+  sanitize (= 2.1.0)
   sass-rails (= 4.0.1)
   sdoc
   select2-rails (= 3.5.0)

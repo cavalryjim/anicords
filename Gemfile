@@ -48,6 +48,7 @@ gem 'exception_notification', '4.0.1'
 gem 'jquery-datatables-rails', github: 'cavalryjim/jquery-datatables-rails' #JDavis: my version of the gem.
 gem 'best_in_place', github: 'cavalryjim/best_in_place' #JDavis: my version of the gem.
 gem 'unf', '0.1.3'
+gem 'sanitize', '2.1.0'
 #gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 #gem 'rescuegroups', '~> 0.0.1'
 
