@@ -47,7 +47,7 @@ class AnimalsController < ApplicationController
   # POST /animals
   # POST /animals.json
   def create
-    params[:animal][:breed_ids] = Animal.fix_ids(params[:animal][:breed_ids]) if (params[:animal][:breed_ids]).present?
+    params[:animal][:breed_ids] = Animal.fix_breed_ids(params[:animal][:breed_ids]) if (params[:animal][:breed_ids]).present?
     @animal = Animal.new(animal_params)
     #return_path = @owner if @owner.class.name == "Organization"
     respond_to do |format|

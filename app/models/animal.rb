@@ -222,7 +222,12 @@ class Animal < ActiveRecord::Base
     return params
   end
   
-  def self.fix_ids(ids)
+  def self.fix_breed_ids(ids)
+    ids << ","
+    ids.split(']').last.split(',')
+  end
+  
+  def fix_ids(ids)
     ids << ","
     ids.split(']').last.split(',')
   end
