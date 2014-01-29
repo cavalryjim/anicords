@@ -27,12 +27,14 @@
 		
 	  <div class="row">
 	    <div class="large-4 columns">
+	      <%= f.label :animal_type_id, "species" %>
 		  <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'species'}, {class: "regular_select " } %>
 		</div>
-		<div class="large-4 columns">
-		  <%= f.text_field :breed_id, class: 'org_animal_breed' %>
+		<div class="large-6 columns">
+		  <%= f.label :breed_ids, "breed(s)" %>
+		  <%= f.text_field :breed_ids %>
 		</div>
-	    <div class="large-4 columns"></div>
+	    <div class="large-2 columns"></div>
 	  </div>
 				
 	  <div class="row">

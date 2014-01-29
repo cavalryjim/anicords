@@ -81,8 +81,12 @@ class Organization < ActiveRecord::Base
         animal.gender = 'female'
       end
       if pet.breeds
-        breed = Breed.where(name: pet.breeds.first, animal_type_id: animal.animal_type_id).first
-        animal.breed_id = breed.id if breed
+        #breed = Breed.where(name: pet.breeds.first, animal_type_id: animal.animal_type_id).first
+        #animal.breed_id = breed.id if breed
+        pet.breeds.each do |pet_breed|
+          breed = Breed.where(name: pet_breed, animal_type_id: animal.animal_type_id).first
+          AnimalBreed.where(animal_id: animal.id, breed_id: breed.id).create_or_first if breed
+        end
       end
       animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
       animal.description = Sanitize.clean(pet.description)

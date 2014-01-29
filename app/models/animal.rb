@@ -224,12 +224,16 @@ class Animal < ActiveRecord::Base
   
   def self.fix_breed_ids(ids)
     ids << ","
-    ids.split(']').last.split(',')
+    ids = ids.split(']').last.split(",").map { |s| s.to_i }
+    ids.delete(0)
+    return ids
   end
   
   def fix_ids(ids)
     ids << ","
-    ids.split(']').last.split(',')
+    ids = ids.split(']').last.split(",").map { |s| s.to_i }
+    ids.delete(0)
+    return ids
   end
   
   def petfinder_id
