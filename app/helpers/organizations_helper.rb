@@ -17,7 +17,7 @@ module OrganizationsHelper
   end
   
   def thumbnail(animal)
-    animal.org_profile.thumbnail_url.present? ? animal.org_profile.thumbnail_url  : s3_url('doo_fav.png')
+    (animal.org_profile && animal.org_profile.thumbnail_url.present?) ? animal.org_profile.thumbnail_url  : s3_url('doo_fav.png')
   end
   
   def symbolize_id(owner)

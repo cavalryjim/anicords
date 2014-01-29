@@ -12,3 +12,9 @@ task :work_queued_jobs => :environment do
   puts "Done sending #{jobs} emails"
 end
 
+task :animals_needing_org_profile => :environment do
+  if Animal.without_org_profile.count > 0 
+    UserMailer.animals_without_org_profile.deliver
+  end
+end
+

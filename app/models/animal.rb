@@ -53,7 +53,7 @@ class Animal < ActiveRecord::Base
   belongs_to :breeder
   belongs_to :organization
   #belongs_to :household
-  belongs_to :breed
+  #belongs_to :breed
   has_one    :animal_transfer, dependent: :destroy
   has_one    :org_profile, dependent: :destroy
   has_many   :documents, dependent: :destroy
@@ -107,8 +107,8 @@ class Animal < ActiveRecord::Base
     self.pedigree.path
   end
   
-  def breed_name
-    self.breed.name if self.breed
+  def breed_names
+    self.breeds.map { |b| b.name } #if self.breeds.count > 0
   end
   
   def species
@@ -237,6 +237,15 @@ class Animal < ActiveRecord::Base
   
   def petfinder_id
     self.org_profile.petfinder_id if self.org_profile
+  end
+  
+  def self.without_org_profile
+    Animal.where("id NOT IN (SELECT animal_id FROM org_profiles) AND owner_type = 'Organization'")
+  end
+  
+  def self.without_breeder_profile
+    #Animal.where("id NOT IN (SELECT animal_id FROM breeder_profiles) AND owner_type = 'Breeder'")
+    true
   end
   
   private

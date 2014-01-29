@@ -68,6 +68,10 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Health Record for " + @animal.name + " on DooLiddl"
   end
   
+  def animals_without_org_profile
+    mail to: 'james.davisphd@gmail.com', subject: "Dooliddl has animals that need org_profile!"
+  end
+  
 private
   
   
