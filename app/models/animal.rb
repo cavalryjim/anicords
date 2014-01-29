@@ -71,6 +71,8 @@ class Animal < ActiveRecord::Base
   has_many   :pictures, dependent: :destroy
   has_many   :personality_types, through: :dispositions
   has_many   :dispositions, dependent: :destroy
+  has_many   :breeds, through: :animal_breeds
+  has_many   :animal_breeds, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   accepts_nested_attributes_for :pictures, allow_destroy: true
@@ -128,13 +130,26 @@ class Animal < ActiveRecord::Base
     end
   end
   
-  def transfer_ownership(email, first_name="", last_name="", url="")
-    user = User.find_by(email: email)
+  def transfer_ownership(new_owner, url="")
+    new_owner = new_owner.symbolize_keys
+    user = User.find_by(email: new_owner[:email])
     
     unless user
       generated_password = Devise.friendly_token.first(8)
-      user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
-      user.new_account_notice(generated_password) if user
+      #user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
+      user = User.new do |u|
+        u.email = new_owner[:email]
+        u.first_name = new_owner[:first_name]
+        u.last_name = new_owner[:last_name]
+        u.address1 = new_owner[:address1]
+        u.city = new_owner[:city]
+        u.state = new_owner[:state]
+        u.zip = new_owner[:zip]
+        u.phone = new_owner[:phone]
+        u.password = generated_password
+        u.password_confirmation = generated_password
+      end
+      user.new_account_notice(generated_password) if user.save
     end
     
     if user
@@ -207,7 +222,7 @@ class Animal < ActiveRecord::Base
     return params
   end
   
-  def fix_ids(ids)
+  def self.fix_ids(ids)
     ids << ","
     ids.split(']').last.split(',')
   end

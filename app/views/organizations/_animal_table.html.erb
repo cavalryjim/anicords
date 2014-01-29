@@ -5,12 +5,10 @@
 	  <th>Name</th>
 	  <th>Species</th>
 	  <th>Breed</th>
+	  <th>Gender</th>
 	  <th>Date In</th>
 	  <th>Intake Reason</th>
 	  <th>Location</th>
-	  <th>Gender</th>
-	  <th>Neutered/Spayed</th>
-	  <th>Transfer</th>
 	</tr>
   </thead>
   <tbody>
@@ -20,12 +18,10 @@
 		<td><%= link_to animal.name, edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true %></td>
 		<td><%= animal.species %></td>
 		<td><%= animal.breed %></td>
+		<td><%= animal.gender %></td>
 		<td><%= mo_da_yr(animal.org_profile.intake_date) %></td>
 		<td><%= animal.org_profile.intake_reason %></td>
 		<td><%= location(animal) %></td>
-		<td><%= animal.gender %></td>
-		<td><%= animal.neutered %></td>
-		<td><%= link_to button_small("transfer"), organization_animal_path(@organization, animal), "data-reveal-id" => "transferAnimalModal", remote: true %></td>
 	  </tr>
 	<% end %>
   </tbody>

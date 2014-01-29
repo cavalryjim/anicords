@@ -20,4 +20,8 @@ module OrganizationsHelper
     animal.org_profile.thumbnail_url.present? ? animal.org_profile.thumbnail_url  : s3_url('doo_fav.png')
   end
   
+  def symbolize_id(owner)
+    (owner.class.name.downcase << '_id').to_sym
+  end
+  
 end

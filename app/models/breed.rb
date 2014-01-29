@@ -11,7 +11,9 @@
 
 class Breed < ActiveRecord::Base
   belongs_to  :animal_type
-  has_many    :animals
+  #has_many    :animals
+  has_many    :animals, through: :animal_breeds
+  has_many    :animal_breeds, dependent: :destroy
   
   def to_s
     name

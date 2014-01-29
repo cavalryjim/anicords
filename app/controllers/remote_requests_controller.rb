@@ -12,21 +12,16 @@ class RemoteRequestsController < ApplicationController
   
   def breeds
     if params[:brd]
-      @breed = Breed.find(params[:brd])
-      render json: @breed, only: [:id], methods: [:text]
-    elsif params[:brds]
-      @breeds = Breed.where(id: params[:brds]).all.map{|s| {id: s.id, text: s.name }}
-      render json: @breeds
-    else
+      @breeds = Breed.where(id: params[:brd]).all.map{|b| {id: b.id, text: b.name }}
+    elsif params[:at_id]
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
-      if params[:at_id].present?
-        @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|s| {id: s.id, text: s.name }}
-      else
-        @breeds = '[{"id":"","text":"select a species!"}]'
-      end
-      render json: @breeds
+      @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|b| {id: b.id, text: b.name }}
+    else
+      n = "%#{params[:term]}%"
+      @breeds = Breed.order(:name).where("name ILIKE ?", n).map{|b| {id: b.id, text: b.name }}
     end
+    render json: @breeds
   end
   
   def registration_clubs

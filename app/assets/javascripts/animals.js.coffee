@@ -124,7 +124,38 @@ jQuery ->
           dataType: "json"
         ).done (data) ->
           callback data
-          
+  
+  $('#animal_breed_ids').select2
+    #placeholder: "breed"
+    width: "100%"
+    multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/breeds"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+        at_id: $('#animal_animal_type_id').val()
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        breeds = ''
+        $.each ids, (index, value) ->
+          breeds = breeds + '&brd[]=' + value
+   
+        $.ajax("/remote_requests/breeds?"+breeds,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+  
   $('#animal_food_id').select2
     placeholder: "pet food brand"
     width: "100%"
@@ -179,34 +210,6 @@ jQuery ->
           dataType: "json"
         ).done (data) ->
           callback data
-          
-  $('#animal_breed_id').select2
-    placeholder: "breed"
-    width: "100%"
-    #multiple: true
-    id: (obj) ->
-      obj.id # use slug field for id
-
-    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/remote_requests/breeds"
-      dataType: "json"
-      data: (term, page) ->
-        term: term # search term
-        at_id: $('#animal_animal_type_id').val()
-        page_limit: 10
-
-      results: (data, page) -> # parse the results into the format expected by Select2.
-        # since we are using custom formatting functions we do not need to alter remote JSON data
-        results: data
-     
-    initSelection: (element, callback) ->
-      if $(element).val() isnt ''
-        ids = $(element).val()
-   
-        $.ajax("/remote_requests/breeds?brd="+ids,
-          dataType: "json"
-        ).done (data) ->
-          callback data    
           
   $('#animal_registration_club_id').select2
     placeholder: "registration club"

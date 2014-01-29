@@ -13,7 +13,7 @@
 
 <div class="section-container auto" data-section>
   <section class="active">
-    <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
+    <p class="title" data-section-title><a href="#panel1">Intake</a></p>
     <div class="content" data-section-content>
      
      <%= form_for [@organization, @animal], remote: true, html: {id: 'organization_animal_form', "data-abide" => ''} do |f| %>
@@ -96,9 +96,45 @@
     </div>
   </section>
   <section>
-    <p class="title" data-section-title><a href="#panel2">Vaccinations</a></p>
+    <p class="title" data-section-title><a href="#panel2">Health</a></p>
     <div class="content" data-section-content>
       <p>Content of section 2.</p>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel3">Documents</a></p>
+    <div class="content" data-section-content>
+      <fieldset>
+        <legend>Vaccination Records</legend>
+      	
+      </fieldset>
+      
+      <fieldset>
+      	<legend>Rabies Records</legend>
+      	
+      </fieldset>
+      
+      <fieldset>
+      	<legend>Veterinary Notes</legend>
+      	
+      </fieldset>
+      
+      <fieldset>
+      	<legend>Misc Document</legend>
+      	
+      </fieldset>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel4">Photos</a></p>
+    <div class="content" data-section-content>
+      <p>Content of section 4.</p>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel5">Adoption</a></p>
+    <div class="content" data-section-content>
+      <%= render 'animals/animal_transfer' %>
     </div>
   </section>
 </div>

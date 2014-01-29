@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127035005) do
+ActiveRecord::Schema.define(version: 20140129025200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,13 @@ ActiveRecord::Schema.define(version: 20140127035005) do
     t.datetime "updated_at"
   end
 
+  create_table "animal_breeds", force: true do |t|
+    t.integer  "animal_id"
+    t.integer  "breed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "animal_diagnoses", force: true do |t|
     t.integer  "animal_id"
     t.integer  "medical_diagnosis_id"
@@ -148,7 +155,6 @@ ActiveRecord::Schema.define(version: 20140127035005) do
     t.integer  "treat_id"
     t.integer  "vitamin_id"
     t.string   "weight_measure"
-    t.integer  "breed_id"
     t.string   "gender"
     t.boolean  "neutered"
     t.integer  "food_id"
@@ -299,6 +305,13 @@ ActiveRecord::Schema.define(version: 20140127035005) do
     t.integer  "petfinder_id"
     t.string   "shelter_specific_id"
     t.string   "thumbnail_url"
+    t.date     "adoption_date"
+    t.string   "transferee_first_name"
+    t.string   "transferee_last_name"
+    t.string   "transferee_phone"
+    t.string   "transferee_city"
+    t.string   "transferee_state"
+    t.string   "transferee_zip"
   end
 
   create_table "organization_locations", force: true do |t|

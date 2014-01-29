@@ -47,8 +47,9 @@ class AnimalsController < ApplicationController
   # POST /animals
   # POST /animals.json
   def create
+    params[:animal][:breed_ids] = Animal.fix_ids(params[:animal][:breed_ids]) if (params[:animal][:breed_ids]).present?
     @animal = Animal.new(animal_params)
-    return_path = @owner if @owner.class.name == "Organization"
+    #return_path = @owner if @owner.class.name == "Organization"
     respond_to do |format|
       if @animal.save 
         @animal.create_qr_code(animal_url(@animal, qrc: 'true'))
@@ -76,6 +77,7 @@ class AnimalsController < ApplicationController
     params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids]) if (params[:animal][:medication_ids]).present?
     params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids]) if (params[:animal][:allergy_ids]).present?
     params[:animal][:personality_type_ids] = @animal.fix_ids(params[:animal][:personality_type_ids]) if (params[:animal][:personality_type_ids]).present?
+    params[:animal][:breed_ids] = @animal.fix_ids(params[:animal][:breed_ids]) if (params[:animal][:breed_ids]).present?
     #params[:animal][:food_ids] = @animal.fix_ids(params[:animal][:food_ids])
     if (@owner && @owner.class.name == "Organization")
       @organization = @owner
@@ -112,9 +114,8 @@ class AnimalsController < ApplicationController
   end
   
   def transfer_ownership
-    @success = (params[:transferee_email] == params[:transferee_email2]) && params[:transferee_email].match(/^\S+@\S+\.\S+$/)
-    
-    @animal.transfer_ownership(params[:transferee_email], params[:first_name], params[:last_name], animal_url(@animal.id)) if @success
+    @success = (params[:transferee][:email] == params[:transferee][:email2]) && params[:transferee][:email].match(/^\S+@\S+\.\S+$/)
+    @animal.transfer_ownership(params[:transferee], animal_url(@animal.id)) if @success
     
     respond_to do |format|
       format.js 
@@ -172,11 +173,14 @@ class AnimalsController < ApplicationController
     end
     
     def return_path
-      if @animal.owner
-        #edit_household_animal_path(params[:household_id], @animal.id)
-        polymorphic_path([@animal.owner, @animal], action: :edit)
+      case @animal.owner.class.name
+      when 'Organization'
+        organization_path(@owner.id)
+      when 'Household'
+        edit_household_animal_path(@owner.id, @animal.id)
+        #polymorphic_path([@animal.owner, @animal], action: :edit)
       else
-        edit_animal_path(@animal.id)
+        animal_path(@animal.id)
       end
     end
 
@@ -188,11 +192,11 @@ class AnimalsController < ApplicationController
        :vaccination_record, :shampoo_id, :vitamin_id, :treat_id, :remove_health_certification, :remove_vaccination_record,
        :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :breed_id, :gender, :neutered, :food_id, 
        :rfid, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
-       :fur_color, :disposition,
-       :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids,
+       :fur_color, :disposition, :organization_id,
+       :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids, :breed_ids,
        org_profile_attributes: [ :animal_id, :intake_date, :intake_reason, :organization_location_id, :neuter_location_id,
          :neuter_location_type, :neuter_location, :intake_weight, :intake_weight_measure, :_destroy],
-       medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], personality_type_ids: [] )
+       medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], personality_type_ids: [], breed_ids: [] )
     end
 end
 

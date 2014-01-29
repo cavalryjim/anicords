@@ -13,10 +13,10 @@ $(".org_animal_div").on "show", ->
     minimumResultsForSearch: 55
     width: "100%"
 
-  $("#animal_breed_id").select2 
+  $('#animal_breed_ids').select2
     placeholder: "breed"
     width: "100%"
-    #multiple: true
+    multiple: true
     id: (obj) ->
       obj.id # use slug field for id
 
@@ -25,21 +25,24 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
-        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
+        at_id: $('#animal_animal_type_id').val()
 
       results: (data, page) -> # parse the results into the format expected by Select2.
         # since we are using custom formatting functions we do not need to alter remote JSON data
         results: data
      
     initSelection: (element, callback) ->
-      if $(element).val() isnt ''
-        ids = $(element).val()
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        breeds = ''
+        $.each ids, (index, value) ->
+          breeds = breeds + '&brd[]=' + value
    
-        $.ajax("/remote_requests/breeds?brd="+ids,
+        $.ajax("/remote_requests/breeds?"+breeds,
           dataType: "json"
         ).done (data) ->
-          callback data    
+          callback data        
   
   $('#animal_personality_type_ids').select2
     placeholder: "disposition"
@@ -79,3 +82,9 @@ $(".org_animal_div").on "show", ->
     dateFormat: "yy-mm-dd"
     changeMonth: true
     changeYear: true
+    
+  $(".state_select").select2
+    minimumResultsForSearch: 55
+    width: "100%"
+    matcher: (term, text) ->
+      text.toUpperCase().indexOf(term.toUpperCase()) is 0

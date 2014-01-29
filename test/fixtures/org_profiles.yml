@@ -16,6 +16,13 @@
 #  petfinder_id             :integer
 #  shelter_specific_id      :string(255)
 #  thumbnail_url            :string(255)
+#  adoption_date            :date
+#  transferee_first_name    :string(255)
+#  transferee_last_name     :string(255)
+#  transferee_phone         :string(255)
+#  transferee_city          :string(255)
+#  transferee_state         :string(255)
+#  transferee_zip           :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -12,34 +12,68 @@
 
 
 <%= form_for @animal, remote: true, url: transfer_animal_path, html: { id: "animal_transfer_form", "data-abide" => '' } do |f| %>
+ <fieldset>
+  <legend>New Owner</legend>
   <div class="row">
-    <div class="large-12 columns">
-      <%= text_field_tag 'transferee_email', nil, {placeholder: "email (required )", required: true}  %>
-      
+    <div class="large-8 columns">
+      <%= text_field_tag 'transferee[email]', nil, {placeholder: "email (required )", required: true}  %>
     </div>
   </div>
   
   <div class="row">
-    <div class="large-12 columns">
-      <%= text_field_tag 'transferee_email2', nil, {placeholder: "email confirmation (required)", required: true} %>
+    <div class="large-8 columns">
+      <%= text_field_tag 'transferee[email2]', nil, {placeholder: "email confirmation (required)", required: true} %>
      
     </div>
   </div>
   
   <div class="row">
-    <div class="large-12 columns">
-      <%= text_field_tag 'transferee_first_name', nil, placeholder: "first name"  %>
+    <div class="large-6 columns">
+      <%= text_field_tag 'transferee[first_name]', nil, placeholder: "first name"  %>
+    </div>
+  
+    <div class="large-6 columns">
+      <%= text_field_tag 'transferee[last_name]', nil, placeholder: "last name"  %>
     </div>
   </div>
   
   <div class="row">
     <div class="large-12 columns">
-      <%= text_field_tag 'transferee_last_name', nil, placeholder: "last name"  %>
+      <%= text_field_tag 'transferee[address1]', nil, placeholder: "Address1" %>
     </div>
   </div>
-  
+    
+
+  <div class="row">
+    <div class="large-4 columns">
+      <%= text_field_tag 'transferee[city]', nil, placeholder: "City" %>
+    </div>
+    <div class="large-3 columns">
+	  <%= select_tag 'transferee[state]', options_for_select(us_states), include_blank: true, class:'state_select', prompt: 'State' %>
+	</div>
+    <div class="large-4 columns"> 
+      <%= text_field_tag 'transferee[zip]', nil, placeholder: "Zip" %> 
+    </div>
+    <div class="large-1 columns"></div>
+  </div>
+
+  <div class="row">
+    <div class="large-4 columns">
+      
+      <%= text_field_tag 'transferee[phone]', nil, placeholder: "Phone: 123-123-1234" %>
+    </div>
+  </div>
+ </fieldset>
+ 
+ <% unless @animal.owner.class.name == 'Household' %>
+ <fieldset>
+  <legend>Payment</legend>
+  <h5>Coming Soon!</h5>
+ </fieldset>
+ <% end %>
   <div class="actions">
 	<%= f.submit 'transfer', confirm: 'Please confirm transfer?' %>
   </div>
+  
   
 <% end %>

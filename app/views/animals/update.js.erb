@@ -1,26 +1,27 @@
-$("form#animal_form").on("ajax:success", function(event, data, status, response) {
-  $(".flash_alert").removeClass("hidden");
-  $(".flash_alert").show().delay(2000).fadeOut();
-  $("section.disabled").removeClass("disabled");
-  $("#animal_pedigree_div").html('<%= j render("pedigree_file_upload") %>')
-  $("#animal_health_cert_div").html('<%= j render("health_certification_upload") %>')
-  $("#animal_vaccination_div").html('<%= j render("vaccination_file_upload") %>')
-}).on("ajax:error", function(event, response, error) {
-  return alert("There was a problem.  Please try again later.");
-});
-
-$("form#organization_animal_form").on("ajax:success", function(event, data, status, response) {
-  $(".flash_alert").removeClass("hidden");
-  $(".flash_alert").show().delay(2000).fadeOut();
-  $("#org_animal_table_div").html('<%= j render("organizations/animal_table") %>')
-  $('#animal_table').dataTable({
-    "sPaginationType": "foundation",
-    "bStateSave": true
-  }).show();
-}).on("ajax:error", function(event, response, error) {
-  return alert("There was a problem.  Please try again later.");
-});
-
+<% if @organization %>
+	$("form#organization_animal_form").on("ajax:success", function(event, data, status, response) {
+	  $(".flash_alert").removeClass("hidden");
+	  $(".flash_alert").show().delay(2000).fadeOut();
+	  $("#org_animal_table_div").html('<%= j render("organizations/animal_table") %>');
+	  $('#animal_table').dataTable({
+	    "sPaginationType": "foundation",
+	    "bStateSave": true
+	  }).show();
+	}).on("ajax:error", function(event, response, error) {
+	  return alert("There was a problem.  Please try again later.");
+	});
+<% else %>
+	$("form#animal_form").on("ajax:success", function(event, data, status, response) {
+	  $(".flash_alert").removeClass("hidden");
+	  $(".flash_alert").show().delay(2000).fadeOut();
+	  $("section.disabled").removeClass("disabled");
+	  $("#animal_pedigree_div").html('<%= j render("pedigree_file_upload") %>');
+	  $("#animal_health_cert_div").html('<%= j render("health_certification_upload") %>');
+	  $("#animal_vaccination_div").html('<%= j render("vaccination_file_upload") %>');
+	}).on("ajax:error", function(event, response, error) {
+	  return alert("There was a problem.  Please try again later.");
+	});
+<% end %>
 
 
 
