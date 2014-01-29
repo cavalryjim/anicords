@@ -34,6 +34,16 @@ ActiveAdmin.register_page "Dashboard" do
        end
        
        column do
+         panel "Newest Organizations" do
+           ul do
+             Organization.last(5).map do |organization|
+               li link_to(organization, admin_organization_path(organization))
+             end
+           end
+         end
+       end
+       
+       column do
          panel "Newest Providers" do
            ul do
              ServiceProvider.last(5).map do |provider|
