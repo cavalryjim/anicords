@@ -25,7 +25,6 @@
 #  treat_id             :integer
 #  vitamin_id           :integer
 #  weight_measure       :string(255)
-#  breed_id             :integer
 #  gender               :string(255)
 #  neutered             :boolean
 #  food_id              :integer
