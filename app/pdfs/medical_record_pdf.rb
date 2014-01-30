@@ -23,7 +23,7 @@ class MedicalRecordPdf < Prawn::Document
   def demographics
     move_down 10
     text "#{@animal.species_long_name}"
-    text "breed: #{@animal.breed}" if @animal.breed
+    text "breed: #{(animal.breed_names * ", ")}" if @animal.breeds.count > 1
     text "neutered / spayed: #{@animal.fixed}"
     text "description: #{@animal.description}" if @animal.description
   end
