@@ -278,7 +278,11 @@ div.preview {
 }
 
 .dooliddl_image {
-  padding: 5px 5px 5px 5px;
+  padding: .25em .25em .25em .25em ;
+}
+
+form {
+  padding: .25em .25em .25em .25em !important;
 }
 
 

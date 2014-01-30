@@ -2,6 +2,7 @@
 	$("form#organization_animal_form").on("ajax:success", function(event, data, status, response) {
 	  $(".flash_alert").removeClass("hidden");
 	  $(".flash_alert").show().delay(2000).fadeOut();
+	  $(this).effect("highlight", {}, 1500);
 	  $("#org_animal_table_div").html('<%= j render("organizations/animal_table") %>');
 	  $('#animal_table').dataTable({
 	    "sPaginationType": "foundation",
@@ -12,6 +13,7 @@
 	});
 <% else %>
 	$("form#animal_form").on("ajax:success", function(event, data, status, response) {
+	  $(this).effect("highlight", {}, 1500);
 	  $(".flash_alert").removeClass("hidden");
 	  $(".flash_alert").show().delay(2000).fadeOut();
 	  $("section.disabled").removeClass("disabled");

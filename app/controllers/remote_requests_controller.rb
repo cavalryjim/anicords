@@ -13,7 +13,7 @@ class RemoteRequestsController < ApplicationController
   def breeds
     if params[:brd]
       @breeds = Breed.where(id: params[:brd]).all.map{|b| {id: b.id, text: b.name }}
-    elsif params[:at_id]
+    elsif params[:at_id].present?
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
       @breeds = Breed.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|b| {id: b.id, text: b.name }}
@@ -47,7 +47,7 @@ class RemoteRequestsController < ApplicationController
     if params[:fd]
       @food = Food.find(params[:fd])
       render json: @food, only: [:id], methods: [:text]
-    elsif params[:at_id]
+    elsif params[:at_id].present?
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
       if params[:at_id].present?
@@ -90,7 +90,7 @@ class RemoteRequestsController < ApplicationController
   def personality_types
     if params[:pt]
       @personality_types = PersonalityType.where(id: params[:pt]).all.map{|pt| {id: pt.id, text: pt.name }}
-    elsif params[:at_id]
+    elsif params[:at_id].present?
       n = "%#{params[:term]}%"
       a = "#{params[:at_id]}"
       @personality_types = PersonalityType.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|pt| {id: pt.id, text: pt.name }}

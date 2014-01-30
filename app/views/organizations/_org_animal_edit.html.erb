@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row" >
   <div class="large-9 columns">
     <h4><%= image_tag(@animal.avatar.url, size: "50x50", class: 'picture_border_2') if @animal.avatar_stored? %> <%=@animal.name%> </h4>
   </div>
   
   <div class="large-3 columns">
-    <div class="hidden flash_alert alert-box success"  data-alert> 
+    <div class="hidden flash_alert alert-box success" data-alert> 
 	  Animal information saved.
 	  <a href="" class="close">&times;</a>
 	</div>
@@ -140,28 +140,3 @@
     </div>
   </section>
 </div>
-
-<script>
-//$("#qr_code_img").click(function() {
-//  $( "#largeQRCode" ).dialog( "open" );
-//});
-
-//$("#largeQRCode").dialog({
-//  autoOpen: false,
-//  buttons: {"close": function() { $( this ).dialog( "close" ); }}
-//});
-//$(function() {
-//  $( "#tabs" ).tabs();
-  
-//});
-
-
-$(function(){
-  //$(document).foundation();
-  //alert($('#animal_animal_type_id').val());
-  //$("#joe_id").change(function() {
-   
-   //alert($(this).val());
-  //});
-});
-</script>
