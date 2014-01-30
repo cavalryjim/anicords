@@ -78,7 +78,7 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :org_profile, allow_destroy: true
   
   validates_presence_of :name
-  validate :file_size_validation
+  #validate :file_size_validation
   
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
@@ -251,7 +251,7 @@ class Animal < ActiveRecord::Base
   private
   
   def file_size_validation
-    errors[:pedigree] << "should be less than 5MB" if pedigree.size > 5.megabytes
+    errors[:pedigree] << "should be less than 5MB" if pedigree && pedigree.size > 5.megabytes
     errors[:health_certification] << "should be less than 5MB" if health_certification.size > 5.megabytes
     errors[:vaccination_record] << "should be less than 5MB" if vaccination_record.size > 5.megabytes
   end

@@ -128,6 +128,7 @@ class AnimalsController < ApplicationController
     notice = 'There was a problem with the transfer.'
 
     @animal.owner = association.group
+    @animal.build_org_profile if (association.group.class.name == 'Organization' && @animal.org_profile.blank? )
     if can?(:change_owner, @animal) && @animal.save
       transfer.destroy if transfer
       notice = 'Animal was successfully transferred.' 

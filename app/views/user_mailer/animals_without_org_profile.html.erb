@@ -1,1 +1,2 @@
-Run 'Animal.without_org_profile' at the rails console to see the animals that require an org_profile.
+Run: Animal.where("id NOT IN (SELECT animal_id FROM org_profiles) AND owner_type = 'Organization'") 
+
