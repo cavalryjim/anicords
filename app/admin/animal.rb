@@ -1,7 +1,7 @@
 ActiveAdmin.register Animal do
   filter :name
   #filter :owner
-  filter :breed
+  #filter :breed
   filter :created_at
   
   index do

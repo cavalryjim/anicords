@@ -108,7 +108,7 @@ class Animal < ActiveRecord::Base
   end
   
   def breed_names
-    self.breeds.map { |b| b.name } #if self.breeds.count > 0
+    (self.breeds.map { |b| b.name } * ", " ) #if self.breeds.count > 0
   end
   
   def species
