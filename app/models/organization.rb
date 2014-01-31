@@ -90,7 +90,15 @@ class Organization < ActiveRecord::Base
       end
       animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
       animal.description = Sanitize.clean(pet.description)
+      
       pull_count += 1 if animal.save
+      
+      if animal.id && pet.photos
+        pet.photos.each do |pet_photo|
+          Picture.create(animal_id: animal.id, external_url: pet_photo.medium )
+        end
+      end
+      
     end
     "Pulled information for #{pull_count} animals from Petfinder."
   end

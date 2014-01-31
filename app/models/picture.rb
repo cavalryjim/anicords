@@ -2,13 +2,14 @@
 #
 # Table name: pictures
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  animal_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  image_uid  :string(255)
-#  image_name :string(255)
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  animal_id    :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#  image_uid    :string(255)
+#  image_name   :string(255)
+#  external_url :string(255)
 #
 
 class Picture < ActiveRecord::Base
@@ -20,7 +21,7 @@ class Picture < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
    
   validates_presence_of :animal_id
-  validates_presence_of :image
+  validate :image_xor_external_url
   validates_size_of :image, maximum: 2048.kilobytes
   validates_property :format, of: :image, in: ['jpeg', 'jpg', 'png', 'gif']
   
@@ -42,9 +43,7 @@ class Picture < ActiveRecord::Base
     image.path
   end
   
-  def image_url
-    image.url
-  end
+  
   
   def crop(x,y,w,h)
     #puts x
@@ -60,6 +59,15 @@ class Picture < ActiveRecord::Base
     animal.save
     #Animal.find(self.animal_id).update_attribute :avatar, avatar.url
     
+  end
+  
+  private
+  
+  def image_xor_external_url
+    unless (image.blank? ^ external_url.blank?)
+      errors.add(:base, "Need an image or URL.")
+      #"not good"
+    end
   end
   
 end

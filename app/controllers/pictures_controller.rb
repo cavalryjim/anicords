@@ -81,12 +81,6 @@ class PicturesController < ApplicationController
     h = params[:picture][:crop_h]
     @picture.crop(x,y,w,h)
     
-    #animal = @picture.animal
-    
-    #img = @picture.image
-    #img = Magick::Image.read(@picture.image_url)[0]
-    #animal.image = Picture.last
-    #animal.save
     
     redirect_to animal_pictures_path(@picture.animal_id)
   end
