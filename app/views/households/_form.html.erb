@@ -1,7 +1,7 @@
 <% content_for :title, "Animal Household" %>
 
 <%= form_for(@household, html: { "data-abide" => '' }) do |f| %>
-  
+  <fieldset>
     <div class="row">
       <div class="large-12 columns">
         <%= f.text_field :name, placeholder: "Household name ex. Smith House"  %>
@@ -84,7 +84,7 @@
       <%= f.submit %>
     </div>
      
- 
+  </fieldset>
   
 <% end %>
 

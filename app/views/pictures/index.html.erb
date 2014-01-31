@@ -1,4 +1,5 @@
 <% content_for :title, "Animal Photo Gallery" %>
+<%= breadcrumb_nav( @animal.owner ? [@animal.owner, @animal] : [@animal] ) %>
 <section class="border_top">
   <div class="row">
 	<fieldset>

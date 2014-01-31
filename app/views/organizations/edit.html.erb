@@ -1,14 +1,13 @@
-
-
+<% content_for :title, "Edit Animal Organization" %>
+<%= breadcrumb_nav( [@organization, 'edit'] ) %>
 <section class="border_top">
- <div class="row">
-   <div class="large-12 columns">
-	
-	<%= render 'form' %>
-	
-	<%= link_to 'Back', @organization %> 
-   </div>
- </div>
+  <div class="row">
+    <fieldset>
+      <h4>Editing Organization</h4>
+      <div class="large-12 columns"><%= render 'form' %></div>
+      <%= link_to button_small('Back'), @organization %>
+    </fieldset>
+  </div>
 </section>
 
 <% unless @organization.new_record? %>

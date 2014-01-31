@@ -146,4 +146,14 @@ module ApplicationHelper
     ["lbs", "kg"]
   end
   
+  def breadcrumb_nav(crumbs)
+    breadcrumb = '<nav class="breadcrumbs">'
+    breadcrumb << link_to('HOME', session[:home_page])
+    crumbs.each do |crumb|
+      breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
+    end
+    breadcrumb << '</nav>'
+    breadcrumb.html_safe
+  end
+  
 end

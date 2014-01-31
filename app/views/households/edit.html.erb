@@ -1,8 +1,10 @@
+<%= breadcrumb_nav( [@household, 'edit'] ) %>
 <section class="border_top">
   <div class="row">
     <fieldset>
+  	  <h4>Editing Household</h4>
       <div class="large-12 columns"><%= render 'form' %></div>
-      <%= link_to 'Back', @household %>
+      <%= link_to button_small('Back'), @household %>
     </fieldset>
   </div>
 </section>

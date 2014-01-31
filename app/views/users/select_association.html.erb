@@ -2,7 +2,7 @@
 	
  <div class="row">
   <h4>Please select one of your associations.</h4>
-  <div class="large-7 columns">
+  <div class="large-8 columns">
    <fieldset>
 
 	<div class="row">
@@ -23,6 +23,15 @@
 	        <% end %>
 	      </tbody>
 	    </table>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="large-12 columns">
+	  	<p>
+	  		You are associated with <%= pluralize(current_user.associations.count, 'account') %>.  
+	  		If needed, click <%= link_to "here", user_select_account_type_path %> to add another account.
+	  	</p>
 	  </div>
 	</div>
 

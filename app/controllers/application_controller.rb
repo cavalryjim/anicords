@@ -19,14 +19,14 @@ class ApplicationController < ActionController::Base
       admin_dashboard_path
     elsif current_user     
       #JDavis: Here we need to check to see if the user has multiple associations.
+      session[:home_page] = user_select_association_path
+      
       if current_user.multiple_associations?
-        session[:home_page] = user_select_association_path
-      elsif current_user.user_association_ids.count == 1
-        session[:home_page] = url_for(current_user.selected_association(current_user.user_association_ids.first))  
+        user_select_association_path 
       elsif current_user.no_associations?
         user_select_account_type_path
       else
-        session[:home_page] = user_path(current_user)
+        url_for(current_user.selected_association(current_user.user_association_ids.first))  
       end
     end
   end
