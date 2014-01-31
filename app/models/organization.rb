@@ -64,7 +64,7 @@ class Organization < ActiveRecord::Base
     pets.each do |pet|
       #JDavis: check to see if the animal is already in dooliddl.
       next if (org_petfinder_ids.include? pet.id.to_i) # && animal.updated_at < pet.last_update
-      animal = Animal.create(name: pet.name, owner: self)
+      animal = Animal.create(name: pet.name, owner: self, organization_id: self.id)
       animal.build_org_profile
       animal.org_profile.petfinder_id = pet.id
       case pet.animal
