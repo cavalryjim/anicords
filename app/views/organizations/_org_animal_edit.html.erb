@@ -130,7 +130,16 @@
   <section>
     <p class="title" data-section-title><a href="#panel4">Photos</a></p>
     <div class="content" data-section-content>
-      <p>Content of section 4.</p>
+      <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+	    <% for picture in @animal.pictures %>
+		  <li>
+	    	<%= link_to image_tag(picture.image_location, class: 'th'), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", 'data-no-turbolink' => true, remote: true %>
+	    	</br>
+	    	<%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, confirm: 'Remove this picture?' %>
+		  </li>
+		  
+	    <% end %>
+	  </ul>
     </div>
   </section>
   <section>

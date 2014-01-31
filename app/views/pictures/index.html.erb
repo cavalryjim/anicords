@@ -9,7 +9,7 @@
 	  <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 	    <% for picture in @pictures %>
 		  <li>
-	    	<%= link_to image_tag(picture.image.url, class: 'th'), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", 'data-no-turbolink' => true, remote: true %>
+	    	<%= link_to image_tag(picture.image_location, class: 'th'), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", 'data-no-turbolink' => true, remote: true %>
 	    	</br>
 	    	<%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, confirm: 'Remove this picture?' %>
 		  </li>

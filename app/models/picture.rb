@@ -43,7 +43,9 @@ class Picture < ActiveRecord::Base
     image.path
   end
   
-  
+  def image_location
+    image.present? ? image.url : external_url
+  end
   
   def crop(x,y,w,h)
     #puts x
