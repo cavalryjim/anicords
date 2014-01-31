@@ -9,7 +9,7 @@ module UsersHelper
     when 'veterinarian'
       image_tag('stock-illustration-10774918-dog-veterinarian.jpg', size: '15x15')
     when 'organization'
-      image_tag(s3_url('black-white-house-md.png'), size: '15x15')
+      image_tag(s3_url('barn-icon.png'), size: '15x15')
     else
       image_tag(s3_url('black-white-house-md.png'), size: '15x15')
     end
