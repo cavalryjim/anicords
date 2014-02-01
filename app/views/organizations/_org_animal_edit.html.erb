@@ -106,25 +106,29 @@
   <section>
     <p class="title" data-section-title><a href="#panel3">Documents</a></p>
     <div class="content" data-section-content>
-      <fieldset>
-        <legend>Vaccination Records</legend>
-      	
-      </fieldset>
+      <div id="org_animal_document_div"><%= render 'organizations/animal_documents' %></div>
+	    
+	  <%= form_for([@animal, Document.new], remote: true, html: { id: "organization_document_upload", "data-abide" => '' }) do |f| %>
+	    <div class="row">
+		  <div class="large-6 columns">
+		    <%= f.file_field :file, class: 'upload_file', required: true %>
+			<small class="error">File required.</small>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 columns">
+		    <%= f.select :file_type, file_types, prompt: 'select file type', required: true %>
+			<small class="error">File required.</small>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 columns">
+		    <%= f.hidden_field :animal_id, value: @animal.id %>
+		    <div class="actions"><%= f.submit 'Upload file' %></div>
+		  </div>
+		</div>
+      <% end %>
       
-      <fieldset>
-      	<legend>Rabies Records</legend>
-      	
-      </fieldset>
-      
-      <fieldset>
-      	<legend>Veterinary Notes</legend>
-      	
-      </fieldset>
-      
-      <fieldset>
-      	<legend>Misc Document</legend>
-      	
-      </fieldset>
     </div>
   </section>
   <section>
@@ -132,7 +136,7 @@
     <div class="content" data-section-content>
       <div id="org_animal_picture_div"><%= render 'organizations/animal_pictures' %></div>
 	    
-	  <%= form_for([@animal, Picture.new], remote: true, html: { "data-abide" => '' }) do |f| %>
+	  <%= form_for([@animal, Picture.new], remote: true, html: { id: "organization_picture_upload", "data-abide" => '' }) do |f| %>
 	    <div class="row">
 		  <div class="large-6 columns">
 		    <%= f.file_field :image, class: 'upload_picture', required: true %>

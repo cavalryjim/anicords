@@ -2,12 +2,15 @@
 #
 # Table name: documents
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  file_path  :string(255)
-#  animal_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer          not null, primary key
+#  title        :string(255)
+#  animal_id    :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#  file_type    :string(255)
+#  file_uid     :string(255)
+#  file_name    :string(255)
+#  external_url :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

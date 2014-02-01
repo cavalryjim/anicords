@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131174022) do
+ActiveRecord::Schema.define(version: 20140201172254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,10 +218,13 @@ ActiveRecord::Schema.define(version: 20140131174022) do
 
   create_table "documents", force: true do |t|
     t.string   "title"
-    t.string   "file_path"
     t.integer  "animal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file_type"
+    t.string   "file_uid"
+    t.string   "file_name"
+    t.string   "external_url"
   end
 
   create_table "foods", force: true do |t|

@@ -248,6 +248,22 @@ class Animal < ActiveRecord::Base
     true
   end
   
+  def vaccination_documents
+    self.documents.where(file_type: 'vaccination')
+  end
+  
+  def rabies_documents
+    self.documents.where(file_type: 'rabies')
+  end
+  
+  def veterinary_documents
+    self.documents.where(file_type: 'veterinary')
+  end
+  
+  def other_documents
+    self.documents.where.not(file_type: ['vaccination', 'rabies', 'veterinary'])
+  end
+  
   private
   
   def file_size_validation

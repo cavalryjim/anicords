@@ -1,0 +1,102 @@
+<fieldset>
+  <legend>Vaccination Records</legend>
+  <% if @animal.vaccination_documents.count == 0 %>
+      <p>No vaccination files have been uploaded.</p>
+  <% else %>
+	<table>
+	  	<tr>
+	  	  <th></th>
+	  	  <th>Filename</th>
+	  	  <th>Delete</th>
+	  	</tr>
+	    <% for document in @animal.vaccination_documents %>
+	    <tr>
+	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
+	      <td><%= document.file_name %></td>
+		  <td>
+		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
+		    		confirm: 'Remove this document?', remote: true %>	
+		  </td>
+        </tr>
+	  <% end %>
+	</table>
+  <% end %>  
+</fieldset>
+      
+<fieldset>
+  <legend>Rabies Records</legend>
+  <% if @animal.rabies_documents.count == 0 %>
+      <p>No raibies documentation has been uploaded.</p>
+  <% else %>
+	<table>
+	  	<tr>
+	  	  <th></th>
+	  	  <th>Filename</th>
+	  	  <th>Delete</th>
+	  	</tr>
+	    <% for document in @animal.rabies_documents %>
+	    <tr>
+	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
+	      <td><%= document.file_name %></td>
+		  <td>
+		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
+		    		confirm: 'Remove this document?', remote: true %>	
+		  </td>
+        </tr>
+	  <% end %>
+	</table>
+  <% end %>  
+      	
+</fieldset>
+      
+<fieldset>
+  <legend>Veterinary Notes</legend>
+  <% if @animal.veterinary_documents.count == 0 %>
+      <p>No veterinary note files have been uploaded.</p>
+  <% else %>
+	<table>
+	  	<tr>
+	  	  <th></th>
+	  	  <th>Filename</th>
+	  	  <th>Delete</th>
+	  	</tr>
+	    <% for document in @animal.veterinary_documents %>
+	    <tr>
+	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
+	      <td><%= document.file_name %></td>
+		  <td>
+		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
+		    		confirm: 'Remove this document?', remote: true %>	
+		  </td>
+        </tr>
+	  <% end %>
+	</table>
+  <% end %>  
+      	
+</fieldset>
+      
+<fieldset>
+  <legend>Misc Document</legend>
+  <% if @animal.other_documents.count == 0 %>
+      <p>Other documents.</p>
+  <% else %>
+	<table>
+	  	<tr>
+	  	  <th></th>
+	  	  <th>Filename</th>
+	  	  <th>Delete</th>
+	  	</tr>
+	    <% for document in @animal.other_documents %>
+	    <tr>
+	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
+	      <td><%= document.file_name %></td>
+		  <td>
+		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
+		    		confirm: 'Remove this document?', remote: true %>	
+		  </td>
+        </tr>
+	  <% end %>
+	</table>
+  <% end %>  
+      	
+</fieldset>

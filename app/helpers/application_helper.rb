@@ -65,6 +65,10 @@ module ApplicationHelper
     #html.html_safe
   end
   
+  def file_types
+    ['vaccination', 'rabies', 'veterinary', 'other']
+  end
+  
   def us_states
     [
       ['Alabama', 'AL'],

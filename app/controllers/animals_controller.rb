@@ -36,12 +36,7 @@ class AnimalsController < ApplicationController
 
   # GET /animals/1/edit
   def edit
-    if params[:key]
-      Document.create(animal_id: @animal.id, key: params[:key])
-    end
-    @uploader = Document.new.file_path
-    #@uploader.success_action_redirect = url_for([@owner, @animal]) + '/edit'
-    @uploader.success_action_redirect = polymorphic_path([@owner, @animal], method: :edit)
+    
   end
 
   # POST /animals

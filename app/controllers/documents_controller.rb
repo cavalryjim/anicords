@@ -32,9 +32,11 @@ class DocumentsController < ApplicationController
       if @document.save 
         format.html { redirect_to return_path, notice: 'Document was successfully uploaded.' }
         format.json { render action: 'show', status: :created, location: @document }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @document.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -60,17 +62,13 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to return_path, notice: 'Document was successfully removed.' }
       format.json { head :no_content }
+      format.js
     end
   end
   
   def download_file
     url = @document.file_path.path
     send_file( url, :disposition => 'inline' )
-     #require 'open-uri'
-     #url = @document.file_path.url
-     #data = open(url).read
-     #send_data data, :disposition => 'attachment', :filename=> @document.file_path.file.filename
-     
   end
 
   private
@@ -98,7 +96,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :animal_id, :file_path, :store_dir)
+      params.require(:document).permit(:title, :animal_id, :file, :file_uid, :file_name, :file_type, :external_url)
     end
   
 end

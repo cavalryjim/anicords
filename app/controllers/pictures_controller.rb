@@ -4,11 +4,8 @@ class PicturesController < ApplicationController
   authorize_resource
 
   def index
-    #Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
     @pictures = @animal.pictures
     @picture = Picture.new
-    #@uploader = Picture.new.image
-    #@uploader.success_action_redirect = animal_pictures_url(@animal)
   end
 
   # GET /pictures/1
