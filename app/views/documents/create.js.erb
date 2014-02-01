@@ -1,6 +1,7 @@
 $("form#organization_document_upload").on("ajax:success", function(event, data, status, response) {
   $(this).effect("highlight", {}, 1500);
   $("#org_animal_document_div").html('<%= j render("organizations/animal_documents") %>')
+  $(this).reset();
 }).on("ajax:error", function(event, response, error) {
   return alert("There was a problem.  Please try again later.");
 });
