@@ -130,16 +130,23 @@
   <section>
     <p class="title" data-section-title><a href="#panel4">Photos</a></p>
     <div class="content" data-section-content>
-      <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-	    <% for picture in @animal.pictures %>
-		  <li>
-	    	<%= link_to image_tag(picture.image_location, class: 'th'), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", 'data-no-turbolink' => true, remote: true %>
-	    	</br>
-	    	<%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, confirm: 'Remove this picture?' %>
-		  </li>
-		  
-	    <% end %>
-	  </ul>
+      <div id="org_animal_picture_div"><%= render 'organizations/animal_pictures' %></div>
+	    
+	  <%= form_for([@animal, Picture.new], remote: true, html: { "data-abide" => '' }) do |f| %>
+	    <div class="row">
+		  <div class="large-6 columns">
+		    <%= f.file_field :image, class: 'upload_picture', required: true %>
+			<small class="error">File required.</small>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 columns">
+		    <%= f.hidden_field :animal_id, value: @animal.id %>
+		    <div class="actions"><%= f.submit 'Upload photo' %></div>
+		  </div>
+		</div>
+      <% end %>
+      
     </div>
   </section>
   <section>

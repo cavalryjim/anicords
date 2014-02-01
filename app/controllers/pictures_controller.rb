@@ -37,6 +37,7 @@ class PicturesController < ApplicationController
       if @picture.save 
         format.html { redirect_to animal_pictures_path(@animal.id), notice: 'Picture was successfully uploaded.' }
         format.json { render action: 'show', status: :created, location: @picture }
+        format.js
       else
         #breaker_not
         format.html { redirect_to animal_pictures_path(@animal.id), alert: 'File must be a jpg, png, or bmp less than 2mb.' }
@@ -66,6 +67,7 @@ class PicturesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to animal_pictures_path(@animal), notice: 'Picture was successfully removed.' }
       format.json { head :no_content }
+      format.js
     end
   end
   

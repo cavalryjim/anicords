@@ -2,13 +2,23 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
+  
+  #$("#animal_form").submit (event) ->
+  #  $('#animal_breed_ids').val( fixIds($('#animal_breed_ids').val() ) )
+  #  $('#animal_medication_ids').val( fixIds($('#animal_medication_ids').val() ) )
+  #  $('#animal_medical_diagnosis_ids').val( fixIds($('#animal_medical_diagnosis_ids').val() ) )
+  #  $('#animal_allergy_ids').val( fixIds($('#animal_allergy_ids').val() ) )
+  #  $('#animal_personality_type_ids').val( fixIds($('#animal_personality_type_ids').val() ) )
+    
+  #fixIds = (messy_ids) ->
+  #  if messy_ids == '[]' then messy_ids else "["+messy_ids.split('],')[1].split(',').toString()+"]"
  
   $('#animal_medical_diagnosis_ids').select2
     width: "100%"
     placeholder: "Add medical diagnosis"
     multiple: true
     id: (obj) ->
-      obj.id # use slug field for id
+      obj.id 
 
     ajax: # instead of writing the function to execute the request we use Select2's convenient helper
       url: "/remote_requests/medical_diagnoses"
@@ -391,6 +401,7 @@ jQuery ->
   
   $("#animal_gender").change ->
     $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
+    
     
   #----------end of jquery dialog----------------------#  
   
