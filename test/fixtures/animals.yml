@@ -41,6 +41,7 @@
 #  disposition          :string(255)
 #  avatar_uid           :string(255)
 #  avatar_name          :string(255)
+#  size                 :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

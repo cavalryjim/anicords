@@ -3,12 +3,12 @@
 	<tr>
 	  <th></th>
 	  <th>Name</th>
+	  <th>Location</th>
 	  <th>Species</th>
 	  <th>Breed</th>
 	  <th>Gender</th>
 	  <th>Date In</th>
 	  <th>Intake Reason</th>
-	  <th>Location</th>
 	</tr>
   </thead>
   <tbody>
@@ -16,12 +16,12 @@
 	  <tr>
 	  	<td><%= image_tag(thumbnail(animal), size: '50x50') %></td>
 		<td><%= link_to animal.name, edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true %></td>
+		<td><%= location(animal) %></td>
 		<td><%= animal.species %></td>
 		<td><%= animal.breed_names %></td>
 		<td><%= animal.gender %></td>
 		<td><%= mo_da_yr(animal.org_profile.intake_date) %></td>
 		<td><%= animal.org_profile.intake_reason %></td>
-		<td><%= location(animal) %></td>
 	  </tr>
 	<% end %>
   </tbody>

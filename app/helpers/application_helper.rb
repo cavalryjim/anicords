@@ -33,8 +33,8 @@ module ApplicationHelper
     'https://s3-us-west-2.amazonaws.com/dooliddl/app_images/' << file_name
   end
   
-  def button_small(text)
-    ("<button class='small'>"+text+"</button>").html_safe
+  def button_small(text, button_id = '')
+    ("<button class='small' id="+button_id+">"+text+"</button>").html_safe
   end
   
   def fun_button_small(text)
@@ -148,6 +148,14 @@ module ApplicationHelper
   
   def wt_options
     ["lbs", "kg"]
+  end
+  
+  def size_options
+    ["small", "medium", "large"]
+  end
+  
+  def boolean_options
+    [true, false]
   end
   
   def breadcrumb_nav(crumbs)

@@ -44,6 +44,97 @@ $(".org_animal_div").on "show", ->
         ).done (data) ->
           callback data        
   
+  $('#animal_medical_diagnosis_ids').select2
+    width: "100%"
+    placeholder: "Add medical diagnosis"
+    multiple: true
+    id: (obj) ->
+      obj.id 
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/medical_diagnoses"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+        at_id: $('#animal_animal_type_id').val()
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        diagnoses = ''
+        $.each ids, (index, value) ->
+          diagnoses = diagnoses + '&md[]=' + value
+   
+        $.ajax("/remote_requests/medical_diagnoses?"+diagnoses,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+    
+  $('#animal_medication_ids').select2
+    placeholder: "Add medications"
+    width: "100%"
+    multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/medications"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        medications = ''
+        $.each ids, (index, value) ->
+          medications = medications + '&meds[]=' + value
+   
+        $.ajax("/remote_requests/medications?"+medications,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+          
+  $('#animal_allergy_ids').select2
+    placeholder: "Add allergies"
+    width: "100%"
+    multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/allergies"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt '[]'
+        ids = JSON.parse($(element).val())
+        allergies = ''
+        $.each ids, (index, value) ->
+          allergies = allergies + '&alg[]=' + value
+   
+        $.ajax("/remote_requests/allergies?"+allergies,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+  
   $('#animal_personality_type_ids').select2
     placeholder: "disposition"
     width: "100%"
@@ -88,3 +179,32 @@ $(".org_animal_div").on "show", ->
     width: "100%"
     matcher: (term, text) ->
       text.toUpperCase().indexOf(term.toUpperCase()) is 0
+
+  $('#dialog_vaccination_id').select2
+    placeholder: "vaccination"
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/vaccinations"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> 
+        results: data
+  
+  $("#add_vaccination").click ->
+    #alert 'adding vaccination'
+    if $('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val()
+      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+      $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
+      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+      $("#animal_vaccination_tag_number").val( $('#dialog_tag_number').val() )
+      $("#animal_vaccination_form").submit()
+    else
+      alert "Select a vaccination and date."
+    
+    # move data to another form and submit it.

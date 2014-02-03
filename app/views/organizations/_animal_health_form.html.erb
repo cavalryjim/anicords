@@ -1,0 +1,8 @@
+<%= form_for [@organization, @animal], remote: @animal.persisted?, html: {id: 'organization_animal_health_form', "data-abide" => ''} do |f| %>
+  
+  <%= render 'animals/animal_health_fields', f: f %>
+  
+  <div class="actions">
+	<%= f.submit "Save" %>
+  </div>
+<% end %>

@@ -1,0 +1,104 @@
+<fieldset>
+ <legend>Health</legend>
+ <div class="row">
+  <div class="large-4 columns">
+	<%= f.select :size, options_for_select(size_options, @animal.size), {prompt:"size"}, {class: "regular_select"}  %>
+  </div>
+  <div class="large-4 columns">
+	<%= f.text_field :weight, placeholder:"weight" %>
+  </div>
+  <div class="large-4 columns">
+	<%= f.select :weight_measure, options_for_select(wt_options, @animal.weight_measure), {prompt:"weight measure"}, {class: "regular_select"}  %>
+  </div>
+ </div>
+
+
+ <%= f.fields_for :health_profile do |p| %>
+	<div class="row">
+	  <div class="large-4 columns">
+		<%= p.label :last_exam_date, 'last exam date' %>
+		<%= p.text_field :last_exam_date, value: mo_da_yr(@animal.health_profile.last_exam_date) , class: "datepicker", placeholder: "last exam date" %>
+	  </div>
+	  <div class="large-4 columns">
+		<%= p.label :last_exam_location, 'last exam location' %>
+		<%= p.text_field :last_exam_location, placeholder: "last exam location" %>
+	  </div>
+	  <div class="large-4 columns"></div>
+	</div>
+	
+	<div class="row">
+	  <div class="large-4 columns">
+		<%= p.label :heartworm_test_date, 'heartworm test date' %>
+		<%= p.text_field :heartworm_test_date, value: mo_da_yr(@animal.health_profile.heartworm_test_date) , class: "datepicker", placeholder: "last exam date" %>
+	  </div>
+	  <div class="large-4 columns">
+		<%= p.label :heartworm_test_location, 'heartworm test location' %>
+		<%= p.text_field :heartworm_test_location, placeholder: "heartworm test location" %>
+	  </div>
+	  <div class="large-4 columns">
+		<%= p.label :heartworm_test_result, 'heartworm test result' %>
+		<%= p.select :heartworm_test_result, options_for_select(boolean_options, @animal.health_profile.heartworm_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
+	  </div>
+	</div>
+ <% end %>
+</fieldset>
+
+<fieldset id="vaccination_fieldset">
+ <legend>Vaccination</legend>
+ <div id="vaccination_dialog" title="Vaccination information">
+	
+  <div class="row">
+    <div class="large-12 columns">
+	   <%= text_field_tag 'dialog_vaccination_id', nil, { class: 'select' }  %>
+	</div>
+  </div>
+	    
+  <div class="row">
+	<div class="large-6 columns">
+	   <%= text_field_tag 'dialog_vaccination_date', nil, { class: "datepicker", placeholder: "Select a date" } %>
+	   <small class="error">Vaccination date required.</small>
+	</div>
+	<div class="large-6 columns">
+	  <%= text_field_tag 'dialog_tag_number', nil, { placeholder: "Vaccination number (ex: rabies tag #)" } %>
+	</div>
+  </div>
+  
+ </div>
+
+ <div class="row">	
+  <div class="large-12 columns">
+	<%= button_small("add vaccination", "add_vaccination")  %>
+  </div>
+ </div>
+
+ <div class="row">	
+  <div class="large-12 columns">
+	<div id="animal_vaccination_table_div"><%= render 'animals/vaccination_table'%></div>
+  </div>
+ </div>
+</fieldset>
+
+<fieldset>
+ <legend>Other</legend>	
+ <div class="row">
+  <div class="large-6 columns bottom_padding_10">
+	<%= f.label :medical_diagnosis_ids, "medical diagnosis" %>
+	<%= f.text_field :medical_diagnosis_ids %>
+		  	
+  </div>
+ </div>
+		
+ <div class="row">
+  <div class="large-6 columns bottom_padding_10">
+	<%= f.label :medication_ids, "medications" %>
+	<%= f.text_field :medication_ids %>
+  </div>
+ </div>
+		
+ <div class="row">
+  <div class="large-6 columns">
+	<%= f.label :allergy_ids, "allergies" %>
+	<%= f.text_field :allergy_ids %>
+  </div>
+ </div>
+</fieldset>

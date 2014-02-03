@@ -171,9 +171,9 @@ class AnimalsController < ApplicationController
     def return_path
       case @animal.owner.class.name
       when 'Organization'
-        organization_path(@owner.id)
+        organization_path(@animal.owner.id)
       when 'Household'
-        edit_household_animal_path(@owner.id, @animal.id)
+        edit_household_animal_path(@animal.owner.id, @animal.id)
         #polymorphic_path([@animal.owner, @animal], action: :edit)
       else
         animal_path(@animal.id)

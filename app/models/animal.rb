@@ -41,6 +41,7 @@
 #  disposition          :string(255)
 #  avatar_uid           :string(255)
 #  avatar_name          :string(255)
+#  size                 :string(255)
 #
 
 class Animal < ActiveRecord::Base
@@ -56,6 +57,7 @@ class Animal < ActiveRecord::Base
   #belongs_to :breed
   has_one    :animal_transfer, dependent: :destroy
   has_one    :org_profile, dependent: :destroy
+  has_one    :health_profile, dependent: :destroy
   has_many   :documents, dependent: :destroy
   has_many   :vaccinations, through: :animal_vaccinations
   has_many   :animal_vaccinations, dependent: :destroy
@@ -76,9 +78,11 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   accepts_nested_attributes_for :pictures, allow_destroy: true
   accepts_nested_attributes_for :org_profile, allow_destroy: true
+  accepts_nested_attributes_for :health_profile, allow_destroy: true
   
   validates_presence_of :name
   #validate :file_size_validation
+  after_create :new_health_profile
   
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
@@ -265,6 +269,10 @@ class Animal < ActiveRecord::Base
   end
   
   private
+  
+  def new_health_profile
+    self.create_health_profile
+  end
   
   def file_size_validation
     errors[:pedigree] << "should be less than 5MB" if pedigree && pedigree.size > 5.megabytes

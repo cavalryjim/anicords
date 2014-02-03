@@ -10,13 +10,7 @@
 			<small class="error">Name required.</small>
 		  </div>
 		</div>
-		<!--		    
-		<div class="row">
-		  <div class="large-8 columns">
-			<%= f.text_field :show_name, placeholder: "Animal's show name" %>
-		  </div>
-		</div>
-		-->
+		
 		<div class="row">
 		  <div class="large-4 columns">
 		  	<%= f.label :animal_type_id, "species" %>
@@ -110,62 +104,11 @@
   <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
     <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
 	<div class="content" data-section-content>
-	   <div class="row">
-		  <div class="large-3 columns">
-			<%= f.text_field :weight, placeholder:"weight" %>
-		  </div>
-		  <div class="large-3 columns">
-			<%= f.select :weight_measure, options_for_select(wt_options, @animal.weight_measure), {prompt:"weight measure"}, {class: "regular_select"}  %>
-		  </div>
-		  
-		  <div class="large-6 columns"></div>
-		</div>
-		
-		<div class="row">
-				      
-		  <div class="large-6 columns">
-		  	<div id="animal_health_cert_div"><%= render 'health_certification_upload'%></div>
-		
-		  </div>
-		  <div class="large-6 columns">
-		  	<div id="animal_vaccination_div"><%= render 'vaccination_file_upload'%></div>
-		  </div>
-				      	      
-		</div>
-		
-		<div class="row">	
-		  <div class="large-12 columns">
-		  	<div id="animal_vaccination_table_div"><%= render 'vaccination_table'%></div>
-		  </div>
-		</div>
-		
-		<div class="row">
-		  <div class="large-6 columns bottom_padding_10">
-		  	<%= f.label :medical_diagnosis_ids, "medical diagnosis" %>
-		  	<%= f.text_field :medical_diagnosis_ids %>
-		  	
-		  </div>
-		</div>
-		
-		<div class="row">
-		  <div class="large-6 columns bottom_padding_10">
-		  	<%= f.label :medication_ids, "medications" %>
-		  	<%= f.text_field :medication_ids %>
-		  </div>
-		</div>
-		
-		<div class="row">
-		  <div class="large-6 columns">
-		  	<%= f.label :allergy_ids, "allergies" %>
-		  	<%= f.text_field :allergy_ids %>
-		  </div>
-		</div>
-		
-		  <% if false %>
-		    <%= render 'documents'%>
-		  <% end %>
+	  <%= render 'animal_health_fields', f: f %>
 	</div>
   <% end %>
+	  
+	  
 	  
   <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
 	<p class="title" data-section-title><a href="#panel3">Preferences</a></p>
