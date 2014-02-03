@@ -160,7 +160,7 @@ module ApplicationHelper
   
   def breadcrumb_nav(crumbs)
     breadcrumb = '<nav class="breadcrumbs">'
-    breadcrumb << link_to('HOME', session[:home_page])
+    breadcrumb << link_to('HOME', session[:home_page]) unless crumbs.last == 'home'
     crumbs.each do |crumb|
       breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
     end
