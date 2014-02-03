@@ -1,5 +1,5 @@
 $("form#organization_picture_upload").on("ajax:success", function(event, data, status, response) {
-  $(this).effect("highlight", {}, 1500);
+  $(this).effect("highlight", {color:"#81F781"}, 1500);
   $("#org_animal_picture_div").html('<%= j render("organizations/animal_pictures") %>')
   $(this).reset();
 }).on("ajax:error", function(event, response, error) {

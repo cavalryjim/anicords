@@ -1,6 +1,6 @@
 $("form#animal_vaccination_form").on("ajax:success", function(event, data, status, response) {
   $('#animal_vaccination_table_div').html('<%= j render("animals/vaccination_table") %>'); 
-  $('#vaccination_fieldset').effect("highlight", {}, 1500);
+  $('#vaccination_fieldset').effect("highlight", {color:"#81F781"}, 1500);
   $('#dialog_vaccination_id').val("");
   $('#dialog_vaccination_date').val("");
   $('#dialog_tag_number').val("");
