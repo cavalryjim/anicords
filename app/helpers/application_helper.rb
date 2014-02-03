@@ -154,8 +154,8 @@ module ApplicationHelper
     ["small", "medium", "large"]
   end
   
-  def boolean_options
-    [true, false]
+  def test_result_options
+    [['pos', true], ['neg', false]]
   end
   
   def breadcrumb_nav(crumbs)

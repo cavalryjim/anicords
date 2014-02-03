@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203051904) do
+ActiveRecord::Schema.define(version: 20140203175834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20140203051904) do
     t.string   "avatar_uid"
     t.string   "avatar_name"
     t.string   "size"
+    t.string   "rfid_brand"
   end
 
   create_table "beta_comments", force: true do |t|

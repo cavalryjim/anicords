@@ -55,6 +55,10 @@ ul.ui-autocomplete {
   background-color: #FFF;
 }
 
+section.gray_background {
+  background-color: #E9E9E9;
+}
+
 .green_background {
   background-color: #93A889;
 }

@@ -322,7 +322,7 @@ jQuery ->
       results: (data, page) -> 
         results: data
         
-  $('#animal_vaccination_vaccination_id').select2
+  $('#dialog_vaccination_id').select2
     placeholder: "vaccination"
     width: "100%"
     id: (obj) ->
@@ -337,6 +337,17 @@ jQuery ->
 
       results: (data, page) -> 
         results: data
+        
+  $("#add_vaccination").click ->
+    #alert 'adding vaccination'
+    if ($('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val())
+      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+      $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
+      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+      $("#animal_vaccination_tag_number").val( $('#dialog_tag_number').val() )
+      $("#animal_vaccination_form").submit()
+    else
+      alert "Select a vaccination and date."
   
   # JDavis: jquery dialog form for capturing feeding information
   updateTips = (t) ->

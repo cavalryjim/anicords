@@ -1,0 +1,84 @@
+<fieldset>
+  <legend>Information</legend>
+  <div class="row">
+	<div class="large-12 columns">
+	  <%= f.label :name, 'name' %>
+	  <%= f.text_field :name, placeholder: "animal's name" %>
+	  <small class="error">Name required.</small>
+	</div>
+  </div>
+		
+  <div class="row">
+	<div class="large-4 columns">
+	  <%= f.label :animal_type_id, "species" %>
+	  <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {prompt:'species'}, {class: "regular_select"} %>
+	</div>
+	<div class="large-6 columns bottom_padding_1em">
+	  <%= f.label :breed_ids, "breed(s)" %>
+	  <%= f.text_field :breed_ids %>
+	</div>
+	<div class="large-2 columns"></div>
+  </div>
+				
+  <div class="row">
+	<div class="large-4 columns">
+	  <%= f.label :gender %>
+	  <%= f.select :gender, options_for_select(["male", "female"], @animal.gender), {prompt:'gender'}, {class: "regular_select"}  %>
+	</div>
+	<div class="large-4 columns">
+	  <%= f.label :dob, 'date of birth' %>
+	  <%= f.text_field :dob, value: mo_da_yr(@animal.dob) , class: "datepicker", placeholder: "date of birth" %>
+	</div>
+	<div class="large-4 columns"></div>
+  </div>
+</fieldset>
+		
+  
+<fieldset>
+  <legend>Identification</legend>
+  <div class="row">
+	<div class="large-4 columns">
+	  <%= f.label :registration_club_id, 'registration club' %>
+	  <%= f.text_field :registration_club_id %>
+    </div>  
+	<div class="large-4 columns">
+	  <%= f.label :registration_number, 'registration number' %>
+	  <%= f.text_field :registration_number, placeholder: "registration number" %>
+	</div>
+	<div class="large-4 columns"></div>
+  </div>
+  <div class="row">	  
+	<div class="large-4 columns">
+	  <%= f.label :rfid_brand, 'microchip brand' %>
+	  <%= f.text_field :rfid_brand, placeholder: "microchip brand" %>
+	</div>	
+	<div class="large-4 columns">
+	  <%= f.label :rfid, 'microchip id number' %>
+	  <%= f.text_field :rfid, placeholder: "microchip id number" %>
+	</div>	
+	<div class="large-4 columns"></div>	      	      
+  </div>
+		
+</fieldset>				    
+  
+<fieldset>
+  <legend>Description</legend>
+  <div class="row">
+	<div class="large-4 columns">
+	  <%= f.label :fur_color, 'fur color' %>
+	  <%= f.text_field :fur_color, placeholder: "fur color" %>
+	</div>	
+	<div class="large-4 columns bottom_padding_10">
+	  <%= f.label :personality_type_ids, "dispostion" %>
+	  <%= f.text_field :personality_type_ids %>
+	</div>	
+	<div class="large-4 columns"></div>
+  </div>
+				    
+  <div class="row">
+	<div class="large-12 columns">
+	  <%= f.label :description %>
+	  <%= f.text_area :description, placeholder: "description of animal" %>
+	</div>
+  </div>
+</fieldset>
