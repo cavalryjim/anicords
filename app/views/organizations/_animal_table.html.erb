@@ -14,7 +14,7 @@
   <tbody>
     <% @animals.each do |animal| %>
 	  <tr>
-	  	<td><%= link_to image_tag(thumbnail(animal), size: '50x50'), edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true  %></td>
+	  	<td><%= link_to image_tag(thumbnail(animal), size: '50x50', class: 'th'), edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true  %></td>
 		<td><%= link_to animal.name, edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true %></td>
 		<td><%= location(animal) %></td>
 		<td><%= animal.species %></td>
