@@ -36,7 +36,9 @@ class AnimalsController < ApplicationController
 
   # GET /animals/1/edit
   def edit
-    
+    if (@owner && @owner.class.name == "Organization")
+      @organization = @owner
+    end
   end
 
   # POST /animals
@@ -188,10 +190,15 @@ class AnimalsController < ApplicationController
        :vaccination_record, :shampoo_id, :vitamin_id, :treat_id, :remove_health_certification, :remove_vaccination_record,
        :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :gender, :neutered, :food_id, 
        :rfid, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
-       :fur_color, :disposition, :organization_id,
+       :fur_color, :organization_id, :size, :avatar_uid, :avatar_name, :avatar,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids, :breed_ids,
-       org_profile_attributes: [ :animal_id, :intake_date, :intake_reason, :organization_location_id, :neuter_location_id,
-         :neuter_location_type, :neuter_location, :intake_weight, :intake_weight_measure, :_destroy],
+       org_profile_attributes: [ :id, :animal_id, :intake_date, :intake_reason, :organization_location_id, :neuter_location_id,
+         :neuter_location_type, :neuter_location, :intake_weight, :intake_weight_measure, :petfinder_id, :shelter_specific_id,    
+         :thumbnail_url, :adoption_date, :transferee_first_name, :transferee_last_name, :transferee_phone,
+         :transferee_city, :transferee_state, :transferee_zip, :_destroy],
+       health_profile_attributes: [ :id, :animal_id, :last_exam_date, :last_exam_location, :heartworm_test_date,     
+         :heartworm_test_location, :heartworm_test_result, :fiv_felv_test_date, :fiv_felv_test_location,  
+         :fiv_felv_test_result, :_destroy],
        medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], personality_type_ids: [], breed_ids: [] )
     end
 end

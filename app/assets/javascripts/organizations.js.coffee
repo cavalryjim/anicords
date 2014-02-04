@@ -196,6 +196,7 @@ $(".org_animal_div").on "show", ->
       results: (data, page) -> 
         results: data
   
+  # JDaivs: move data to another form and submit it.
   $("#add_vaccination").click ->
     #alert 'adding vaccination'
     if $('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val()
@@ -207,4 +208,3 @@ $(".org_animal_div").on "show", ->
     else
       alert "Select a vaccination and date."
     
-    # move data to another form and submit it.

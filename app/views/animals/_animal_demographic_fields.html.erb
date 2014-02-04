@@ -32,10 +32,45 @@
 	<div class="large-4 columns"></div>
   </div>
 </fieldset>
-		
+
+<% if @organization %>
+  <fieldset>
+  	<legend>Intake info</legend>
+  	<%= f.fields_for :org_profile do |builder| %>
+	<div class="row">
+	  <div class="large-6 columns">
+	  	<%= builder.label :intake_date %>
+	    <%= builder.text_field :intake_date, value: mo_da_yr(@animal.org_profile.intake_date) , class: "datepicker", placeholder: "intake date" %>
+	  </div>
+	  <div class="large-6 columns"> 
+	  	<%= builder.label :intake_reason %>
+		<%= builder.select :intake_reason, intake_reasons, {include_blank: true, prompt: 'intake reason'}, {class: 'regular_select'} %>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="large-6 columns">
+	  	<%= builder.label :intake_weight %>
+		<%= builder.text_field :intake_weight , placeholder: "intake weight" %>
+	  </div>
+	  <div class="large-6 columns"> 
+	  	<%= builder.label :intake_weight_measure, 'lbs / kg'%>
+		<%= builder.select :intake_weight_measure, options_for_select(wt_options), {include_blank: false}, {class: "regular_select"} %>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="large-6 columns">
+	  	<%= builder.label :organization_location_id, 'location' %>
+		<%= builder.collection_select :organization_location_id, @owner.organization_locations, :id, :name, {prompt:'animal location'}, {class: "regular_select"} %>
+	  </div>
+	  <%= builder.hidden_field :id %>	  
+	</div>
+  <% end %>
+  </fieldset>
+<% end %>
   
 <fieldset>
   <legend>Identification</legend>
+ <% unless @organization %>
   <div class="row">
 	<div class="large-4 columns">
 	  <%= f.label :registration_club_id, 'registration club' %>
@@ -47,6 +82,7 @@
 	</div>
 	<div class="large-4 columns"></div>
   </div>
+ <% end %>
   <div class="row">	  
 	<div class="large-4 columns">
 	  <%= f.label :rfid_brand, 'microchip brand' %>
@@ -67,11 +103,13 @@
 	<div class="large-4 columns">
 	  <%= f.label :fur_color, 'fur color' %>
 	  <%= f.text_field :fur_color, placeholder: "fur color" %>
-	</div>	
+	</div>
+	<% unless @animal.new_record? %>	
 	<div class="large-4 columns bottom_padding_10">
 	  <%= f.label :personality_type_ids, "dispostion" %>
 	  <%= f.text_field :personality_type_ids %>
 	</div>	
+	<% end %>
 	<div class="large-4 columns"></div>
   </div>
 				    
