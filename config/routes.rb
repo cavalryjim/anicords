@@ -27,6 +27,7 @@ Anicords::Application.routes.draw do
     resources :documents
     resources :animal_vaccinations
     resources :animal_associations
+    resources :org_profiles
   end
   
   #resources :documents
@@ -62,6 +63,7 @@ Anicords::Application.routes.draw do
   patch 'animals/:id/transfer_ownership' => 'animals#transfer_ownership', as: :transfer_animal
   patch 'animals/:id/accept_transfer' => 'animals#accept_transfer', as: :accept_transfer
   get 'animals/:id/sitter_instructions' => 'animals#sitter_instructions', as: :animal_sitter_instructions
+  get 'organizations/:organization_id/animals/:id/org_flyer' => 'animals#org_flyer', as: :organization_animal_flyer
   match 'animals/:id/photo_gallery' => 'animals#photo_gallery', via: [:get, :post], as: :animal_photo_gallery
   patch 'pictures/:id/crop' => 'pictures#crop'
   

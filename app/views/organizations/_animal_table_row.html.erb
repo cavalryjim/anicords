@@ -1,8 +1,8 @@
 <td><%= link_to image_tag(thumbnail(animal), size: '50x50', class: 'th'), edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true  %></td>
 <td><%= link_to animal.name, edit_organization_animal_path(@organization, animal), "data-reveal-id" => "animalModal", remote: true %></td>
-<td><%= location(animal) %></td>
+<td><%= best_in_place(animal.org_profile, :organization_location_id, type: :select, collection: [[1, "Spain"], [2, "Italy"]] , path: animal_org_profile_path(animal.id, animal.org_profile.id)  ) %></td>
 <td><%= animal.species %></td>
 <td><%= animal.breed_names %></td>
 <td><%= animal.gender %></td>
 <td><%= mo_da_yr(animal.org_profile.intake_date) %></td>
-<td><%= animal.org_profile.intake_reason %></td>
+<td><%= link_to button_small("flyer"), organization_animal_flyer_path(@organization, animal, format: "pdf"), target: '_blank' %></td>

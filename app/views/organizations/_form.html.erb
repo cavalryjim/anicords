@@ -47,8 +47,12 @@
         <%= f.text_field :website, placeholder: "website" %>
       </div>
     </div>
-    
+        
     <div class="row">
+      <div class="large-8 columns">
+        <%= f.label :logo_external_url, "logo" %>
+        <%= f.text_field :logo_external_url, placeholder: "logo URL ex. http://our.org/logo/pic.gif" %>
+      </div>
       <div class="large-4 columns">
         <%= f.label :petfinder_shelter_id, "Petfinder Shelter ID" %>
         <%= f.text_field :petfinder_shelter_id, placeholder: "LA123" %>

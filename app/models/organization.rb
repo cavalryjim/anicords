@@ -15,6 +15,7 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #  petfinder_shelter_id :string(255)
+#  logo_external_url    :string(255)
 #
 
 class Organization < ActiveRecord::Base

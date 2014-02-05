@@ -19,6 +19,7 @@
 //= require jquery.Jcrop
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
+//= require best_in_place
 //= require_tree .
 
 $(function(){
@@ -71,6 +72,8 @@ $(function(){
     //  data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
     //});
   //});
+  
+  jQuery(".best_in_place").best_in_place();
 
 });
 
