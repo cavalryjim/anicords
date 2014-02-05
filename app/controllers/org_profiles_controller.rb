@@ -1,5 +1,5 @@
 class OrgProfilesController < ApplicationController
-  before_action :set_org_profile
+  #before_action :set_org_profile
   before_action :set_animal
   before_filter :authenticate_user!
   #authorize_resource 
