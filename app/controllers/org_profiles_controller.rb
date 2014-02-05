@@ -1,8 +1,8 @@
 class OrgProfilesController < ApplicationController
-  #before_action :set_org_profile
+  before_action :set_org_profile
   before_action :set_animal
   before_filter :authenticate_user!
-  #authorize_resource 
+  authorize_resource 
   
   def show
     
@@ -17,8 +17,9 @@ class OrgProfilesController < ApplicationController
   end
   
   def update
+    #breakage
     respond_to do |format|
-      if @animal.org_profile.update(org_profile_params)
+      if @org_profile.update(org_profile_params)
         format.html { redirect_to @org_profile, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
         format.js
@@ -31,7 +32,7 @@ class OrgProfilesController < ApplicationController
   
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_breeder
+    def set_org_profile
       @org_profile = OrgProfile.find(params[:id])
     end
     

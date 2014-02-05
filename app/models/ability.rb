@@ -47,6 +47,11 @@ class Ability
       organization.users.include?(user)
     end
     
+    can :manage, OrgProfile do |profile|
+      profile.new_record? or
+      profile.animal.owner.users.include?(user)
+    end
+    
     can :read, Picture
     
     can :manage, Picture do |picture|

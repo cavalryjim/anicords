@@ -11,7 +11,7 @@ class OrgFlyerPdf < Prawn::Document
   def top_header
     image open("#{@organization.logo_external_url}"), at: [bounds.right - 500, bounds.top], fit: [300,100] if @organization.logo_external_url.present?
     
-    image open("#{ @animal.qr_code.remote_url }"), at: [bounds.right - 100, bounds.top], width: 90 if @animal.qr_code.present? 
+    image open("#{@animal.qr_code.remote_url}"), at: [bounds.right - 100, bounds.top], width: 90 if @animal.qr_code.present? 
   end
   
   def body
