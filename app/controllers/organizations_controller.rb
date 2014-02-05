@@ -88,7 +88,8 @@ class OrganizationsController < InheritedResources::Base
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :address1, :address2, :phone, :user_associations_attributes, :city, :state, :zip, :petfinder_shelter_id,
+      params.require(:organization).permit(:name, :address1, :address2, :phone, :user_associations_attributes, 
+        :city, :state, :zip, :petfinder_shelter_id, :logo_external_url,
         animals_attributes: [:name, :animal_type_id, :organization, :organization_id, :owner, :owner_id, :owner_type, :_destroy])
     end
   
