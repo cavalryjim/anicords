@@ -17,8 +17,8 @@ module OrganizationsHelper
   end
   
   def location_options(organization)
-    #organization.organization_locations.map{|l| [ l.id, l.name ]}
-    [[1, 'spain'], [2, 'italy']]
+    location_array = organization.organization_locations.map{|l| [ l.id, l.name ]}
+    location_array
   end
   
   def thumbnail(animal)
