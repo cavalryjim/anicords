@@ -17,8 +17,8 @@ module OrganizationsHelper
   end
   
   def location_options(organization)
-    #organization.organization_locations.map{|l| [ l.id, l.name ]}
-    [[1, "Davis Household"], [2, "pet rescue"]]
+    organization.organization_locations.map{|l| [ l.name, l.id ]}
+    #[[1, "Davis Household"], [2, "pet rescue"]]
   end
   
   def thumbnail(animal)
