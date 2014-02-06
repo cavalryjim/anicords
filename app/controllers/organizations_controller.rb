@@ -13,7 +13,7 @@ class OrganizationsController < InheritedResources::Base
     @animal = Animal.new
     @animal.build_org_profile
     @animals = @organization.animals
-    @location_options = @organization.organization_locations.map{|l| [ l.id, l.name ]}
+    @location_options = @organization.organization_locations.map{|l| [ l.name, l.id ]}
   end
   
   # GET /organizations/new
