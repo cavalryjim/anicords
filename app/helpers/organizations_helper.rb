@@ -16,16 +16,6 @@ module OrganizationsHelper
     end
   end
   
-  def location_options(organization)
-    organization.organization_locations.map{|l| [ l.id.to_s, l.name.to_s ]}
-    #[[1, "Davis Household"], [2, "pet rescue"]]
-    #a = []
-    #organization.organization_locations.each do |location|
-    #  a << [location.id, "italy"]
-    #end
-    #return a
-  end
-  
   def thumbnail(animal)
     (animal.org_profile && animal.org_profile.thumbnail_url.present?) ? animal.org_profile.thumbnail_url  : s3_url('doo_fav.png')
   end
