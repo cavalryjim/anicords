@@ -4,17 +4,7 @@ class OrgProfilesController < ApplicationController
   before_filter :authenticate_user!
   authorize_resource 
   
-  def show
-    
-  end
   
-  def new
-    
-  end
-  
-  def edit
-    
-  end
   
   def update
     #breakage
@@ -25,7 +15,7 @@ class OrgProfilesController < ApplicationController
         format.js
       else
         format.html { render action: 'edit' }
-        format.json { render json: @org_profile.errors, status: :unprocessable_entity }
+        #format.json { render json: @org_profile.errors, status: :unprocessable_entity }
       end
     end
   end
