@@ -166,8 +166,6 @@ $(".org_animal_div").on "show", ->
         ).done (data) ->
           callback data
           
-  $("#animal_gender").change ->
-    $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
     
   $(".datepicker").datepicker
     dateFormat: "yy-mm-dd"
@@ -195,6 +193,35 @@ $(".org_animal_div").on "show", ->
 
       results: (data, page) -> 
         results: data
+        
+  $('#animal_registration_club_id').select2
+    placeholder: "registration club"
+    minimumResultsForSearch: 15
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/registration_clubs"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        at_id: $('#animal_animal_type_id').val()
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/remote_requests/registration_clubs?clb="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data    
   
   # JDaivs: move data to another form and submit it.
   $("#add_vaccination").click ->
@@ -207,4 +234,16 @@ $(".org_animal_div").on "show", ->
       $("#animal_vaccination_form").submit()
     else
       alert "Select a vaccination and date."
+      
+  $("#animal_gender").change ->
+    $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
+      
+  $("#animal_neutered").change ->
+     $(".neuter_disable").prop('disabled', !$("#animal_neutered").is(':checked'))
+  
+  $("#animal_pedigreed").change ->
+     $(".pedigree_disable").prop('disabled', !$("#animal_pedigreed").is(':checked'))
+  
+  $("#animal_microchipped").change ->
+     $(".microchip_disable").prop('disabled', !$("#animal_microchipped").is(':checked'))
     

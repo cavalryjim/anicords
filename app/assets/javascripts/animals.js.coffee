@@ -412,6 +412,27 @@ jQuery ->
   
   $("#animal_gender").change ->
     $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
+  
+  # JDaivs: move data to another form and submit it.
+  $("#add_vaccination").click ->
+    #alert 'adding vaccination'
+    if $('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val()
+      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+      $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
+      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+      $("#animal_vaccination_tag_number").val( $('#dialog_tag_number').val() )
+      $("#animal_vaccination_form").submit()
+    else
+      alert "Select a vaccination and date."
+    
+  $("#animal_neutered").change ->
+     $(".neuter_disable").prop('disabled', !$("#animal_neutered").is(':checked'))
+  
+  $("#animal_pedigreed").change ->
+     $(".pedigree_disable").prop('disabled', !$("#animal_pedigreed").is(':checked'))
+  
+  $("#animal_microchipped").change ->
+     $(".microchip_disable").prop('disabled', !$("#animal_microchipped").is(':checked'))
     
     
   #----------end of jquery dialog----------------------#  

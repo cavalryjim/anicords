@@ -29,7 +29,7 @@
 #  neutered             :boolean
 #  food_id              :integer
 #  special_instructions :text
-#  rfid                 :string(255)
+#  microchip_id         :string(255)
 #  qr_code_uid          :string(255)
 #  qr_code_name         :string(255)
 #  organization_id      :integer
@@ -42,7 +42,10 @@
 #  avatar_uid           :string(255)
 #  avatar_name          :string(255)
 #  size                 :string(255)
-#  rfid_brand           :string(255)
+#  microchip_brand      :string(255)
+#  pedigreed            :boolean
+#  microchipped         :boolean
+#  neuter_location      :string(255)
 #
 
 class Animal < ActiveRecord::Base
@@ -102,7 +105,7 @@ class Animal < ActiveRecord::Base
     end
   end
  
-  EXCEPT_ATTRS = %w{ household_id breeder_id pedigree_chart health_certification show_name registration_number treat_id rfid organization_id registration_club_id }
+  EXCEPT_ATTRS = %w{ household_id breeder_id pedigree_chart health_certification show_name registration_number treat_id microhcip_id organization_id registration_club_id }
   
   def to_s
     name

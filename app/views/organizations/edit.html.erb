@@ -16,27 +16,33 @@
 	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :email, placeholder: "Email"  %>
+	        <%= f.text_field :email, placeholder: "email"  %>
 	        <small class="error">Email required.</small>
 	      </div>
 	    </div>
 	    
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :first_name, placeholder: "First Name"  %>
+	        <%= f.text_field :first_name, placeholder: "first name"  %>
 	      </div>
 	    </div>
 	    
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+	        <%= f.text_field :last_name, placeholder: "last name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :phone, placeholder: "phone number"  %>
 	      </div>
 	    </div>
 	    
 	    <%= f.hidden_field :organization_id, value: @organization.id %>
 	    
 	    <div class="actions">
-	      <%= f.submit "Add member" %>
+	      <%= f.submit "add member" %>
 	    </div>
 	  
 	  <% end %>

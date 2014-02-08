@@ -15,18 +15,7 @@
   </div>
  </div>
  
- <div class="row">
-	<div class="large-2 columns">
-	  <%= f.label :neutered, id: 'dynamic_neutered_label' do %>
-	    <%= f.check_box :neutered %><span id="neutered_label"> <%= neutered_term(@animal.gender) %>?</span> 
-	  <% end %>
-	</div>
-	<div class="large-4 columns">
-	  <%= f.label :neutered_date, 'neuter / spay date' %>
-	  <%= f.text_field :neutered_date, value: mo_da_yr(@animal.neutered_date) , class: "datepicker", placeholder: "date neutered / spayed" %>
-	</div>
-    <div class="large-3 columns"></div>
- </div>
+ 
 
 
  <%= f.fields_for :health_profile do |p| %>
@@ -56,7 +45,7 @@
 		<%= p.select :heartworm_test_result, options_for_select(test_result_options, @animal.health_profile.heartworm_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
 	  </div>
 	</div>
-	
+   <% if @animal.species == 'cat' %>
 	<div class="row">
 	  <div class="large-4 columns">
 		<%= p.label :fiv_felv_test_date, 'FIV/FeLV test date' %>
@@ -70,8 +59,9 @@
 		<%= p.label :fiv_felv_test_result, 'FIV/FeLV test result' %>
 		<%= p.select :fiv_felv_test_result, options_for_select(test_result_options, @animal.health_profile.heartworm_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
 	  </div>
-	  <%= p.hidden_field :id %>	
 	</div>
+   <% end %>
+	<%= p.hidden_field :id %>	
  <% end %>
 </fieldset>
 
@@ -81,17 +71,20 @@
 	
   <div class="row">
     <div class="large-12 columns">
-	   <%= text_field_tag 'dialog_vaccination_id', nil, { class: 'select' }  %>
+      <%= label_tag 'dialog_vaccination_id', 'vaccination' %> 
+	  <%= text_field_tag 'dialog_vaccination_id', nil, { class: 'select' }  %>
 	</div>
   </div>
 	    
   <div class="row">
 	<div class="large-6 columns">
-	   <%= text_field_tag 'dialog_vaccination_date', nil, { class: "datepicker", placeholder: "Select a date" } %>
+	   <%= label_tag 'dialog_vaccination_date', 'vaccination date' %>
+	   <%= text_field_tag 'dialog_vaccination_date', nil, { class: "datepicker", placeholder: "select a date" } %>
 	   <small class="error">Vaccination date required.</small>
 	</div>
 	<div class="large-6 columns">
-	  <%= text_field_tag 'dialog_tag_number', nil, { placeholder: "Vaccination number (ex: rabies tag #)" } %>
+	  <%= label_tag 'dialog_tag_number', 'tag / lot number' %>
+	  <%= text_field_tag 'dialog_tag_number', nil, { placeholder: "vaccination number (ex: rabies tag #)" } %>
 	</div>
   </div>
   

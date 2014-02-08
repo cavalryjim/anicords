@@ -28,4 +28,8 @@ module AnimalsHelper
     ]
   end
   
+  def animal_sizes
+    [ 'small', 'medium', 'large', 'x-large' ]
+  end
+  
 end

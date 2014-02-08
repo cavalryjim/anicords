@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207024042) do
+ActiveRecord::Schema.define(version: 20140208220238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 20140207024042) do
     t.boolean  "neutered"
     t.integer  "food_id"
     t.text     "special_instructions"
-    t.string   "rfid"
+    t.string   "microchip_id"
     t.string   "qr_code_uid"
     t.string   "qr_code_name"
     t.integer  "organization_id"
@@ -172,7 +172,10 @@ ActiveRecord::Schema.define(version: 20140207024042) do
     t.string   "avatar_uid"
     t.string   "avatar_name"
     t.string   "size"
-    t.string   "rfid_brand"
+    t.string   "microchip_brand"
+    t.boolean  "pedigreed"
+    t.boolean  "microchipped"
+    t.string   "neuter_location"
   end
 
   create_table "beta_comments", force: true do |t|
