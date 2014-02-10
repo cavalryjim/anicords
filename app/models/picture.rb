@@ -47,6 +47,7 @@ class Picture < ActiveRecord::Base
   
   def crop(x,y,w,h)
     #puts x
+    return false unless self.image.present?
     geometry = w + "x" + h + "+" + x + "+" + y
     img = self.image
     avatar = img.process(:thumb, geometry, 'format' => 'jpg')

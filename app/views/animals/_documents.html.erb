@@ -1,34 +1,24 @@
+<div id='animal_document_div'>
+  <%= render 'animals/document_fieldsets' %>
+</div>
 
-
-
-<fieldset>
-  <legend><%= documents_legend_title(@animal.documents.count) %></legend>
-  <table>
-    <% for document in @animal.documents %>
-      <tr>
-    	<td><%= image_tag('Icon-Document03-Blue.png', size: '20x20')%></td>
-    	<!--<td><%= link_to document.display_title, controller: 'documents', action: 'download_file', id: document.id %></td>-->
-    	<td><%= link_to document.display_title, document.file_path.url, target: '_blank' %></td>
-    	<td><%= link_to image_tag('cross.png', :alt => "del"), [@animal.owner, @animal, document], confirm: 'Are you sure?', method: :delete %></td>
-      </tr>
-    <% end %>
-  </table>
-</fieldset>
-
-<% if @animal.id %>	
-	<%= direct_upload_form_for @uploader do |f| %>
-	  
-	  <div class="row">
-        <div class="large-8 columns">
-	      <%= f.file_field :file_path %>
-	    </div>
-	  </div>
-	  
-	  <div class="actions">       
-	    <%= f.submit 'Upload file' %>
-	  </div>
-	
-	<% end %>
+<%= form_for([@animal, Document.new], remote: true, html: { id: "organization_document_upload", "data-abide" => '' }) do |f| %>
+  <div class="row">
+	<div class="large-6 columns">
+	  <%= f.file_field :file, class: 'upload_file', required: true %>
+	  <small class="error">File required.</small>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-6 columns">
+	  <%= f.select :file_type, file_types, prompt: 'select file type', required: true %>
+	  <small class="error">File required.</small>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-6 columns">
+	  <div class="actions"><%= f.submit 'Upload file' %></div>
+	</div>
+  </div>
+  <%= f.hidden_field :animal_id, value: @animal.id %>
 <% end %>
-
-

@@ -17,6 +17,11 @@ class Ability
       association.animal.owner.users.include?(user)
     end
     
+    can :manage, AnimalMedication do |medication|
+      medication.new_record? or
+      medication.animal.owner.users.include?(user)
+    end
+    
     can :manage, AnimalVaccination do |vaccination|
       vaccination.new_record? or
       vaccination.animal.owner.users.include?(user)

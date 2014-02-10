@@ -18,7 +18,7 @@
 	});
 <% else %>
 	$("form#animal_form").on("ajax:success", function(event, data, status, response) {
-	  $(this).effect("highlight", {color:"#81F781"}, 1500);
+	  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
 	  $(".flash_alert").removeClass("hidden");
 	  $(".flash_alert").show().delay(2000).fadeOut();
 	  $("section.disabled").removeClass("disabled");

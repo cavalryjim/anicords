@@ -7,6 +7,9 @@
 #  medication_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime
+#  volume        :string(255)
+#  route         :string(255)
+#  interval      :string(255)
 #
 
 class AnimalMedication < ActiveRecord::Base

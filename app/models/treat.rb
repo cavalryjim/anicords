@@ -12,6 +12,8 @@
 class Treat < ActiveRecord::Base
   belongs_to  :animal_type
   
+  validates_presence_of :name
+  
   def text
     self.name
   end

@@ -27,50 +27,18 @@
   <section>
     <p class="title" data-section-title><a href="#panel3">Documents</a></p>
     <div class="content" data-section-content>
-      <div id="org_animal_document_div"><%= render 'organizations/animal_documents' %></div>
-	    
-	  <%= form_for([@animal, Document.new], remote: true, html: { id: "organization_document_upload", "data-abide" => '' }) do |f| %>
-	    <div class="row">
-		  <div class="large-6 columns">
-		    <%= f.file_field :file, class: 'upload_file', required: true %>
-			<small class="error">File required.</small>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class="large-6 columns">
-		    <%= f.select :file_type, file_types, prompt: 'select file type', required: true %>
-			<small class="error">File required.</small>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class="large-6 columns">
-		    <%= f.hidden_field :animal_id, value: @animal.id %>
-		    <div class="actions"><%= f.submit 'Upload file' %></div>
-		  </div>
-		</div>
-      <% end %>
-      
+      <div id="org_animal_document_div">
+      	<%= render 'animals/documents' %>
+      </div>
+
     </div>
   </section>
   <section>
     <p class="title" data-section-title><a href="#panel4">Photos</a></p>
     <div class="content" data-section-content>
-      <div id="org_animal_picture_div"><%= render 'organizations/animal_pictures' %></div>
-	    
-	  <%= form_for([@animal, Picture.new], remote: true, html: { id: "organization_picture_upload", "data-abide" => '' }) do |f| %>
-	    <div class="row">
-		  <div class="large-6 columns">
-		    <%= f.file_field :image, class: 'upload_picture', required: true %>
-			<small class="error">File required.</small>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class="large-6 columns">
-		    <%= f.hidden_field :animal_id, value: @animal.id %>
-		    <div class="actions"><%= f.submit 'Upload photo' %></div>
-		  </div>
-		</div>
-      <% end %>
+      <div id="animal_picture_div">
+      	<%= render 'pictures/pictures_section' %>
+      </div>
       
     </div>
   </section>
@@ -83,31 +51,20 @@
 </div>
 
 <div class="hidden">
-	<%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => '', class: 'hidden'} do |f| %>
-	  <div class="row">
-	    <div class="large-11 columns">
-	      <%= f.text_field :vaccination_id, class: 'select'  %>
-	    </div>
-	  </div>
-	    
-	  <div class="row">
-	    <div class="large-4 columns">
-	      <%= f.text_field :vaccination_date, class: "datepicker", placeholder: "Select a date" %>
-	      <small class="error">Vaccination date required.</small>
-	    </div>
-	  </div>
-	  
-	  <div class="row">
-	    <div class="large-4 columns">
-	      <%= f.text_field :tag_number, placeholder: "Vaccination number (ex: rabies tag #)" %>
-	    </div>
-	  </div>
-	  
-	  <%= f.hidden_field :animal_id, value: @animal.id %>  
-	  
-	  <div class="actions">
-	    <%= f.submit "Add vaccination" %>
-	  </div>
-	  
-	<% end %>
+  <%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => '', class: 'hidden'} do |f| %>
+	<%= f.text_field :vaccination_id, class: 'select'  %>
+	<%= f.text_field :vaccination_date, class: "datepicker", placeholder: "Select a date" %>
+	<%= f.text_field :tag_number, placeholder: "Vaccination number (ex: rabies tag #)" %>
+	<%= f.hidden_field :animal_id, value: @animal.id %>  
+	<%= f.submit "Add vaccination" %>  
+  <% end %>
+  
+  <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_medication_form', "data-abide" => '', class: 'hidden'} do |f| %>
+	<%= f.text_field :medication_id, class: 'select'  %>
+	<%= f.text_field :volume  %>
+	<%= f.text_field :route %>
+	<%= f.text_field :interval %>
+	<%= f.hidden_field :animal_id, value: @animal.id %>  
+	<%= f.submit "Add medication" %>  
+  <% end %>
 </div>

@@ -1,0 +1,22 @@
+<table class="margin-bottom_25em">
+	<tr>
+	  <th>Medication</th>
+	  <th>Volume</th>
+	  <th>Route</th>
+	  <th>Interval</th>
+	  <th></th>
+	 
+	</tr>
+	
+	<% @animal.animal_medications.each do |medication|%>
+	  <tr>
+		<td><%= medication.name %></td>
+		<td><%= medication.volume %></td>
+		<td><%= medication.route %></td>
+		<td><%= medication.interval %></td>
+		<td><%= link_to image_tag('cross.png', :alt => "del"), animal_animal_medication_path(@animal, medication), method: :delete, remote: true, 
+				 data: { confirm: 'Please confirm you want to remove ' + medication.name + ' from the list.' } %></td>
+	  </tr>
+	<% end %>
+		
+</table>

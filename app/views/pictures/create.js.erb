@@ -1,7 +1,6 @@
-$("form#organization_picture_upload").on("ajax:success", function(event, data, status, response) {
-  $(this).effect("highlight", {color:"#81F781"}, 1500);
-  $("#org_animal_picture_div").html('<%= j render("organizations/animal_pictures") %>')
-  $(this).reset();
+$("form#animal_picture_upload").on("ajax:success", function(event, data, status, response) {
+  $("#animal_picture_div").html('<%= j render("pictures/pictures_section") %>');
+  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
 }).on("ajax:error", function(event, response, error) {
   return alert("There was a problem.  Please try again later.");
 });

@@ -158,6 +158,14 @@ module ApplicationHelper
     [['pos', true], ['neg', false]]
   end
   
+  def medication_routes
+    options_for_select(["topical", "oral", "injection"])
+  end
+  
+  def medication_intervals
+    options_for_select(["daily", "2 x daily", "3 x daily", "4 x daily", "weekly", "monthly", "other"])
+  end
+  
   def breadcrumb_nav(crumbs)
     breadcrumb = '<nav class="breadcrumbs">'
     breadcrumb << link_to('HOME', session[:home_page]) unless crumbs.last == 'home'

@@ -1,6 +1,8 @@
 Anicords::Application.routes.draw do
   
 
+  get "animal_medications/create"
+  get "animal_medications/destroy"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :service_providers
@@ -26,6 +28,7 @@ Anicords::Application.routes.draw do
     resources :pictures
     resources :documents
     resources :animal_vaccinations
+    resources :animal_medications
     resources :animal_associations
     resources :org_profiles
   end

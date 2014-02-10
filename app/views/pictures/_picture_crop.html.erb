@@ -1,11 +1,11 @@
 <h4><%= @animal.name %></h4>
 
 <div class="row">
-  <%= image_tag @picture.image.url, id: "cropbox" %>
+  <%= image_tag @picture.image_location, id: "cropbox" %>
 	
 </div>
 
-<%= form_for @picture, url: {action: 'crop'} do |f| %>
+<%= form_for @picture, remote: true, url: {action: 'crop'} do |f| %>
   <div class="actions">
     <% %w[x y w h].each do |attribute| %>
       <%= f.hidden_field "crop_#{attribute}"%>

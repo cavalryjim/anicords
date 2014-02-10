@@ -1,0 +1,2 @@
+module AnimalMedicationsHelper
+end

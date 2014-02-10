@@ -81,7 +81,7 @@ class PicturesController < ApplicationController
     @picture.crop(x,y,w,h)
     
     
-    redirect_to animal_pictures_path(@picture.animal_id)
+    #redirect_to animal_pictures_path(@picture.animal_id)
   end
   
 

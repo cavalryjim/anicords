@@ -1,0 +1,5 @@
+$("#animal_medication_table_div").html('<%= j render("animals/medication_table") %>')
+$('#medication_fieldset').effect("highlight", {color:"#81F781"}, 1500).unbind();
+$(".flash_alert").removeClass("hidden");
+$(".flash_alert").show().delay(2000).fadeOut();
+$("section.disabled").removeClass("disabled");

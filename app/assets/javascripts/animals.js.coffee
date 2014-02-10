@@ -43,36 +43,6 @@ jQuery ->
           dataType: "json"
         ).done (data) ->
           callback data
-    
-  $('#animal_medication_ids').select2
-    placeholder: "Add medications"
-    width: "100%"
-    multiple: true
-    id: (obj) ->
-      obj.id # use slug field for id
-
-    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
-      url: "/remote_requests/medications"
-      dataType: "json"
-      data: (term, page) ->
-        term: term # search term
-        page_limit: 10
-
-      results: (data, page) -> # parse the results into the format expected by Select2.
-        # since we are using custom formatting functions we do not need to alter remote JSON data
-        results: data
-     
-    initSelection: (element, callback) ->
-      if $(element).val() isnt '[]'
-        ids = JSON.parse($(element).val())
-        medications = ''
-        $.each ids, (index, value) ->
-          medications = medications + '&meds[]=' + value
-   
-        $.ajax("/remote_requests/medications?"+medications,
-          dataType: "json"
-        ).done (data) ->
-          callback data
           
   $('#animal_allergy_ids').select2
     placeholder: "Add allergies"
@@ -321,6 +291,23 @@ jQuery ->
 
       results: (data, page) -> 
         results: data
+  
+  $('#dialog_medication_id').select2
+    placeholder: "medication"
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/medications"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
         
   $('#dialog_vaccination_id').select2
     placeholder: "vaccination"
@@ -338,16 +325,6 @@ jQuery ->
       results: (data, page) -> 
         results: data
         
-  $("#add_vaccination").click ->
-    #alert 'adding vaccination'
-    if ($('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val())
-      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
-      $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
-      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
-      $("#animal_vaccination_tag_number").val( $('#dialog_tag_number').val() )
-      $("#animal_vaccination_form").submit()
-    else
-      alert "Select a vaccination and date."
   
   # JDavis: jquery dialog form for capturing feeding information
   updateTips = (t) ->
@@ -413,9 +390,10 @@ jQuery ->
   $("#animal_gender").change ->
     $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
   
+ 
   # JDaivs: move data to another form and submit it.
-  $("#add_vaccination").click ->
-    #alert 'adding vaccination'
+  $("#add_vaccination").click (event) -> 
+    event.preventDefault()
     if $('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val()
       $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
       $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
@@ -424,6 +402,18 @@ jQuery ->
       $("#animal_vaccination_form").submit()
     else
       alert "Select a vaccination and date."
+      
+  # JDaivs: move data to another form and submit it.
+  $("#add_medication").click (event) ->
+    event.preventDefault()
+    if $('#dialog_medication_id').val() 
+      $("#animal_medication_medication_id").val( $('#dialog_medication_id').val() )
+      $("#animal_medication_volume").val( $('#dialog_medication_volume').val() )
+      $("#animal_medication_route").val( $('#dialog_medication_route').val() )
+      $("#animal_medication_interval").val( $('#dialog_medication_interval').val() )
+      $("#animal_medication_form").submit()
+    else
+      alert "Select a medication."
     
   $("#animal_neutered").change ->
      $(".neuter_disable").prop('disabled', !$("#animal_neutered").is(':checked'))
