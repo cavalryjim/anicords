@@ -87,7 +87,7 @@ class PicturesController < ApplicationController
 
   private
     def set_animal
-      @animal = Animal.find(params[:animal_id]) if params[:animal_id]
+      @animal = params[:animal_id].present? ? Animal.find(params[:animal_id]) : @picture.animal
     end
     
     def return_path

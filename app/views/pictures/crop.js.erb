@@ -1,5 +1,6 @@
-$('#editPictureModal').foundation('reveal', 'close');
 <% if @animal.owner.class.name == "Organization" %>
   $('#animalModal').foundation('reveal', 'open');
+<% else %>
+  $('#editPictureModal').foundation('reveal', 'close');
 <% end %>
 $("#animal_picture_div").html('<%= j render("pictures/pictures_section") %>');
