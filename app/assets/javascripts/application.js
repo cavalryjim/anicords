@@ -73,6 +73,10 @@ $(function(){
     //});
   //});
   
+  $('.front_page_callout').click(function() {
+    $('#registerSigninModal').foundation('reveal', 'open');
+  });
+  
   $(".best_in_place").best_in_place();
 
 });
