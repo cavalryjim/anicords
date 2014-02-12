@@ -33,8 +33,15 @@ $(function(){
     }
    });
    
-  // JDavis: must redeclare this datatable in animals/update.js.erb
+  
   $('#animal_table').dataTable({
+    "aoColumnDefs": [
+      { "bSortable": false, "aTargets": [ 0 ] } ],
+    "sPaginationType": "foundation",
+    "bStateSave": true
+  }).show();
+  
+  $('#adoption_table').dataTable({
     "aoColumnDefs": [
       { "bSortable": false, "aTargets": [ 0 ] } ],
     "sPaginationType": "foundation",

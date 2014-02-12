@@ -1,5 +1,5 @@
 class OrganizationsController < InheritedResources::Base
-  before_action :set_organization, only: [:show, :edit, :update, :destroy, :create_user, :petfinder_import]
+  before_action :set_organization, only: [:show, :edit, :update, :destroy, :create_user, :petfinder_import, :adoptions ]
   before_filter :authenticate_user! 
   authorize_resource 
   
@@ -79,6 +79,10 @@ class OrganizationsController < InheritedResources::Base
     notice = @organization.petfinder_import if @organization.petfinder_shelter_id.present?
     
     redirect_to @organization, notice: notice
+  end
+  
+  def adoptions
+    
   end
   
   private

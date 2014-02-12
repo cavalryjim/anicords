@@ -1,0 +1,20 @@
+<table id="adoption_table" class="fouc"  >
+  <thead>
+	<tr>
+	  <th></th>
+	  <th>Animal</th>
+	  <th>Transferee</th>
+	  <th>Adoption Date</th>  
+	  <th></th>
+	</tr>
+  </thead>
+  <tbody>
+    <% @organization.adoptions.each do |adoption| %>
+	  <td><%= link_to image_tag(thumbnail(animal), size: '50x50', class: 'th') %></td>
+	  <td><%= adoption.animal.name %></td>
+	  <td><%= adoption.transferee_name_or_email %></td>
+	  <td><%= mo_da_yr(adoption.date) %></td>
+	  <td><%= link_to 'recover?', '#' %></td>
+	<% end %>
+  </tbody>
+</table>

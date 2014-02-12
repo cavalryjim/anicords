@@ -21,13 +21,14 @@
 class Organization < ActiveRecord::Base
   include ActiveModel::Validations
   
-  has_many  :adopted_animals, -> { where.not owner_type: "Organization" }, class_name: "Animal"
+  #has_many  :adopted_animals, -> { where.not owner_type: "Organization" }, class_name: "Animal"
   has_many  :animals, as: :owner, dependent: :destroy
   has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
   has_many  :organization_locations, dependent: :destroy
   has_many  :households, through: :organization_locations, source: :location, source_type: "Household"
   has_many  :locations, through: :organization_locations, source: :location, source_type: "Location"
+  has_many  :adoptions, dependent: :destroy
   
   accepts_nested_attributes_for :animals, allow_destroy: true
   after_create :make_organization_location

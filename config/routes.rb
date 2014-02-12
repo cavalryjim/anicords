@@ -61,6 +61,7 @@ Anicords::Application.routes.draw do
   post 'households/:id/create_user' => 'households#create_user'
   post 'organizations/:id/create_user' => 'organizations#create_user'
   get 'organizations/:id/petfinder_import' => 'organizations#petfinder_import', as: :organizaiton_petfinder_import
+  get 'organizations/:id/adoptions' => 'organizations#adoptions', as: :organizaiton_adoptions
   #get 'service_providers/:id/services' => 'service_providers#services'
   get 'animals/:id/download_file' => 'animals#download_file'
   patch 'animals/:id/transfer_ownership' => 'animals#transfer_ownership', as: :transfer_animal

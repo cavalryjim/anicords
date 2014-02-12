@@ -6,13 +6,21 @@
  <div class="row">
   <fieldset>
   <div class="row">
-  	<div class="large-7 columns">
+  	<div class="large-8 columns">
       <h4><%= @organization.name %> <small><%= link_to ' (edit)', edit_organization_path(@organization), 'data-no-turbolink' => true %></small></h4>
   	</div>
-  	<div class="large-3 columns">
-  	  <% if @organization.petfinder_shelter_id.present? %>
-  	  <%= link_to button_small("import from Petfinder"), organizaiton_petfinder_import_path(@organization) %>
-  	  <% end %>
+  	<div class="large-4 columns">
+  	  <dl class="sub-nav">
+		
+		<dd><%= link_to button_small("adopted pets"), organizaiton_adoptions_path(@organization) %></dd>
+		<dd>
+	  	  <% if @organization.petfinder_shelter_id.present? %>
+	  	    <%= link_to button_small("import from Petfinder"), organizaiton_petfinder_import_path(@organization) %>
+	  	  <% end %>
+		</dd>
+	  </dl>
+  	  
+  	
   	</div>
   	
   </div>

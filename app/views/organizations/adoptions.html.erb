@@ -1,0 +1,32 @@
+<% content_for :title, "Animal Adoptions" %>
+<%= breadcrumb_nav([@organization, 'adoptions']) %>
+
+<section class="border_top">
+	
+ <div class="row">
+  <fieldset>
+  <div class="row">
+  	<div class="large-7 columns">
+      <h4><%= @organization.name %> Adoptions</h4>
+  	</div>
+  	
+  </div>
+    
+  <div class="large-12 columns">
+	<fieldset>
+	  <% if @organization.adoptions.count == 0 %>
+	    <h4>No adoptions in the system.</h4>
+      <% end %>
+      
+      <div class="row">
+       <div class="large-12 columns">
+       	<div id="org_adoption_table_div"><%= render 'adoption_table'%></div>
+       </div>
+      </div>
+			 
+	</fieldset>
+   </div>
+  </fieldset>
+ </div>
+ 
+</section>

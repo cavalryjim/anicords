@@ -78,6 +78,7 @@ class Animal < ActiveRecord::Base
   has_many   :dispositions, dependent: :destroy
   has_many   :breeds, through: :animal_breeds
   has_many   :animal_breeds, dependent: :destroy
+  has_many   :adoptions, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   accepts_nested_attributes_for :pictures, allow_destroy: true
