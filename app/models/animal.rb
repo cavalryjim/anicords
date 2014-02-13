@@ -164,6 +164,9 @@ class Animal < ActiveRecord::Base
       transfer = AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
       user.notifications.create(message: "transfer pending", url: url, event: transfer )
       user.animal_transfer_pending(self.id)
+      return user.id
+    else
+      return false
     end
   end
   

@@ -16,60 +16,85 @@
   <legend>New Owner</legend>
   <div class="row">
     <div class="large-8 columns">
+      <%= label_tag 'transferee[email]', 'email' %>
       <%= text_field_tag 'transferee[email]', nil, {placeholder: "email (required )", required: true}  %>
     </div>
   </div>
   
   <div class="row">
     <div class="large-8 columns">
-      <%= text_field_tag 'transferee[email2]', nil, {placeholder: "email confirmation (required)", required: true} %>
-     
+      <%= label_tag 'transferee[email2]', 'email confirmation' %>
+      <%= text_field_tag 'transferee[email2]', nil, {placeholder: "email confirmation (required)", required: true} %> 
     </div>
   </div>
   
   <div class="row">
     <div class="large-6 columns">
+      <%= label_tag 'transferee[first_name]', 'first name' %>
       <%= text_field_tag 'transferee[first_name]', nil, placeholder: "first name"  %>
     </div>
   
     <div class="large-6 columns">
+      <%= label_tag 'transferee[last_name]', 'last name' %>
       <%= text_field_tag 'transferee[last_name]', nil, placeholder: "last name"  %>
     </div>
   </div>
   
   <div class="row">
     <div class="large-12 columns">
-      <%= text_field_tag 'transferee[address1]', nil, placeholder: "Address1" %>
+      <%= label_tag 'transferee[address1]', 'address' %>
+      <%= text_field_tag 'transferee[address1]', nil, placeholder: "address" %>
     </div>
   </div>
     
 
   <div class="row">
-    <div class="large-4 columns">
-      <%= text_field_tag 'transferee[city]', nil, placeholder: "City" %>
+    <div class="large-5 columns">
+      <%= label_tag 'transferee[city]', 'city' %>
+      <%= text_field_tag 'transferee[city]', nil, placeholder: "city" %>
     </div>
     <div class="large-3 columns">
-	  <%= select_tag 'transferee[state]', options_for_select(us_states), include_blank: true, class:'state_select', prompt: 'State' %>
+      <%= label_tag 'transferee[state]', 'state' %>
+	  <%= select_tag 'transferee[state]', options_for_select(us_states), include_blank: true, class:'state_select', prompt: 'state' %>
 	</div>
     <div class="large-4 columns"> 
-      <%= text_field_tag 'transferee[zip]', nil, placeholder: "Zip" %> 
+      <%= label_tag 'transferee[zip]', 'zip' %>
+      <%= text_field_tag 'transferee[zip]', nil, placeholder: "zip" %> 
     </div>
-    <div class="large-1 columns"></div>
   </div>
 
   <div class="row">
-    <div class="large-4 columns">
-      
-      <%= text_field_tag 'transferee[phone]', nil, placeholder: "Phone: 123-123-1234" %>
+    <div class="large-4 columns"> 
+      <%= label_tag 'transferee[phone]', 'phone' %>
+      <%= text_field_tag 'transferee[phone]', nil, placeholder: "phone: 123-123-1234" %>
     </div>
   </div>
+  
+  <% if @organization %>
+    <div class="row">
+	  <div class="large-5 columns">
+	  	<%= label_tag 'org[location]', 'adoption location' %>
+	    <%= text_field_tag 'org[location]', nil, placeholder: "adoption location" %>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="large-12 columns">
+	  	<%= label_tag 'org[comment]', 'comments' %>
+		<%= text_area_tag 'org[comment]', nil, placeholder: "comments" %>
+      </div>
+	</div>
+  
+ 
+   <%= hidden_field_tag 'org[organization_id]', @organization.id %> 
+   <%= hidden_field_tag 'org[organization_user_id]', current_user.id %>   
+  <% end %>
  </fieldset>
  
- <% unless @animal.owner.class.name == 'Household' %>
- <fieldset>
-  <legend>Payment</legend>
-  <h5>Coming Soon!</h5>
- </fieldset>
+ <% unless @animal.owner.class.name == 'Household' %>          
+   <fieldset>
+     <legend>Payment</legend>
+     <h5>Coming Soon!</h5>
+   </fieldset>
  <% end %>
   <div class="actions">
 	<%= f.submit 'transfer', confirm: 'Please confirm transfer?' %>

@@ -112,7 +112,10 @@ class AnimalsController < ApplicationController
   
   def transfer_ownership
     @success = (params[:transferee][:email] == params[:transferee][:email2]) && params[:transferee][:email].match(/^\S+@\S+\.\S+$/)
-    @animal.transfer_ownership(params[:transferee], animal_url(@animal.id)) if @success
+    if @success
+      transferee_id = @animal.transfer_ownership(params[:transferee], animal_url(@animal.id)) 
+      @owner.capture_transfer(@animal.id, transferee_id, params[:transferee], params[:org] ) if @owner.class.name == 'Organization'
+    end
     
     respond_to do |format|
       format.js 
@@ -155,13 +158,6 @@ class AnimalsController < ApplicationController
     end
   end
   
-  def photo_gallery
-    Picture.create(animal_id: @animal.id, key: params[:key]) if params[:key]
-    
-    #@pictures = @animal.pictures
-    @uploader = Picture.new.image
-    @uploader.success_action_redirect = animal_photo_gallery_url(@animal)
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% @organization.adoptions.each do |adoption| %>
-	  <td><%= link_to image_tag(thumbnail(animal), size: '50x50', class: 'th') %></td>
+	  <td><%= image_tag(thumbnail(adoption.animal), size: '50x50', class: 'th') %></td>
 	  <td><%= adoption.animal.name %></td>
 	  <td><%= adoption.transferee_name_or_email %></td>
 	  <td><%= mo_da_yr(adoption.date) %></td>

@@ -104,6 +104,26 @@ class Organization < ActiveRecord::Base
     "Pulled information for #{pull_count} animals from Petfinder."
   end
   
-  
-  
+  def capture_transfer(animal_id, transferee_id, transferee_info, org_info )
+    transferee_info = transferee_info.symbolize_keys
+    org_info = org_info.symbolize_keys
+    
+    adoption = self.adoptions.new do |a|
+      a.animal_id = animal_id
+      a.organization_user_id = org_info[:organization_user_id]
+      a.date = Time.now
+      a.location = org_info[:location]
+      a.comments = org_info[:comments]
+      a.transferee_user_id = transferee_id
+      a.transferee_email = transferee_info[:email]
+      a.transferee_first_name = transferee_info[:first_name]
+      a.transferee_last_name = transferee_info[:last_name]
+      a.transferee_address1 = transferee_info[:address1]
+      a.transferee_city = transferee_info[:city]
+      a.transferee_state = transferee_info[:state]
+      a.transferee_zip = transferee_info[:zip]
+      a.transferee_phone = transferee_info[:phone]
+    end
+    adoption.save
+  end
 end
