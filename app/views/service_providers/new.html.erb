@@ -1,12 +1,167 @@
+<% content_for :title, "Animal Service Provider" %>
+<%= breadcrumb_nav( ['new business'] ) %>
 <section class="border_top">
- <div class="row">
-   <div class="large-12 columns">
-	<h4>New Service Provider</h4>
-		
-	<%= render 'form' %>
-		
-	<%= link_to 'Back', :back %>
+  <div class="row">
+   <fieldset>
+    <h4>Tell us about your business</h4>
 
-   </div>
- </div>
+    <%= render 'form' %>
+    <%= link_to 'Launch Quick Start', '#', 'data-reveal-id'=>'stepsOverviewModal'   %>
+   </fieldset>
+   
+  </div>
 </section>
+
+<div id="stepsOverviewModal" class="reveal-modal">	
+  <div class="row">
+  	<div class="large-7 large-centered columns">
+	    <%= image_tag 'mww.png'%>
+	</div>
+	
+    <h3>Here's how it works:</h3>
+  </div>
+  <div class="row">
+	<div class="large-12 columns">
+	  <ul class="small-block-grid-2 large-block-grid-4">
+		<li>
+	      <div class="panel callout front_page_callout">
+            <p>1. Tell us about your business.</p>
+          </div>
+		</li>
+		<li >
+	      <div class="panel callout front_page_callout"> 
+            <p>2. Identify services provided.</p>
+          </div>
+			
+		</li>
+		<li>
+	      <div class="panel callout front_page_callout">
+            <p>3. Add admin staff.</p>
+          </div>
+		</li>
+		<li>
+	      <div class="panel callout front_page_callout">
+            <p>4. Start using Dooliddl!</p>
+          </div>
+		</li>
+	  </ul>
+	  
+	</div>
+	
+	<div class="row">
+		<div class="large-3 columns"></div>
+		<div class="large-3 columns">
+			<%= link_to fun_button_tiny('get started'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
+		</div>
+	</div>
+  </div>
+   
+</div>
+
+<div id="stepsOverviewModal2" class="reveal-modal">
+  <h4>Give us your business name & info</h4>
+  <%= form_for(@service_provider, html: {id: "quick_service_provider_form", "data-abide" => '' }) do |f| %>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.text_field :name, placeholder: "business name ex. Pet Hotel"  %>
+        <small class="error">business name required.</small>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.text_field :address1, placeholder: "address"  %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.text_field :address2, placeholder: "address"  %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-5 columns">
+        <%= f.text_field :city, placeholder: "city"  %>
+      </div>
+      <div class="large-3 columns">
+        <%= f.text_field :state, placeholder: "state"  %>
+      </div>
+      <div class="large-3 columns">
+        <%= f.text_field :zip, placeholder: "zip"  %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-3 columns">
+      	<%= link_to fun_button_tiny('back'), '#', 'data-reveal-id'=>'stepsOverviewModal', class: "close-reveal-modal new_account_nav"   %>
+      </div>
+	  <div class="large-3 columns">
+		<%= link_to fun_button_tiny('next'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal new_account_nav"   %>
+	  </div>
+	</div>
+</div>
+
+<div id="stepsOverviewModal3" class="reveal-modal">
+  <h4>Identify business type and services provided</h4>
+  
+
+    
+    
+    <div class="row">
+      <div class="large-3 columns">
+      	<%= link_to fun_button_tiny('back'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
+      </div>
+	  <div class="large-3 columns">
+		<%= link_to fun_button_tiny('next'), '#', 'data-reveal-id'=>'stepsOverviewModal4', class: "close-reveal-modal new_account_nav"   %>
+	  </div>
+	</div>
+</div>
+
+<div id="stepsOverviewModal4" class="reveal-modal">
+	<h4>Are there another admin users that will help manage the account?</h4>
+	<h6>Don't worry, you can add more later!</h6>
+	<fieldset>
+	    <div class="row">
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin1_first_name', nil, placeholder: "first name"  %>
+	      </div>
+	    
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin1_last_name', nil, placeholder: "last name"  %>
+	      </div>
+	    </div>
+		<div class="row">
+	      <div class="large-12 columns">
+	        <%= text_field_tag 'admin1_email', nil, placeholder: "email (required to add an admin)"  %>
+	      </div>
+	    </div>
+	</fieldset>
+	<fieldset>
+	    <div class="row">
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin2_first_name', nil, placeholder: "first name"  %>
+	      </div>
+	    
+	      <div class="large-6 columns">
+	        <%= text_field_tag 'admin2_last_name1', nil, placeholder: "last name"  %>
+	      </div>
+	    </div>
+		<div class="row">
+	      <div class="large-12 columns">
+	        <%= text_field_tag 'admin2_email1', nil, placeholder: "email (required to add an admin)"  %>
+	      </div>
+	    </div>
+	</fieldset>
+	
+	<div class="row">
+	  <div class="large-3 columns">
+      	<%= link_to fun_button_tiny('back'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal new_account_nav"   %>
+      </div>
+	  <div class="large-3 columns">
+		<%= link_to fun_button_tiny('submit'), '#', onclick: "$('#quick_service_provider_form').submit()", class: "close-reveal-modal new_account_nav"  %>
+	  </div>
+	</div>
+  <% end %>
+</div>
