@@ -3,7 +3,7 @@ class AnimalsController < ApplicationController
                                       :sitter_instructions, :org_flyer, :photo_gallery]
   before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer]
   before_filter :authenticate_user!, except: [:show]
-  authorize_resource except: [:accept_transfer]
+  authorize_resource except: [:accept_transfer, :show]
   
   # GET /animals
   # GET /animals.json
