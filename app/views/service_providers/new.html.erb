@@ -106,7 +106,23 @@
 <div id="stepsOverviewModal3" class="reveal-modal">
   <h4>Identify business type and services provided</h4>
   
-
+  <fieldset>
+      <legend>Business Type <small>Select all that apply</small></legend>
+      
+  	
+	  <%= hidden_field_tag "service_provider[service_provider_type_ids][]", nil %>
+	  <ul class=" large-block-grid-6">
+	   <% ServiceProviderType.all.each do |spt| %>
+	     <li>
+	       <label for='<%=dom_id(spt)%>'>
+		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, business_selected(@service_provider, spt.id), id: dom_id(spt), class: spt.add_css_classes %>
+		     <span class="custom checkbox"></span>
+		     <%= spt.name %>
+		   </label>
+	     </li>
+		<% end %>
+	  </ul>
+  </fieldset>
     
     
     <div class="row">
