@@ -19,8 +19,11 @@ class ServiceProviderType < ActiveRecord::Base
     self.name
   end
   
-  def add_css_classes
-    (self.name == 'Veterinarian') ? 'service_provider_type veterinarian' : 'service_provider_type'
+  def add_css_classes(quick_form = false)
+    unless quick_form
+      (self.name == 'Veterinarian') ? 'service_provider_type veterinarian' : 'service_provider_type'
+    else
+      (self.name == 'Veterinarian') ? 'service_provider_type2 veterinarian' : 'service_provider_type2'
   end
   
 end
