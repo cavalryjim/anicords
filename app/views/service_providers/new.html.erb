@@ -123,6 +123,24 @@
 		<% end %>
 	  </ul>
   </fieldset>
+  
+  <fieldset>
+      <legend>Services provided <small>Select all that apply</small></legend>
+	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
+	  <ul id="available_services" class=" large-block-grid-6">
+	    <% if @service_provider %>
+		   <% @service_provider.services_available.each do |service| %>
+		     <li class="child_of_<%=service.service_provider_type_id%>">
+		       <label for='<%=dom_id(service)%>'>
+			     <%= check_box_tag "service_provider[service_ids][]", service.id, service_selected(@service_provider, service.id), id: dom_id(service) %>
+			     <span class="custom checkbox"></span>
+			     <%= service.name %>
+			   </label>
+		     </li>
+			<% end %>
+	    <% end %>
+	  </ul>
+  </fieldset>
     
     
     <div class="row">
