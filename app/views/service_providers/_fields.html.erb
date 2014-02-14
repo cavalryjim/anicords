@@ -82,7 +82,7 @@
   <fieldset>
       <legend>Services provided <small>Select all that apply</small></legend>
 	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
-	  <ul id="available_services" class=" large-block-grid-6">
+	  <ul id="available_services2" class=" large-block-grid-6">
 	    <% if @service_provider %>
 		   <% @service_provider.services_available.each do |service| %>
 		     <li class="child_of_<%=service.service_provider_type_id%>">
@@ -96,5 +96,21 @@
 	    <% end %>
 	  </ul>
   </fieldset>
+  
+<script>
+$(".service_provider_type").change(function() {
+  var parent;
+  if (this.checked) {
+    parent = this.value;
+    return $.get("/remote_requests/services?spt[]=" + parent, function(data) {
+      return $.each(data, function(key, value) {
+        return $("#available_services2").append($("<li class='child_of_" + parent + "'><label for='service_" + value.id + "'><input id='service_" + value.id + "' name='service_provider[service_ids][]' type='checkbox' value=" + value.id + " /> <span class='custom checkbox'></span>" + value.text + "</label></li>"));
+      });
+    });
+  } else {
+    return $("li.child_of_" + this.value).remove();
+  }
+});
+</script>
 
   
