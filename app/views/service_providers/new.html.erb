@@ -114,8 +114,8 @@
 	  <ul class=" large-block-grid-6">
 	   <% ServiceProviderType.all.each do |spt| %>
 	     <li>
-	       <label for='<%=dom_id(spt)%>'>
-		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, business_selected(@service_provider, spt.id), id: dom_id(spt), class: spt.add_css_classes(true) %>
+	       <label for='<%=dom_id(spt)+'modal'%>'>
+		     <%= check_box_tag "service_provider[service_provider_type_ids][]", spt.id, business_selected(@service_provider, spt.id), id: dom_id(spt)+'modal', class: spt.add_css_classes(true) %>
 		     <span class="custom checkbox"></span>
 		     <%= spt.name %>
 		   </label>
@@ -127,12 +127,12 @@
   <fieldset>
       <legend>Services provided <small>Select all that apply</small></legend>
 	  <%= hidden_field_tag "service_provider[service_ids][]", nil %>
-	  <ul id="available_services" class=" large-block-grid-6">
+	  <ul id="available_services_modal" class=" large-block-grid-6">
 	    <% if @service_provider %>
 		   <% @service_provider.services_available.each do |service| %>
 		     <li class="child_of_<%=service.service_provider_type_id%>">
-		       <label for='<%=dom_id(service)%>'>
-			     <%= check_box_tag "service_provider[service_ids][]", service.id, service_selected(@service_provider, service.id), id: dom_id(service) %>
+		       <label for='<%=dom_id(service)+'modal'%>'>
+			     <%= check_box_tag "service_provider[service_ids][]", service.id, service_selected(@service_provider, service.id), id: dom_id(service)+'modal' %>
 			     <span class="custom checkbox"></span>
 			     <%= service.name %>
 			   </label>
@@ -151,6 +151,23 @@
 		<%= link_to fun_button_tiny('next'), '#', 'data-reveal-id'=>'stepsOverviewModal4', class: "close-reveal-modal new_account_nav"   %>
 	  </div>
 	</div>
+	
+  <script>
+	$(".service_provider_type_modal").change(function() {
+	  var parent;
+	  if (this.checked) {
+	  	alert('clicked');
+	    parent = this.value;
+	    return $.get("/remote_requests/services?spt[]=" + parent, function(data) {
+	      return $.each(data, function(key, value) {
+	        return $("#available_services_modal").append($("<li class='child_of_" + parent + "'><label for='service_" + value.id + "'><input id='service_" + value.id + "' name='service_provider[service_ids][]' type='checkbox' value=" + value.id + " /> <span class='custom checkbox'></span>" + value.text + "</label></li>"));
+	      });
+	    });
+	  } else {
+	    return $("li.child_of_" + this.value).remove();
+	  }
+	});
+  </script>
 </div>
 
 <div id="stepsOverviewModal4" class="reveal-modal">
