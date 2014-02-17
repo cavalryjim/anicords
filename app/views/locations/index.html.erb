@@ -1,0 +1,32 @@
+<% content_for :title, "Animal Organization" %>
+<%= breadcrumb_nav([@organization, 'locations']) %>
+
+<section class="border_top">
+  <div class="large-12 columns">
+	<fieldset>
+	  	<% if @locations.count == 0 %>
+		  <h4>Tell us about your locations</h4>
+		<% end %>
+	    <ul class="large-block-grid-3">
+	    
+		<% @locations.each do |location| %>
+		  <li>
+			  <%= link_to location.name, edit_organization_location_path(@organization, location) %><br/>
+		  </li>			
+		<% end %>
+		
+		<% @fosters.each do |foster| %>
+		  <li>
+			  <%= foster.name %><br/>
+		  </li>			
+		<% end %>
+		
+	    </ul>
+			
+	    <%= button_to "Add Location", "#", "data-reveal-id" => "newLocationModal" %> 
+	    <%= button_to "Add Foster Home", "#", "data-reveal-id" => "newLocationModal" %> 
+	</fieldset>
+  </div>
+  
+</section>
+

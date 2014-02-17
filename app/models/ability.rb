@@ -42,6 +42,11 @@ class Ability
       household.users.include?(user)
     end
     
+    can :manage, Location do |location|
+      location.new_record? or
+      location.organization.users.include?(user)
+    end
+    
     can :manage, Notification do |notification|
       notification.new_record? or
       notification.recipient == user

@@ -1,8 +1,5 @@
 Anicords::Application.routes.draw do
   
-
-  get "animal_medications/create"
-  get "animal_medications/destroy"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :service_providers
@@ -11,6 +8,7 @@ Anicords::Application.routes.draw do
   resources :organizations do
     resources :user_associations
     resources :animals
+    resources :locations
   end
 
   resources :households do
@@ -85,6 +83,8 @@ Anicords::Application.routes.draw do
   get 'remote_requests/personality_types' => 'remote_requests#personality_types'
   
 
+  get "animal_medications/create"
+  get "animal_medications/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
