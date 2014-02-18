@@ -1,0 +1,72 @@
+<section>
+  <h4>New foster home</h4>
+  
+  <%= form_for @organization, remote: true, url: new_organization_path, html: { id: "new_foster_form", "data-abide" => '' } do |f| %>
+	<fieldset>
+	  <div class="row">
+	    <div class="large-8 columns">
+	      <%= label_tag 'foster[email]', 'email' %>
+	      <%= text_field_tag 'foster[email]', nil, {placeholder: "email (required )", required: true}  %>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-8 columns">
+	      <%= label_tag 'foster[email2]', 'email confirmation' %>
+	      <%= text_field_tag 'foster[email2]', nil, {placeholder: "email confirmation (required)", required: true} %> 
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-6 columns">
+	      <%= label_tag 'foster[first_name]', 'first name' %>
+	      <%= text_field_tag 'foster[first_name]', nil, placeholder: "first name"  %>
+	    </div>
+	  
+	    <div class="large-6 columns">
+	      <%= label_tag 'foster[last_name]', 'last name' %>
+	      <%= text_field_tag 'foster[last_name]', nil, placeholder: "last name"  %>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <%= label_tag 'foster[address1]', 'address' %>
+	      <%= text_field_tag 'foster[address1]', nil, placeholder: "address" %>
+	    </div>
+	  </div>
+	    
+	
+	  <div class="row">
+	    <div class="large-5 columns">
+	      <%= label_tag 'foster[city]', 'city' %>
+	      <%= text_field_tag 'foster[city]', nil, placeholder: "city" %>
+	    </div>
+	    <div class="large-3 columns">
+	      <%= label_tag 'foster[state]', 'state' %>
+		  <%= select_tag 'foster[state]', options_for_select(us_states), include_blank: true, class:'state_select', prompt: 'state' %>
+		</div>
+	    <div class="large-4 columns"> 
+	      <%= label_tag 'foster[zip]', 'zip' %>
+	      <%= text_field_tag 'foster[zip]', nil, placeholder: "zip" %> 
+	    </div>
+	  </div>
+	
+	  <div class="row">
+	    <div class="large-4 columns"> 
+	      <%= label_tag 'foster[phone]', 'phone' %>
+	      <%= text_field_tag 'foster[phone]', nil, placeholder: "phone: 123-123-1234" %>
+	    </div>
+	  </div>
+
+	   <%= hidden_field_tag 'foster[organization_id]', @organization.id %> 
+	    
+	 
+    </fieldset>
+  <% end %>
+ 
+    
+
+   
+  
+</section>

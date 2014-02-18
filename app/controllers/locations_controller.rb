@@ -8,6 +8,12 @@ class LocationsController < ApplicationController
     @fosters = @organization.households
   end
   
+  def new
+    @location = Location.new
+    
+  end
+  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization

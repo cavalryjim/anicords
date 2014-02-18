@@ -1,0 +1,63 @@
+<fieldset>
+  <%= form_for([@organization, @location],remote: true, html: {"data-abide" => ''}) do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+      	<%= f.label :name, 'location name'%>
+	    <%= f.text_field :name, placeholder: "location name"  %>
+      </div> 
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+      	<%= f.label :address1, 'address'%>
+        <%= f.text_field :address1, placeholder: "address"%>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+      	<%= f.label :address2, 'addres2'%>
+        <%= f.text_field :address2, placeholder: "address2"%>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-6 columns">
+        <%= f.label :city, 'city'%>
+        <%= f.text_field :city, placeholder: "city" %>
+      </div>
+      <div class="large-3 columns">
+      	<%= f.label :state, 'state'%>
+        <%= f.select :state, us_states, {include_blank: true, prompt: 'state'}, {class: 'state_select'} %>
+      </div>
+      <div class="large-3 columns">    
+      	<%= f.label :zip, 'zip'%> 
+        <%= f.text_field :zip, placeholder: "zip" %>
+      </div>
+      
+    </div>
+    
+    <div class="row">
+      <div class="large-6 columns">
+      	<%= f.label :phone, 'phone'%>
+        <%= f.text_field :phone, placeholder: "phone:123-123-1234" %>
+      </div>
+      <div class="large-6 columns">
+      	<%= f.label :email, 'email'%>
+        <%= f.text_field :email, placeholder: "email" %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+      	<%= f.label :website, 'website'%>
+        <%= f.text_field :website, placeholder: "website" %>
+      </div>
+    </div>
+    
+  	<!---<%= f.submit 'save' %>--->
+  <% end %>
+    
+  
+    
+</fieldset>

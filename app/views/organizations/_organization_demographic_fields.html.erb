@@ -1,0 +1,73 @@
+<%= form_for(@organization, html: { "data-abide" => '' }) do |f| %>
+  <fieldset>
+  	<legend>Information</legend>	
+    <div class="row">
+      <div class="large-12 columns">
+      	<%= f.label :name, 'organization name'%>
+        <%= f.text_field :name, placeholder: "organization name ex. Pet Haven"  %>
+        <small class="error">Organization name required.</small>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+      	<%= f.label :address1, 'address'%>
+        <%= f.text_field :address1, placeholder: "address" %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+      	<%= f.label :address2, 'address2'%>
+        <%= f.text_field :address2, placeholder: "address2" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 columns">
+        <%= f.label :city, 'city'%>
+        <%= f.text_field :city, placeholder: "city" %>
+      </div>
+      <div class="large-2 columns">
+      	<%= f.label :state, 'state'%>
+        <%= f.select :state, us_states, {include_blank: true, prompt: 'state'}, {class: 'state_select'} %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :zip, 'zip'%>
+        <%= f.text_field :zip, placeholder: "zip" %>
+       
+      </div>
+      <div class="large-2 columns"></div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 columns">
+        <%= f.label :phone, 'phone' %>
+        <%= f.text_field :phone, placeholder: "123-123-1234" %>
+      </div>
+    
+      <div class="large-8 columns">
+        <%= f.label :website, 'website' %>
+        <%= f.text_field :website, placeholder: "https://www.pethaven.org" %>
+      </div>
+    </div>
+        
+    <div class="row">
+      <div class="large-8 columns">
+        <%= f.label :logo_external_url, "logo" %>
+        <%= f.text_field :logo_external_url, placeholder: "logo URL ex. http://our.org/logo/pic.gif" %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :petfinder_shelter_id, "petfinder shelter ID" %>
+        <%= f.text_field :petfinder_shelter_id, placeholder: "LA123" %>
+      </div>
+    </div>
+    
+    
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+  </fieldset>
+  
+<% end %>

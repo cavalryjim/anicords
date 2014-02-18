@@ -1,5 +1,5 @@
 class OrganizationsController < InheritedResources::Base
-  before_action :set_organization, only: [:show, :edit, :update, :destroy, :create_user, :petfinder_import, :adoptions ]
+  before_action :set_organization, only: [:show, :edit, :update, :destroy, :create_user, :petfinder_import, :adoptions, :new_foster ]
   before_filter :authenticate_user! 
   authorize_resource 
   
@@ -32,11 +32,11 @@ class OrganizationsController < InheritedResources::Base
   def create
     @organization = Organization.new(organization_params)
     respond_to do |format|
-      if @organization.save && @organization.associate_user(current_user.id)
+      if @organization.save && @organization.associate_user(current_user.id, true)
         User.create_user_to_group(params[:admin1_email], @organization, params[:admin1_first_name], params[:admin1_last_name], true ) if (params[:admin1_email].present?)
         User.create_user_to_group(params[:admin2_email], @organization, params[:admin2_first_name], params[:admin2_last_name], true ) if (params[:admin2_email].present?)
-        session[:home_page] = organization_path(@organization)
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        #session[:home_page] = organization_path(@organization)
+        format.html { redirect_to organization_path(@organization), notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
         format.html { render action: 'new' }
@@ -50,7 +50,7 @@ class OrganizationsController < InheritedResources::Base
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
+        format.html { redirect_to edit_organization_path(@organization), notice: 'Organization was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,7 +70,7 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def create_user
-    User.create_user_to_group(params[:user][:email], @organization, params[:user][:first_name], params[:user][:last_name], true )
+    User.create_user_to_group(params[:user][:email], @organization, params[:user][:first_name], params[:user][:last_name], params[:user][:admin] )
     
     redirect_to edit_organization_path(@organization), notice: 'Human was successfully added.'
   end
@@ -82,6 +82,10 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def adoptions
+    
+  end
+  
+  def new_foster
     
   end
   

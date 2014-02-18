@@ -90,8 +90,17 @@ section.gray_background {
   border-top: solid 2px black !important;
 }
 
+table {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
 table.margin-bottom_25em {
   margin-bottom: 0.25em;
+}
+
+table.margin-top_25em {
+  margin-top: 0.25em;
 }
 
 table.no_border {
@@ -291,6 +300,11 @@ form {
 
 .text_area_10em {
   height: 10em !important;
+}
+
+button, input[type="submit"] {
+  color: #000000 !important;
+  background-color: #00FF00 !important;
 }
 
 

@@ -1,0 +1,39 @@
+<fieldset>
+  <legend>Organizational users</legend>	
+  <div class="row">
+    <div class="large-10 columns">
+	      	
+	  <table>
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Email</th>
+	        <th>Phone</th>
+	        <th>Admin</th>
+	        <th></th>
+	      </tr>
+	    </thead>
+	
+	   <tbody>
+	     <% @organization.user_associations.each do |ua| %>
+	       <tr>
+	         <td><%= ua.user.name%></td>
+	         <td><%= ua.user.email %></td>
+	         <td><%= ua.user.phone %></td>
+	         <td><%= ua.administrator %></td>
+	         <td>
+	           <% if ua.user != current_user %>
+	             <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), organization_user_association_path(@organization, ua), method: :delete, 
+				   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
+				<% end %>
+	          </td>
+	        </tr>
+	      <% end %>
+	            
+	    </tbody>
+	  </table>
+	  <div class="bottom_padding_1em"><%= link_to button_small('add member'), '#', "data-reveal-id" => "newHumanModal" %> </div>
+	</div>
+  </div>
+    
+</fieldset>

@@ -39,13 +39,28 @@
 	      </div>
 	    </div>
 	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	      	<%= label_tag 'user_admin' do %>
+			    
+	          <%= check_box 'user', 'admin'  %> administrator?
+			<% end %>
+	      </div>
+	    </div>
+	    
 	    <%= f.hidden_field :organization_id, value: @organization.id %>
 	    
 	    <div class="actions">
-	      <%= f.submit "add member" %>
+	      <%= f.submit "submit" %>
 	    </div>
 	  
 	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="locationModal" class="reveal-modal">
+	  <div id='org_location_div'></div>
 	  
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>

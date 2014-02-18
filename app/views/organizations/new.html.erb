@@ -5,7 +5,7 @@
    <fieldset>
     <h4>Tell us about your organization</h4>
 
-    <%= render 'form' %>
+    <%= render 'organizations/form' %>
     <%= link_to 'Launch Quick Start', '#', 'data-reveal-id'=>'stepsOverviewModal'   %>
    </fieldset>
    
@@ -51,7 +51,7 @@
 	<div class="row">
 		<div class="large-3 columns"></div>
 		<div class="large-3 columns">
-			<%= link_to fun_button_tiny('get started'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
+			<%= link_to button_small('get started'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
 		</div>
 	</div>
   </div>
@@ -77,10 +77,10 @@
     
     <div class="row">
       <div class="large-3 columns">
-      	<%= link_to fun_button_tiny('back'), '#', 'data-reveal-id'=>'stepsOverviewModal', class: "close-reveal-modal new_account_nav"   %>
+      	<%= link_to button_small('back'), '#', 'data-reveal-id'=>'stepsOverviewModal', class: "close-reveal-modal new_account_nav"   %>
       </div>
 	  <div class="large-3 columns">
-		<%= link_to fun_button_tiny('next'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal new_account_nav"   %>
+		<%= link_to button_small('next'), '#', 'data-reveal-id'=>'stepsOverviewModal3', class: "close-reveal-modal new_account_nav"   %>
 	  </div>
 	</div>
 </div>
@@ -123,10 +123,10 @@
 	
 	<div class="row">
 	  <div class="large-3 columns">
-      	<%= link_to fun_button_tiny('back'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
+      	<%= link_to button_small('back'), '#', 'data-reveal-id'=>'stepsOverviewModal2', class: "close-reveal-modal new_account_nav"   %>
       </div>
 	  <div class="large-3 columns">
-		<%= link_to fun_button_tiny('submit'), '#', onclick: "$('#quick_organization_form').submit()", class: "close-reveal-modal new_account_nav"  %>
+		<%= link_to button_small('submit'), '#', onclick: "$('#quick_organization_form').submit()", class: "close-reveal-modal new_account_nav"  %>
 	  </div>
 	</div>
   <% end %>
