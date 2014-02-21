@@ -35,7 +35,7 @@ class OrganizationsController < InheritedResources::Base
       if @organization.save && @organization.associate_user(current_user.id, true)
         User.create_user_to_group(params[:admin1_email], @organization, params[:admin1_first_name], params[:admin1_last_name], true ) if (params[:admin1_email].present?)
         User.create_user_to_group(params[:admin2_email], @organization, params[:admin2_first_name], params[:admin2_last_name], true ) if (params[:admin2_email].present?)
-        #session[:home_page] = organization_path(@organization)
+        
         format.html { redirect_to organization_path(@organization), notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else

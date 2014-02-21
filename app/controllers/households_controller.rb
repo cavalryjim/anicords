@@ -36,7 +36,7 @@ class HouseholdsController < ApplicationController
     respond_to do |format|
       if @household.save && @household.associate_user(current_user.id, true)
         User.create_user_to_group(params[:human_email], @household, params[:human_first_name], params[:human_last_name], true ) if (params[:human_email] != "")
-        session[:home_page] = household_path(@household)
+        
         @household.transfer_animals(params[:animal_transfers]) if params[:animal_transfers]
         format.html { redirect_to @household, notice: 'Household was successfully created.' }
         format.json { render action: 'show', status: :created, location: @household }
