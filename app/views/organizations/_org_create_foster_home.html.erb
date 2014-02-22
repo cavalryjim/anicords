@@ -1,0 +1,55 @@
+<section>
+  <h4>Household information for <%=@foster_user.name%></h4>
+  
+  <%= form_tag new_foster_home_path(@organization), remote: true, method: :patch, :id => 'foster_home_form' do %>
+    <fieldset>
+      <div class="row">
+	    <div class="large-12 columns">
+	      <%= label_tag 'home[name]', 'household name' %>
+	      <%= text_field_tag 'home[name]', @foster_user.last_name+" household", placeholder: "address" %>
+	    </div>
+	  </div>
+    	
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <%= label_tag 'home[address1]', 'address' %>
+	      <%= text_field_tag 'home[address1]', nil, placeholder: "address" %>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <%= label_tag 'home[address2]', 'addres2' %>
+	      <%= text_field_tag 'home[address2]', nil, placeholder: "addres2" %>
+	    </div>
+	  </div>
+	    
+	  <div class="row">
+	    <div class="large-5 columns">
+	      <%= label_tag 'home[city]', 'city' %>
+	      <%= text_field_tag 'home[city]', nil, placeholder: "city" %>
+	    </div>
+	    <div class="large-3 columns">
+	      <%= label_tag 'home[state]', 'state' %>
+		  <%= select_tag 'home[state]', options_for_select(us_states), include_blank: true, class:'state_select', prompt: 'state' %>
+		</div>
+	    <div class="large-4 columns"> 
+	      <%= label_tag 'home[zip]', 'zip' %>
+	      <%= text_field_tag 'home[zip]', nil, placeholder: "zip" %> 
+	    </div>
+	  </div>
+	
+	  <div class="row">
+	    <div class="large-4 columns"> 
+	      <%= label_tag 'home[phone]', 'phone' %>
+	      <%= text_field_tag 'home[phone]', nil, placeholder: "phone: 123-123-1234" %>
+	    </div>
+	  </div>
+
+	   <%= hidden_field_tag 'organization_id', @organization.id %> 
+	   <%= hidden_field_tag 'foster_user_id', @foster_user.id %> 
+	  <%= submit_tag("submit") %> 
+    </fieldset>
+  <% end %>
+ 
+</section>

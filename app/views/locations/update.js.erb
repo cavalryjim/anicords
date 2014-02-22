@@ -1,0 +1,7 @@
+$("form#org_location_form").on("ajax:success", function(event, data, status, response) {
+  $("#org_locations_div").html('<%= j render("organizations/locations") %>');
+  $(".reveal-modal").foundation('reveal', 'close');
+  $("#locations_fieldset").effect("highlight", {color:"#81F781"}, 1500).unbind();
+}).on("ajax:error", function(event, response, error) {
+  return alert("There was a problem.  Please try again later.");
+});

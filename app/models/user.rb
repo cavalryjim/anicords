@@ -182,6 +182,24 @@ class User < ActiveRecord::Base
     UserMailer.animal_transfer_notice(user, animal).deliver
   end
   
+  def self.return_foster_user(foster)
+    foster = foster.symbolize_keys
+    user = User.find_by_email(foster[:email])
+    unless user.present?
+      #JDavis: user password & confirmation!
+      generated_password = Devise.friendly_token.first(8)
+      user = User.create do |u|
+        u.email = foster[:email]
+        u.first_name = foster[:first_name]
+        u.last_name = foster[:last_name]
+        u.password = generated_password
+        u.password_confirmation = generated_password
+      end
+      user.new_account_notice(generated_password)
+    end
+    user
+  end
+  
   def admin?
     self.class == AdminUser
   end

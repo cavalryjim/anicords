@@ -44,7 +44,7 @@ class Ability
     
     can :manage, Location do |location|
       location.new_record? or
-      location.organization.users.include?(user)
+      location.organizations.first.users.include?(user)
     end
     
     can :manage, Notification do |notification|

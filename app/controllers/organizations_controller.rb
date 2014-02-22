@@ -1,5 +1,5 @@
 class OrganizationsController < InheritedResources::Base
-  before_action :set_organization, only: [:show, :edit, :update, :destroy, :create_user, :petfinder_import, :adoptions, :new_foster ]
+  before_action :set_organization, except: [:index, :new, :create ]
   before_filter :authenticate_user! 
   authorize_resource 
   
@@ -85,8 +85,22 @@ class OrganizationsController < InheritedResources::Base
     
   end
   
-  def new_foster
+  def new_foster_home
+    @foster_home = Household.return_foster_home(params[:home])
+    if @foster_home
+      @foster_home.associate_user(params[:foster_user_id]) 
+      @organization.associate_location(@foster_home)
+    end
     
+  end
+  
+  def new_foster_user
+    @good_email = (params[:foster][:email] == params[:foster][:email2]) && params[:foster][:email].match(/^\S+@\S+\.\S+$/)
+    if @good_email
+      @foster_user = User.return_foster_user(params[:foster])
+    end
+    #user_exist = User.foster_user
+    #breakage
   end
   
   private

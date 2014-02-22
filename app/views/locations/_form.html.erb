@@ -1,5 +1,5 @@
 <fieldset>
-  <%= form_for([@organization, @location],remote: true, html: {"data-abide" => ''}) do |f| %>
+  <%= form_for([@organization, @location], remote: true, html: {id: 'org_location_form', "data-abide" => ''}) do |f| %>
     <div class="row">
       <div class="large-12 columns">
       	<%= f.label :name, 'location name'%>
@@ -54,8 +54,8 @@
         <%= f.text_field :website, placeholder: "website" %>
       </div>
     </div>
-    
-  	<!---<%= f.submit 'save' %>--->
+    <%= f.hidden_field :organization_id, value: @organization.id %>
+  	<%= f.submit 'save' %>
   <% end %>
     
   

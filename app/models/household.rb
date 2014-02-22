@@ -70,6 +70,20 @@ class Household < ActiveRecord::Base
     end
   end
   
+  def self.return_foster_home(foster_home)
+    foster_home = foster_home.symbolize_keys
+    household = Household.create do |h|
+      h.name = foster_home[:name]
+      h.address1 = foster_home[:address1]
+      h.address2 = foster_home[:address2]
+      h.city = foster_home[:city]  
+      h.state = foster_home[:state]
+      h.zip = foster_home[:zip]
+      h.phone = foster_home[:phone]
+    end
+    household
+  end
+  
   def activities
     #PublicActivity::Activity.where( trackable_id: @household.animal_ids, trackable_type: "Animal" ).order("created_at desc").first(10)
     PublicActivity::Activity.where(recipient: self).order("created_at desc")

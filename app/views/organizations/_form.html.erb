@@ -11,7 +11,7 @@
   <%= content_tag :section, :class => ('disabled' if @organization.new_record?) do %>
     <p class="title" data-section-title><a href="#panel2">Locations</a></p>
 	<div class="content" data-section-content>
-	  <%= render 'locations' unless @organization.new_record?  %>
+	  <div id='org_locations_div'><%= render 'locations' unless @organization.new_record?  %></div>
 	</div>
   <% end %>
 	  

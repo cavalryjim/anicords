@@ -1,0 +1,9 @@
+<% if @good_email %>
+  <% if @foster_user.households.present? %>
+    $("#org_location_div").html('<%= j render("organizations/org_select_foster_home") %>');
+  <% else %>
+    $("#org_location_div").html('<%= j render("organizations/org_create_foster_home") %>');
+  <% end %>
+<% else %>
+  alert("Emails must match");
+<% end %>

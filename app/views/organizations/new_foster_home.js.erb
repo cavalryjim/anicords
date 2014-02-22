@@ -1,0 +1,7 @@
+<% if @foster_home %>
+  $("#org_locations_div").html('<%= j render("organizations/locations") %>');
+  $(".reveal-modal").foundation('reveal', 'close');
+  $("#fosters_fieldset").effect("highlight", {color:"#81F781"}, 1500).unbind();
+<% else %>
+  alert("There was a problem.");
+<% end %>

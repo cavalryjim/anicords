@@ -45,6 +45,10 @@ class Organization < ActiveRecord::Base
     user_association.update_attribute :administrator, administrator 
   end
   
+  def associate_location(location)
+    OrganizationLocation.where(organization_id: self.id, location: location).first_or_create
+  end
+  
   def fosters
     self.households
   end

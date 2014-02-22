@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset id='locations_fieldset'>
   <legend>Locations</legend>	
   <ul class="large-block-grid-4">
 	  <li>
@@ -15,7 +15,7 @@
   <%= link_to button_small("add location"), new_organization_location_path(@organization), "data-reveal-id" => "locationModal", remote: true %> 
 </fieldset>
 
-<fieldset>
+<fieldset id='fosters_fieldset'>
   <legend>Foster homes</legend>	
   <ul class="large-block-grid-4"> 
     <% @organization.households.each do |foster| %>
