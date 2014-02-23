@@ -94,6 +94,7 @@ class Organization < ActiveRecord::Base
         end
       end
       animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
+      animal.org_profile.organization_location_id = self.organization_location.first.id
       animal.description = Sanitize.clean(pet.description)
       
       pull_count += 1 if animal.save

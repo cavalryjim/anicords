@@ -276,6 +276,11 @@ class Animal < ActiveRecord::Base
     self.documents.where.not(file_type: ['vaccination', 'rabies', 'veterinary'])
   end
   
+  def set_org_location
+    self.build_org_profile unless self.org_profile.present?
+    self.org_profile.organization_location_id = self.owner.organization_locations.first.id 
+  end
+  
   private
   
   def new_health_profile

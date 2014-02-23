@@ -46,9 +46,10 @@ class AnimalsController < ApplicationController
   def create
     params[:animal][:breed_ids] = Animal.fix_breed_ids(params[:animal][:breed_ids]) if (params[:animal][:breed_ids]).present?
     @animal = Animal.new(animal_params)
-    #return_path = @owner if @owner.class.name == "Organization"
+    
     respond_to do |format|
       if @animal.save 
+        @animal.set_org_location if @animal.owner.class.name == "Organization"
         @animal.create_qr_code(animal_url(@animal, qrc: 'true'))
         @animal.create_activity :create, owner: current_user, recipient: @animal.owner
         format.html { redirect_to return_path, notice: 'Animal was successfully created.' }
@@ -166,7 +167,7 @@ class AnimalsController < ApplicationController
     end
     
     def set_owner
-      if @animal && @animal.owner
+      if @animal && @animal.owner.present?
         @owner = @animal.owner
       elsif params[:household_id]
         @owner = Household.find(params[:household_id])
