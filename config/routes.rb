@@ -64,6 +64,7 @@ Anicords::Application.routes.draw do
   patch 'organizations/:id/new_foster' => 'organizations#create_foster', as: :create_organization_foster
   patch 'organizations/:id/new_foster_user' => 'organizations#new_foster_user', as: :new_foster_user
   patch 'organizations/:id/new_foster_home' => 'organizations#new_foster_home', as: :new_foster_home
+  patch 'organizations/:id/select_foster_home' => 'organizations#select_foster_home', as: :select_foster_home
   #get 'service_providers/:id/services' => 'service_providers#services'
   get 'animals/:id/download_file' => 'animals#download_file'
   patch 'animals/:id/transfer_ownership' => 'animals#transfer_ownership', as: :transfer_animal

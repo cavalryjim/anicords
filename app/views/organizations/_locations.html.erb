@@ -2,10 +2,12 @@
   <legend>Locations</legend>	
   <ul class="large-block-grid-4">
 	  <li>
-		<%= @organization.name %><br/>
+		<%= image_tag s3_url('barn-icon-md.png'), size: '64x64' %></br>
+		<%= @organization.name %>
 	  </li>
     <% @organization.locations.each do |location| %>
 	  <li>
+	  	<%= link_to image_tag(s3_url('barn-icon-md.png'), size: '64x64'), edit_organization_location_path(@organization, location), remote: true, "data-reveal-id" => "locationModal" %></br>
 		<%= link_to location.name, edit_organization_location_path(@organization, location), remote: true, "data-reveal-id" => "locationModal" %><br/>
 	  </li>			
 	<% end %>
@@ -20,7 +22,8 @@
   <ul class="large-block-grid-4"> 
     <% @organization.households.each do |foster| %>
 	  <li>
-	    <%= foster.name %><br/>
+	  	<%= image_tag s3_url('black-white-house-md.png'), size: '64x64' %></br>
+	    <%= foster.name %>
 	  </li>			
     <% end %>
   </ul>

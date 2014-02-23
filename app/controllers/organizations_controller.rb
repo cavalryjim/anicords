@@ -99,7 +99,11 @@ class OrganizationsController < InheritedResources::Base
     if @good_email
       @foster_user = User.return_foster_user(params[:foster])
     end
-    #user_exist = User.foster_user
+  end
+  
+  def select_foster_home
+    @foster_home = Household.find(params[:household])
+    @organization.associate_location(@foster_home) if @foster_home
     #breakage
   end
   

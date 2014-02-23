@@ -1,0 +1,18 @@
+<section>
+ <h4>Select Household</h4>
+
+ <%= form_tag select_foster_home_path(@organization), remote: true, method: :patch, :id => 'foster_home_form' do %>
+  <fieldset>
+	<div class="row">
+	  <div class="large-8 columns">
+	  	<%= label_tag 'household', 'Add this foster household:' %>
+	    <%= select_tag 'household', options_from_collection_for_select(@foster_user.households, 'id', 'name') %>  
+	  </div>
+	</div>  
+	  
+    <%= submit_tag("submit") %> 
+  </fieldset>
+ <% end %>
+</section>
+
+		
