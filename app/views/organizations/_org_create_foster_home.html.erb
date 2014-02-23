@@ -6,7 +6,7 @@
       <div class="row">
 	    <div class="large-12 columns">
 	      <%= label_tag 'home[name]', 'household name' %>
-	      <%= text_field_tag 'home[name]', @foster_user.last_name+" household", placeholder: "address" %>
+	      <%= text_field_tag 'home[name]', suggested_household_name(@foster_user), placeholder: "address" %>
 	    </div>
 	  </div>
     	

@@ -176,4 +176,14 @@ module ApplicationHelper
     breadcrumb.html_safe
   end
   
+  def suggested_household_name(user)
+    if user.last_name.present?
+      user.last_name + " household" 
+    elsif user.first_name.present?
+      user.first_name + " household" 
+    else
+      user.email.split('@').first + " household"
+    end
+  end
+  
 end
