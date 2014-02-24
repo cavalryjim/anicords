@@ -42,10 +42,10 @@
 #  avatar_uid           :string(255)
 #  avatar_name          :string(255)
 #  size                 :string(255)
-#  microchip_brand      :string(255)
 #  pedigreed            :boolean
 #  microchipped         :boolean
 #  neuter_location      :string(255)
+#  microchip_brand_id   :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

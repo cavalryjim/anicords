@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212020950) do
+ActiveRecord::Schema.define(version: 20140224031411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,10 +196,10 @@ ActiveRecord::Schema.define(version: 20140212020950) do
     t.string   "avatar_uid"
     t.string   "avatar_name"
     t.string   "size"
-    t.string   "microchip_brand"
     t.boolean  "pedigreed"
     t.boolean  "microchipped"
     t.string   "neuter_location"
+    t.integer  "microchip_brand_id"
   end
 
   create_table "beta_comments", force: true do |t|
@@ -322,6 +322,13 @@ ActiveRecord::Schema.define(version: 20140212020950) do
 
   create_table "medications", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "microchip_brands", force: true do |t|
+    t.string   "name"
+    t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -106,8 +106,8 @@
 	  <% end %>
 	</div>  
 	<div class="large-4 columns">
-	  <%= f.label :microchip_brand, 'microchip brand' %>
-	  <%= f.text_field :microchip_brand, class: 'microchip_disable', placeholder: "microchip brand", disabled: !@animal.microchipped %>
+	  <%= f.label :microchip_brand_id, 'microchip brand' %>
+	  <%= f.collection_select :microchip_brand_id, MicrochipBrand.all, :id, :name, {prompt:'microchip brand'}, {class: "regular_select microchip_disable", disabled: !@animal.microchipped} %>
 	</div>	
 	<div class="large-4 columns">
 	  <%= f.label :microchip_id, 'microchip id number' %>

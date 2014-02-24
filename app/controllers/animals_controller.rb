@@ -199,7 +199,7 @@ class AnimalsController < ApplicationController
        :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :gender, :neutered, :food_id, 
        :microchip_id, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
        :fur_color, :organization_id, :size, :avatar_uid, :avatar_name, :avatar, :microchip_brand, :microchipped, :pedigreed,
-       :neuter_location,
+       :neuter_location, :microchip_brand_id,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids, :breed_ids,
        org_profile_attributes: [ :id, :animal_id, :intake_date, :intake_reason, :organization_location_id, :neuter_location_id,
          :neuter_location_type, :neuter_location, :intake_weight, :intake_weight_measure, :petfinder_id, :shelter_specific_id,    

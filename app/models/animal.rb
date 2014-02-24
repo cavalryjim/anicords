@@ -42,10 +42,10 @@
 #  avatar_uid           :string(255)
 #  avatar_name          :string(255)
 #  size                 :string(255)
-#  microchip_brand      :string(255)
 #  pedigreed            :boolean
 #  microchipped         :boolean
 #  neuter_location      :string(255)
+#  microchip_brand_id   :integer
 #
 
 class Animal < ActiveRecord::Base
@@ -57,6 +57,7 @@ class Animal < ActiveRecord::Base
   belongs_to :animal_type
   belongs_to :breeder
   belongs_to :organization
+  belongs_to :microchip_brand
   #belongs_to :household
   #belongs_to :breed
   has_one    :animal_transfer, dependent: :destroy
