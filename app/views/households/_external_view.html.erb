@@ -1,0 +1,42 @@
+<section>
+ <h4><%= @household.name %></h4>
+
+ 
+  <fieldset>
+	  <div class="row">
+	    <div class="large-12 columns">
+	     <%= @household.address1 %>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-12 columns">
+	     <%= @household.address2 %>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-5 columns">
+	      <%= @household.city %>
+	    </div>
+	  
+	    <div class="large-3 columns">
+	      <%= @household.state %>
+	    </div>
+	    
+	    <div class="large-3 columns">
+	      <%= @household.zip %>
+	    </div>
+	  </div>
+	  
+	  <% @household.users.each do |user| %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	       <%= user.email %>
+	      </div>
+	    </div>
+	  <% end %>
+   
+  </fieldset>
+ 
+</section>

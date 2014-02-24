@@ -57,6 +57,11 @@ class Ability
       organization.users.include?(user)
     end
     
+    can :manage, OrganizationLocation do |location|
+      location.new_record? or
+      location.organization.users.include?(user)
+    end
+    
     can :manage, OrgProfile do |profile|
       profile.new_record? or
       profile.animal.owner.users.include?(user)

@@ -1,7 +1,7 @@
 class HouseholdsController < ApplicationController
-  before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider, :create_user]
+  before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider, :create_user, :external_view]
   before_filter :authenticate_user!
-  authorize_resource
+  authorize_resource except: [:external_view]
 
   # GET /households
   # GET /households.json
@@ -84,6 +84,10 @@ class HouseholdsController < ApplicationController
     new_user = User.create_user_to_group(params[:user][:email], @household, params[:user][:first_name], params[:user][:last_name])
     new_user.create_activity :added_to_group, owner: current_user, recipient: @household
     redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
+  end
+  
+  def external_view
+    
   end
 
   private

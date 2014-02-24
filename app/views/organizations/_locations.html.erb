@@ -8,7 +8,9 @@
     <% @organization.locations.each do |location| %>
 	  <li>
 	  	<%= link_to image_tag(s3_url('barn-icon-md.png'), size: '64x64'), edit_organization_location_path(@organization, location), remote: true, "data-reveal-id" => "locationModal" %></br>
-		<%= link_to location.name, edit_organization_location_path(@organization, location), remote: true, "data-reveal-id" => "locationModal" %><br/>
+		<%= link_to location.name, edit_organization_location_path(@organization, location), remote: true, "data-reveal-id" => "locationModal" %>
+		<%= link_to image_tag('cross.png', :alt => "del"), organization_location_path(@organization, location), 
+	    		method: :delete, remote: true, data: { confirm: 'Please confirm you want to remove ' + location.name + '.' } %>
 	  </li>			
 	<% end %>
 		
@@ -22,8 +24,10 @@
   <ul class="large-block-grid-4"> 
     <% @organization.households.each do |foster| %>
 	  <li>
-	  	<%= image_tag s3_url('black-white-house-md.png'), size: '64x64' %></br>
-	    <%= foster.name %>
+	  	<%= link_to image_tag(s3_url('black-white-house-md.png'), size: '64x64'), household_external_view_path(foster), remote: true, "data-reveal-id" => "locationModal" %></br>
+	    <%= link_to foster.name, household_external_view_path(foster), remote: true, "data-reveal-id" => "locationModal"  %>
+	    <%= link_to image_tag('cross.png', :alt => "del"), remove_organization_location_path(@organization, foster.organization_locations.where(organization_id: @organization.id).first ), 
+	    		method: :delete, remote: true, data: { confirm: 'Please confirm you want to remove ' + foster.name + ' as a foster home.' } %>
 	  </li>			
     <% end %>
   </ul>

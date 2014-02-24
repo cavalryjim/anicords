@@ -57,6 +57,7 @@ Anicords::Application.routes.draw do
   patch 'households/:id/remove_service_provider' => 'households#remove_service_provider'
   get 'documents/:id/download_file' => 'documents#download_file'
   post 'households/:id/create_user' => 'households#create_user'
+  get 'households/:id/external_view' => 'households#external_view', as: :household_external_view
   post 'organizations/:id/create_user' => 'organizations#create_user'
   get 'organizations/:id/petfinder_import' => 'organizations#petfinder_import', as: :organizaiton_petfinder_import
   get 'organizations/:id/adoptions' => 'organizations#adoptions', as: :organizaiton_adoptions
@@ -65,6 +66,7 @@ Anicords::Application.routes.draw do
   patch 'organizations/:id/new_foster_user' => 'organizations#new_foster_user', as: :new_foster_user
   patch 'organizations/:id/new_foster_home' => 'organizations#new_foster_home', as: :new_foster_home
   patch 'organizations/:id/select_foster_home' => 'organizations#select_foster_home', as: :select_foster_home
+  delete 'organizations/:organization_id/organization_locations/:id/destroy' => 'organization_locations#destroy', as: :remove_organization_location
   #get 'service_providers/:id/services' => 'service_providers#services'
   get 'animals/:id/download_file' => 'animals#download_file'
   patch 'animals/:id/transfer_ownership' => 'animals#transfer_ownership', as: :transfer_animal
