@@ -11,6 +11,7 @@
 #  updated_at     :datetime
 #  event_id       :integer
 #  event_type     :string(255)
+#  animal_id      :integer
 #
 
 class Notification < ActiveRecord::Base

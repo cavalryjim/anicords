@@ -7,11 +7,11 @@ xml.rss version: "2.0" do
 
     @notifications.each do |notification|
       xml.item do
-        xml.title notification.name
-        xml.description article.content
-        xml.pubDate article.published_at.to_s(:rfc822)
-        xml.link article_url(article)
-        xml.guid article_url(article)
+        xml.title notification.animal.name if notification.animal.present?
+        xml.description notification.message
+        xml.pubDate notification.updated_at.to_s(:rfc822)
+        xml.link notification.url
+        xml.guid notification.id
       end
     end
   end
