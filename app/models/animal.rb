@@ -80,6 +80,7 @@ class Animal < ActiveRecord::Base
   has_many   :breeds, through: :animal_breeds
   has_many   :animal_breeds, dependent: :destroy
   has_many   :adoptions, dependent: :destroy
+  has_many   :notifications, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   accepts_nested_attributes_for :pictures, allow_destroy: true
@@ -89,6 +90,7 @@ class Animal < ActiveRecord::Base
   validates_presence_of :name
   #validate :file_size_validation
   after_create :new_health_profile
+  before_save  :check_neutered_microchipped_pedigreed
   
   mount_uploader :pedigree, FileUploader
   mount_uploader :health_certification, FileUploader
@@ -292,6 +294,13 @@ class Animal < ActiveRecord::Base
     errors[:pedigree] << "should be less than 5MB" if pedigree && pedigree.size > 5.megabytes
     errors[:health_certification] << "should be less than 5MB" if health_certification.size > 5.megabytes
     errors[:vaccination_record] << "should be less than 5MB" if vaccination_record.size > 5.megabytes
+  end
+  
+  def check_neutered_microchipped_pedigreed
+    unless self.neutered
+      self.neutered_date = nil
+      self.neuter_location = nil
+    end
   end
   
   

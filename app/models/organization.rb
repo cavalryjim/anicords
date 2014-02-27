@@ -29,6 +29,7 @@ class Organization < ActiveRecord::Base
   has_many  :households, through: :organization_locations, source: :location, source_type: "Household"
   has_many  :locations, through: :organization_locations, source: :location, source_type: "Location"
   has_many  :adoptions, dependent: :destroy
+  has_many  :notifications, as: :recipient, dependent: :destroy
   
   accepts_nested_attributes_for :animals, allow_destroy: true
   after_create :make_organization_location

@@ -16,4 +16,5 @@
 class Notification < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
   belongs_to :event,     polymorphic: true
+  belongs_to :animal
 end
