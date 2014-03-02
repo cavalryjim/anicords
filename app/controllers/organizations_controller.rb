@@ -106,7 +106,6 @@ class OrganizationsController < InheritedResources::Base
   def select_foster_home
     @foster_home = Household.find(params[:household])
     @organization.associate_location(@foster_home) if @foster_home
-    #breakage
   end
   
   private
