@@ -20,7 +20,7 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require best_in_place
-//= require jquery.zrssfeed.min
+//= require jquery.zrssfeed
 //= require jquery.vticker
 //= require_tree .
 
