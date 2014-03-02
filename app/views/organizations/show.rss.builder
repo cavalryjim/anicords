@@ -6,8 +6,11 @@ xml.rss version: "2.0" do
     xml.link @organization
 
     @notifications.each do |notification|
-      message = notification.animal.name if notification.animal.present?
-      message = message + ' ' + notification.message
+      if notification.animal.present?
+        message = notification.animal.name + ' ' + notification.message
+      else 
+        message = notification.message
+      end
       xml.item do
         #xml.title notification.animal.name if notification.animal.present?
         #xml.description notification.message
