@@ -5,6 +5,20 @@
 #$("#editAnimalModal").bind "close", ->
 #  alert($('#animal_animal_type_id').val())
 
+#$("#org_news").ticker
+#  htmlFeed: false
+#  ajaxFeed: true
+#  feedUrl: window.location.pathname + ".rss"
+#  feedType: "xml"
+#  displayType: 'fade'
+
+$("#org_news").rssfeed window.location.href + ".rss",
+  snippet: false
+, (e) ->
+  $(e).find("div.rssBody").vTicker showItems: 2
+  return
+
+
   
 $(".org_animal_div").on "show", ->
   $(document).foundation()
