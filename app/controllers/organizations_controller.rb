@@ -1,7 +1,7 @@
 class OrganizationsController < InheritedResources::Base
   before_action :set_organization, except: [:index, :new, :create ]
-  before_filter :authenticate_user! 
-  authorize_resource 
+  before_filter :authenticate_user!, except: [:show]
+  authorize_resource except: [:show ]
   
   def index
     redirect_to root_url
