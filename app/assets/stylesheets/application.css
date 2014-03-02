@@ -15,7 +15,6 @@
  *= require jquery-ui-1.10.3.custom
  *= require jquery.Jcrop
  *= require dataTables/jquery.dataTables.foundation
- *= require ticker-style
  */
 
 ul.ui-autocomplete {
