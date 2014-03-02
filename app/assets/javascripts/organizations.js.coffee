@@ -12,11 +12,11 @@
 #  feedType: "xml"
 #  displayType: 'fade'
 
-$("#org_news").rssfeed window.location.href + ".rss",
-  snippet: false
-, (e) ->
-  $(e).find("div.rssBody").vTicker showItems: 2
-  return
+$("#org_news").rssfeed "http://www.dooliddl.com/organizations/16.atom"
+#  snippet: true
+#, (e) ->
+#  $(e).find("div.rssBody").vTicker showItems: 2
+#  return
 
 
   
