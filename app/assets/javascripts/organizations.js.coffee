@@ -12,7 +12,7 @@
 #  feedType: "xml"
 #  displayType: 'fade'
 
-$("#org_news").rssfeed "http://www.dooliddl.com/organizations/16.atom"
+$("#org_news").rssfeed window.location.href + ".atom"
 #  snippet: true
 #, (e) ->
 #  $(e).find("div.rssBody").vTicker showItems: 2

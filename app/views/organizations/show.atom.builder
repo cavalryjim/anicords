@@ -6,7 +6,7 @@ atom_feed do |feed|
     feed.entry notification, published: notification.updated_at, url: notification.url do |entry|
       entry.title notification.animal.present? ? (notification.animal.name + ' ' + notification.message) : notification.message
       #entry.content article.content
-      entry.author notification.recipient
+      #entry.author "James"
     end
   end
 end
