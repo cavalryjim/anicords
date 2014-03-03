@@ -5,18 +5,26 @@
 #$("#editAnimalModal").bind "close", ->
 #  alert($('#animal_animal_type_id').val())
 
-#$("#org_news").ticker
-#  htmlFeed: false
-#  ajaxFeed: true
-#  feedUrl: window.location.pathname + ".rss"
-#  feedType: "xml"
-#  displayType: 'fade'
 
-$("#org_news").rssfeed window.location.href + ".atom"
+$("#org_news").ticker
+  htmlFeed: false
+  ajaxFeed: true
+  feedUrl: window.location.pathname + ".rss"
+  #feedUrl: "http://feeds.abcnews.com/abcnews/topstories"
+  feedType: "xml"
+  displayType: 'fade'
+  titleText: 'News'
+
+
+#$("#org_news").rssfeed window.location.href + ".atom"
 #  snippet: true
 #, (e) ->
 #  $(e).find("div.rssBody").vTicker showItems: 2
 #  return
+
+#$("#org_news").easyTicker
+#  visible: 1
+#  interval: 4000
 
 
   
