@@ -6,14 +6,14 @@
 #  alert($('#animal_animal_type_id').val())
 
 
-$("#org_news").ticker
-  htmlFeed: false
-  ajaxFeed: true
-  feedUrl: window.location.pathname + ".rss"
+#$("#org_news").ticker
+#  htmlFeed: false
+#  ajaxFeed: true
+#  feedUrl: window.location.pathname + ".rss"
   #feedUrl: "http://feeds.abcnews.com/abcnews/topstories"
-  feedType: "xml"
-  displayType: 'fade'
-  titleText: 'News'
+#  feedType: "xml"
+#  displayType: 'fade'
+#  titleText: 'News'
 
 
 #$("#org_news").rssfeed window.location.href + ".atom"

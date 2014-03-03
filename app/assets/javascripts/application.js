@@ -20,7 +20,6 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require best_in_place
-//= require jquery.ticker
 //= require_tree .
 
 $(function(){
