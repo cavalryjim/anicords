@@ -22,10 +22,10 @@
 #  $(e).find("div.rssBody").vTicker showItems: 2
 #  return
 
-#$("#org_news").easyTicker
-#  visible: 1
-#  interval: 4000
-
+$("#org_news").easyTicker(
+  visible: 1
+  interval: 4000
+).show()
 
   
 $(".org_animal_div").on "show", ->

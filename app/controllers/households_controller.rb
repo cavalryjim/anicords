@@ -14,7 +14,7 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     #@owner = @household
-    @activities = @household.activities.first(10)
+    @activities = @household.activities.last(20)
   end
 
   # GET /households/new

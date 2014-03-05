@@ -14,8 +14,7 @@ class OrganizationsController < InheritedResources::Base
     @animal.build_org_profile
     @animals = @organization.animals
     @location_options = @organization.organization_locations.map{|l| [ l.id, l.name ]}
-    #@notifications = @organization.notifications
-    @notifications = Notification.all
+    @notifications = @organization.notifications
   end
   
   # GET /organizations/new

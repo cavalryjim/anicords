@@ -1,4 +1,4 @@
-<% if @organization %>
+<% if @organization.present? %>
 	$("form#organization_animal_form").on("ajax:success", function(event, data, status, response) {
 	  $(".flash_alert").removeClass("hidden");
 	  $(".flash_alert").show().delay(2000).fadeOut();
@@ -16,7 +16,7 @@
 	}).on("ajax:error", function(event, response, error) {
 	  return alert("There was a problem.  Please try again later.");
 	});
-<% else %>
+<% elsif @household.present? %>
 	$("form#animal_form").on("ajax:success", function(event, data, status, response) {
 	  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
 	  $(".flash_alert").removeClass("hidden");

@@ -1,4 +1,4 @@
-<%= breadcrumb_nav( @animal.owner ? [@animal.owner, @animal] : [@animal] ) %>
+<%= breadcrumb_nav( @household.present? ? [@household, @animal] : [@animal] ) %>
 <section class="border_top">
   <div class="row">
 	<fieldset>

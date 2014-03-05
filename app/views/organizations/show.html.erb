@@ -19,11 +19,21 @@
 	  	  <% end %>
 		</dd>
 	  </dl>
-  	  
-  	
   	</div>
-  	
   </div>
+ <% if @notifications.count > 0 %>
+  <div class="row">
+  	<div class="large-12 columns">
+  	  <div id="org_news" class="fouc">
+		<ul>
+		  <% @notifications.each do |notification| %>
+			<li><%= link_to_if notification.url.present?, notification.message, notification.url %></li>
+		  <% end %>
+		</ul>
+	 </div>
+  	</div>	
+  </div>
+ <% end %>
     
   <div class="large-12 columns">
 	<fieldset>

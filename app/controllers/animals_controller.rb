@@ -36,9 +36,9 @@ class AnimalsController < ApplicationController
 
   # GET /animals/1/edit
   def edit
-    if (@owner && @owner.class.name == "Organization")
-      @organization = @owner
-    end
+    #if (@owner && @owner.class.name == "Organization")
+    #  @organization = @owner
+    #end
   end
 
   # POST /animals
@@ -66,20 +66,20 @@ class AnimalsController < ApplicationController
   def update
     # JDavis: all of this params fix stuff needs to be moved elsewhere
     #params[:animal] = @animal.inspect_params(params[:animal])  <--- such as here.
-    params[:animal][:food_id] = Food.new_submission(params[:animal][:food_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:food_id]) rescue false)
-    params[:animal][:shampoo_id] = Shampoo.new_submission(params[:animal][:shampoo_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:shampoo_id]) rescue false)
-    params[:animal][:treat_id] = Treat.new_submission(params[:animal][:treat_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:treat_id]) rescue false)
-    params[:animal][:vitamin_id] = Vitamin.new_submission(params[:animal][:vitamin_id], params[:animal][:animal_type_id]) unless (Integer(params[:animal][:vitamin_id]) rescue false)
+    (params[:animal][:food_id] = Food.new_submission(params[:animal][:food_id], params[:animal][:animal_type_id])) unless (Integer(params[:animal][:food_id]) rescue false)
+    (params[:animal][:shampoo_id] = Shampoo.new_submission(params[:animal][:shampoo_id], params[:animal][:animal_type_id])) unless (Integer(params[:animal][:shampoo_id]) rescue false)
+    (params[:animal][:treat_id] = Treat.new_submission(params[:animal][:treat_id], params[:animal][:animal_type_id])) unless (Integer(params[:animal][:treat_id]) rescue false)
+    (params[:animal][:vitamin_id] = Vitamin.new_submission(params[:animal][:vitamin_id], params[:animal][:animal_type_id])) unless (Integer(params[:animal][:vitamin_id]) rescue false)
     # JDavis: Select2 is a pain and insists upon screwing up the submission of selected items.  This is a fix.
-    params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids]) if (params[:animal][:medical_diagnosis_ids]).present?
-    params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids]) if (params[:animal][:medication_ids]).present?
-    params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids]) if (params[:animal][:allergy_ids]).present?
-    params[:animal][:personality_type_ids] = @animal.fix_ids(params[:animal][:personality_type_ids]) if (params[:animal][:personality_type_ids]).present?
-    params[:animal][:breed_ids] = @animal.fix_ids(params[:animal][:breed_ids]) if (params[:animal][:breed_ids]).present?
+    (params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids])) if (params[:animal][:medical_diagnosis_ids]).present?
+    (params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids])) if (params[:animal][:medication_ids]).present?
+    (params[:animal][:allergy_ids] = @animal.fix_ids(params[:animal][:allergy_ids])) if (params[:animal][:allergy_ids]).present?
+    (params[:animal][:personality_type_ids] = @animal.fix_ids(params[:animal][:personality_type_ids])) if (params[:animal][:personality_type_ids]).present?
+    (params[:animal][:breed_ids] = @animal.fix_ids(params[:animal][:breed_ids])) if (params[:animal][:breed_ids]).present?
     #params[:animal][:food_ids] = @animal.fix_ids(params[:animal][:food_ids])
-    if (@owner && @owner.class.name == "Organization")
-      @organization = @owner
-      @animals = @organization.animals
+    
+    if @organization.present?
+      @location_options = @organization.organization_locations.map{|l| [ l.id, l.name ]}
     end
     
     respond_to do |format|
@@ -149,7 +149,7 @@ class AnimalsController < ApplicationController
   end
   
   def org_flyer
-    @organization = Organization.find(params[:organization_id])
+    #@organization = Organization.find(params[:organization_id])
     respond_to do |format|
       format.pdf do
         pdf = OrgFlyerPdf.new(@animal, @organization)
@@ -169,13 +169,19 @@ class AnimalsController < ApplicationController
     def set_owner
       if @animal && @animal.owner.present?
         @owner = @animal.owner
-      elsif params[:household_id]
-        @owner = Household.find(params[:household_id])
+      end 
+      
+      if params[:household_id]
+        @household = Household.find(params[:household_id])
+        @custodian = @household
       elsif params[:organization_id]
-        @owner = Organization.find(params[:organization_id])
+        @organization = Organization.find(params[:organization_id])
+        @custodian = @organization
       elsif params[:breeder_id]
-        @owner = Breeder.find(params[:breeder_id])
+        @breeder = Breeder.find(params[:breeder_id])
+        @custodian = @breeder
       end
+      
     end
     
     def return_path

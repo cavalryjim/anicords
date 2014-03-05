@@ -18,10 +18,15 @@ class AnimalVaccination < ActiveRecord::Base
   
   belongs_to :animal
   belongs_to :vaccination
+  has_many   :notifications, as: :event, dependent: :destroy
   
   validates_presence_of :animal_id
   validates_presence_of :vaccination_id
   validates_presence_of :vaccination_date
+  
+  before_create do
+    self.remove_vaccination_notifications
+  end
   
   def name
     self.vaccination.name
@@ -33,6 +38,11 @@ class AnimalVaccination < ActiveRecord::Base
   
   def due
     self.vaccination_due
+  end
+  
+  def remove_vaccination_notifications
+    animal_vaccination =  AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: self.vaccination_id).last
+    animal_vaccination.notifications.destroy_all if animal_vaccination.present?
   end
     
 end

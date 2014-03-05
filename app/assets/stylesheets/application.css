@@ -305,7 +305,50 @@ button, input[type="submit"] {
   background-color: #00FF00 !important;
 }
 
-/*****RSS Feed****/
+/*****News Feed****/
+/***
+#org_news {
+  width: 100%;
+  overflow: hidden;
+  padding-left: 10%;
+  background-color: #00FF00;
+}
+***/
+#org_news {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	border: 1px solid #C20;
+	margin: 5px 0;
+	position: relative !important;
+	padding: 0 0 0 120px;
+	box-shadow: 0 2px 5px -3px #000;
+	border-radius: 3px;
+}
+#org_news:before {
+	content: "Latest News";
+	display: inline-block;
+	font-style: normal;
+	background: #C20;
+	padding: 14px;
+	color: #FFF;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#org_news:after {
+    content: '';
+    display: block;
+    top: 0;
+    left: 80px;
+    background: linear-gradient(#FFF, rgba(255, 255, 255, 0));
+    height: 20px;
+}
+#org_news ul li {
+	list-style: none;
+	padding: 10px 0;
+}
+
 
 /*****RSS Feed****/
 

@@ -84,6 +84,18 @@ class Household < ActiveRecord::Base
     household
   end
   
+  def foster_animals
+    foster_animals = []
+    return foster_animals unless self.organization_locations.count > 0
+    self.organization_locations.each do |location|
+      next unless location.org_profiles.count > 0
+      location.org_profiles.each do |profile|
+        foster_animals << profile.animal
+      end
+    end
+    foster_animals
+  end
+  
   def activities
     #PublicActivity::Activity.where( trackable_id: @household.animal_ids, trackable_type: "Animal" ).order("created_at desc").first(10)
     PublicActivity::Activity.where(recipient: self).order("created_at desc")
