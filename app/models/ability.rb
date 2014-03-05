@@ -5,7 +5,10 @@ class Ability
   def initialize(user)
     can :manage, Animal do |animal|
       animal.new_record? or
-      animal.owner.users.include?(user)
+      animal.owner.users.include?(user) or
+      if animal.org_profile.present? && animal.org_profile.organization_location.present?
+        user.households.include?(animal.org_profile.organization_location.location)
+      end
     end
     
     can [:read, :change_owner], Animal do |animal|
