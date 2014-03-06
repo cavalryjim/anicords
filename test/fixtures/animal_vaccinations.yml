@@ -2,15 +2,18 @@
 #
 # Table name: animal_vaccinations
 #
-#  id               :integer          not null, primary key
-#  animal_id        :integer
-#  vaccination_id   :integer
-#  vaccination_date :date
-#  dosage           :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
-#  vaccination_due  :date
-#  tag_number       :string(255)
+#  id                 :integer          not null, primary key
+#  animal_id          :integer
+#  vaccination_id     :integer
+#  vaccination_date   :date
+#  dosage             :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  vaccination_due    :date
+#  tag_number         :string(255)
+#  notification_count :integer          default(0)
+#  notify             :boolean          default(TRUE)
+#  notify_on          :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

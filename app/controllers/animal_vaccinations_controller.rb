@@ -6,9 +6,8 @@ class AnimalVaccinationsController < ApplicationController
   
   def create
     @animal_vaccination = AnimalVaccination.new(animal_vaccination_params)
-    if @animal_vaccination.vaccination.frequency
-      @animal_vaccination.vaccination_due = @animal_vaccination.vaccination_date + @animal_vaccination.vaccination.frequency.days 
-    end
+    @animal_vaccination.set_due_date if @animal_vaccination.vaccination.frequency.present?
+    
     respond_to do |format|
       if @animal_vaccination.save 
         format.js

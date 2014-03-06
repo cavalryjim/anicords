@@ -2,15 +2,18 @@
 #
 # Table name: animal_vaccinations
 #
-#  id               :integer          not null, primary key
-#  animal_id        :integer
-#  vaccination_id   :integer
-#  vaccination_date :date
-#  dosage           :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
-#  vaccination_due  :date
-#  tag_number       :string(255)
+#  id                 :integer          not null, primary key
+#  animal_id          :integer
+#  vaccination_id     :integer
+#  vaccination_date   :date
+#  dosage             :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  vaccination_due    :date
+#  tag_number         :string(255)
+#  notification_count :integer          default(0)
+#  notify             :boolean          default(TRUE)
+#  notify_on          :date
 #
 
 class AnimalVaccination < ActiveRecord::Base
@@ -43,6 +46,18 @@ class AnimalVaccination < ActiveRecord::Base
   def remove_vaccination_notifications
     animal_vaccination =  AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: self.vaccination_id).last
     animal_vaccination.notifications.destroy_all if animal_vaccination.present?
+  end
+  
+  def set_due_date
+    frequency = self.vaccination.frequency.days
+    self.vaccination_due = self.vaccination_date + frequency 
+
+    if frequency > 30.days
+      self.notify_on = self.vaccination_due - 30.days
+    else 
+      self.notify_on = self.vaccination_due - (frequency / 2.days)
+    end
+    
   end
     
 end

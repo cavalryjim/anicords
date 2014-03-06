@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227135532) do
+ActiveRecord::Schema.define(version: 20140306000751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,9 @@ ActiveRecord::Schema.define(version: 20140227135532) do
     t.datetime "updated_at"
     t.date     "vaccination_due"
     t.string   "tag_number"
+    t.integer  "notification_count", default: 0
+    t.boolean  "notify",             default: true
+    t.date     "notify_on"
   end
 
   create_table "animals", force: true do |t|
