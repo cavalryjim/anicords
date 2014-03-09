@@ -284,6 +284,21 @@ class Animal < ActiveRecord::Base
     self.org_profile.organization_location_id = self.owner.organization_locations.first.id 
   end
   
+  def send_vaccination_notification(msg)
+    if self.owner.class.name == "Household"
+      users = self.owner.users
+    elsif self.owner.class.name == "Organization"
+      users = self.owner.admin_users
+      if self.org_profile.organization_location && self.org_profile.organization_location.location.class.name == "Household"
+        users = users + self.org_profile.organization_location.location.users
+      end
+    end
+    
+    users.each do |user|
+      UserMailer.vaccination_notice(user, self, msg).deliver 
+    end
+  end
+  
   private
   
   def new_health_profile

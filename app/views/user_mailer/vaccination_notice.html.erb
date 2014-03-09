@@ -1,0 +1,7 @@
+<p><%= @user.name_or_email %>,</p>
+
+<p><%=@animal.name%> is due the following vaccination:</p>
+
+<p><%=@msg%></p>
+
+<p><%= link_to "Update the record here: "  polymorphic_url([@animal.owner, @animal], action: :edit) %></p>

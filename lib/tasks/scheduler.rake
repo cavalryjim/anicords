@@ -18,3 +18,8 @@ task :animals_needing_org_profile => :environment do
   end
 end
 
+task :create_vaccination_notifications => :environment do
+  num = AnimalVaccination.create_vaccination_notifications
+  puts "Sent #{num} vaccination notifications"
+end
+

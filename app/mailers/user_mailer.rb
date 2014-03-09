@@ -72,6 +72,13 @@ class UserMailer < ActionMailer::Base
     mail to: 'james.davisphd@gmail.com', subject: "Dooliddl has animals that need org_profile!"
   end
   
+  def vaccination_notice(user, animal, msg)
+    @user = user
+    @animal = animal
+    @msg = msg
+    mail to: user.email, subject: @animal.name + " is due a vaccination"
+  end
+  
 private
   
   

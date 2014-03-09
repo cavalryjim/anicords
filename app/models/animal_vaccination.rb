@@ -43,6 +43,20 @@ class AnimalVaccination < ActiveRecord::Base
     self.vaccination_due
   end
   
+  def self.create_vaccination_notifications
+    vaccinations = AnimalVaccination.where(notify_on: Date.today)
+    num = 0
+    vaccinations.each do |vaccination|
+      msg = vaccination.name + " vaccination due."
+      animal = vaccination.animal
+      vaccination.notifications.create(message: msg, animal_id: animal.id, recipient: animal.owner  )
+      vaccination.update_attributes(notify_on: 5.days.from_now.to_date, notification_count: (vaccination.notification_count += 1))
+      animal.send_vaccination_notification(msg)
+      num += 1
+    end
+    return num
+  end
+  
   def remove_vaccination_notifications
     animal_vaccination =  AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: self.vaccination_id).last
     animal_vaccination.notifications.destroy_all if animal_vaccination.present?
@@ -57,7 +71,8 @@ class AnimalVaccination < ActiveRecord::Base
     else 
       self.notify_on = self.vaccination_due - (frequency / 2.days)
     end
-    
   end
+  
+  
     
 end

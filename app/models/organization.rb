@@ -30,6 +30,11 @@ class Organization < ActiveRecord::Base
   has_many  :locations, through: :organization_locations, source: :location, source_type: "Location"
   has_many  :adoptions, dependent: :destroy
   has_many  :notifications, as: :recipient, dependent: :destroy
+  has_many  :admin_users, through: :user_associations,
+            :class_name => "User",
+            :source => :user,
+            :conditions => {'user_associations.administrator' => true},
+            :order => 'created_at desc'
   
   accepts_nested_attributes_for :animals, allow_destroy: true
   after_create :make_organization_location
@@ -132,4 +137,5 @@ class Organization < ActiveRecord::Base
     end
     adoption.save
   end
+    
 end
