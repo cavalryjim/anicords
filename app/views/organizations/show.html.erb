@@ -27,7 +27,7 @@
   	  <div id="org_news" class="fouc">
 		<ul>
 		  <% @notifications.each do |notification| %>
-			<li><%= link_to_if notification.url.present?, notification.message, notification.url %></li>
+			<li><%= link_to_if notification.url.present?, org_notification(notification), notification.url %></li>
 		  <% end %>
 		</ul>
 	 </div>
