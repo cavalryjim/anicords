@@ -30,4 +30,12 @@ module OrganizationsHelper
     (owner.class.name.downcase << '_id').to_sym
   end
   
+  def org_notification(notification)
+    if notification.animal.present?
+      notification.animal.name + ": " + notification.message
+    else 
+      notification.message
+    end
+  end
+  
 end
