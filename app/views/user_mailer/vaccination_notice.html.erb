@@ -4,4 +4,4 @@
 
 <p><%=@msg%></p>
 
-<p><%= link_to "Update the record here: ", polymorphic_url([@animal.owner, @animal], action: :edit) %></p>
+<p><%= link_to "Update the record for " + @animal.name + " here.", polymorphic_url([@animal.owner, @animal], action: :edit) %></p>
