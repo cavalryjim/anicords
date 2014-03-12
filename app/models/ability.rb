@@ -60,6 +60,8 @@ class Ability
       organization.users.include?(user)
     end
     
+    can :read, Organization
+    
     can :manage, OrganizationLocation do |location|
       location.new_record? or
       location.organization.users.include?(user)
