@@ -60,11 +60,13 @@ class Ability
       organization.users.include?(user)
     end
     
-    can :read, Organization
+    can :read, OrganizationLocation do |location|
+      location.organization.users.include?(user)
+    end
     
     can :manage, OrganizationLocation do |location|
       location.new_record? or
-      location.organization.users.include?(user)
+      location.organization.admin_users.include?(user)
     end
     
     can :manage, OrgProfile do |profile|
@@ -94,7 +96,7 @@ class Ability
     can :manage, UserAssociation do |association|
       association.new_record? or
       association.user == user or
-      association.group.users.include?(user)
+      association.group.admin_users.include?(user)
     end
     
     can :read, Veterinarian

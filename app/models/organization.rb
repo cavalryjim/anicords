@@ -74,10 +74,15 @@ class Organization < ActiveRecord::Base
     pull_count = 0
     pets.each do |pet|
       #JDavis: check to see if the animal is already in dooliddl.
-      next if (org_petfinder_ids.include? pet.id.to_i) # && animal.updated_at < pet.last_update
-      animal = Animal.create(name: pet.name, owner: self, organization_id: self.id)
-      animal.build_org_profile
-      animal.org_profile.petfinder_id = pet.id
+      if (org_petfinder_ids.include? pet.id.to_i)
+        animal = OrgProfile.find_by_petfinder_id(pet.id.to_i).animal
+        next if animal.updated_at > pet.last_update
+      else
+        animal = Animal.create(name: pet.name, owner: self, organization_id: self.id)
+        animal.build_org_profile
+        animal.org_profile.petfinder_id = pet.id
+      end 
+      
       case pet.animal
       when 'Dog'
         animal.animal_type_id = 1
@@ -91,6 +96,7 @@ class Organization < ActiveRecord::Base
       when 'F'
         animal.gender = 'female'
       end
+      
       if pet.breeds
         #breed = Breed.where(name: pet.breeds.first, animal_type_id: animal.animal_type_id).first
         #animal.breed_id = breed.id if breed
@@ -100,14 +106,14 @@ class Organization < ActiveRecord::Base
         end
       end
       animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
-      animal.org_profile.organization_location_id = self.organization_locations.first.id
+      (animal.org_profile.organization_location_id = self.organization_locations.first.id) unless animal.org_profile.organization_location_id.present?
       animal.description = Sanitize.clean(pet.description)
       
       pull_count += 1 if animal.save
       
       if animal.id && pet.photos
         pet.photos.each do |pet_photo|
-          Picture.create(animal_id: animal.id, external_url: pet_photo.medium )
+          Picture.where(animal_id: animal.id, external_url: pet_photo.medium ).first_or_create
         end
       end
       
