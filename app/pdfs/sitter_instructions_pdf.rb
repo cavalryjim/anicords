@@ -10,8 +10,8 @@ class SitterInstructionsPdf < Prawn::Document
   end
   
   def top_header
-    image "#{Rails.root}/app/assets/images/dooliddl_f.png", at: [bounds.right - 200, bounds.top], width: 200
-    text_box "www.dooliddl.com", at: [bounds.right - 150, bounds.top - 56], style: :bold
+    image "#{Rails.root}/app/assets/images/petabyt_f.png", at: [bounds.right - 200, bounds.top], width: 200
+    text_box "www.petabyt.com", at: [bounds.right - 150, bounds.top - 56], style: :bold
     text "#{@animal}", size: 30, style: :bold 
     image open("#{ @animal.qr_code.remote_url }"), at: [bounds.right - 300, bounds.top], width: 90 if @animal.qr_code.present? 
     text "#{@animal.owner.name}", size: 20, style: :bold 

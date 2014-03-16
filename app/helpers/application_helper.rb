@@ -13,24 +13,24 @@ module ApplicationHelper
     d.strftime("%m/%d/%Y") if d
   end
   
-  def dooliddl_image
-    image_tag(s3_url('dooliddl_f.png'), size: '200x200', class: 'dooliddl_image')
+  def petabyt_image
+    image_tag(s3_url('petabyt_f.png'), size: '200x200', class: 'petabyt_image')
   end
   
   def link_to_home
     if session[:home_page]
-     link_to(dooliddl_image, session[:home_page])
+     link_to(petabyt_image, session[:home_page])
     elsif current_user && current_user.no_associations?
-     link_to(dooliddl_image, user_select_account_type_path)
+     link_to(petabyt_image, user_select_account_type_path)
     elsif current_user && current_user.user_associations.count == 1
-     link_to(dooliddl_image, current_user.user_associations.first.organization ) 
+     link_to(petabyt_image, current_user.user_associations.first.organization ) 
     else 
-     dooliddl_image 
+     petabyt_image 
     end
   end
   
   def s3_url(file_name)
-    'https://s3-us-west-2.amazonaws.com/dooliddl/app_images/' << file_name
+    'https://s3-us-west-2.amazonaws.com/petabyt/app_images/' << file_name
   end
   
   def button_small(text, button_id = '', button_class = '' )

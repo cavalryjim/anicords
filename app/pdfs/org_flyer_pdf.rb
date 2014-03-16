@@ -24,7 +24,7 @@ class OrgFlyerPdf < Prawn::Document
   
   def footer
     move_down 15
-    text "www.dooliddl.com", size: 20, style: :bold, align: :center 
+    text "www.petabyt.com", size: 20, style: :bold, align: :center 
     
   end
   

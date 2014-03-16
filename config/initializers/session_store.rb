@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-Anicords::Application.config.session_store :cookie_store, key: '_dooliddl_session'
+Anicords::Application.config.session_store :cookie_store, key: '_petabyt_session'

@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "james@dooliddl.com",
+  default from: "james@petabyt.com",
           bcc: ['james.davisphd@gmail.com', 'tylercarruth@live.com']
  
 
@@ -10,20 +10,20 @@ class UserMailer < ActionMailer::Base
   #
   def signup_confirmation(user)
     @user = user
-    mail to: user.email, subject: "Welcome to DooLiddl"
+    mail to: user.email, subject: "Welcome to Petabyt"
   end
   
   def new_account_notice(user, password)
     @user = user
     @password = password
-    mail to: @user.email, subject: "Welcome to DooLiddl"
+    mail to: @user.email, subject: "Welcome to Petabyt"
   end
   
   def added_to_group(user_association_id)
     user_association = UserAssociation.find(user_association_id)
     @user = user_association.user
     @group = user_association.group
-    mail to: @user.email, subject: "Added to DooLiddl " + user_association.group_type
+    mail to: @user.email, subject: "Added to Petabyt " + user_association.group_type
   end
   
   def created_and_added_to_group(user_association_id, password)
@@ -31,14 +31,14 @@ class UserMailer < ActionMailer::Base
     @user = user_association.user
     @group = user_association.group
     @password = password
-    mail to: @user.email, subject: "Welcome to DooLiddl"
+    mail to: @user.email, subject: "Welcome to Petabyt"
   end
   
   def added_to_household(user, household) # JDavis: polymorphism will remove this
     @user = user
     @household = household
     #puts "At user_mailer sending email"
-    mail to: user.email, subject: "Added to DooLiddl Household"
+    mail to: user.email, subject: "Added to Petabyt Household"
   end
   
   def created_and_added_to_household(user, password, household) # JDavis: polymorphism will remove this
@@ -46,30 +46,30 @@ class UserMailer < ActionMailer::Base
     @household = household
     @password = password
     #puts "At user_mailer sending email"
-    mail to: user.email, subject: "Welcome to DooLiddl"
+    mail to: user.email, subject: "Welcome to Petabyt"
   end
   
   def created_and_added_to_service_provider(user, password, service_provider) # JDavis: polymorphism will remove this
     @user = user
     @service_provider = service_provider
     @password = password
-    mail to: user.email, subject: "Welcome to DooLiddl"
+    mail to: user.email, subject: "Welcome to Petabyt"
   end
   
   def added_to_service_provider(user, service_provider) # JDavis: polymorphism will remove this
     @user = user
     @service_provider = service_provider
-    mail to: user.email, subject: "Added to DooLiddl Serive Provider"
+    mail to: user.email, subject: "Added to Petabyt Serive Provider"
   end
   
   def animal_transfer_notice(user, animal)
     @user = user
     @animal = animal
-    mail to: user.email, subject: "Health Record for " + @animal.name + " on DooLiddl"
+    mail to: user.email, subject: "Health Record for " + @animal.name + " on Petabyt"
   end
   
   def animals_without_org_profile
-    mail to: 'james.davisphd@gmail.com', subject: "Dooliddl has animals that need org_profile!"
+    mail to: 'james.davisphd@gmail.com', subject: "Petabyt has animals that need org_profile!"
   end
   
   def vaccination_notice(user, animal, msg)
