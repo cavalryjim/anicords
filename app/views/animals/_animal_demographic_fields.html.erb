@@ -76,7 +76,7 @@
 	</div>
 	<div class="large-4 columns">
 	  <%= f.label :neutered_date, 'neuter / spay date' %>
-	  <%= f.text_field :neutered_date, value: mo_da_yr(@animal.neutered_date) , class: "datepicker, neuter_disable", placeholder: "date neutered / spayed", disabled: !@animal.neutered %>
+	  <%= f.text_field :neutered_date, value: mo_da_yr(@animal.neutered_date) , class: "datepicker neuter_disable", placeholder: "date neutered / spayed", disabled: !@animal.neutered %>
 	</div>
     <div class="large-4 columns">
       <%= f.label :neuter_location, 'neuter/spay location' %>
