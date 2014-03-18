@@ -57,6 +57,10 @@ class Ability
     
     can :manage, Organization do |organization|
       organization.new_record? or
+      organization.admin_users.include?(user)
+    end
+    
+    can :read, Organization do |organization|
       organization.users.include?(user)
     end
     
