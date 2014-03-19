@@ -199,16 +199,16 @@ class AnimalsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
       #params.require(:animal).permit!
-      params.require(:animal).permit(:name, :animal_type_id, :breed, :weight, :description, :household_id, :breeder_id,
+      params.require(:animal).permit(:name, :animal_type_id, :breed, :description, :household_id, :breeder_id,
        :dob, :pedigree, :store_dir, :remove_pedigree, :show_name, :registration_number, :pedigree_chart, :health_certification,
        :vaccination_record, :shampoo_id, :vitamin_id, :treat_id, :remove_health_certification, :remove_vaccination_record,
-       :volume_per_serving, :serving_measure, :servings_per_day, :weight_measure, :gender, :neutered, :food_id, 
+       :volume_per_serving, :serving_measure, :servings_per_day, :gender, :neutered, :food_id, 
        :microchip_id, :special_instructions, :owner_id, :owner_type, :owner, :neutered_date, :registration_club_id,
        :fur_color, :organization_id, :size, :avatar_uid, :avatar_name, :avatar, :microchip_brand, :microchipped, :pedigreed,
        :neuter_location, :microchip_brand_id,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids, :breed_ids,
        org_profile_attributes: [ :id, :animal_id, :intake_date, :intake_reason, :organization_location_id, :neuter_location_id,
-         :neuter_location_type, :neuter_location, :intake_weight, :intake_weight_measure, :petfinder_id, :shelter_specific_id,    
+         :neuter_location_type, :neuter_location, :petfinder_id, :shelter_specific_id,    
          :thumbnail_url, :adoption_date, :transferee_first_name, :transferee_last_name, :transferee_phone,
          :transferee_city, :transferee_state, :transferee_zip, :_destroy],
        health_profile_attributes: [ :id, :animal_id, :last_exam_date, :last_exam_location, :heartworm_test_date,     

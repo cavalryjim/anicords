@@ -5,7 +5,6 @@
 #  id                   :integer          not null, primary key
 #  name                 :string(255)
 #  animal_type_id       :integer
-#  weight               :decimal(, )
 #  description          :text
 #  breeder_id           :integer
 #  created_at           :datetime
@@ -24,7 +23,6 @@
 #  shampoo_id           :integer
 #  treat_id             :integer
 #  vitamin_id           :integer
-#  weight_measure       :string(255)
 #  gender               :string(255)
 #  neutered             :boolean
 #  food_id              :integer
@@ -81,6 +79,7 @@ class Animal < ActiveRecord::Base
   has_many   :animal_breeds, dependent: :destroy
   has_many   :adoptions, dependent: :destroy
   has_many   :notifications, dependent: :destroy
+  has_many   :weights, dependent: :destroy
   accepts_nested_attributes_for :documents, allow_destroy: true
   accepts_nested_attributes_for :animal_vaccinations, allow_destroy: true
   accepts_nested_attributes_for :pictures, allow_destroy: true
@@ -265,6 +264,10 @@ class Animal < ActiveRecord::Base
   
   def vaccination_documents
     self.documents.where(file_type: 'vaccination')
+  end
+  
+  def weight
+    self.weights.order('measure_date').last
   end
   
   def rabies_documents

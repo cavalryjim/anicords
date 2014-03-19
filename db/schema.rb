@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306000751) do
+ActiveRecord::Schema.define(version: 20140319225438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,7 +162,6 @@ ActiveRecord::Schema.define(version: 20140306000751) do
   create_table "animals", force: true do |t|
     t.string   "name"
     t.integer  "animal_type_id"
-    t.decimal  "weight"
     t.text     "description"
     t.integer  "breeder_id"
     t.datetime "created_at"
@@ -181,7 +180,6 @@ ActiveRecord::Schema.define(version: 20140306000751) do
     t.integer  "shampoo_id"
     t.integer  "treat_id"
     t.integer  "vitamin_id"
-    t.string   "weight_measure"
     t.string   "gender"
     t.boolean  "neutered"
     t.integer  "food_id"
@@ -540,6 +538,15 @@ ActiveRecord::Schema.define(version: 20140306000751) do
   create_table "vitamins", force: true do |t|
     t.string   "name"
     t.integer  "animal_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "weights", force: true do |t|
+    t.float    "measure_num"
+    t.string   "measure_unit"
+    t.date     "measure_date"
+    t.integer  "animal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
