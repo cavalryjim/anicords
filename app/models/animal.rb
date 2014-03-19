@@ -85,6 +85,7 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :pictures, allow_destroy: true
   accepts_nested_attributes_for :org_profile, allow_destroy: true
   accepts_nested_attributes_for :health_profile, allow_destroy: true
+  accepts_nested_attributes_for :weights, allow_destroy: true
   
   validates_presence_of :name
   #validate :file_size_validation
