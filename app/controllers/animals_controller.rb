@@ -214,6 +214,7 @@ class AnimalsController < ApplicationController
        health_profile_attributes: [ :id, :animal_id, :last_exam_date, :last_exam_location, :heartworm_test_date,     
          :heartworm_test_location, :heartworm_test_result, :fiv_felv_test_date, :fiv_felv_test_location,  
          :fiv_felv_test_result, :_destroy],
+       weight_attributes: [ :id, :measure_num, :measure_unit, :measure_date, :animal_id, :_destroy],
        medical_diagnosis_ids: [], medication_ids: [], allergy_ids: [], personality_type_ids: [], breed_ids: [] )
     end
 end
