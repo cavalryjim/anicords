@@ -1,5 +1,3 @@
-<% content_for :title, "Animal" %>  
-	
 <%= form_for [@custodian, @animal], remote: true, html: {id: 'animal_form', "data-abide" => ''} do |f| %>
   
   <div id='sections'><%= render 'sections', f: f %></div>

@@ -17,7 +17,16 @@
  
  <fieldset id="weight_fieldset">
    <legend>weight</legend>
-     <%= line_chart @animal.weight_chart_data %>
+     <%= line_chart @animal.weight_chart_data if @animal.weights.count > 0 %>
+     
+     <%= form_for [@animal, Weight.new], remote: true, html: {id: 'animal_weight_form', "data-abide" => ''} do |f| %>
+     
+       
+       <%= f.hidden_field :animal_id, value: @animal.id %>	 
+       <div class="actions">
+		<%= f.submit "add weight" %>
+	   </div>
+     <% end %>
  </fieldset>
  
   

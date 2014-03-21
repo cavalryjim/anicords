@@ -29,6 +29,7 @@ Anicords::Application.routes.draw do
     resources :animal_medications
     resources :animal_associations
     resources :org_profiles
+    resources :weights
   end
   
   #resources :documents
