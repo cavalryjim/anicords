@@ -89,6 +89,7 @@ GEM
       uuidtools
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    chartkick (1.2.2)
     chunky_png (1.2.9)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -141,6 +142,8 @@ GEM
     formatador (0.2.4)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
+    groupdate (2.1.0)
+      activerecord (>= 3.0.0)
     guard (2.3.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -395,6 +398,7 @@ DEPENDENCIES
   capybara
   carrierwave (= 0.9.0)
   carrierwave_direct (= 0.0.13)
+  chartkick (= 1.2.2)
   coffee-rails (= 4.0.1)
   devise (= 3.2.2)
   dragonfly (= 1.0.2)
@@ -403,6 +407,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fog (= 1.19.0)
+  groupdate (= 2.1.0)
   guard-rspec
   html5_validators (= 1.1.2)
   jbuilder (~> 1.2)

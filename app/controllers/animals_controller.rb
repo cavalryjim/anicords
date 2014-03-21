@@ -14,7 +14,9 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.json
   def show
-    @transfer_id = AnimalTransfer.where(animal_id: @animal.id, transferee: current_user).first.id if current_user.animal_transfers.map{|at| at.animal_id}.include?(@animal.id)
+    if current_user && current_user.animal_transfers.map{|at| at.animal_id}.include?(@animal.id)
+      @transfer_id = AnimalTransfer.where(animal_id: @animal.id, transferee: current_user).first.id 
+    end
     
     respond_to do |format|
       format.js
