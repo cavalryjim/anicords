@@ -288,6 +288,10 @@ class Animal < ActiveRecord::Base
     self.org_profile.organization_location_id = self.owner.organization_locations.first.id 
   end
   
+  def weight_chart_data
+    self.weights.order(:measure_date).map{ |w| [w.measure_date.to_datetime, w.measure_num] }
+  end
+  
   def send_vaccination_notification(msg)
     if self.owner.class.name == "Household"
       users = self.owner.users
