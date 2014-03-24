@@ -110,6 +110,11 @@ class Ability
       veterinarian.users.include?(user)
     end
     
+    can :manage, Weight do |weight|
+      weight.new_record? or
+      can? :manage, weight.animal
+    end
+    
     
     # Define abilities for the passed in user here. For example:
     #

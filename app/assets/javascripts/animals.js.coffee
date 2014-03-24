@@ -292,7 +292,7 @@ jQuery ->
       results: (data, page) -> 
         results: data
   
-  $('#dialog_medication_id').select2
+  $('#animal_medication_medication_id').select2
     placeholder: "medication"
     width: "100%"
     id: (obj) ->
@@ -309,7 +309,7 @@ jQuery ->
         # since we are using custom formatting functions we do not need to alter remote JSON data
         results: data
         
-  $('#dialog_vaccination_id').select2
+  $('#animal_vaccination_vaccination_id').select2
     placeholder: "vaccination"
     width: "100%"
     id: (obj) ->
@@ -424,7 +424,19 @@ jQuery ->
   $("#animal_microchipped").change ->
      $(".microchip_disable").prop('disabled', !$("#animal_microchipped").is(':checked'))
     
-    
+  $("#animal_health_section").click (event) ->
+    #$(window).trigger('resize')
+    #$(this).foundation('section', 'reflow')
+    #$("#animal_weight_chart_div").load("/animals/65/weight_chart")
+    #alert $("#weight_chart").width()
+    #$("#weight_chart").children().width($("#animal_weight_chart_div").width()-1)
+    #$("#chart-1").width($("#animal_weight_chart_div").width()-1)
+    #$("#animal_weight_chart_div").show()
+    #$("#animal_weight_chart_div").resize()
+    #$(window).width("900px")
+    $(window).trigger('resize')
+    #$("#animal_weight_chart_div").css("width", "800px")
+  
   #----------end of jquery dialog----------------------#  
   
   

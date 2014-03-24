@@ -1,24 +1,17 @@
 <% if @organization.present? %>
-	$("form#organization_animal_form").on("ajax:success", function(event, data, status, response) {
+	$("form.animal_form").on("ajax:success", function(event, data, status, response) {
 	  $(".flash_alert").removeClass("hidden");
 	  $(".flash_alert").show().delay(2000).fadeOut();
 	  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
+	  $("form.animal_form").unbind();
 	  $("tr#<%=@animal.id%>").html("<%= j(render partial: 'organizations/animal_table_row' , locals: { animal: @animal }) %>");
-	  $("form#organization_animal_health_form").unbind();
-	}).on("ajax:error", function(event, response, error) {
-	  return alert("There was a problem.  Please try again later.");
-	});
-	$("form#organization_animal_health_form").on("ajax:success", function(event, data, status, response) {
-	  $(".flash_alert").removeClass("hidden");
-	  $(".flash_alert").show().delay(2000).fadeOut();
-	  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
-	  $("form#organization_animal_form").unbind();
 	}).on("ajax:error", function(event, response, error) {
 	  return alert("There was a problem.  Please try again later.");
 	});
 <% elsif @household.present? %>
-	$("form#animal_form").on("ajax:success", function(event, data, status, response) {
+	$("form.animal_form").on("ajax:success", function(event, data, status, response) {
 	  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
+	  $("form.animal_form").unbind();
 	  $(".flash_alert").removeClass("hidden");
 	  $(".flash_alert").show().delay(2000).fadeOut();
 	  $("section.disabled").removeClass("disabled");

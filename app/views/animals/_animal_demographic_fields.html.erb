@@ -1,4 +1,5 @@
-<% if @organization %>
+<%= form_for [@custodian, @animal], remote: true, html: {id: 'animal_form', "data-abide" => '', class: "animal_form"} do |f| %>
+ <% if @organization %>
   <fieldset>
   	<legend>Intake info</legend>
   	<%= f.fields_for :org_profile do |builder| %>
@@ -19,9 +20,9 @@
 	</div>
   <% end %>
   </fieldset>
-<% end %>
+ <% end %>
 
-<fieldset>
+ <fieldset>
   <legend>Information</legend>
   <div class="row">
 	<div class="large-4 columns">
@@ -126,4 +127,14 @@
 	  <%= f.text_area :description, placeholder: "description / distinguishing characteristics", class: "text_area_10em" %>
 	</div>
   </div>
-</fieldset>
+ </fieldset>
+  <%= f.hidden_field :owner_id, value: @owner.id %>	 
+  <%= f.hidden_field :owner_type, value: @owner.class.name %> 
+  
+  
+  <div class="actions">
+	<%= f.submit "Save" %>
+  </div>
+  <%= token_tag form_authenticity_token %>
+<% end %>
+

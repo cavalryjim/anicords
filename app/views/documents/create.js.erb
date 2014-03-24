@@ -1,4 +1,4 @@
-$("form#organization_document_upload").on("ajax:success", function(event, data, status, response) {
+$("form#animal_document_upload").on("ajax:success", function(event, data, status, response) {
   $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
   $("#animal_document_div").html('<%= j render("animals/document_fieldsets") %>')
   $(this).reset();

@@ -14,9 +14,11 @@
 #
 
 class Document < ActiveRecord::Base
+  include ActiveModel::Validations
   belongs_to :animal
   
   validates_presence_of :animal_id
+  validates_presence_of :file_type
   validates_size_of :file, maximum: 2048.kilobytes
   #validates_property :format, of: :file, in: ['pdf', 'tiff', 'doc', 'docx', 'xls', 'xlsx', 'zip']
   validate :file_xor_external_url

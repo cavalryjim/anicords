@@ -98,9 +98,9 @@ function validateFiles(inputFile, type) {
   if (type == 'picture') {
   	var extErrorMessage = "Only .bmp, .jpg, or .png files are allowed";
     var allowedExtension = ["bmp", "jpg", "jpeg", "png"];
-  } else {
-    var extErrorMessage = "Only .pdf or .tif files are allowed";
-    var allowedExtension = ["pdf", "tif", "tiff"];
+  //} else {
+  //  var extErrorMessage = "Only .pdf or .tif files are allowed";
+  //  var allowedExtension = ["pdf", "tif", "tiff"];
   };
  
   var extName;
@@ -111,7 +111,7 @@ function validateFiles(inputFile, type) {
   $.each(inputFile.files, function() {
     if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
     extName = this.name.split('.').pop();
-    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+    if ((type == 'picture') && ($.inArray(extName, allowedExtension) == -1)) {extError=true;};
   });
   if (sizeExceeded) {
     window.alert(maxExceededMessage);

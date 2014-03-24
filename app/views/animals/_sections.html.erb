@@ -3,15 +3,15 @@
   <%= content_tag :section do %>
     <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
 	<div class="content" data-section-content>  
-	  <%= render 'animal_demographic_fields', f: f %>	
+	  <%= render 'animal_demographic_fields' %>	
 	</div>
   <% end %>
 	
 	
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
+  <%= content_tag :section, id: 'animal_health_section', :class => ('disabled' if @animal.new_record?) do %>
     <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
-	<div class="content" data-section-content>
-	  <%= render 'animal_health_fields', f: f %>
+	<div class="content health_tab" data-section-content>
+	  <%= render 'animal_health_fields' %>
 	</div>
   <% end %>
 	  
@@ -20,13 +20,20 @@
   <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
 	<p class="title" data-section-title><a href="#panel3">Preferences</a></p>
 	<div class="content" data-section-content>
-	  <%= render 'animal_preference_fields', f: f %>
+	  <%= render 'animal_preference_fields' %>
 	</div>
   <% end %>
   
-	  
   <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel4">Service Providers</a></p>
+	<p class="title" data-section-title><a href="#panel4">Documents</a></p>
+	<div class="content" data-section-content>
+	  <%= render 'documents' %>
+	</div>
+  <% end %>
+  
+ <% if @household %>	  
+  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
+	<p class="title" data-section-title><a href="#panel5">Service Providers</a></p>
 	<div class="content" data-section-content>
 	     <div class="row">	
 		  <div class="large-12 columns">
@@ -36,5 +43,15 @@
 		</div>
     </div>
   <% end %>
+ <% end %>
+ 
+ <% if @organization %>
+  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
+	<p class="title" data-section-title><a href="#panel6">Pictures</a></p>
+	<div class="content" data-section-content>
+	  <%= render 'animals/pictures' %>
+	</div>
+  <% end %>
+ <% end %>
   
 </div>

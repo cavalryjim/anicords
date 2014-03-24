@@ -1,4 +1,5 @@
-<fieldset>
+<%= form_for [@custodian, @animal], remote: true, html: {id: 'animal_preferences_form', "data-abide" => '', class: 'animal_form'} do |f| %>
+ <fieldset>
   <legend>Diet</legend>
   <div class="row">
 	<div class="large-10 columns">
@@ -36,9 +37,9 @@
 	<%= f.hidden_field :serving_measure %>
 	<%= f.hidden_field :servings_per_day %>
   </div>
-</fieldset>
+ </fieldset>
 	  
-<fieldset>
+ <fieldset>
   <legend>Preferences</legend>
   <div class="row">
 	<div class="large-10 columns">
@@ -72,4 +73,8 @@
 	  <%= f.text_area :special_instructions, placeholder: "special care instructions" %>
 	</div>
   </div>
-</fieldset>
+ </fieldset>
+ <div class="actions">
+   <%= f.submit "save" %>
+ </div>
+<% end %>

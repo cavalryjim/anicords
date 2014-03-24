@@ -1,26 +1,56 @@
 <fieldset>
- <legend>Medical History</legend>
-
-  <div class="row">
-    <div class="large-10 columns bottom_padding_1em">
-	  <%= f.label :medical_diagnosis_ids, "medical diagnosis" %>
-	  <%= f.text_field :medical_diagnosis_ids %>
-    </div>
-  </div>
+  <legend>Medical History</legend>
   
-  <div class="row">
-	<div class="large-10 columns bottom_padding_1em">
-      <%= f.label :allergy_ids, "allergies" %>
-	  <%= f.text_field :allergy_ids %>
-	</div>
-  </div>
+  <fieldset>
+  	<legend>diagnoses</legend>
+	  <%= form_for [@custodian, @animal], remote: true, html: {id: 'animal_medical_history_form', "data-abide" => '', class: 'animal_form'} do |f| %>
+		<div class="row">
+		  <div class="large-10 columns bottom_padding_1em">
+			<%= f.label :medical_diagnosis_ids, "medical diagnosis" %>
+			<%= f.text_field :medical_diagnosis_ids %>
+		  </div>
+		</div>
+		  
+		<div class="row">
+	      <div class="large-10 columns bottom_padding_1em">
+		    <%= f.label :allergy_ids, "allergies" %>
+			<%= f.text_field :allergy_ids %>
+	      </div>
+		</div>
+	    <div class="actions">
+		  <%= f.submit "save" %>
+	    </div>
+	    
+	  <% end %>
+  </fieldset>
  
  <fieldset id="weight_fieldset">
    <legend>weight</legend>
-     <%= line_chart @animal.weight_chart_data if @animal.weights.count > 0 %>
+   <div class="row">
+     <div class="large-12 columns">
+       <div id="animal_weight_chart_div"><%= render 'animals/weight_chart'%></div>
+     </div>
+   </div>
      
      <%= form_for [@animal, Weight.new], remote: true, html: {id: 'animal_weight_form', "data-abide" => ''} do |f| %>
-     
+       <div class="row">
+  	     <div class="large-4 columns">
+  		   <%= f.label :measure_num, 'weight' %>
+	       <%= f.text_field :measure_num, placeholder:"weight" %>
+	       <small class="error">Weight required.</small>
+         </div>
+  		 <div class="large-4 columns">
+  		   <%= f.label :measure_unit, "lbs / kg"%>
+		   <%= f.select :measure_unit, options_for_select(wt_options, 'lbs'), { }, {class: "regular_select"}  %>
+		   <small class="error">Select lbs or kg.</small>
+  		 </div>
+  		 <div class="large-4 columns">
+  		   <%= f.label :measure_date, "date"%>
+  		   <%= f.text_field :measure_date, value: Date.today , class: "datepicker", placeholder: "date" %>
+  		   <small class="error">Date required.</small>
+  		 </div>
+ 	   </div>
+       
        
        <%= f.hidden_field :animal_id, value: @animal.id %>	 
        <div class="actions">
@@ -32,33 +62,46 @@
   
  <fieldset id="medication_fieldset">
   <legend>medications</legend>
-  <div class="row">
-    <div class="large-10 columns"> 
-	  <%= text_field_tag 'dialog_medication_id', nil, { class: 'select' }  %>
-	</div>
-  </div>
-	    
-  <div class="row">
-	<div class="large-4 columns">
-	   <%= label_tag 'dialog_medication_volume', 'volume' %>
-	   <%= text_field_tag 'dialog_medication_volume', nil, { placeholder: "volume" } %>
-	</div>
-	<div class="large-4 columns">
-	  <%= label_tag 'dialog_medication_route', 'route' %>
-	  <%= select_tag 'dialog_medication_route', medication_routes, prompt: "select route", class: "regular_select" %>
-	</div>
-	<div class="large-4 columns">
-	  <%= label_tag 'dialog_medication_interval', 'interval' %>
-	  <%= select_tag 'dialog_medication_interval', medication_intervals, prompt: "select interval", class: "regular_select" %>
-	</div>
-  </div>
-  
-
-  <div class="row">	
-    <div class="large-12 columns">
-	  <%= button_small("add medication", "add_medication")  %>
-    </div>
-  </div>
+  <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_medication_form', "data-abide" => '', class: 'animal_form'} do |f| %>
+	  <div class="row">
+	    <div class="large-10 columns"> 
+	      <%= f.label :medication_id, 'medication' %>
+		  <%= f.text_field :medication_id, class: 'select'  %>
+		  <small class="error">Medication required.</small>
+		  <!--<%= text_field_tag 'dialog_medication_id', nil, { class: 'select' }  %>-->
+		</div>
+	  </div>
+		    
+	  <div class="row">
+		<div class="large-4 columns">
+		   <!--<%= label_tag 'dialog_medication_volume', 'volume' %>
+		   <%= text_field_tag 'dialog_medication_volume', nil, { placeholder: "volume" } %>-->
+		   <%= f.label :volume, 'volume' %>
+		   <%= f.text_field :volume, placeholder: 'volume'  %>
+		</div>
+		<div class="large-4 columns">
+		  <!--<%= label_tag 'dialog_medication_route', 'route' %>
+		  <%= select_tag 'dialog_medication_route', medication_routes, prompt: "select route", class: "regular_select" %>-->
+		  <%= f.label :route, 'route' %>
+		  <%= f.select :route, medication_routes, {include_blank: true, prompt: 'select route'}, {class: 'regular_select'} %>
+		</div>
+		<div class="large-4 columns">
+		  <!--<%= label_tag 'dialog_medication_interval', 'interval' %>
+		  <%= select_tag 'dialog_medication_interval', medication_intervals, prompt: "select interval", class: "regular_select" %>-->
+		  <%= f.label :interval, 'interval' %>
+		  <%= f.select :interval, medication_intervals, {include_blank: true, prompt: 'select interval'}, {class: 'regular_select'} %>
+		</div>
+	  </div>
+	  
+	
+	  <%= f.hidden_field :animal_id, value: @animal.id %>  
+	  <div class="row">	
+	    <div class="large-12 columns">
+		  <!--<%= button_small("add medication", "add_medication")  %>-->
+	      <%= f.submit "add medication" %>  
+	    </div>
+	  </div>
+  <% end %>
 
   <div class="row">	
     <div class="large-12 columns">
@@ -70,35 +113,42 @@
 </fieldset>
 
 <fieldset id="vaccination_fieldset">
- <legend>Vaccination</legend>
- <div id="vaccination_dialog" title="Vaccination information">
-	
-  <div class="row">
-    <div class="large-12 columns">
-      <%= label_tag 'dialog_vaccination_id', 'vaccination' %> 
-	  <%= text_field_tag 'dialog_vaccination_id', nil, { class: 'select' }  %>
-	</div>
-  </div>
+  <legend>Vaccination</legend>
+  <%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => '', class: 'not_hidden'} do |f| %>
+    <div class="row ">
+      <div class="large-12 columns">
+        <!--<%= label_tag 'dialog_vaccination_id', 'vaccination' %> 
+	    <%= text_field_tag 'dialog_vaccination_id', nil, { class: 'select' }  %>-->
+	    <%= f.label :vaccination_id, 'vaccination' %>
+	    <%= f.text_field :vaccination_id, class: 'select'  %>
+	    <small class="error">Vaccination required.</small>
+	  </div>
+    </div>
 	    
-  <div class="row">
-	<div class="large-6 columns">
-	   <%= label_tag 'dialog_vaccination_date', 'vaccination date' %>
-	   <%= text_field_tag 'dialog_vaccination_date', nil, { class: "datepicker", placeholder: "select a date" } %>
-	   <small class="error">Vaccination date required.</small>
-	</div>
-	<div class="large-6 columns">
-	  <%= label_tag 'dialog_tag_number', 'tag / lot number' %>
-	  <%= text_field_tag 'dialog_tag_number', nil, { placeholder: "vaccination number (ex: rabies tag #)" } %>
-	</div>
-  </div>
-  
- </div>
+    <div class="row">
+	  <div class="large-6 columns">
+	    <!--<%= label_tag 'dialog_vaccination_date', 'vaccination date' %>
+	    <%= text_field_tag 'dialog_vaccination_date', nil, { class: "datepicker", placeholder: "select a date" } %>-->
+	    <%= f.label :vaccination_date, 'vaccination date'%>
+	    <%= f.text_field :vaccination_date, class: "datepicker", placeholder: "select a date" %>
+	    <small class="error">Vaccination date required.</small>
+	  </div>
+	  <div class="large-6 columns">
+	    <!--<%= label_tag 'dialog_tag_number', 'tag / lot number' %>
+	    <%= text_field_tag 'dialog_tag_number', nil, { placeholder: "vaccination number (ex: rabies tag #)" } %>-->
+	    <%= f.label :tag_number, 'tag / lot number' %>
+		<%= f.text_field :tag_number, placeholder: "vaccination number (ex: rabies tag #)" %> 
+	  </div>
+    </div>
 
- <div class="row">	
-  <div class="large-12 columns">
-	<%= button_small("add vaccination", "add_vaccination")  %>
-  </div>
- </div>
+   <%= f.hidden_field :animal_id, value: @animal.id %>  
+   <div class="row">	
+    <div class="large-12 columns">
+	  <!--<%= button_small("add vaccination", "add_vaccination")  %>-->
+	  <%= f.submit "add vaccination" %>  
+    </div>
+   </div>
+  <% end %>
 
  <div class="row">	
   <div class="large-12 columns">
@@ -108,8 +158,9 @@
 </fieldset>
 
 <fieldset>
- <legend>Screening</legend>		
- <%= f.fields_for :health_profile do |p| %>
+ <legend>Screening</legend>	
+ <%= form_for [@custodian, @animal], remote: true, html: {id: 'animal_screening_form', "data-abide" => '', class: 'animal_form'} do |f| %>
+   <%= f.fields_for :health_profile do |p| %>
 	<div class="row">
 	  <div class="large-4 columns">
 		<%= p.label :last_exam_date, 'last exam date' %>
@@ -136,22 +187,29 @@
 		<%= p.select :heartworm_test_result, options_for_select(test_result_options, @animal.health_profile.heartworm_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
 	  </div>
 	</div>
-   <% if @animal.species == 'cat' %>
-	<div class="row">
-	  <div class="large-4 columns">
-		<%= p.label :fiv_felv_test_date, 'FIV/FeLV test date' %>
-		<%= p.text_field :fiv_felv_test_date, value: mo_da_yr(@animal.health_profile.fiv_felv_test_date) , class: "datepicker", placeholder: "last exam date" %>
+    <% if @animal.species == 'cat' %>
+	  <div class="row">
+	    <div class="large-4 columns">
+		  <%= p.label :fiv_felv_test_date, 'FIV/FeLV test date' %>
+		  <%= p.text_field :fiv_felv_test_date, value: mo_da_yr(@animal.health_profile.fiv_felv_test_date) , class: "datepicker", placeholder: "last exam date" %>
+	    </div>
+	    <div class="large-4 columns">
+		  <%= p.label :fiv_felv_test_location, 'FIV/FeLV test location' %>
+		  <%= p.text_field :fiv_felv_test_location, placeholder: "heartworm test location" %>
+	    </div>
+	    <div class="large-4 columns">
+		  <%= p.label :fiv_felv_test_result, 'FIV/FeLV test result' %>
+		  <%= p.select :fiv_felv_test_result, options_for_select(test_result_options, @animal.health_profile.heartworm_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
+	    </div>
 	  </div>
-	  <div class="large-4 columns">
-		<%= p.label :fiv_felv_test_location, 'FIV/FeLV test location' %>
-		<%= p.text_field :fiv_felv_test_location, placeholder: "heartworm test location" %>
-	  </div>
-	  <div class="large-4 columns">
-		<%= p.label :fiv_felv_test_result, 'FIV/FeLV test result' %>
-		<%= p.select :fiv_felv_test_result, options_for_select(test_result_options, @animal.health_profile.heartworm_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
-	  </div>
-	</div>
+    <% end %>
+   <%= p.hidden_field :id %>
+   <%= p.hidden_field :animal_id, value: @animal.id %>  
    <% end %>
-	<%= p.hidden_field :id %>	
+   <div class="row">	
+    <div class="large-12 columns">
+	  <%= f.submit "save" %>  
+    </div>
+   </div>
  <% end %>
 </fieldset>

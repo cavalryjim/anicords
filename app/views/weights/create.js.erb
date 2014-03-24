@@ -1,0 +1,10 @@
+alert("ho yeah");
+$("form#animal_weight_form").on("ajax:success", function(event, data, status, response) {
+  #alert("oh yeah");
+  $("#animal_weight_chart_div").html('<%= j render("animals/weight_chart") %>');
+  $(this)[0].reset();
+  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
+}).on("ajax:error", function(event, response, error) {
+  $(this)[0].reset();
+  return alert("There was a problem.  Please try again later.");
+});

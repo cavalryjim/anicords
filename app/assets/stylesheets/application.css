@@ -305,6 +305,13 @@ button, input[type="submit"] {
   background-color: #00FF00 !important;
 }
 
+
+/*****trying to fix an error with foundation's sections and displaying charts****/
+/***
+.section-container.auto > section > .content.health_tab {display:block; visibility:hidden;}
+.section-container.auto > section.active > .content.health_tab {visibility:visible;}
+***/
+
 /*****News Feed****/
 /***
 #org_news {

@@ -14,5 +14,8 @@
 class Weight < ActiveRecord::Base
   belongs_to :animal
    
-  validates_presence_of :animal_id, :measure_num, :measure_unit, :measure_date
+  validates_presence_of :animal_id 
+  validates_presence_of :measure_num 
+  validates_presence_of :measure_unit
+  validates_presence_of :measure_date
 end

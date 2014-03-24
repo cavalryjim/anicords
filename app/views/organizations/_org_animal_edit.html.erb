@@ -11,60 +11,6 @@
   </div>
 </div>
 
-<div class="section-container auto" data-section>
-  <section class="active">
-    <p class="title" data-section-title><a href="#panel1">Intake</a></p>
-    <div class="content" data-section-content>
-      <%= render 'organizations/animal_intake_form' %>
-    </div>
-  </section>
-  <section>
-    <p class="title" data-section-title><a href="#panel2">Health</a></p>
-    <div class="content" data-section-content>
-      <%= render 'organizations/animal_health_form' %>
-    </div>
-  </section>
-  <section>
-    <p class="title" data-section-title><a href="#panel3">Documents</a></p>
-    <div class="content" data-section-content>
-      <div id="org_animal_document_div">
-      	<%= render 'animals/documents' %>
-      </div>
+<div id='animal_form_div'><%= render 'animals/sections' %></div>
 
-    </div>
-  </section>
-  <section>
-    <p class="title" data-section-title><a href="#panel4">Photos</a></p>
-    <div class="content" data-section-content>
-      <div id="animal_picture_div">
-      	<%= render 'pictures/pictures_section' %>
-      </div>
-      
-    </div>
-  </section>
-  <section>
-    <p class="title" data-section-title><a href="#panel5">Adoption</a></p>
-    <div class="content" data-section-content>
-      <%= render 'animals/animal_transfer' %>
-    </div>
-  </section>
-</div>
 
-<div class="hidden">
-  <%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => '', class: 'hidden'} do |f| %>
-	<%= f.text_field :vaccination_id, class: 'select'  %>
-	<%= f.text_field :vaccination_date, class: "datepicker", placeholder: "Select a date" %>
-	<%= f.text_field :tag_number, placeholder: "Vaccination number (ex: rabies tag #)" %>
-	<%= f.hidden_field :animal_id, value: @animal.id %>  
-	<%= f.submit "Add vaccination" %>  
-  <% end %>
-  
-  <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_medication_form', "data-abide" => '', class: 'hidden'} do |f| %>
-	<%= f.text_field :medication_id, class: 'select'  %>
-	<%= f.text_field :volume  %>
-	<%= f.text_field :route %>
-	<%= f.text_field :interval %>
-	<%= f.hidden_field :animal_id, value: @animal.id %>  
-	<%= f.submit "Add medication" %>  
-  <% end %>
-</div>

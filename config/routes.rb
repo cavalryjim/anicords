@@ -70,6 +70,7 @@ Anicords::Application.routes.draw do
   delete 'organizations/:organization_id/organization_locations/:id/destroy' => 'organization_locations#destroy', as: :remove_organization_location
   #get 'service_providers/:id/services' => 'service_providers#services'
   get 'animals/:id/download_file' => 'animals#download_file'
+  #get '/animals/:id/weight_chart' => 'animals#weight_chart'
   patch 'animals/:id/transfer_ownership' => 'animals#transfer_ownership', as: :transfer_animal
   patch 'animals/:id/accept_transfer' => 'animals#accept_transfer', as: :accept_transfer
   get 'animals/:id/sitter_instructions' => 'animals#sitter_instructions', as: :animal_sitter_instructions

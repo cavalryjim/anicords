@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, 
-                                      :sitter_instructions, :org_flyer, :photo_gallery]
+                                      :sitter_instructions, :org_flyer, :photo_gallery, :weight_chart ]
   before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer]
   before_filter :authenticate_user!
   authorize_resource except: [:accept_transfer, :show]
@@ -161,6 +161,11 @@ class AnimalsController < ApplicationController
     end
   end
   
+  def weight_chart
+    respond_to do |format|
+      format.js 
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
