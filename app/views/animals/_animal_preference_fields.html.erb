@@ -10,33 +10,28 @@
 		  
   </div>
 	  
-  <div class="row">
-	<div class="large-6 columns">
+  
+	<!--<div class="large-6 columns">
       <%= text_field_tag 'feeding_display', @animal.feeding_comment ,placeholder: 'feeding size and frequency (3 cups daily)'%>
-	</div>
-	<div id="feeding_dialog" title="Feeding information">
-	  <p class="validateTips">All form fields are required.</p>
-	  <div class="row">
-		<div class="small-6 columns">
-		  <%= text_field_tag 'feeding_volume', @animal.volume_per_serving , placeholder: 'Number of ->' %>
+	</div>-->
+	<!--<div id="feeding_dialog" title="Feeding information">
+	  <p class="validateTips">All form fields are required.</p>-->
+	<div class="row">
+		<div class="large-6 columns">
+		  <%= f.text_field :volume_per_serving , placeholder: 'number of ->' %>
 	    </div>
-		<div class="small-6 columns">
-		  <%= select_tag 'feeding_measure',  options_for_select(["cups", "grams", "ounces", "lbs", "scoops"], @animal.serving_measure), prompt:'size', class:"regular_select" %>
+		<div class="large-6 columns">
+		  <%= f.select :serving_measure, options_for_select(["cups", "grams", "ounces", "lbs", "scoops"], @animal.serving_measure), { }, {class: "regular_select"}  %>
 		</div>
+	</div>
+	<div class="row">
+	  <div class="large-6 columns">
+		<%= f.select :servings_per_day, options_for_select(feeding_frequency_options, @animal.servings_per_day), { }, class: 'regular_select' %>
 	  </div>
-	  <div class="row">
-		<div class="small-12 columns">
-		  <%= select_tag 'feeding_frequency', options_for_select(feeding_frequency_options, @animal.servings_per_day), include_blank: true, prompt: 'servings per day', class: 'regular_select' %>
-		</div>
-	  </div>
+	</div>
 		   
-    </div>
+  
 		  
-	<div class="large-6 columns"></div>
-	<%= f.hidden_field :volume_per_serving %>
-	<%= f.hidden_field :serving_measure %>
-	<%= f.hidden_field :servings_per_day %>
-  </div>
  </fieldset>
 	  
  <fieldset>

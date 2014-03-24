@@ -170,8 +170,115 @@ $(".org_animal_div").on "show", ->
     width: "100%"
     matcher: (term, text) ->
       text.toUpperCase().indexOf(term.toUpperCase()) is 0
+  
+  $('#animal_food_id').select2
+    placeholder: "pet food brand"
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
 
-  $('#dialog_medication_id').select2
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/foods"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        at_id: $('#animal_animal_type_id').val()
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/remote_requests/foods?fd="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+    
+  $('#animal_shampoo_id').select2
+    placeholder: "pet shampoo brand"
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/shampoos"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/remote_requests/shampoos?shpo="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+      
+  $('#animal_treat_id').select2
+    placeholder: "pet treat brand"
+    width: "100%"
+    #multiple: true
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/treats"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/remote_requests/treats?trt="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data
+  
+  $('#animal_vitamin_id').select2
+    placeholder: "pet vitamin brand"
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/vitamins"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> 
+        results: data
+     
+    initSelection: (element, callback) ->
+      if $(element).val() isnt ''
+        ids = $(element).val()
+   
+        $.ajax("/remote_requests/vitamins?vit="+ids,
+          dataType: "json"
+        ).done (data) ->
+          callback data 
+
+  $('#animal_medication_medication_id').select2
     placeholder: "medication"
     width: "100%"
     id: (obj) ->
@@ -188,7 +295,7 @@ $(".org_animal_div").on "show", ->
         # since we are using custom formatting functions we do not need to alter remote JSON data
         results: data
         
-  $('#dialog_vaccination_id').select2
+  $('#animal_vaccination_vaccination_id').select2
     placeholder: "vaccination"
     width: "100%"
     id: (obj) ->
@@ -203,7 +310,66 @@ $(".org_animal_div").on "show", ->
 
       results: (data, page) -> 
         results: data
+  
+  # JDavis: jquery dialog form for capturing feeding information
+  updateTips = (t) ->
+    tips.text(t).addClass "ui-state-highlight"
+    setTimeout (->
+      tips.removeClass "ui-state-highlight", 1500
+    ), 500
+  checkNumeric = (n) ->
+    unless $.isNumeric n.val() 
+      n.addClass "ui-state-error"
+      updateTips "enter number, such as 2 cups"
+      false
+    else
+      true
+      
+  checkValue = (v) ->
+    unless v.val()
+      v.addClass "ui-state-error"
+      updateTips "all fields are required"
+      false
+    else
+      true
+      
+  amount = $("#feeding_volume")
+  measure = $("#feeding_measure")
+  frequency = $("#feeding_frequency")
+  allFields = $([]).add(amount).add(measure).add(frequency)
+  tips = $(".validateTips")
+  
+  $("#feeding_dialog").dialog
+    autoOpen: false
+    height: 250
+    width: 350
+    modal: true
+    buttons:
+      "Done": ->
+        bValid = true
+        text = ""
+        allFields.removeClass "ui-state-error"
+        bValid = bValid and checkNumeric(amount)
+        bValid = bValid and checkValue(measure)
+        bValid = bValid and checkValue(frequency)
+        if bValid
+          $("#animal_volume_per_serving").val amount.val()
+          $("#animal_serving_measure").val measure.val()
+          $("#animal_servings_per_day").val frequency.val()
+          text = amount.val() + ' ' + measure.val() + ' / ' + frequency.val() + ' x per day'
+          $("#feeding_display").val text
+          $(this).dialog "close"
+
+      Cancel: ->
+        $(this).dialog "close"
+
+    close: ->
+      allFields.val("").removeClass "ui-state-error"
+
+  $("#feeding_display").click ->
+    $("#feeding_dialog").dialog "open"
         
+  
   $('#animal_registration_club_id').select2
     placeholder: "registration club"
     minimumResultsForSearch: 15
