@@ -86,6 +86,15 @@ $(function(){
   });
   
   $(".best_in_place").best_in_place();
+  
+  $("#test_scroll").click(function(){
+  	var num = $("#target_scroll").offset().top;
+  	//alert(num);
+  	$("html,body").animate({
+  	  scrollTop:$("#target_scroll").offset().top},"500"
+  	);
+  	return false;
+  });
 
 });
 

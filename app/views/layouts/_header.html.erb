@@ -12,6 +12,7 @@
   	
   	
     <ul class="right no_bg">
+      <!--<li><%= button_small("scroll", "test_scroll")%></li>-->
 	  <% if user_signed_in? %>
 	    <li class="has-dropdown notifications">
 	      <%= link_to('#') do %>
@@ -38,12 +39,13 @@
 	      </ul>
 	    </li>
 	  <% else %>
-              
+        <!-- 
 		<li> 
 	  	  <%= link_to image_tag(s3_url('uporin.png'), size: '140x140', class: 'selectable_image'), "#", "data-reveal-id" => "registerSigninModal", class: "no_padding" %>
 	    </li>
 		
 		<li><%= link_to image_tag(s3_url('orusef.png'), size: '140x140', class: 'selectable_image'), user_omniauth_authorize_path(:facebook), class: "no_padding" %></li>
+        	-->      
 		
 	  <% end %>
 	</ul>
