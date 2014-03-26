@@ -14,6 +14,10 @@ class Ability
     can [:read, :change_owner], Animal do |animal|
       user == animal.animal_transfer.transferee if animal.pending_transfer?
     end
+    # JDavis: might want to combine these two (above & below) rules.
+    can :read, Animal do |animal|
+      animal.organization.users.include?(user) if animal.organization.present?  
+    end
     
     can :manage, AnimalAssociation do |association|
       association.new_record? or
