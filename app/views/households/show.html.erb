@@ -63,7 +63,7 @@
 	    	
 		<% @household.service_providers.each do |provider| %>
 		  <li>
-		  	  <%= link_to image_tag('doo_fav.png', class: 'th'), household_service_provider_path(@household, provider) %></br>
+		  	  <%= link_to image_tag('petabyt_icon.png', class: 'th'), household_service_provider_path(@household, provider) %></br>
 			  <%= link_to provider.name, household_service_provider_path(@household, provider) %>		
 		  </li>
 					

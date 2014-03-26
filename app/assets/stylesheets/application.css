@@ -63,6 +63,15 @@ section.gray_background {
   background-color: #93A889;
 }
 
+.green_background_front_page {
+  background-color: #13c4a5;
+  color: #fff;
+}
+
+.red_background {
+  background-color: #e84f40;
+}
+
 .brown_background {
   background-color: #996600;
 }

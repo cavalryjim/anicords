@@ -18,14 +18,17 @@
 	  <p class="validateTips">All form fields are required.</p>-->
 	<div class="row">
 		<div class="large-6 columns">
-		  <%= f.text_field :volume_per_serving , placeholder: 'number of ->' %>
+		  <%= f.label :volume_per_serving, "serving number" %>
+		  <%= f.text_field :volume_per_serving , placeholder: 'serving number ex: 2' %>
 	    </div>
 		<div class="large-6 columns">
+		  <%= f.label :serving_measure, "serving measure" %>
 		  <%= f.select :serving_measure, options_for_select(["cups", "grams", "ounces", "lbs", "scoops"], @animal.serving_measure), { }, {class: "regular_select"}  %>
 		</div>
 	</div>
 	<div class="row">
 	  <div class="large-6 columns">
+	  	<%= f.label :servings_per_day, "feedings per day"%>
 		<%= f.select :servings_per_day, options_for_select(feeding_frequency_options, @animal.servings_per_day), { }, class: 'regular_select' %>
 	  </div>
 	</div>
@@ -68,6 +71,7 @@
 	  <%= f.text_area :special_instructions, placeholder: "special care instructions" %>
 	</div>
   </div>
+  <%= f.hidden_field :animal_type_id, value: @animal.animal_type_id %>
  </fieldset>
  <div class="actions">
    <%= f.submit "save" %>

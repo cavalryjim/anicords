@@ -199,7 +199,7 @@
 	    </div>
 	    <div class="large-4 columns">
 		  <%= p.label :fiv_felv_test_result, 'FIV/FeLV test result' %>
-		  <%= p.select :fiv_felv_test_result, options_for_select(test_result_options, @animal.health_profile.heartworm_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
+		  <%= p.select :fiv_felv_test_result, options_for_select(test_result_options, @animal.health_profile.fiv_felv_test_result), {prompt:"test result"}, {class: "regular_select"}  %>
 	    </div>
 	  </div>
     <% end %>

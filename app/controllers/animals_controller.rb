@@ -68,10 +68,10 @@ class AnimalsController < ApplicationController
   def update
     # JDavis: all of this params fix stuff needs to be moved elsewhere
     #params[:animal] = @animal.inspect_params(params[:animal])  <--- such as here.
-    (params[:animal][:food_id] = Food.new_submission(params[:animal][:food_id], params[:animal][:animal_type_id])) unless ((params[:animal][:food_id]).blank? || Integer(params[:animal][:food_id]) rescue false)
-    (params[:animal][:shampoo_id] = Shampoo.new_submission(params[:animal][:shampoo_id], params[:animal][:animal_type_id])) unless ((params[:animal][:shampoo_id].blank? || Integer(params[:animal][:shampoo_id]) rescue false)
-    (params[:animal][:treat_id] = Treat.new_submission(params[:animal][:treat_id], params[:animal][:animal_type_id])) unless ((params[:animal][:treat_id]).blank? || Integer(params[:animal][:treat_id]) rescue false)
-    (params[:animal][:vitamin_id] = Vitamin.new_submission(params[:animal][:vitamin_id], params[:animal][:animal_type_id])) unless ((params[:animal][:vitamin_id]).blank? || Integer(params[:animal][:vitamin_id]) rescue false)
+    (params[:animal][:food_id] = Food.new_submission(params[:animal][:food_id], params[:animal][:animal_type_id])) unless ((params[:animal][:food_id]).blank? || (Integer(params[:animal][:food_id]) rescue false))
+    (params[:animal][:shampoo_id] = Shampoo.new_submission(params[:animal][:shampoo_id], params[:animal][:animal_type_id])) unless ((params[:animal][:shampoo_id]).blank? || (Integer(params[:animal][:shampoo_id]) rescue false))
+    (params[:animal][:treat_id] = Treat.new_submission(params[:animal][:treat_id], params[:animal][:animal_type_id])) unless ((params[:animal][:treat_id]).blank? || (Integer(params[:animal][:treat_id]) rescue false))
+    (params[:animal][:vitamin_id] = Vitamin.new_submission(params[:animal][:vitamin_id], params[:animal][:animal_type_id])) unless ((params[:animal][:vitamin_id]).blank? || (Integer(params[:animal][:vitamin_id]) rescue false))
     # JDavis: Select2 is a pain and insists upon screwing up the submission of selected items.  This is a fix.
     (params[:animal][:medical_diagnosis_ids] = @animal.fix_ids(params[:animal][:medical_diagnosis_ids])) if (params[:animal][:medical_diagnosis_ids]).present?
     (params[:animal][:medication_ids] = @animal.fix_ids(params[:animal][:medication_ids])) if (params[:animal][:medication_ids]).present?

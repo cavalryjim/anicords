@@ -22,7 +22,7 @@ module OrganizationsHelper
     elsif animal.org_profile && animal.org_profile.thumbnail_url.present?
       animal.org_profile.thumbnail_url  
     else 
-      s3_url('doo_fav.png')  
+      s3_url('petabyt_icon.png')  
     end
   end
   

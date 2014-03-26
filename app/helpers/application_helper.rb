@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def petabyt_image
-    image_tag(s3_url('petabyt_f.png'), size: '200x200', class: 'petabyt_image')
+    image_tag(s3_url('petabyt_f.png'), size: '150x150', class: 'petabyt_image')
   end
   
   def link_to_home
