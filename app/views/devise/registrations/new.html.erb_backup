@@ -127,7 +127,7 @@
   </div> 
 </section>
 
-<section class="gray_background">
+<section id="target_scroll" class="gray_background">
   <div class="row">
 	 <div class="large-6 large-centered columns">
 	     <h2>OUR PARTNERS</h2>

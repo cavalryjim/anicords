@@ -1,11 +1,5 @@
-<%= form_for [@organization, @animal], remote: @animal.persisted?, html: {id: 'organization_animal_form', "data-abide" => ''} do |f| %>
+
   
-  <%= render 'animals/animal_demographic_fields', f: f %>
+  <%= render 'animals/animal_demographic_fields' %>
   
-  <%= f.hidden_field symbolize_id(@owner), value: @owner.id %>
-  <%= f.hidden_field :owner_id, value: @owner.id %>	 
-  <%= f.hidden_field :owner_type, value: @owner.class.name %>    
-  <div class="actions">
-	<%= f.submit "Save Demographics" %>
-  </div>
-<% end %>
+ 

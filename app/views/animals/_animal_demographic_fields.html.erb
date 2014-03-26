@@ -128,6 +128,7 @@
 	</div>
   </div>
  </fieldset>
+  <%= f.hidden_field symbolize_id(@owner), value: @owner.id unless @owner.class.name == "Household" %>
   <%= f.hidden_field :owner_id, value: @owner.id %>	 
   <%= f.hidden_field :owner_type, value: @owner.class.name %> 
   

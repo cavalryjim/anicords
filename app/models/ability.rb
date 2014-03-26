@@ -19,6 +19,11 @@ class Ability
       animal.organization.users.include?(user) if animal.organization.present?  
     end
     
+    can :manage, Adoption do |adoption|
+      adoption.new_record? or
+      adoption.organization.admin_users.include?(user)
+    end
+    
     can :manage, AnimalAssociation do |association|
       association.new_record? or
       association.animal.owner.users.include?(user)
