@@ -189,6 +189,7 @@ class AnimalsController < ApplicationController
         @custodian = @breeder
       end
       
+      @owner ||= @custodian if @custodian.present?
     end
     
     def return_path
