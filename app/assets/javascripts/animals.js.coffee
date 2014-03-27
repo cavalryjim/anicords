@@ -423,8 +423,16 @@ jQuery ->
   
   $("#animal_microchipped").change ->
      $(".microchip_disable").prop('disabled', !$("#animal_microchipped").is(':checked'))
+     
+  $("img.details").click (event) ->
+    if $("#animal_weight_table_div").is(":hidden")
+      $("#animal_weight_table_div").slideDown()
+      $("img.details").attr "src", "/img/details_close.png"
+    else
+      $("#animal_weight_table_div").slideUp()
+      $("img.details").attr "src", "/img/details_open.png"
     
-  $("#animal_health_section").click (event) ->
+  #$("#animal_health_section").click (event) ->
     #$(window).trigger('resize')
     #$(this).foundation('section', 'reflow')
     #$("#animal_weight_chart_div").load("/animals/65/weight_chart")
@@ -434,7 +442,7 @@ jQuery ->
     #$("#animal_weight_chart_div").show()
     #$("#animal_weight_chart_div").resize()
     #$(window).width("900px")
-    $(window).trigger('resize')
+    #$(window).trigger('resize')
     #$("#animal_weight_chart_div").css("width", "800px")
   
   #----------end of jquery dialog----------------------#  

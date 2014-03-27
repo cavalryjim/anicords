@@ -314,6 +314,7 @@ button, input[type="submit"] {
   background-color: #00FF00 !important;
 }
 
+div.innerDetails { display: none; }
 
 /*****trying to fix an error with foundation's sections and displaying charts****/
 /***

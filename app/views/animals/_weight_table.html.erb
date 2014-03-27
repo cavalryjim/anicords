@@ -1,0 +1,19 @@
+<table id="weight_table" class="" >
+  <thead>
+	<tr>
+	  <th>weight</th>
+	  <th>date</th>  
+	  <th></th>
+	</tr>
+  </thead>
+  <tbody>
+    <% @animal.weights.each do |weight| %>
+     <tr>	
+	  <td><%= weight.display_weight %></td>
+	  <td><%= weight.display_date %></td>
+	  <td><%= link_to image_tag('cross.png', :alt => "del"), animal_weight_path(@animal, weight), method: :delete, remote: true, 
+				 data: { confirm: 'Please confirm you want to remove ' + weight.display_weight_with_date + ' from the list.' } %></td>
+     </tr>
+	<% end %>
+  </tbody>
+</table>

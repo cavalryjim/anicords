@@ -26,11 +26,22 @@
  
  <fieldset id="weight_fieldset">
    <legend>weight</legend>
-   <div class="row">
+   <% if @animal.weights.present?%>
+    <div class="row">
+     <div class="large-1 columns">
+       <%= image_tag 'details_open.png', :class => 'details' %>
+     </div>
+     <div class="large-11 columns">
+       <div id="animal_weight_table_div" class="innerDetails"><%= render 'animals/weight_table'%></div>
+     </div>
+    </div>
+    
+    <div class="row">
      <div class="large-12 columns">
        <div id="animal_weight_chart_div"><%= render 'animals/weight_chart'%></div>
      </div>
-   </div>
+    </div>
+   <% end %>
      
      <%= form_for [@animal, Weight.new], remote: true, html: {id: 'animal_weight_form', "data-abide" => ''} do |f| %>
        <div class="row">

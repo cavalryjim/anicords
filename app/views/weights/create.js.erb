@@ -1,5 +1,6 @@
 $("form#animal_weight_form").on("ajax:success", function(event, data, status, response) {
   $("#animal_weight_chart_div").html('<%= j render("animals/weight_chart") %>');
+  $("#animal_weight_table_div").html('<%= j render("animals/weight_table") %>');
   $(this)[0].reset();
   $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
 }).on("ajax:error", function(event, response, error) {

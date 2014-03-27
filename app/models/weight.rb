@@ -18,4 +18,16 @@ class Weight < ActiveRecord::Base
   validates_presence_of :measure_num 
   validates_presence_of :measure_unit
   validates_presence_of :measure_date
+  
+  def display_weight
+    measure_num.to_s + " " + measure_unit
+  end
+  
+  def display_date
+    measure_date.strftime("%m/%d/%Y")
+  end
+  
+  def display_weight_with_date
+    measure_date.strftime("%m/%d/%Y") + ": " + display_weight
+  end
 end
