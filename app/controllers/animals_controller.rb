@@ -56,6 +56,7 @@ class AnimalsController < ApplicationController
         @animal.create_activity :create, owner: current_user, recipient: @animal.owner
         format.html { redirect_to return_path, notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @animal.errors, status: :unprocessable_entity }

@@ -1,0 +1,9 @@
+  
+  $('#animalModal').foundation('reveal', 'close');
+  $("#org_animal_table_div").html('<%= j render("organizations/animal_table") %>');
+  $('#animal_table').dataTable({
+    "aoColumnDefs": [
+      { "bSortable": false, "aTargets": [ 0 ] } ],
+    "sPaginationType": "foundation",
+    "bStateSave": true
+  }).show();
