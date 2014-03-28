@@ -3,15 +3,17 @@
  <fieldset>  
   <%= render 'fields', f: f %>
   
-  <div class="row">
-    <div class="large-12 columns">
-      <label for='part_of'>
-        <%= check_box_tag 'part_of' %>
-        <span class="custom checkbox"></span>
-        Select if you are part of this service provider (owner, employee, etc.)
-      </label>
-    </div>
-  </div>
+  <% if @service_provider.new_record? %>
+   <div class="row">
+     <div class="large-12 columns">
+       <label for='part_of'>
+         <%= check_box_tag 'part_of' %>
+         <span class="custom checkbox"></span>
+         Select if you are part of this service provider (owner, employee, etc.)
+       </label>
+     </div>
+   </div>
+  <% end %>
   <div class="row">
     <div class="large-6 columns">
 	  <div class="actions">
