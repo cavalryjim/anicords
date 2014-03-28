@@ -58,7 +58,7 @@ class ServiceProvider < ActiveRecord::Base
   end
   
   def has_email?
-    self.email != nil && self.email != ''
+    email.present?
   end
   
   def is_veterinarian?
