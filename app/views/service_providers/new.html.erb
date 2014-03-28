@@ -94,6 +94,16 @@
     </div>
     
     <div class="row">
+      <div class="large-12 columns">
+        <label for='part_of'>
+          <%= check_box_tag 'part_of', '1', {checked: "checked"}  %>
+          <span class="custom checkbox"></span>
+          Select if you are part of this service provider (owner, employee, etc.)
+        </label>
+      </div>
+    </div>
+    
+    <div class="row">
       <div class="large-3 columns">
       	<%= link_to button_small('<< back'), '#', 'data-reveal-id'=>'stepsOverviewModal', class: "close-reveal-modal new_account_nav"   %>
       </div>
