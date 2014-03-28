@@ -42,6 +42,7 @@ class ServiceProvidersController < ApplicationController
     respond_to do |format|
       if @service_provider.save!
         User.create_user_to_group(@service_provider.email, @service_provider) if @service_provider.has_email?
+        @service_provider.associate_user(current_user.id, true) if current_user && params[:part_of].present?
         if params[:animal_id]
           @animal = Animal.find(params[:animal_id])
           @service_provider.associate_animal(params[:animal_id])

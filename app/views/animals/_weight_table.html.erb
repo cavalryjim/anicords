@@ -7,7 +7,7 @@
 	</tr>
   </thead>
   <tbody>
-    <% @animal.weights.each do |weight| %>
+    <% @animal.weights.order(:measure_date).each do |weight| %>
      <tr>	
 	  <td><%= weight.display_weight %></td>
 	  <td><%= weight.display_date %></td>
