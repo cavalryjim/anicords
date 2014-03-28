@@ -29,5 +29,4 @@ class OrgFlyerPdf < Prawn::Document
   end
   
   
-  
 end
