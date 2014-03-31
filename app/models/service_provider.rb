@@ -28,6 +28,7 @@ class ServiceProvider < ActiveRecord::Base
   has_many  :users, through: :user_associations
   has_many  :veterinarians, dependent: :destroy
   has_many  :animals, through: :animal_associations
+  # JDavis: need to add animals that are currently visiting the provider.
   has_many  :animal_associations, dependent: :destroy
   accepts_nested_attributes_for :veterinarians, allow_destroy: true
   

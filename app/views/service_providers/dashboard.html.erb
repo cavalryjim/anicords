@@ -1,0 +1,57 @@
+<% content_for :title, "Animal Service Provider" %>
+<%= breadcrumb_nav([@service_provider]) if current_user %>
+<section class="border_top">
+	
+ <div class="row">
+  <fieldset>
+  <div class="row">
+  	<div class="large-7 columns">
+      <h4><%= @service_provider.name %> <small><%= link_to ' (edit)', edit_service_provider_path(@service_provider), 'data-no-turbolink' => true %></small></h4>
+  	</div>
+  	<!--<div class="large-5 columns">
+  	  <dl class="sub-nav">
+		
+		<dd><%= link_to button_small("adopted pets"), organizaiton_adoptions_path(@organization) %></dd>
+		<dd>
+	  	  <% if @organization.petfinder_shelter_id.present? %>
+	  	    <%= link_to button_small("import from Petfinder"), organizaiton_petfinder_import_path(@organization) %>
+	  	  <% end %>
+		</dd>
+	  </dl>
+  	</div>
+  </div> -->
+ <% if @notifications.count > 0 %>
+  <div class="row">
+  	<div class="large-12 columns">
+  	  <div id="provider_news" class="fouc">
+		<ul>
+		  <% @notifications.each do |notification| %>
+			<li><%= link_to_if notification.url.present?, org_notification(notification), notification.url %></li>
+		  <% end %>
+		</ul>
+	 </div>
+  	</div>	
+  </div>
+ <% end %>
+    
+  <div class="large-12 columns">
+	<fieldset>
+	  <% if @service_provider.animals.count == 0 %>
+	    <h4>Tell us about your animals</h4>
+      <% end %>
+      
+      <div class="row">
+       <div class="large-12 columns">
+       	<div id="org_animal_table_div"><%= render 'animal_table'%></div>
+       </div>
+      </div>
+			
+	    <%= link_to "Add Animal", new_organization_animal_path(@organization), "data-reveal-id" => "animalModal", remote: true %> 
+	</fieldset>
+   </div>
+  </fieldset>
+ </div>
+
+
+
+</section>
