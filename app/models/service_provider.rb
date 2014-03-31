@@ -30,6 +30,10 @@ class ServiceProvider < ActiveRecord::Base
   has_many  :animals, through: :animal_associations
   # JDavis: need to add animals that are currently visiting the provider.
   has_many  :animal_associations, dependent: :destroy
+  has_many  :current_clients, through: :animal_associations,
+            :class_name => "Animal",
+            :source => :animal,
+            :conditions => {'animal_associations.checked_in' => true}
   accepts_nested_attributes_for :veterinarians, allow_destroy: true
   
   validates_presence_of :name
