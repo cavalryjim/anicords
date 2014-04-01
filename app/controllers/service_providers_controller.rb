@@ -1,5 +1,5 @@
 class ServiceProvidersController < ApplicationController
-  before_action :set_service_provider, only: [:show, :edit, :update, :destroy]
+  before_action :set_service_provider, only: [:show, :edit, :update, :destroy, :dashboard]
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   authorize_resource
   
@@ -82,6 +82,10 @@ class ServiceProvidersController < ApplicationController
       format.html { redirect_to service_providers_url }
       format.json { head :no_content }
     end
+  end
+  
+  def dashboard
+    @notifications = @service_provider.notifications
   end
   
 

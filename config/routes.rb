@@ -77,6 +77,7 @@ Anicords::Application.routes.draw do
   get 'organizations/:organization_id/animals/:id/org_flyer' => 'animals#org_flyer', as: :organization_animal_flyer
   match 'animals/:id/photo_gallery' => 'animals#photo_gallery', via: [:get, :post], as: :animal_photo_gallery
   patch 'pictures/:id/crop' => 'pictures#crop'
+  get 'service_providers/:id/dashboard' => 'service_providers#dashboard', as: :service_provider_dashboard
   
   get 'remote_requests/vitamins' => 'remote_requests#vitamins'
   get 'remote_requests/allergies' => 'remote_requests#allergies'

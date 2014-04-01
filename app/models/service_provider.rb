@@ -27,6 +27,7 @@ class ServiceProvider < ActiveRecord::Base
   has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
   has_many  :veterinarians, dependent: :destroy
+  has_many  :notifications, as: :recipient, dependent: :destroy
   has_many  :animals, through: :animal_associations
   # JDavis: need to add animals that are currently visiting the provider.
   has_many  :animal_associations, dependent: :destroy
