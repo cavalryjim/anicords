@@ -8,6 +8,13 @@
   	<div class="large-7 columns">
       <h4><%= @service_provider.name %> <small><%= link_to ' (edit)', edit_service_provider_path(@service_provider), 'data-no-turbolink' => true %></small></h4>
   	</div>
+  	<div class="large-5 columns">
+  	  <dl class="sub-nav">
+		
+		<dd><%= link_to button_small("full client list"), service_provider_client_list_path(@service_provider) %></dd>
+		
+	  </dl>
+  	</div>
   	
  <% if @notifications.count > 0 %>
   <div class="row">
@@ -25,17 +32,18 @@
     
   <div class="large-12 columns">
 	<fieldset>
-	  <% if @service_provider.animals.count == 0 %>
-	    <h4>Tell us about your animals</h4>
+	  <% if @service_provider.current_clients.count == 0 %>
+	    <h4>No animals are currently checked in.</h4>
+	    
+	  <% else %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	       	<div id="provider_client_table_div"><%= render 'animal_table'%></div>
+	      </div>
+	    </div>
       <% end %>
-      
-      <div class="row">
-       <div class="large-12 columns">
-       	<div id="provider_client_table_div"><%= render 'animal_table'%></div>
-       </div>
-      </div>
 			
-	    <%= link_to "Add Animal", new_service_provider_animal_path(@service_provider), "data-reveal-id" => "animalModal", remote: true %> 
+	    
 	</fieldset>
    </div>
   </fieldset>

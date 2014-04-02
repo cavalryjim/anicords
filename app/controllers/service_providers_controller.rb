@@ -1,6 +1,6 @@
 class ServiceProvidersController < ApplicationController
-  before_action :set_service_provider, only: [:show, :edit, :update, :destroy, :dashboard, :public_view]
-  before_filter :authenticate_user!, only: [:index, :show, :edit, :update]
+  before_action :set_service_provider, only: [:show, :edit, :update, :destroy, :dashboard, :public_view, :client_list]
+  before_filter :authenticate_user!, only: [:index, :show, :edit, :update, :client_list]
   authorize_resource except: [:public_view]
   
   # GET /service_providers
@@ -90,6 +90,10 @@ class ServiceProvidersController < ApplicationController
   end
   
   def public_view
+    
+  end
+  
+   def client_list
     
   end
   

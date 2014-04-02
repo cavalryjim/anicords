@@ -80,6 +80,7 @@ Anicords::Application.routes.draw do
   match 'animals/:id/photo_gallery' => 'animals#photo_gallery', via: [:get, :post], as: :animal_photo_gallery
   patch 'pictures/:id/crop' => 'pictures#crop'
   get 'service_providers/:id/public_view' => 'service_providers#public_view', as: :service_provider_public_view
+  get 'service_providers/:id/client_list' => 'service_providers#client_list', as: :service_provider_client_list
   
   get 'remote_requests/vitamins' => 'remote_requests#vitamins'
   get 'remote_requests/allergies' => 'remote_requests#allergies'
