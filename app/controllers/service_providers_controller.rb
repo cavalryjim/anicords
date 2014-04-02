@@ -94,7 +94,7 @@ class ServiceProvidersController < ApplicationController
   end
   
    def client_list
-    
+    @notifications = @service_provider.notifications
   end
   
 

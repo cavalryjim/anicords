@@ -1,4 +1,49 @@
 <% content_for :title, "Animal Service Provider" %>
 <%= breadcrumb_nav( [@service_provider, 'client list'] ) %>
 
-<h4>Coming soon!  Will be complete by 6 April 2014.</h4>
+<section class="border_top">
+	
+ <div class="row">
+  <fieldset>
+  <div class="row">
+  	<div class="large-7 columns">
+      <h4><%= @service_provider.name %> <small><%= link_to ' (edit)', edit_service_provider_path(@service_provider), 'data-no-turbolink' => true %></small></h4>
+  	</div>
+  	
+  	
+ <% if @notifications.count > 0 %>
+  <div class="row">
+  	<div class="large-12 columns">
+  	  <div id="provider_news" class="fouc">
+		<ul>
+		  <% @notifications.each do |notification| %>
+			<li><%= link_to_if notification.url.present?, org_notification(notification), notification.url %></li>
+		  <% end %>
+		</ul>
+	 </div>
+  	</div>	
+  </div>
+ <% end %>
+    
+  <div class="large-12 columns">
+	<fieldset>
+	  <% if @service_provider.animals.count == 0 %>
+	    <h4>There are no animals associated with this service provider.</h4>
+	    
+	  <% else %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	       	<div id="provider_client_table_div"><%= render 'animal_table'%></div>
+	      </div>
+	    </div>
+      <% end %>
+			
+	    
+	</fieldset>
+   </div>
+  </fieldset>
+ </div>
+
+
+
+</section>

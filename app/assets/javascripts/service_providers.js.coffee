@@ -22,6 +22,10 @@ jQuery ->
       $("#veterinarian_list").removeClass("hidden") unless $(".reveal-modal").is(":visible")
     else
       $("#veterinarian_list").addClass("hidden")
+      
+      
+      
+  $("#sp_client_list_table").dataTable().show()
   
   
   

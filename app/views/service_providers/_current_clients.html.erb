@@ -1,4 +1,4 @@
-<table id="sp_client_list_table" class="fouc"  >
+<table id="sp_current_clients_table" class="fouc"  >
   <thead>
 	<tr>
 	  <th></th>
@@ -7,12 +7,12 @@
 	  <th>Species</th>
 	  <th>Breed</th>
 	  <th>Gender</th>
-	  
+	  <th>Date In</th>
 	  <th></th>
 	</tr>
   </thead>
   <tbody>
-    <% @service_provider.animals.each do |animal| %>
+    <% @service_provider.current_clients.each do |animal| %>
 	  <tr id="<%= animal.id %>">
 	  	<td><%= link_to image_tag(thumbnail(animal), size: '50x50', class: 'th'), "#", remote: true  %></td>
 		<td><%= link_to animal.name, "#", remote: true %></td>
@@ -20,8 +20,8 @@
 		<td><%= animal.species %></td>
 		<td><%= animal.breed_names %></td>
 		<td><%= animal.gender %></td>
-		
-		<td><%= link_to button_small("check in"), "#" %></td>
+		<td><%= mo_da_yr(animal.org_profile.intake_date) %></td>
+		<td><%= link_to button_small("check out"), "#" %></td>
 	  </tr>
     <% end %>
   </tbody>
