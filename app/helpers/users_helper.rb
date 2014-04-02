@@ -14,5 +14,6 @@ module UsersHelper
       image_tag(s3_url('petabyt_icon.png'), size: '15x15')
     end
   end
+
   
 end

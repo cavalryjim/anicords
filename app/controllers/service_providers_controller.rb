@@ -1,7 +1,7 @@
 class ServiceProvidersController < ApplicationController
-  before_action :set_service_provider, only: [:show, :edit, :update, :destroy, :dashboard]
-  before_filter :authenticate_user!, only: [:index, :edit, :update]
-  authorize_resource
+  before_action :set_service_provider, only: [:show, :edit, :update, :destroy, :dashboard, :public_view]
+  before_filter :authenticate_user!, only: [:index, :show, :edit, :update]
+  authorize_resource except: [:public_view]
   
   # GET /service_providers
   # GET /service_providers.json
@@ -24,6 +24,7 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers/1
   # GET /service_providers/1.json
   def show
+    @notifications = @service_provider.notifications
   end
 
   # GET /service_providers/new
@@ -86,6 +87,10 @@ class ServiceProvidersController < ApplicationController
   
   def dashboard
     @notifications = @service_provider.notifications
+  end
+  
+  def public_view
+    
   end
   
 

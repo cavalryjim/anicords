@@ -2,82 +2,45 @@
 <%= breadcrumb_nav([@service_provider]) if current_user %>
 <section class="border_top">
 	
+ <div class="row">
+  <fieldset>
   <div class="row">
-    <div class="large-6 columns">
+  	<div class="large-7 columns">
+      <h4><%= @service_provider.name %> <small><%= link_to ' (edit)', edit_service_provider_path(@service_provider), 'data-no-turbolink' => true %></small></h4>
+  	</div>
   	
-	  <div class="row">
-	    <div class="large-12 columns">
-		  <h4><%= @service_provider.name %></h4>
-	    </div>
-	  </div>
-	
-	  <div class="row">
-	    <div class="large-12 columns">
-		  <p>Address: <%= @service_provider.address1 %></p>
-	    </div>
-	  </div>
-	  
-	  <div class="row">
-	    <div class="large-12 columns">
-		  <p>          <%= @service_provider.address2 %></p>
-	    </div>
-	  </div>
-	  
-	  <div class="row">
-	    <div class="large-12 columns">
-		  <p>City: <%= @service_provider.city %></p>
-	    </div>
-	  </div>
-	
-	  <div class="row">
-	    <div class="large-3 columns">
-		  <p>State: <%= @service_provider.state %> </p>
-	    </div>
-	    <div class="large-9 columns"><p> Zip: <%= @service_provider.zip %> </p> </div>
-	  </div>
-	  
-	  <div class="row">
-	    <div class="large-12 columns">
-		  <p>Email: <%= @service_provider.email %></p>
-	    </div>
-	  </div>
-	
-	  <div class="row">
-	    <div class="large-12 columns">
-		  <p>Website: <%= @service_provider.website %></p>
-	    </div>
-	  </div>
-	  
-	  <div class="row">
-	    <div class="large-12 columns">
-		  <p>Phone: <%= @service_provider.phone %></p>
-	    </div>
-	  </div>
-	
-	  <div class="row">
-	    <div class="large-12 columns">
-	      <%= link_to 'Back', :back %>
-	    </div>
-	  </div>
-    </div>
-  
-    <div class="large-6 columns">
-  	  <fieldset>
-	     <h5>Services provided</h5>
-		 <ul class=" large-block-grid-3">
-		   <% if @service_provider.services.count == 0 %>
-		     <li>This provider does not have any services listed.</li>
-		   <% end %>
-		   <% @service_provider.services.each do |service| %>
-		     <li>
-			     <%= service.name %>
-		     </li>
-			<% end %>
-		 </ul>
-	  </fieldset>
-  	
-    </div>
-
+ <% if @notifications.count > 0 %>
+  <div class="row">
+  	<div class="large-12 columns">
+  	  <div id="provider_news" class="fouc">
+		<ul>
+		  <% @notifications.each do |notification| %>
+			<li><%= link_to_if notification.url.present?, org_notification(notification), notification.url %></li>
+		  <% end %>
+		</ul>
+	 </div>
+  	</div>	
   </div>
+ <% end %>
+    
+  <div class="large-12 columns">
+	<fieldset>
+	  <% if @service_provider.animals.count == 0 %>
+	    <h4>Tell us about your animals</h4>
+      <% end %>
+      
+      <div class="row">
+       <div class="large-12 columns">
+       	<div id="provider_client_table_div"><%= render 'animal_table'%></div>
+       </div>
+      </div>
+			
+	    <%= link_to "Add Animal", new_service_provider_animal_path(@service_provider), "data-reveal-id" => "animalModal", remote: true %> 
+	</fieldset>
+   </div>
+  </fieldset>
+ </div>
+
+
 
 </section>
