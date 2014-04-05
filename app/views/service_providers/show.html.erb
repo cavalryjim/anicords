@@ -10,9 +10,7 @@
   	</div>
   	<div class="large-5 columns">
   	  <dl class="sub-nav">
-		
-		<dd><%= link_to button_small("full client list"), service_provider_client_list_path(@service_provider) %></dd>
-		
+		<dd><%= link_to button_small("full client list"), client_list_service_provider_path(@service_provider) %></dd>
 	  </dl>
   	</div>
   	
@@ -38,7 +36,7 @@
 	  <% else %>
 	    <div class="row">
 	      <div class="large-12 columns">
-	       	<div id="provider_client_table_div"><%= render 'animal_table'%></div>
+	       	<div id="provider_client_table_div"><%= render 'current_clients'%></div>
 	      </div>
 	    </div>
       <% end %>

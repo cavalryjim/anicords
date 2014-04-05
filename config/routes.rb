@@ -3,7 +3,16 @@ Anicords::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :service_providers do
-    resources :animals
+    member do
+      get 'public_view'
+      get 'client_list'
+    end
+    resources :animals do
+      member do
+        get 'check_in'
+        get 'check_out'
+      end
+    end
   end
 
   resources :veterinarians
@@ -79,8 +88,8 @@ Anicords::Application.routes.draw do
   get 'organizations/:organization_id/animals/:id/org_flyer' => 'animals#org_flyer', as: :organization_animal_flyer
   match 'animals/:id/photo_gallery' => 'animals#photo_gallery', via: [:get, :post], as: :animal_photo_gallery
   patch 'pictures/:id/crop' => 'pictures#crop'
-  get 'service_providers/:id/public_view' => 'service_providers#public_view', as: :service_provider_public_view
-  get 'service_providers/:id/client_list' => 'service_providers#client_list', as: :service_provider_client_list
+  #get 'service_providers/:id/public_view' => 'service_providers#public_view', as: :service_provider_public_view
+  #get 'service_providers/:id/client_list' => 'service_providers#client_list', as: :service_provider_client_list
   
   get 'remote_requests/vitamins' => 'remote_requests#vitamins'
   get 'remote_requests/allergies' => 'remote_requests#allergies'

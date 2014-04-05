@@ -21,7 +21,7 @@
 		<td><%= animal.breed_names %></td>
 		<td><%= animal.gender %></td>
 		
-		<td><%= link_to button_small("check in"), "#", "data-reveal-id" => "clientModal", remote: true %></td>
+		<td><%= link_to button_small("check in"), check_in_service_provider_animal_path(@service_provider, animal), "data-reveal-id" => "clientModal", remote: true %></td>
 	  </tr>
     <% end %>
   </tbody>
