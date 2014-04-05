@@ -1,6 +1,6 @@
 class AnimalAssociationsController < ApplicationController
   before_action :set_animal, only: [:create, :destroy]
-  before_action :set_animal_association, only: [:destroy]
+  before_action :set_animal_association, only: [:destroy, :update]
   before_filter :authenticate_user!
   authorize_resource
   
@@ -8,6 +8,16 @@ class AnimalAssociationsController < ApplicationController
     @animal_association = AnimalAssociation.find_or_initialize_by(animal_association_params)
     respond_to do |format|
       if @animal_association.save 
+        format.js
+      end
+    end
+  end
+  
+  def update
+    respond_to do |format|
+      if @animal_association.update(animal_association_params)
+        format.js
+      else
         format.js
       end
     end

@@ -169,6 +169,10 @@ class AnimalsController < ApplicationController
   end
   
   def check_in
+    if params[:service_provider_id].present?
+      @animal_association = @animal.check_in(params[:service_provider_id])  
+    end
+    
     respond_to do |format|
       format.js 
     end

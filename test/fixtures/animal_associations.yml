@@ -7,6 +7,7 @@
 #  service_provider_id :integer
 #  created_at          :datetime
 #  updated_at          :datetime
+#  checked_in          :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
