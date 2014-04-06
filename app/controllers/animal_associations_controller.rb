@@ -14,12 +14,9 @@ class AnimalAssociationsController < ApplicationController
   end
   
   def update
+    @animal_association.update(animal_association_params)
     respond_to do |format|
-      if @animal_association.update(animal_association_params)
-        format.js
-      else
-        format.js
-      end
+      format.js
     end
   end
   
@@ -42,7 +39,7 @@ class AnimalAssociationsController < ApplicationController
     end
     
     def animal_association_params
-      params.require(:animal_association).permit(:animal_id, :service_provider_id )
+      params.require(:animal_association).permit(:id, :animal_id, :service_provider_id, :checked_in )
     end
   
 end

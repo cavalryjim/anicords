@@ -26,6 +26,8 @@ jQuery ->
       
       
   $("#sp_client_list_table").dataTable().show()
+  $("#sp_current_clients_table").dataTable().show()
+  
   
   
   
