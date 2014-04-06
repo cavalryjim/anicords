@@ -1,1 +1,4 @@
-alert("updated association");
+#alert("updated association");
+$(".reveal-modal").foundation('reveal', 'close');
+$("tr#<%=@animal_association.animal_id%>").effect("highlight", {color:"#81F781"}, 1500).unbind();
+$("tr#<%=@animal_association.animal_id%>").addClass("current_client");
