@@ -309,9 +309,9 @@ class Animal < ActiveRecord::Base
   end
   
   def check_in(service_provider_id)
-    animal_association = AnimalAssociation.where(animal_id: self.id, service_provider_id: service_provider_id).first_or_create
-    animal_association.update_attribute :checked_in, true
-    animal_association
+    #animal_association = AnimalAssociation.where(animal_id: self.id, service_provider_id: service_provider_id).first_or_create
+    #animal_association.update_attribute :checked_in, true
+    #animal_association
   end
   
   private

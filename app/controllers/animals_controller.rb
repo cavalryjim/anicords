@@ -170,7 +170,7 @@ class AnimalsController < ApplicationController
   
   def check_in
     if params[:service_provider_id].present?
-      @animal_association = @animal.check_in(params[:service_provider_id])  
+      @animal_association = AnimalAssociation.where(animal_id: @animal.id, service_provider_id: params[:service_provider_id]).first_or_create
     end
     
     respond_to do |format|
