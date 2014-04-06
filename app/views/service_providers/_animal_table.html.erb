@@ -12,16 +12,16 @@
 	</tr>
   </thead>
   <tbody>
-    <% @service_provider.animals.each do |animal| %>
-	  <tr id="<%= animal.id %>" <%="class='current_client'" if true  %> >
-	  	<td><%= link_to image_tag(thumbnail(animal), size: '50x50', class: 'th'), "#", remote: true  %></td>
-		<td><%= link_to animal.name, "#", remote: true %></td>
+    <% @service_provider.animal_associations.each do |association| %>
+	  <tr id="<%= association.animal_id %>" <%="class='current_client'" if association.checked_in  %> >
+	  	<td><%= link_to image_tag(thumbnail(association.animal), size: '50x50', class: 'th'), "#", remote: true  %></td>
+		<td><%= link_to association.animal.name, "#", remote: true %></td>
 		
-		<td><%= animal.species %></td>
-		<td><%= animal.breed_names %></td>
-		<td><%= animal.gender %></td>
+		<td><%= association.animal.species %></td>
+		<td><%= association.animal.breed_names %></td>
+		<td><%= association.animal.gender %></td>
 		
-		<td><%= link_to button_small("check in"), check_in_service_provider_animal_path(@service_provider, animal), "data-reveal-id" => "clientModal", remote: true %></td>
+		<td><%= link_to button_small("check in"), check_in_service_provider_animal_path(@service_provider, association.animal), "data-reveal-id" => "clientModal", remote: true %></td>
 	  </tr>
     <% end %>
   </tbody>
