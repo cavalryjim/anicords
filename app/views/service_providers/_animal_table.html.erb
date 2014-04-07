@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @service_provider.animal_associations.each do |association| %>
-	  <tr id="<%= association.animal_id %>" <%="class='current_client'" if association.checked_in  %> >
+	  <tr id="<%= association.animal_id %>" class="<%= provider_row_classes(association.checked_in) %>" >
 	  	<td><%= link_to image_tag(thumbnail(association.animal), size: '50x50', class: 'th'), "#", remote: true  %></td>
 		<td><%= link_to association.animal.name, "#", remote: true %></td>
 		

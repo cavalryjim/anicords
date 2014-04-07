@@ -14,9 +14,12 @@ class AnimalAssociationsController < ApplicationController
   end
   
   def update
-    @animal_association.update(animal_association_params)
     respond_to do |format|
-      format.js
+      if @animal_association.update(animal_association_params)
+        format.js
+      else
+        format.js
+      end
     end
   end
   

@@ -116,6 +116,11 @@ table.no_border {
   border: none !important;
 }
 
+tr.current_client {
+  background-color: #F0F8FF;
+  
+}
+
 .picture_border_2 {
   border: solid 2px black;
 }

@@ -21,4 +21,9 @@ module ServiceProvidersHelper
     'hidden' if !(service_provider && service_provider.is_veterinarian?)
   end
   
+  def provider_row_classes(checked_in)
+    checked_in ? "current_client" : " "
+  end
+    
+  
 end
