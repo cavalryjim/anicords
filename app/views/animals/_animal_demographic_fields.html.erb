@@ -62,7 +62,7 @@
   <div class="row">
 	<div class="large-4 columns">
 	  <%= f.label :neutered, id: 'dynamic_neutered_label' do %>
-	    <%= f.check_box :neutered %><span id="neutered_label"> <%= neutered_term(@animal.gender) %>?</span> 
+	    <%= f.check_box :neutered %><span id="neutered_label"> <%= neutered_term(@animal.gender) %></span> 
 	  <% end %>
 	</div>
 	<div class="large-4 columns">
@@ -78,7 +78,7 @@
   <div class="row">
 	<div class="large-4 columns">
 	  <%= f.label :pedigreed do %>
-	    <%= f.check_box :pedigreed %><span id="pedigreed_label"> pedigree?</span> 
+	    <%= f.check_box :pedigreed %><span id="pedigreed_label"> pedigree</span> 
 	  <% end %>
 	</div>
 	<div class="large-4 columns">
@@ -93,7 +93,7 @@
   <div class="row">	
   	<div class="large-4 columns">
 	  <%= f.label :microchipped do %>
-	    <%= f.check_box :microchipped %><span id="microchipped_label"> microchipped?</span> 
+	    <%= f.check_box :microchipped %><span id="microchipped_label"> microchipped</span> 
 	  <% end %>
 	</div>  
 	<div class="large-4 columns">
