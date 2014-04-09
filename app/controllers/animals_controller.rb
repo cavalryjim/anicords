@@ -179,6 +179,9 @@ class AnimalsController < ApplicationController
   end
   
   def check_out
+    if params[:service_provider_id].present?
+      @animal_association = AnimalAssociation.where(animal_id: @animal.id, service_provider_id: params[:service_provider_id]).first_or_create
+    end
     respond_to do |format|
       format.js 
     end

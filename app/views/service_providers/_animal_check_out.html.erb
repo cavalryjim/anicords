@@ -1,11 +1,11 @@
-<h4>Check-in animal</h4>
+<h4>Check-out animal</h4>
 <%= form_for(@animal_association, remote: true, html: { "data-abide" => '' }) do |f| %>
   <fieldset>
   	
-    <%= f.hidden_field :checked_in, value: true %>
+    <%= f.hidden_field :checked_in, value: false %>
     
     <div class="actions">
-      <%= f.submit "check in" %>
+      <%= f.submit "check out" %>
     </div>
 
   </fieldset>
