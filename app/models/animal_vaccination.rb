@@ -59,7 +59,10 @@ class AnimalVaccination < ActiveRecord::Base
   
   def remove_vaccination_notifications
     animal_vaccination =  AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: self.vaccination_id).last
-    animal_vaccination.notifications.destroy_all if animal_vaccination.present?
+    if animal_vaccination.present?
+      animal_vaccination.update_attributes(notify_on: nil)
+      animal_vaccination.notifications.destroy_all 
+    end 
   end
   
   def set_due_date
