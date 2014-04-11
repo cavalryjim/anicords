@@ -58,10 +58,11 @@ class AnimalVaccination < ActiveRecord::Base
   end
   
   def remove_vaccination_notifications
-    animal_vaccination =  AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: self.vaccination_id).last
-    if animal_vaccination.present?
-      animal_vaccination.update_attributes(notify: false)
-      animal_vaccination.notifications.destroy_all 
+    animal_vaccinations =  AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: self.vaccination_id)
+    if animal_vaccinations.present?
+      animal_vaccinations.update_all(notify: false) 
+      #animal_vaccination.update_attributes(notify: false)
+      animal_vaccinations.last.notifications.destroy_all 
     end 
   end
   
