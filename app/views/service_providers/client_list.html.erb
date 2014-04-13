@@ -9,6 +9,11 @@
   	<div class="large-7 columns">
       <h4><%= @service_provider.name %> <small><%= link_to ' (edit)', edit_service_provider_path(@service_provider), 'data-no-turbolink' => true %></small></h4>
   	</div>
+  	<div class="large-5 columns">
+  	  <dl class="sub-nav">
+		<dd><%= link_to button_small("current client list"), @service_provider %></dd>
+	  </dl>
+  	</div>
   	
   	
  <% if @notifications.count > 0 %>
@@ -38,9 +43,10 @@
 	    </div>
       <% end %>
 			
-	    
+	 <%= link_to button_small('back'), @service_provider %> 
 	</fieldset>
    </div>
+   
   </fieldset>
  </div>
 
