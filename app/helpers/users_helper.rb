@@ -1,14 +1,14 @@
 module UsersHelper
   
   def image(association)
-    case association.type
-    when 'household'
+    case association.group_type
+    when 'Household'
       image_tag(s3_url('black-white-house-md.png'), size: '15x15')
-    when 'breeder'
+    when 'Breeder'
       image_tag(s3_url('petabyt_icon.png'), size: '15x15')
-    when 'veterinarian'
-      image_tag(s3_url('petabyt_icon.png'), size: '15x15')
-    when 'organization'
+    when 'ServiceProvider'
+      image_tag(s3_url('provider_icon.png'), size: '15x15')
+    when 'Organization'
       image_tag(s3_url('barn-icon.png'), size: '15x15')
     else
       image_tag(s3_url('petabyt_icon.png'), size: '15x15')
