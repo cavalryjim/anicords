@@ -41,7 +41,6 @@
        <div id="animal_weight_chart_div"><%= render 'animals/weight_chart'%></div>
      </div>
     </div>
-   <% end %>
      
      <%= form_for [@animal, Weight.new], remote: true, html: {id: 'animal_weight_form', "data-abide" => ''} do |f| %>
        <div class="row">
@@ -68,6 +67,7 @@
 		<%= f.submit "add weight" %>
 	   </div>
      <% end %>
+   <% end %>
  </fieldset>
  
   
