@@ -258,7 +258,7 @@ div.notifications {
   background-size:contain;
 }
 
-div.notifications_text {
+div.notifications_text, div.notifications_tex a {
   color: 000 !important;
   background: url('box_red_16.png') no-repeat center;
 }
