@@ -90,6 +90,10 @@ section.gray_background {
   color: blue !important;
 }     
 
+.white_text, .white_text a {
+  color: #000 !important;
+}
+
 
 .blue_text, .blue_text a {
   color: blue !important;
@@ -255,7 +259,7 @@ div.notifications {
 }
 
 div.notifications_text {
-  color: 000;
+  color: 000 !important;
   background: url('box_red_16.png') no-repeat center;
 }
 
