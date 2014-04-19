@@ -91,7 +91,7 @@ section.gray_background {
 }     
 
 
-.blue_text {
+.blue_text, .blue_text a {
   color: blue !important;
 }
 

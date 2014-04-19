@@ -1,0 +1,14 @@
+<section class="border_top">
+	
+ <div class="row">
+  <div class="large-10 columns large-centered">
+   <h4>Welcome!</h4>
+   <fieldset>
+	
+	  
+	 <%= render 'register_sign_in'%>
+     
+   </fieldset>
+  </div>
+ </div>
+</section>

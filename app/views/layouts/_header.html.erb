@@ -11,9 +11,9 @@
   <section class="top-bar-section no_bg">
   	
   	
-    <ul class="right no_bg">
+	<% if user_signed_in? %>
+      <ul class="right blue_text no_bg">
       <!--<li><%= button_small("scroll", "test_scroll")%></li>-->
-	  <% if user_signed_in? %>
 	    <li class="has-dropdown notifications">
 	      <%= link_to('#') do %>
 	        <% if number_of_notifications %>
@@ -24,21 +24,25 @@
 	         <%= image_tag s3_url('white-flag-icone-6376-48.png'), size: '25x25' %>
             <% end %>
           <% end %>
-	    
-	    
-	    
 	      <ul class="dropdown"> 
 	      	<%= raw user_notifications %>	
 	      </ul>
 	    </li>
-	    <li class="has-dropdown"><%=link_to image_tag(s3_url('persona-person-white.png'), size: '25x25'), '#' %>
+	    <li class="has-dropdown"><%=link_to current_user.name, '#' %>
 	      <ul class="dropdown"> 	
 		    <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
 		  	<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
-	        <li><a href="#"> <%= current_user.name_or_email %></a></li>
 	      </ul>
 	    </li>
-	  <% else %>
+	  </ul>
+	<% else %>
+	  
+	  <ul class="right blue_text no_bg">
+		<li><%= link_to "Home", "#home" %></li>
+		<li><%= link_to "About", "#about" %></li>
+		<li><%= link_to "Sign in", "#login" %></li>
+	  </ul>
+	  
         <!-- 
 		<li> 
 	  	  <%= link_to image_tag(s3_url('uporin.png'), size: '140x140', class: 'selectable_image'), "#", "data-reveal-id" => "registerSigninModal", class: "no_padding" %>
@@ -47,14 +51,9 @@
 		<li><%= link_to image_tag(s3_url('orusef.png'), size: '140x140', class: 'selectable_image'), user_omniauth_authorize_path(:facebook), class: "no_padding" %></li>
         	-->      
 		
-	  <% end %>
-	</ul>
+	<% end %>
 	
-	<!-- Left Nav Section -->
-    <ul class="left">
-      <li></li>
-      
-    </ul>
+	
   </section>
 </nav>
 </div> 
