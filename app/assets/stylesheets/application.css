@@ -51,6 +51,20 @@ ul.ui-autocomplete {
   padding-right: 0px !important;
 }
 
+section.front_page_section_home {
+  padding-top: 10em;
+  padding-bottom: 10em;
+}
+
+section.front_page_section_about {
+  padding-top: 3em;
+}
+
+section.front_page_section_login {
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
+
 .white_background {
   background-color: #FFF;
 }
