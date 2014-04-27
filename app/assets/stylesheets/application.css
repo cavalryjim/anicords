@@ -43,7 +43,32 @@ ul.ui-autocomplete {
 .ui-helper-hidden-accessible { display:none; }
 
 .welcome_header {
-  color: #FFF !important;
+  color: #FFF;
+  font-family: 'Source Sans Pro',sans-serif;
+  text-shadow: 0px 1px 0px rgba(51, 51, 51, 0.5);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.nav_text, .nav_text a {
+  color: #777 !important;
+  text-decoration: none;
+  width: 120px;
+  text-align: center;
+  display: block;
+  height: 41px;
+  line-height: 41px;
+  text-transform: uppercase;
+  font-weight: normal !important;
+}
+
+.nav_text a:hover { 
+  text-shadow: 0px 1px 0px rgba(51, 51, 51, 0.5);
+}
+
+.center_text {
+  text-align: center !important;
 }
 
 .no_padding {
@@ -52,12 +77,13 @@ ul.ui-autocomplete {
 }
 
 section.front_page_section_home {
-  padding-top: 10em;
+  padding-top: 7em;
   padding-bottom: 10em;
 }
 
 section.front_page_section_about {
   padding-top: 3em;
+  padding-bottom: 1em;
 }
 
 section.front_page_section_login {
@@ -321,7 +347,7 @@ div.preview {
 }
 
 .petabyt_image {
-  padding: .25em .25em .25em .25em ;
+  padding: 1em 1em 1em 1em ;
 }
 
 form {
