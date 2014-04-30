@@ -61,10 +61,10 @@ class AnimalVaccination < ActiveRecord::Base
     vaccinations =  AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: self.vaccination_id)
     if vaccinations.present?
       vaccinations.update_all(notify: false) 
-      #animal_vaccination.update_attributes(notify: false)
-      vaccinations.last.notifications.destroy_all 
-      # JDavis: want to destroy all notifications for the vaccinations.
-      # Notification.destroy_all event is vaccinations
+      
+      vaccinations.each do |vaccination|
+        vaccination.notifications.destroy_all if vaccination.notifications
+      end
       
     end 
   end
