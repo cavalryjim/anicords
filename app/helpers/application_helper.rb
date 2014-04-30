@@ -18,14 +18,12 @@ module ApplicationHelper
   end
   
   def link_to_home
-    if session[:home_page]
-     link_to(petabyt_image, session[:home_page])
-    elsif current_user && current_user.no_associations?
+    if current_user && current_user.no_associations?
      link_to(petabyt_image, user_select_account_type_path)
-    elsif current_user && current_user.user_associations.count == 1
-     link_to(petabyt_image, current_user.user_associations.first.organization ) 
+    elsif current_user 
+     link_to(petabyt_image, user_select_association_path ) 
     else 
-     petabyt_image 
+     link_to(petabyt_image, new_user_registration_path )
     end
   end
   
