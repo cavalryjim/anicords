@@ -74,8 +74,9 @@ ul.ui-autocomplete {
 }
 
 section.front_page_section_home {
-  padding-top: 7em;
-  padding-bottom: 10em;
+ padding-top: 7em;
+ padding-bottom: 10em;
+  
 }
 
 section.front_page_section_about {
@@ -178,8 +179,16 @@ tr.current_client {
   padding-bottom: 1em;
 }
 
+.bottom_padding_3em {
+  padding-bottom: 3em !important;
+}
+
 .bottom_padding_10 {
   padding-bottom: 10px;
+}
+
+.bottom_padding_10em {
+  padding-bottom: 10em !important;
 }
 
 .right_padding_3 {

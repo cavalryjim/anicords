@@ -11,7 +11,7 @@
 </section>
 -->
 
-<section id="home" class="green_background_front_page front_page_section_home">
+<section id="home" class="green_background_front_page front_page_section_home full_page">
   <div class="row">
 	 <div class="large-9 large-centered columns">
 	     <h1 class="welcome_header">EMPAWERING ANIMAL HEALTH</h1>
@@ -19,7 +19,7 @@
   </div>
   <div class="row">
 	 <div class="large-9 large-centered columns">
-	    <h4 class="subheader center_text">PETABYT IS A UNIVERSAL ELECTRONIC HEALTH RECORD THAT HELPS YOU ORGANIZE & SHARE 
+	    <h4 class="subheader center_text bottom_padding_3em">PETABYT IS A UNIVERSAL ELECTRONIC HEALTH RECORD THAT HELPS YOU ORGANIZE & SHARE 
 	    	YOUR ANIMAL'S HEALTH INFORMATION WITH THOSE INVOLVED IN THEIR CARE</h4
 	 </div>
   </div>
@@ -61,7 +61,7 @@
   	  
 </section>
 
-<section id="about" class="gray_background front_page_section_about">
+<section id="about" class="gray_background front_page_section_about full_page ">
   <div class="row">
 	 <div class="large-6 large-centered columns">
 	     <h2 class="center_text">ABOUT PETABYT</h2>
@@ -81,8 +81,8 @@
   </div>	
   
   <div class="row">
-	 <div class="large-6 large-centered columns">
-	     <%= image_tag(s3_url('wc_P.png'))%>
+	 <div class="large-6 large-centered columns center_text">
+	     <%= image_tag(s3_url('wc_P.png'), size: "200x200")%>
 	  </div>
   </div>
   
@@ -92,7 +92,7 @@
 
 
 
-<section id="login" class="red_background front_page_section_login">
+<section id="login" class="red_background front_page_section_login full_page ">
   <div class="row">
 	 <div class="large-6 large-centered columns">
 	     <h2 class="center_text">LOGIN OR JOIN</h2>
@@ -116,6 +116,11 @@
 
 <script>
   document.body.scrollTop = document.documentElement.scrollTop = 0;
+  //alert( "hey" + $( document ).height() );
+
+  
+
+
 </script>
 
 

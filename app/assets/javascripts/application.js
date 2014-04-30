@@ -95,6 +95,9 @@ $(function(){
   	);
   	return false;
   });
+  
+  vph = $(window).height();
+  $('.full_page').height(vph);
 
 });
 
