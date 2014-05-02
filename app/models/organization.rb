@@ -144,8 +144,19 @@ class Organization < ActiveRecord::Base
     adoption.save
   end
   
-  def spreadsheet_import
-    "imported animals"
+  def spreadsheet_import(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    import_count = 0
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      animal = Animal.find_by_id(row["id"]) || new
+      animal.attributes = row.to_hash.slice(*accessible_attributes)
+      animal.owner = self
+      animal.orginization_id = self.id
+      import_count += 1 if animal.save!
+    end
+    "Imported #{import_count} animals."
   end
     
 end

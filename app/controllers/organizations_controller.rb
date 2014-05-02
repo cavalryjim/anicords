@@ -108,7 +108,7 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def import_animals
-    notice = @organization.spreadsheet_import # JDavis: will need to pass the file
+    notice = @organization.spreadsheet_import(params[:file])
     
     redirect_to @organization, notice: notice
   end
