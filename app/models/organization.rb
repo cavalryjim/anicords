@@ -143,5 +143,9 @@ class Organization < ActiveRecord::Base
     end
     adoption.save
   end
+  
+  def spreadsheet_import
+    "imported animals"
+  end
     
 end

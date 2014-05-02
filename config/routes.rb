@@ -20,6 +20,9 @@ Anicords::Application.routes.draw do
     resources :user_associations
     resources :animals
     resources :locations
+    member do
+      post 'import_animals'
+    end
   end
 
   resources :households do

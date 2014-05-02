@@ -96,8 +96,8 @@ $(function(){
   	return false;
   });
   
-  vph = $(window).height();
-  $('.full_page').height(vph);
+  $('.full_page').height($(window).height() - $("#top_bar").height());
+  $('.front_page_subsection').height($(window).height());
 
 });
 

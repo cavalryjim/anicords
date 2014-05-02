@@ -49,6 +49,16 @@ ul.ui-autocomplete {
   text-transform: uppercase;
   font-weight: bold;
   text-align: center !important;
+  padding-top: 2em;
+}
+
+.front_subheader {
+  font-family: 'Source Sans Pro',sans-serif;
+  text-shadow: 0px 1px 0px rgba(51, 51, 51, 0.5);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center !important;
+  padding-top: 2em;
 }
 
 .nav_text, .nav_text a {
@@ -72,10 +82,10 @@ ul.ui-autocomplete {
   padding-left: 0px !important; /* change the values to anything that you want */
   padding-right: 0px !important;
 }
+/**
 
 section.front_page_section_home {
- padding-top: 7em;
- padding-bottom: 10em;
+  padding-bottom: 10em;
   
 }
 
@@ -88,6 +98,7 @@ section.front_page_section_login {
   padding-top: 5em;
   padding-bottom: 5em;
 }
+**/
 
 .white_background {
   background-color: #FFF;

@@ -107,6 +107,12 @@ class OrganizationsController < InheritedResources::Base
     @organization.associate_location(@foster_home) if @foster_home
   end
   
+  def import_animals
+    notice = @organization.spreadsheet_import # JDavis: will need to pass the file
+    
+    redirect_to @organization, notice: notice
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization

@@ -18,6 +18,7 @@
 	  	    <%= link_to button_small("import from Petfinder"), organizaiton_petfinder_import_path(@organization) %>
 	  	  <% end %>
 		</dd>
+		<dd><%= link_to button_small("import from spreadsheet"), "#", "data-reveal-id" => "importModal", remote: true  %></dd>
 	  </dl>
   	</div>
   </div>
@@ -64,6 +65,16 @@
 
 <div id="editPictureModal" class="reveal-modal">
   <div id="picture_edit_div"></div>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="importModal" class="reveal-modal medium">
+  <h4>Import Animals</h4>
+  <%= form_tag import_animals_organization_path, multipart: true, remote: true do %>
+	<%= file_field_tag :file %>
+	<%= submit_tag "import" %>
+  <% end %>
   
   <a class="close-reveal-modal">&#215;</a>
 </div>

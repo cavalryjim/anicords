@@ -53,6 +53,7 @@ gem 'sanitize', '2.1.0'
 gem 'chartkick', '1.2.2'
 #gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 #gem 'rescuegroups', '~> 0.0.1'
+gem 'roo', '1.13.2'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
