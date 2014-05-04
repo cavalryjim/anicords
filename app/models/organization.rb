@@ -155,16 +155,15 @@ class Organization < ActiveRecord::Base
       org_animal_id = row["org_animal_id"] || nil
       petfinder_id = row["petfinder_id"] || nil
       animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self ) || Animal.new
-      #animal.attributes = row.to_hash.slice(*accessible_attributes)
       animal.attributes = row.to_hash.select { |k,v| allowed_animal_attrs.include? k }
-      animal.build_org_profile unless animal.org_profile.present?
-      #animal.org_profile.attributes = row.to_hash.slice(*accessible_attributes)
-      animal.org_profile.attributes = row.to_hash.select { |k,v| allowed_org_profile_attrs.include? k }
-      #animal.org_profile.animal_id = animal.id
       animal.owner = self
       animal.organization_id = self.id
-      animal.org_profile.organization_location_id = self.organization_locations.first.id unless animal.org_profile.organization_location_id.present?
-      import_count += 1 if animal.save
+      if animal.save
+        animal.build_org_profile unless animal.org_profile.present?
+        animal.org_profile.attributes = row.to_hash.select { |k,v| allowed_org_profile_attrs.include? k }
+        animal.org_profile.organization_location_id = self.organization_locations.first.id unless animal.org_profile.organization_location_id.present?
+        import_count += 1 if animal.org_profile.save
+      end
       #import_count += 1
     end
     "Imported #{import_count} animals."

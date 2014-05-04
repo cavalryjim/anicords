@@ -322,7 +322,7 @@ class Animal < ActiveRecord::Base
     end
     
     if org_animal_id 
-      profiles = OrgProfile.where(org_animal_id: org_animal_id, :organization_location_id => organization.organization_location_ids)
+      profiles = OrgProfile.where(org_animal_id: org_animal_id.to_s, :organization_location_id => organization.organization_location_ids)
       return profiles.first.animal if profiles.present?
     end
     
