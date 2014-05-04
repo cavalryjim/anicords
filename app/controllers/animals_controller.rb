@@ -236,7 +236,7 @@ class AnimalsController < ApplicationController
        :neuter_location, :microchip_brand_id,
        :medical_diagnosis_ids, :medication_ids, :allergy_ids, :personality_type_ids, :breed_ids,
        org_profile_attributes: [ :id, :animal_id, :intake_date, :intake_reason, :organization_location_id, :neuter_location_id,
-         :neuter_location_type, :neuter_location, :petfinder_id, :shelter_specific_id,    
+         :neuter_location_type, :neuter_location, :petfinder_id, :org_animal_id,    
          :thumbnail_url, :adoption_date, :transferee_first_name, :transferee_last_name, :transferee_phone,
          :transferee_city, :transferee_state, :transferee_zip, :_destroy],
        health_profile_attributes: [ :id, :animal_id, :last_exam_date, :last_exam_location, :heartworm_test_date,     

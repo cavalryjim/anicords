@@ -14,7 +14,7 @@
 #  updated_at               :datetime
 #  organization_location_id :integer
 #  petfinder_id             :integer
-#  shelter_specific_id      :string(255)
+#  org_animal_id            :string(255)
 #  thumbnail_url            :string(255)
 #  adoption_date            :date
 #  transferee_first_name    :string(255)
@@ -28,6 +28,9 @@
 class OrgProfile < ActiveRecord::Base
   belongs_to  :animal
   belongs_to  :organization_location
+  
+  validates_presence_of :animal_id
+  validates_presence_of :organization_location_id
   
   
 end

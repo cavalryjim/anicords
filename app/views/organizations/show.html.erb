@@ -71,8 +71,8 @@
 
 <div id="importModal" class="reveal-modal medium">
   <h4>Import Animals</h4>
-  <%= form_tag import_animals_organization_path, multipart: true, remote: true do %>
-	<%= file_field_tag :file %>
+  <%= form_tag import_animals_organization_path, multipart: true, remote: false do %>
+	<%= file_field_tag :file, class: 'upload_file' %>
 	<%= submit_tag "import" %>
   <% end %>
   

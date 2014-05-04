@@ -287,6 +287,7 @@ class Animal < ActiveRecord::Base
   def set_org_location
     self.build_org_profile unless self.org_profile.present?
     self.org_profile.organization_location_id = self.owner.organization_locations.first.id 
+    self.org_profile.save
   end
   
   def weight_chart_data
@@ -312,6 +313,26 @@ class Animal < ActiveRecord::Base
     #animal_association = AnimalAssociation.where(animal_id: self.id, service_provider_id: service_provider_id).first_or_create
     #animal_association.update_attribute :checked_in, true
     #animal_association
+  end
+  
+  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization)
+    if animal_id 
+      animal = find_by_id(animal_id)
+      return animal if (animal && animal.owner == organization)
+    end
+    
+    if org_animal_id 
+      profiles = OrgProfile.where(org_animal_id: org_animal_id, :organization_location_id => organization.organization_location_ids)
+      return profiles.first.animal if profiles.present?
+    end
+    
+    if petfinder_id 
+      profiles = OrgProfile.where(petfinder_id: petfinder_id, :organization_location_id => organization.organization_location_ids)
+      return profiles.first.animal if profiles.present?
+    end
+    
+    return nil
+    
   end
   
   private

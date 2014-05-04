@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140331175024) do
+ActiveRecord::Schema.define(version: 20140504032331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -359,7 +359,7 @@ ActiveRecord::Schema.define(version: 20140331175024) do
     t.datetime "updated_at"
     t.integer  "organization_location_id"
     t.integer  "petfinder_id"
-    t.string   "shelter_specific_id"
+    t.string   "org_animal_id"
     t.string   "thumbnail_url"
     t.date     "adoption_date"
     t.string   "transferee_first_name"

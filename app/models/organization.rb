@@ -98,8 +98,6 @@ class Organization < ActiveRecord::Base
       end
       
       if pet.breeds
-        #breed = Breed.where(name: pet.breeds.first, animal_type_id: animal.animal_type_id).first
-        #animal.breed_id = breed.id if breed
         pet.breeds.each do |pet_breed|
           breed = Breed.where(name: pet_breed, animal_type_id: animal.animal_type_id).first
           AnimalBreed.where(animal_id: animal.id, breed_id: breed.id).first_or_create if breed
@@ -109,7 +107,7 @@ class Organization < ActiveRecord::Base
       (animal.org_profile.organization_location_id = self.organization_locations.first.id) unless animal.org_profile.organization_location_id.present?
       animal.description = Sanitize.clean(pet.description)
       
-      pull_count += 1 if animal.save
+      pull_count += 1 if (animal.save && animal.org_profile.save)
       
       if animal.id && pet.photos
         pet.photos.each do |pet_photo|
@@ -145,18 +143,36 @@ class Organization < ActiveRecord::Base
   end
   
   def spreadsheet_import(file)
-    spreadsheet = open_spreadsheet(file)
+    allowed_animal_attrs = [ "name", "animal_type_id", "description", "dob", "gender", "neutered", "neutered_date", "special_instructions", "fur_color",
+      "disposition", "size", "microchipped", "microchip_brand_id", "microchip_id" ]    
+    allowed_org_profile_attrs = [ "org_animal_id", "intake_date","intake_reason","petfinder_id"]
+    spreadsheet = Organization.open_spreadsheet(file)
     header = spreadsheet.row(1)
     import_count = 0
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      animal = Animal.find_by_id(row["id"]) || new
-      animal.attributes = row.to_hash.slice(*accessible_attributes)
+      animal = Animal.org_animal_search(row["id"], row["org_animal_id"], row["petfinder_id"], self ) || Animal.new
+      #animal.attributes = row.to_hash.slice(*accessible_attributes)
+      animal.attributes = row.to_hash.select { |k,v| allowed_animal_attrs.include? k }
+      animal.build_org_profile unless animal.org_profile.present?
+      #animal.org_profile.attributes = row.to_hash.slice(*accessible_attributes)
+      animal.org_profile.attributes = row.to_hash.select { |k,v| allowed_org_profile_attrs.include? k }
       animal.owner = self
-      animal.orginization_id = self.id
-      import_count += 1 if animal.save!
+      animal.organization_id = self.id
+      animal.org_profile.organization_location_id = self.organization_locations.first.id unless animal.org_profile.organization_location_id.present?
+      import_count += 1 if (animal.save && animal.org_profile.save)
+      #import_count += 1
     end
     "Imported #{import_count} animals."
+  end
+  
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
+    when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
+    when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
   end
     
 end

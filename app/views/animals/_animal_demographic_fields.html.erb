@@ -16,8 +16,14 @@
 	  	<%= builder.label :organization_location_id, 'location' %>
 		<%= builder.collection_select :organization_location_id, @owner.organization_locations, :id, :name, {prompt:'animal location'}, {class: "regular_select"} %>
 	  </div>
-	  <%= builder.hidden_field :id %>	  
 	</div>
+	<div class="row">
+	  <div class="large-4 columns">
+	  	<%= builder.label :org_animal_id, 'animal id' %>
+	    <%= builder.text_field :org_animal_id, placeholder: "shelter assigned ID" %>
+	  </div>
+    </div>
+	<%= builder.hidden_field :id %>	  
   <% end %>
   </fieldset>
  <% end %>
