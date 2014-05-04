@@ -16,7 +16,7 @@ class OrgFlyerPdf < Prawn::Document
   
   def body
     move_down 110
-    text "#{@animal.name}", align: :center
+    text "#{@animal.name}", size: 30, align: :center
     
     image open("#{ @animal.pictures.first.image_location }"), position: :center if @animal.pictures.first.present?
     text "description: #{@animal.description}" if @animal.description.present?

@@ -107,7 +107,7 @@ class Organization < ActiveRecord::Base
       (animal.org_profile.organization_location_id = self.organization_locations.first.id) unless animal.org_profile.organization_location_id.present?
       animal.description = Sanitize.clean(pet.description)
       
-      pull_count += 1 if (animal.save && animal.org_profile.save)
+      pull_count += 1 if animal.save
       
       if animal.id && pet.photos
         pet.photos.each do |pet_photo|
@@ -151,16 +151,20 @@ class Organization < ActiveRecord::Base
     import_count = 0
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      animal = Animal.org_animal_search(row["id"], row["org_animal_id"], row["petfinder_id"], self ) || Animal.new
+      animal_id = row["id"] || nil
+      org_animal_id = row["org_animal_id"] || nil
+      petfinder_id = row["petfinder_id"] || nil
+      animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self ) || Animal.new
       #animal.attributes = row.to_hash.slice(*accessible_attributes)
       animal.attributes = row.to_hash.select { |k,v| allowed_animal_attrs.include? k }
       animal.build_org_profile unless animal.org_profile.present?
       #animal.org_profile.attributes = row.to_hash.slice(*accessible_attributes)
       animal.org_profile.attributes = row.to_hash.select { |k,v| allowed_org_profile_attrs.include? k }
+      #animal.org_profile.animal_id = animal.id
       animal.owner = self
       animal.organization_id = self.id
       animal.org_profile.organization_location_id = self.organization_locations.first.id unless animal.org_profile.organization_location_id.present?
-      import_count += 1 if (animal.save && animal.org_profile.save)
+      import_count += 1 if animal.save
       #import_count += 1
     end
     "Imported #{import_count} animals."
