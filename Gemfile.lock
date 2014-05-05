@@ -301,7 +301,6 @@ GEM
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rmagick (2.13.2)
-    rolify (3.4.0)
     roo (1.13.2)
       nokogiri
       rubyzip
@@ -437,7 +436,6 @@ DEPENDENCIES
   rails_12factor (= 0.0.2)
   remotipart (= 1.2.1)
   rmagick (= 2.13.2)
-  rolify (~> 3.4.0)
   roo (= 1.13.2)
   rqrcode_png (= 0.1.2)
   rspec-rails
