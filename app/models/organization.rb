@@ -161,10 +161,10 @@ class Organization < ActiveRecord::Base
       if animal.save
         animal.build_org_profile unless animal.org_profile.present?
         animal.org_profile.attributes = row.to_hash.select { |k,v| allowed_org_profile_attrs.include? k }
-        animal.org_profile.organization_location_id = self.organization_locations.first.id unless animal.org_profile.organization_location_id.present?
+        animal.org_profile.organization_location_id ||= self.organization_locations.first.id
         import_count += 1 if animal.org_profile.save
       end
-      #import_count += 1
+     
     end
     "Imported #{import_count} animals."
   end

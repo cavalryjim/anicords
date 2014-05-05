@@ -4,12 +4,12 @@ ruby '2.0.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.4'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '0.16.0'
 
-gem 'sass-rails', '4.0.1'
+gem 'sass-rails', '4.0.3'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 

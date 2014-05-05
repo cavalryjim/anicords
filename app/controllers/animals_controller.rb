@@ -83,6 +83,8 @@ class AnimalsController < ApplicationController
     
     if @organization.present?
       @location_options = @organization.organization_locations.map{|l| [ l.id, l.name ]}
+      @animal.build_org_profile unless @animal.org_profile.present?
+      @animal.org_profile.organization_location_id ||= @organization.organization_locations.first.id
     end
     
     respond_to do |format|

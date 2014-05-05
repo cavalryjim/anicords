@@ -15,7 +15,7 @@
 	      <td><%= document.file_name %></td>
 		  <td>
 		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
-		    		confirm: 'Remove this document?', remote: true %>	
+		    		data: { confirm: 'Remove this document?' }, remote: true %>	
 		  </td>
         </tr>
 	  <% end %>
@@ -40,7 +40,7 @@
 	      <td><%= document.file_name %></td>
 		  <td>
 		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
-		    		confirm: 'Remove this document?', remote: true %>	
+		    		data: { confirm: 'Remove this document?' }, remote: true %>	
 		  </td>
         </tr>
 	  <% end %>
@@ -66,7 +66,7 @@
 	      <td><%= document.file_name %></td>
 		  <td>
 		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
-		    		confirm: 'Remove this document?', remote: true %>	
+		    		data: { confirm: 'Remove this document?' }, remote: true %>	
 		  </td>
         </tr>
 	  <% end %>
@@ -92,7 +92,7 @@
 	      <td><%= document.file_name %></td>
 		  <td>
 		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
-		    		confirm: 'Remove this document?', remote: true %>	
+		    		data: { confirm: 'Remove this document?' }, remote: true %>	
 		  </td>
         </tr>
 	  <% end %>
