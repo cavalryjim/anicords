@@ -95,9 +95,9 @@ $(function(){
   	);
   	return false;
   });
-  
-  $('.full_page').height($(window).height() - $("#top_bar").height());
-  $('.front_page_subsection').height($(window).height());
+   
+  $('.full_page').css("min-height", $(window).height() - $("#top_bar").height() );
+  $(".front_page_subsection").css("min-height",  $(window).height() );
 
 });
 
