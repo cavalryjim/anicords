@@ -27,9 +27,12 @@ $("#org_news").easyTicker(
   interval: 4000
 ).show()
 
+$("#import_button").click (event) ->
+  event.preventDefault()
   
 $(".org_animal_div").on "show", ->
   $(document).foundation()
+  
   
   $(".regular_select").select2
     minimumResultsForSearch: 55

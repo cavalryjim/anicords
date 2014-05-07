@@ -32,8 +32,8 @@ module ApplicationHelper
     'https://s3.amazonaws.com/petabyt/app_images/' << file_name
   end
   
-  def button_small(text, button_id = '', button_class = '' )
-    ("<button class='small "+button_class+"' id="+button_id+">"+text+"</button>").html_safe
+  def button_small(text, button_id = 'button1', button_class = '' )
+    ("<button class='small "+button_class+"' id="+"'"+button_id+"'"+">"+text+"</button>").html_safe
   end
   
   def fun_button_small(text)
