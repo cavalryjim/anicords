@@ -108,7 +108,11 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def import_animals
-    notice = @organization.spreadsheet_import(params[:file])
+    if params[:file].present?
+      notice = @organization.spreadsheet_import(params[:file])
+    else
+      notice = "No file was selected."
+    end
     
     redirect_to @organization, notice: notice
   end
