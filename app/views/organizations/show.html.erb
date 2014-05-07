@@ -76,10 +76,11 @@
 
 <div id="importSpreadsheetModal" class="reveal-modal medium">
   <h4>Import Animals</h4>
-  <%= form_tag import_animals_organization_path, multipart: true, remote: false do %>
+  <%= form_tag import_animals_organization_path, multipart: true  do %>
     <div class="row">
 	  <div class="large-6 small-12 columns ">
-	    <%= file_field_tag :file, class: 'upload_file' %>	  
+	    <%= file_field_tag :file, class: 'upload_file' %>	
+	    
       </div>
 	</div>
 	<div class="row">
