@@ -105,4 +105,6 @@ Anicords::Application.configure do
     :sender_address => %{"notifier" <notifier@petabyt.com>},
     :exception_recipients => %w{james.davisphd@gmail.com, tylercarruth@live.com}
   }
+  
+  config.middleware.use Rack::SSL
 end
