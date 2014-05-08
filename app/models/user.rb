@@ -55,11 +55,11 @@ class User < ActiveRecord::Base
   #validates_presence_of :password, if: "provider.blank?"    
       
   def to_s
-    name_or_email
+    name
   end
   
   def name
-    if first_name || last_name
+    if first_name.present? || last_name.present?
       first_name.to_s + ' ' + last_name.to_s
     else
       email
@@ -88,10 +88,6 @@ class User < ActiveRecord::Base
   
   def no_associations?
     self.user_associations.count == 0
-  end
-  
-  def selected_association(association_id)
-    UserAssociation.find(association_id).group
   end
 
   def self.from_omniauth(auth)

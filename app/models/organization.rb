@@ -163,6 +163,22 @@ class Organization < ActiveRecord::Base
         animal.org_profile.attributes = row.to_hash.select { |k,v| allowed_org_profile_attrs.include? k }
         animal.org_profile.organization_location_id ||= self.organization_locations.first.id
         import_count += 1 if animal.org_profile.save
+        
+        if row["breed_1"].present? && animal.animal_type_id
+          breed = Breed.where(name: row["breed_1"], animal_type_id: animal.animal_type_id).first
+          AnimalBreed.where(animal_id: animal.id, breed_id: breed.id).first_or_create if breed
+        end
+        if row["breed_2"].present? && animal.animal_type_id
+          breed = Breed.where(name: row["breed_2"], animal_type_id: animal.animal_type_id).first
+          AnimalBreed.where(animal_id: animal.id, breed_id: breed.id).first_or_create if breed
+        end
+        if row["rabies_annual_date"].present?
+          v = Vaccination.where(name: "Rabies (annual)").first
+          av = AnimalVaccination.find_or_initialize_by(animal_id: animal.id, vaccination_id: v.id, vaccination_date: row["rabies_annual_date"])
+          av.set_due_date if v.frequency.present?
+          av.save
+        end
+        
       end
      
     end

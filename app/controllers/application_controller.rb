@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       elsif current_user.no_associations?
         user_select_account_type_path
       else
-        url_for(current_user.selected_association(current_user.user_association_ids.first))  
+        current_user.user_associations.first.group 
       end
     end
   end

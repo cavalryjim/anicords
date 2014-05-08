@@ -10,12 +10,9 @@
 	<fieldset>
 	  	<% if @household.animals.count == 0 %>
 		  <h4>Tell us about your animals</h4>
+	      
 		<% end %>
 	    <ul class="large-block-grid-3">
-	    	
-	    <% if @household.animals.count == 0 %>
-	      <li>Please add your household animals.</li>
-	    <% end %>
 	    
 		<% @household.animals.each do |animal| %>
 		  <li>
@@ -40,11 +37,15 @@
   <div class="large-7 columns">
   	<fieldset>
   	  <h4>Household updates</h4>
-  	  <% @activities.each do |activity| %>
-		<div class="activity">
-		  <%= link_to activity.owner.name_or_email, activity.owner if activity.owner %>
-		  <%= render_activity activity %>
-		</div>
+  	  <% if @activities.present? %>
+  	    <% @activities.each do |activity| %>
+		  <div class="activity">
+		    <%= link_to activity.owner.name_or_email, activity.owner if activity.owner %>
+		    <%= render_activity activity %>
+		  </div>
+	    <% end %>
+	  <% else %>
+	    <p>(coming soon!)</p>
 	  <% end %>
   	</fieldset>
   </div>	

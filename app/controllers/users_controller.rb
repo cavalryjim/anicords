@@ -83,8 +83,6 @@ class UsersController < ApplicationController
   end
   
   def set_association
-    #session[:home_page] = url_for(current_user.selected_association(params[:user][:user_association_ids]))
-    
     redirect_to session[:home_page]
   end
   
