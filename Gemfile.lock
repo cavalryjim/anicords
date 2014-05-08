@@ -263,8 +263,6 @@ GEM
     rack (1.5.2)
     rack-cache (1.2)
       rack (>= 0.4)
-    rack-ssl (1.4.1)
-      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.4)
@@ -434,7 +432,6 @@ DEPENDENCIES
   public_activity (= 1.4.0)
   queue_classic (= 2.2.2)
   rack-cache
-  rack-ssl (= 1.4.1)
   rails (= 4.0.4)
   rails_12factor (= 0.0.2)
   remotipart (= 1.2.1)
