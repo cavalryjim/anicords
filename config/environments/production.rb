@@ -106,5 +106,5 @@ Anicords::Application.configure do
     :exception_recipients => %w{james.davisphd@gmail.com, tylercarruth@live.com}
   }
   
-  # config.middleware.use Rack::SSL
+  config.middleware.use Rack::SSL
 end
