@@ -242,7 +242,7 @@ Dooliddl Labs  has the discretion to update this privacy policy at any time. Whe
 
 <b>Your acceptance of these terms</b><br><br>
 
-By using this Site, you signify your acceptance of this policy and <a href="www.petabyt.com/users/privacy_policy">terms of service</a>. If you do not agree to this policy, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.<br><br>
+By using this Site, you signify your acceptance of this policy. If you do not agree to this policy, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.<br><br>
 
 <b>Contacting us</b><br><br>
 
