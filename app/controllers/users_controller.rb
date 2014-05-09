@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, except: [:home, :login]
-  #before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, except: [:home, :login, :privacy_policy ] 
   before_action :set_user, only: [:edit, :update, :destroy, :show]
   authorize_resource
 
