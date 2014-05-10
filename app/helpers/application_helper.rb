@@ -13,6 +13,37 @@ module ApplicationHelper
     d.strftime("%m/%d/%Y") if d
   end
   
+  def thumbnail(animal, size = '100x100', classes = 'th' )
+    #return image_tag(animal.avatar.url, size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) ) if animal.avatar_stored?
+    if animal.avatar.present?
+      image_tag(animal.avatar.url, size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+    elsif animal.org_profile && animal.org_profile.thumbnail_url.present?
+      image_tag(animal.org_profile.thumbnail_url, size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+    else 
+      #s3_url('petabyt_icon.ico')  
+      case animal.species
+      when 'dog'
+        image_tag(s3_url('dog_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+      when 'cat'
+        image_tag(s3_url('cat_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+      when 'horse'
+        image_tag(s3_url('horse_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+      when'tiger'
+        image_tag(s3_url('tiger_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+      else
+        image_tag(s3_url('petabyt_icon.ico'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+      end
+    end
+    
+  end
+  
+  def image_classes(animal, classes)
+    classes << ' transfer' if animal.pending_transfer? 
+    classes << ' animal_alert' if (animal.profile_completion < 50)
+    classes << ' foster' if (animal)
+    return classes
+  end
+  
   def petabyt_image
     image_tag(s3_url('petabyt_f.png'), size: '120x120', class: 'petabyt_image')
   end

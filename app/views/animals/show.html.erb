@@ -4,7 +4,7 @@
 	<fieldset>
 	  <div class="row">
 	  	<div class="large-9 columns">
-	  	  <h4><%=@animal.name%><%if can?(:manage, @animal)%><small><%= link_to " (edit)", [:edit, @owner, @animal] %> </small><% end %></h4>
+	  	  <h4><%= image_tag(thumbnail(@animal), size: '50x50', class: 'picture_border_2') %><%=@animal.name%><%if can?(:manage, @animal)%><small><%= link_to " (edit)", [:edit, @owner, @animal] %> </small><% end %></h4>
 	  	</div>
 	  </div>
 	  <div class="row">
@@ -26,12 +26,12 @@
 	    <fieldset>
 	      <h5>You have a pending transfer!</h5>
 	  	  <div class="row">
-		  	<div class="large-12 columns">
+		  	<div class="large-6 columns">
 		  	  <% if current_user.no_associations? %>
 		  	    <%= link_to 'Please create an household to complete the transfer.', new_household_path %>
 		  	  <% else %>
 		  	    <%= form_for @animal, url: accept_transfer_path, html: { id: "accept_transfer_form", "data-abide" => '' } do |f| %>
-		  	      Accept this animal to: <%= select_tag 'association', options_from_collection_for_select(current_user.associations.all, 'id', 'name') %>
+		  	      Accept this animal to: <%= select_tag 'association', options_from_collection_for_select(current_user.associations.all, 'id', 'name'), class: "regular_select" %>
 		  	      <%= f.submit 'Accept '%> 
 		  	      <%= hidden_field_tag 'animal_transfer_id', @transfer_id %>
 		  	    <% end %>

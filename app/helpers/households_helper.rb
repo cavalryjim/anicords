@@ -1,20 +1,4 @@
 module HouseholdsHelper
-  def animal_image(animal)
-    return image_tag(animal.avatar.url, size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) ) if animal.avatar_stored?
-    
-    case animal.species
-    when 'dog'
-      image_tag(s3_url('dog_icon.png'), size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) )
-    when 'cat'
-      image_tag(s3_url('cat_icon.png'), size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
-    when 'horse'
-      image_tag(s3_url('horse_icon.png'), size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
-    when'tiger'
-      image_tag(s3_url('tiger_icon.png'), size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
-    else
-      image_tag(s3_url('generic_icon.png'), size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal))
-    end
-  end
   
   def avatar_size
     '100x100'
@@ -31,15 +15,7 @@ module HouseholdsHelper
     household_household_association_path(household_id, association.id)
   end
   
-  def image_classes(animal)
-    if animal.pending_transfer? 
-      classes = 'transfer_image' 
-    else
-      classes = 'th'
-    end
-    classes << ' animal_alert' if (animal.profile_completion < 50)
-    return classes
-  end
+  
   
   def animal_notifications(animal)
     notifications = "<ul class='notifications'>"

@@ -26,7 +26,7 @@
  
  <fieldset id="weight_fieldset">
    <legend>weight</legend>
-   <% if @animal.weights.present?%>
+   
     <div class="row">
      <div class="large-1 columns">
        <%= image_tag 'details_open.png', :class => 'details' %>
@@ -41,6 +41,7 @@
        <div id="animal_weight_chart_div"><%= render 'animals/weight_chart'%></div>
      </div>
     </div>
+   
      
      <%= form_for [@animal, Weight.new], remote: true, html: {id: 'animal_weight_form', "data-abide" => ''} do |f| %>
        <div class="row">
@@ -67,7 +68,6 @@
 		<%= f.submit "add weight" %>
 	   </div>
      <% end %>
-   <% end %>
  </fieldset>
  
   

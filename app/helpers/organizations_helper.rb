@@ -16,16 +16,6 @@ module OrganizationsHelper
     end
   end
   
-  def thumbnail(animal)
-    if animal.avatar.present?
-      animal.avatar.url
-    elsif animal.org_profile && animal.org_profile.thumbnail_url.present?
-      animal.org_profile.thumbnail_url  
-    else 
-      s3_url('petabyt_icon.ico')  
-    end
-  end
-  
   def symbolize_id(owner)
     (owner.class.name.downcase << '_id').to_sym
   end
