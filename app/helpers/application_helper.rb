@@ -13,7 +13,7 @@ module ApplicationHelper
     d.strftime("%m/%d/%Y") if d
   end
   
-  def thumbnail(animal, size = '100x100', classes = 'th', view_section = 'Household' )
+  def thumbnail(animal, size = '100x100', classes = 'th', view_section = nil )
     #return image_tag(animal.avatar.url, size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) ) if animal.avatar_stored?
     if animal.avatar.present?
       image_tag(animal.avatar.url, size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
@@ -39,7 +39,7 @@ module ApplicationHelper
   
   def image_classes(animal, classes, view_section)
     classes << ' transfer' if animal.pending_transfer? 
-    classes << ' animal_alert' if (view_section != 'Organization' && animal.profile_completion < 50)
+    classes << ' animal_alert' if ((view_section == 'Household') && (animal.profile_completion < 50))
     return classes
   end
   
