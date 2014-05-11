@@ -13,34 +13,33 @@ module ApplicationHelper
     d.strftime("%m/%d/%Y") if d
   end
   
-  def thumbnail(animal, size = '100x100', classes = 'th' )
+  def thumbnail(animal, size = '100x100', classes = 'th', view_section = 'Household' )
     #return image_tag(animal.avatar.url, size: avatar_size, id: 'animal'+animal.id.to_s, class: image_classes(animal) ) if animal.avatar_stored?
     if animal.avatar.present?
-      image_tag(animal.avatar.url, size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+      image_tag(animal.avatar.url, size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
     elsif animal.org_profile && animal.org_profile.thumbnail_url.present?
-      image_tag(animal.org_profile.thumbnail_url, size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+      image_tag(animal.org_profile.thumbnail_url, size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
     else 
       #s3_url('petabyt_icon.ico')  
       case animal.species
       when 'dog'
-        image_tag(s3_url('dog_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+        image_tag(s3_url('dog_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
       when 'cat'
-        image_tag(s3_url('cat_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+        image_tag(s3_url('cat_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
       when 'horse'
-        image_tag(s3_url('horse_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+        image_tag(s3_url('horse_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
       when'tiger'
-        image_tag(s3_url('tiger_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+        image_tag(s3_url('tiger_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
       else
-        image_tag(s3_url('petabyt_icon.ico'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes) )
+        image_tag(s3_url('petabyt_icon.ico'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
       end
     end
     
   end
   
-  def image_classes(animal, classes)
+  def image_classes(animal, classes, view_section)
     classes << ' transfer' if animal.pending_transfer? 
-    classes << ' animal_alert' if (animal.profile_completion < 50)
-    classes << ' foster' if (animal)
+    classes << ' animal_alert' if (view_section != 'Organization' && animal.profile_completion < 50)
     return classes
   end
   

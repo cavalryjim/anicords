@@ -24,7 +24,7 @@
 		<% if @household.foster_animals.count > 0 %>
 		  <% @household.foster_animals.each do |animal| %>
 			<li>
-			  <%= link_to thumbnail(animal, nil, " foster"), household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
+			  <%= link_to thumbnail(animal, '100x100', "th foster"), household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
 			  <%= link_to animal.name, household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %>		
 			</li>			
 		  <% end %>
