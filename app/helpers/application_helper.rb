@@ -215,6 +215,8 @@ module ApplicationHelper
     end
   end
   
+#### JDavis: let the privacy policy be the last item in this helper ####
+  
   def privacy_policy_text
     %q[
 This Privacy Policy governs the manner in which Dooliddl Labs  collects, uses, maintains and discloses information collected from users (each, a "User") of the <a href="petabyt.com">petabyt.com</a> website ("Site"). This privacy policy applies to the Site and all products and services offered by Dooliddl Labs .<br><br>
