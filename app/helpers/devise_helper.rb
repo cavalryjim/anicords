@@ -20,5 +20,13 @@ module DeviseHelper
   def devise_error_messages?
     resource.errors.empty? ? false : true
   end
+  
+  def omniauth_verbage(provider)
+    if provider.to_s.titleize == "Facebook"
+     ( " or use " + image_tag(s3_url('webicon-facebook-m.png'), class: 'selectable_image')).html_safe
+    else    
+      "Login with #{provider.to_s.titleize}"
+    end
+  end
 
 end

@@ -8,20 +8,24 @@
 		  
 		  <%= f.hidden_field :reset_password_token %>
 		
-		  <div>
-		  	<%= f.password_field :password, :autofocus => true, :placeholder => "New password" %>
-		  	<small class="error">New password required.</small>
+		  <div class="row">
+	  		<div class="large-4 columns">
+		  	  <%= f.password_field :password, :autofocus => true, :placeholder => "new password" %>
+		  	  <small class="error">eight(8) charater password required.</small>
+		  	</div>
 		  </div>
 		
-		  <div>
-		  	<%= f.password_field :password_confirmation, :placeholder => "Confirm new password" %>
-		  	<small class="error">Confirmation required.</small>
+		  <div class="row">
+	  		<div class="large-4 columns">
+		  	  <%= f.password_field :password_confirmation, :placeholder => "confirm new password" %>
+		  	  <small class="error">confirmation required.</small>
 		  	</div>
+		  </div>
 		
 		  <div><%= f.submit "Change my password" %></div>
 		<% end %>
 		
-		<%= render "devise/shared/links" %>
+		
    	  </fieldset>
     </div>
   </div>
