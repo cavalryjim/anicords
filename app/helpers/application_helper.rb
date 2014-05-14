@@ -66,13 +66,13 @@ module ApplicationHelper
     ("<button class='small "+button_class+"' id="+"'"+button_id+"'"+">"+text+"</button>").html_safe
   end
   
-  def fun_button_small(text)
-    ("<button class='small round fun_font'>"+text+"</button>").html_safe
-  end
+  #def fun_button_small(text)
+  #  ("<button class='small round fun_font'>"+text+"</button>").html_safe
+  #end
   
-  def fun_button_tiny(text)
-    ("<button class='tiny round fun_font'>"+text+"</button>").html_safe
-  end
+  #def fun_button_tiny(text)
+  #  ("<button class='tiny round fun_font'>"+text+"</button>").html_safe
+  #end
   
   def number_of_notifications
     (current_user.notifications.count > 0) ? current_user.notifications.count : false
