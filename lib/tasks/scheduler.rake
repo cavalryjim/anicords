@@ -15,6 +15,8 @@ end
 task :animals_needing_org_profile => :environment do
   if Animal.without_org_profile.count > 0 
     UserMailer.animals_without_org_profile.deliver
+  else
+    puts "No animals needing an org_profile."
   end
 end
 
@@ -26,6 +28,8 @@ end
 task :orphan_associations => :environment do
   if UserAssociation.orphan_associations.count > 0 
     UserMailer.orphan_associations.deliver
+  else
+    puts "No orphaned associations, yeah!"
   end
 end
 
