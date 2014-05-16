@@ -33,4 +33,8 @@ class UserAssociation < ActiveRecord::Base
     self.user ? user.email : nil
   end
   
+  def self.orphan_associations
+    UserAssociation.where("user_associations.user_id = ? OR user_associations.group_id = ?", nil, nil)
+  end
+  
 end

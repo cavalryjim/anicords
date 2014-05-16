@@ -23,3 +23,9 @@ task :create_vaccination_notifications => :environment do
   puts "Sent #{num} vaccination notifications"
 end
 
+task :orphan_associations => :environment do
+  if UserAssociation.orphan_associations.count > 0 
+    UserMailer.orphan_associations.deliver
+  end
+end
+

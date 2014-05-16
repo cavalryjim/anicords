@@ -79,6 +79,10 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: @animal.name + " is due a vaccination"
   end
   
+  def orphan_associations
+    mail to: 'james.davisphd@gmail.com', subject: "Petabyt has orphaned associations!"
+  end
+  
 private
   
   
