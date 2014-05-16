@@ -53,7 +53,7 @@ module ApplicationHelper
     elsif current_user 
      link_to(petabyt_image, user_select_association_path ) 
     else 
-     link_to(petabyt_image, new_user_registration_path )
+     link_to(petabyt_image, new_user_registration_path + "#" )
     end
   end
   

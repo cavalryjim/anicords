@@ -60,6 +60,7 @@
 	
 	          <tbody>
 	            <% @household.user_associations.each do |ua| %>
+	             <% if ua.user.present? %>
 	              <tr>
 	              	<td><%= ua.user.name %></td>
 	                <td><%= ua.user.email %></td>
@@ -71,6 +72,7 @@
 				 	  <% end %>
 	                </td>
 	              </tr>
+	             <% end %>
 	            <% end %>
 	            
 	          </tbody>
