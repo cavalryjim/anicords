@@ -315,7 +315,8 @@ class Animal < ActiveRecord::Base
     #animal_association
   end
   
-  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization)
+  # JDavis: need to add microchip lookup to this!
+  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization, chip_brand, chip_id)
     if animal_id 
       animal = find_by_id(animal_id)
       return animal if (animal && animal.owner == organization)
@@ -331,8 +332,16 @@ class Animal < ActiveRecord::Base
       return profiles.first.animal if profiles.present?
     end
     
+    if chip_brand && chip_id
+      return microchip_search(chip_brand, chip_id).first
+    end
+    
     return nil
     
+  end
+  
+  def self.microchip_search(chip_brand, chip_id)
+    where(microchip_brand_id: chip_brand, microchip_id: chip_id)
   end
   
   private
