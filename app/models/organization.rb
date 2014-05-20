@@ -154,7 +154,9 @@ class Organization < ActiveRecord::Base
       animal_id = row["id"] || nil
       org_animal_id = row["org_animal_id"] || nil
       petfinder_id = row["petfinder_id"] || nil
-      animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self ) || Animal.new
+      chip_brand = row["microchip_brand_id"] || nil
+      chip_id = row["microchip_id"] || nil
+      animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self, chip_brand, chip_id ) || Animal.new
       animal.attributes = row.to_hash.select { |k,v| allowed_animal_attrs.include? k }
       animal.owner = self
       animal.organization_id = self.id
