@@ -1,0 +1,26 @@
+
+
+<%= form_tag microchip_lookup_path, remote: true, :id => 'microchip_lookup_form' do %>
+  <fieldset>
+	<div class="row">
+	  <div class="large-8 columns">
+	  	
+	    <%= select_tag 'chip_brand', options_from_collection_for_select(MicrochipBrand.all, 'id', 'name'), prompt: "select microchip brand" %>  
+	  </div>
+	</div>  
+	
+	<div class="row">
+	  <div class="large-8 columns">
+	    <%= text_field_tag 'chip_id', nil, placeholder: "microchip number"%>  
+	  </div>
+	</div>  
+	
+	<div class="row">
+	  <div class="large-8 columns">
+	    <div id="not_found" class="hidden"><h5>animal not found</h5>  </div>
+	  </div>
+	</div>  
+	  
+    <%= submit_tag("submit") %> 
+  </fieldset>
+<% end %>

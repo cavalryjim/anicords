@@ -38,7 +38,7 @@
         <%= yield %>
     </section>
     
-    <section class="border_top">
+    <section class="border_top border_bottom">
       <%= render 'layouts/footer' %>
     </section>
     
@@ -64,6 +64,16 @@
 	
 	<div id="privacyModal" class="reveal-modal">
 	  <%= render 'layouts/privacy_policy'%>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="microchipModal" class="reveal-modal">
+	  <%= render 'layouts/microchip_lookup'%>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="lookupResultsModal" class="reveal-modal">
+	  <div id="lookup_results"></div>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 

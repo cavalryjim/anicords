@@ -189,6 +189,14 @@ class AnimalsController < ApplicationController
       format.js 
     end
   end
+  
+  def microchip_lookup
+    @animals = Animal.microchip_search(params[:chip_brand], params[:chip_id]) 
+    #@animals = Animal.first(5)
+    respond_to do |format|
+      format.js 
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,0 +1,19 @@
+<table ">
+	<tr>
+	  <th>Animal</th>
+	  <th>Owner</th>
+	  <th>Phone</th>
+	  <th>Email</th>
+	 
+	</tr>
+	
+	<% @animals.each do |animal|%>
+	  <tr>
+		<td><%= link_to_if (can? :view, animal), animal.name, animal %></td>
+		<td><%= animal.owner.name %></td>
+		<td><%= animal.owner.phone %></td>
+		<td><%= animal.owner.email %></td>
+	  </tr>
+	<% end %>
+		
+</table>

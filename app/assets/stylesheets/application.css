@@ -109,7 +109,7 @@ section.gray_background {
 }
 
 .green_background {
-  background-color: #93A889;
+  background-color: #13c4a5;
 }
 
 .green_background_front_page {
@@ -151,6 +151,11 @@ section.gray_background {
 .border_top {
   border-top: solid 2px black !important;
 }
+
+.border_bottom {
+  border-bottom: solid 2px black !important;
+}
+
 
 table {
   margin-top: 1.25em;
@@ -383,6 +388,10 @@ button, input[type="submit"] {
 }
 
 div.innerDetails { display: none; }
+
+footer {
+  padding-top: 1em !important;
+}
 
 /*****trying to fix an error with foundation's sections and displaying charts****/
 /***
