@@ -1,4 +1,4 @@
-<table ">
+<table>
 	<tr>
 	  <th>Animal</th>
 	  <th>Owner</th>
@@ -9,7 +9,7 @@
 	
 	<% @animals.each do |animal|%>
 	  <tr>
-		<td><%= link_to_if (can? :view, animal), animal.name, animal %></td>
+		<td><%= link_to_if (can? :view, animal), animal.name, animal_url(animal, chip: 'true') %></td>
 		<td><%= animal.owner.name %></td>
 		<td><%= animal.owner.phone %></td>
 		<td><%= animal.owner.email %></td>
