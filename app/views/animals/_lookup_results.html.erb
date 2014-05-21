@@ -9,6 +9,7 @@
 	
 	<% @animals.each do |animal|%>
 	  <tr>
+	        <!--- JDavis: might need to remove the 'if can view'. --->   
 		<td><%= link_to_if (can? :view, animal), animal.name, animal_url(animal, chip: 'true') %></td>
 		<td><%= animal.owner.name %></td>
 		<td><%= animal.owner.phone %></td>
