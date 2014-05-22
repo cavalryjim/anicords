@@ -148,7 +148,6 @@ class Animal < ActiveRecord::Base
     
     unless user
       generated_password = Devise.friendly_token.first(8)
-      #user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
       user = User.new do |u|
         u.email = new_owner[:email]
         u.first_name = new_owner[:first_name]
@@ -164,7 +163,7 @@ class Animal < ActiveRecord::Base
       user.new_account_notice(generated_password) if user.save
     end
     
-    if user
+    if user.persisted?
       transfer = AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
       user.notifications.create(message: "transfer pending", url: url, event: transfer )
       user.animal_transfer_pending(self.id)
