@@ -41,16 +41,6 @@
     <section class="border_top border_bottom">
       <%= render 'layouts/footer' %>
     </section>
-    
-    <% if !user_signed_in? %>
-    	
-	    <div id="registerSigninModal" class="reveal-modal">
-	  
-		  <%= render 'devise/registrations/register_sign_in'%>
-		  
-		  <a class="close-reveal-modal">&#215;</a>
-		</div>
-	<% end %>
 	
 	<div id="contactModal" class="reveal-modal">
 	  <%= render 'layouts/contact'%>
