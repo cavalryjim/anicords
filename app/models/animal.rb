@@ -294,6 +294,7 @@ class Animal < ActiveRecord::Base
   end
   
   def send_vaccination_notification(msg)
+    # JDavis: need to add where receive_notifications: true.  jdhere
     if self.owner.class.name == "Household"
       users = self.owner.users
     elsif self.owner.class.name == "Organization"
