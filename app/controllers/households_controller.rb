@@ -14,7 +14,7 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     #@owner = @household
-    @activities = @household.activities.last(20)
+    #@activities = @household.activities.last(20)
   end
 
   # GET /households/new
@@ -82,7 +82,7 @@ class HouseholdsController < ApplicationController
   
   def create_user
     new_user = User.create_user_to_group(params[:user][:email], @household, params[:user][:first_name], params[:user][:last_name])
-    new_user.create_activity :added_to_group, owner: current_user, recipient: @household
+    #new_user.create_activity :added_to_group, owner: current_user, recipient: @household
     redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
   end
   

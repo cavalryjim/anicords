@@ -39,7 +39,7 @@ module ApplicationHelper
   
   def image_classes(animal, classes, view_section)
     classes << ' transfer' if animal.pending_transfer? 
-    classes << ' animal_alert' if ((view_section == 'Household') && (animal.profile_completion < 50))
+    classes << ' animal_alert' if ((view_section == 'Household' || 'Organization') && (animal.has_notifications?)) # JDavis: add this if animal has alerts
     return classes
   end
   
@@ -75,16 +75,23 @@ module ApplicationHelper
   #end
   
   def number_of_notifications
-    (current_user.notifications.count > 0) ? current_user.notifications.count : false
+    #(current_user.all_notifications.count > 0) ? current_user.all_notifications.count : false
+    count =  current_user.all_notifications.count
+    current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |association|
+      count += 1 if (association.group.notifications.count > 0)
+    end
+    return count
     #current_user.notifications.count
   end
   
   def user_notifications
-    if current_user.has_notifications?
+    if number_of_notifications > 0 
       html = ""
-      current_user.notifications.each do |n|
-        #JDavis: need to add the notification.id to the path.
+      current_user.all_notifications.each do |n|
         html = html + "<li>" + link_to(n.message, n.url) + "</li>"
+      end
+      current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |m|
+        html = html + "<li>" + link_to(m.name + " has notifications", m.group) + "</li>" if m.group.notifications.count > 0 
       end
     else
       html = "<li>" + link_to('No alerts', '#') + "</li>"

@@ -48,7 +48,7 @@
 
 class Animal < ActiveRecord::Base
   include ActiveModel::Validations
-  include PublicActivity::Common
+  #include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }
   
   belongs_to :owner, polymorphic: true
@@ -165,7 +165,7 @@ class Animal < ActiveRecord::Base
     
     if user.persisted?
       transfer = AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
-      user.notifications.create(message: "transfer pending", url: url, event: transfer )
+      user.notifications.create(message: self.name + " transfer pending", url: url, event: transfer, animal_id: self.id )
       user.animal_transfer_pending(self.id)
       return user.id
     else
@@ -175,6 +175,10 @@ class Animal < ActiveRecord::Base
   
   def pending_transfer?
     animal_transfer ? true : false
+  end
+  
+  def has_notifications?
+    notifications.where(active: true).present?
   end
   
   def fixed
@@ -190,7 +194,6 @@ class Animal < ActiveRecord::Base
   end
   
   def create_qr_code(url)
-    #@animal.update_attribute :qr_code, RQRCode::QRCode.new(animal_url(@animal), :size => 4, :level => :h ).to_img
     qr_size = 4
     qr_code = nil
     
@@ -202,10 +205,7 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    if qr_code
-      qr_code_img = qr_code.to_img
-      self.update_attribute :qr_code, qr_code_img.to_string
-    end
+    self.update_attribute :qr_code, qr_code.to_img.to_string  if qr_code 
   end
 
   def profile_completion

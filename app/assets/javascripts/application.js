@@ -96,7 +96,7 @@ $(function(){
   	return false;
   });
    
-  $('.full_page').css("min-height", $(window).height() - ( $("#top_bar").height() + $("#footer").height() +  4.6 * $("#breadcrumb_nav").height() ) );
+  $('.full_page').css("min-height", $(window).height() - ( $("#top_bar").height() + 1.5 * $("#footer").height() + 3 * $("#breadcrumb_nav").height() ) );
   $('.front_page_mainsection').css("min-height", $(window).height() - $("#top_bar").height() );
   $(".front_page_subsection").css("min-height",  $(window).height() );
 

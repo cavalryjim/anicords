@@ -15,8 +15,6 @@ module HouseholdsHelper
     household_household_association_path(household_id, association.id)
   end
   
-  
-  
   def animal_notifications(animal)
     notifications = "<ul class='notifications'>"
     notifications << "<li>Schedule appointments by adding service providers.</li>" if animal.service_providers.count == 0

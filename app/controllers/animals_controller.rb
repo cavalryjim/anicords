@@ -54,7 +54,7 @@ class AnimalsController < ApplicationController
       if @animal.save 
         @animal.set_org_location if @animal.owner.class.name == "Organization"
         @animal.create_qr_code(animal_url(@animal, qrc: 'true'))
-        @animal.create_activity :create, owner: current_user, recipient: @animal.owner
+        #@animal.create_activity :create, owner: current_user, recipient: @animal.owner
         format.html { redirect_to return_path, notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
         format.js

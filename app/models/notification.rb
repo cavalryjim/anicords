@@ -12,6 +12,7 @@
 #  event_id       :integer
 #  event_type     :string(255)
 #  animal_id      :integer
+#  active         :boolean          default(TRUE)
 #
 
 class Notification < ActiveRecord::Base

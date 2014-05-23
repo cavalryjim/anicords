@@ -17,7 +17,7 @@
 
 class Household < ActiveRecord::Base
   include ActiveModel::Validations
-  include PublicActivity::Common
+  #include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }
   
   has_many  :user_associations, as: :group, dependent: :destroy
@@ -28,6 +28,7 @@ class Household < ActiveRecord::Base
   has_many  :service_providers, through: :household_associations
   has_many  :organization_locations, as: :location, dependent: :destroy
   has_many  :organizations, through: :organization_locations
+  has_many  :notifications, as: :recipient, dependent: :destroy
   accepts_nested_attributes_for :animals, allow_destroy: true
   #accepts_nested_attributes_for :user_associations, allow_destroy: true
   
@@ -102,7 +103,7 @@ class Household < ActiveRecord::Base
   
   def activities
     #PublicActivity::Activity.where( trackable_id: @household.animal_ids, trackable_type: "Animal" ).order("created_at desc").first(10)
-    PublicActivity::Activity.where(recipient: self).order("created_at desc")
+    #PublicActivity::Activity.where(recipient: self).order("created_at desc")
   end
   
 end
