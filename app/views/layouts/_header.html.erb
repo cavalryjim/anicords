@@ -24,9 +24,9 @@
 	         <%= image_tag s3_url('white-flag-icone-6376-48.png'), size: '25x25' %>
             <% end %>
           <% end %>
-	      <ul class="dropdown"> 
-	      	<%= raw user_notifications %>	
-	      </ul>
+	       
+	      <%= raw notifications_list %>	
+	      
 	    </li>
 	    <li class="has-dropdown"><%=link_to current_user.name, '#' %>
 	      <ul class="dropdown"> 	

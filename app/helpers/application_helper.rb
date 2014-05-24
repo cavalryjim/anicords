@@ -76,92 +76,44 @@ module ApplicationHelper
   #end
   
   def number_of_notifications
-    #(current_user.all_notifications.count > 0) ? current_user.all_notifications.count : false
-    num = current_user.all_notifications.count
-    current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |association|
-      num += 1 if (association.group.notifications.count > 0)
-    end
-    #return count
-    #current_user.notifications.count
-    num > 0 ? num : false
+    user_notifications.count > 0 ? user_notifications.count : false
   end
   
   def user_notifications
-    if number_of_notifications > 0 
-      html = ""
-      current_user.all_notifications.each do |n|
-        html = html + "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"
-      end
-      current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |m|
-        html = html + "<li>" + link_to(m.name + " has notifications", m.group) + "</li>" if m.group.notifications.count > 0 
+    user_notifications = current_user.all_notifications
+    current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |ua|
+      user_notifications << Notification.new(message: ua.name + " has notifications", url: organization_path(ua.group) ) if ua.group.notifications.count > 0
+    end
+    return user_notifications
+    
+    #if number_of_notifications > 0 
+    #  html = ""
+    #  current_user.all_notifications.each do |n|
+    #    html = html + "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"
+    #  end
+    #  current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |m|
+    #    html = html + "<li>" + link_to(m.name + " has notifications", m.group) + "</li>" if m.group.notifications.count > 0 
+    #  end
+    #else
+    #  html = "<li>" + link_to('No alerts', '#') + "</li>"
+    #end 
+  end
+  
+  def notifications_list
+    html = "<ul class='dropdown'>"
+    if user_notifications.count > 0
+      user_notifications.each do |n|
+        html += "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"
       end
     else
-      html = "<li>" + link_to('No alerts', '#') + "</li>"
-    end
-    
+      html += "<li>" + link_to('No alerts', '#') + "</li>"
+    end 
+    html += "</ul>"
     return html
-    #html.html_safe
   end
   
   def file_types
     ['vaccination', 'rabies', 'veterinary', 'other']
-  end
-  
-  def us_states
-    [
-      ['Alabama', 'AL'],
-      ['Alaska', 'AK'],
-      ['Arizona', 'AZ'],
-      ['Arkansas', 'AR'],
-      ['California', 'CA'],
-      ['Colorado', 'CO'],
-      ['Connecticut', 'CT'],
-      ['Delaware', 'DE'],
-      ['District of Columbia', 'DC'],
-      ['Florida', 'FL'],
-      ['Georgia', 'GA'],
-      ['Hawaii', 'HI'],
-      ['Idaho', 'ID'],
-      ['Illinois', 'IL'],
-      ['Indiana', 'IN'],
-      ['Iowa', 'IA'],
-      ['Kansas', 'KS'],
-      ['Kentucky', 'KY'],
-      ['Louisiana', 'LA'],
-      ['Maine', 'ME'],
-      ['Maryland', 'MD'],
-      ['Massachusetts', 'MA'],
-      ['Michigan', 'MI'],
-      ['Minnesota', 'MN'],
-      ['Mississippi', 'MS'],
-      ['Missouri', 'MO'],
-      ['Montana', 'MT'],
-      ['Nebraska', 'NE'],
-      ['Nevada', 'NV'],
-      ['New Hampshire', 'NH'],
-      ['New Jersey', 'NJ'],
-      ['New Mexico', 'NM'],
-      ['New York', 'NY'],
-      ['North Carolina', 'NC'],
-      ['North Dakota', 'ND'],
-      ['Ohio', 'OH'],
-      ['Oklahoma', 'OK'],
-      ['Oregon', 'OR'],
-      ['Pennsylvania', 'PA'],
-      ['Puerto Rico', 'PR'],
-      ['Rhode Island', 'RI'],
-      ['South Carolina', 'SC'],
-      ['South Dakota', 'SD'],
-      ['Tennessee', 'TN'],
-      ['Texas', 'TX'],
-      ['Utah', 'UT'],
-      ['Vermont', 'VT'],
-      ['Virginia', 'VA'],
-      ['Washington', 'WA'],
-      ['West Virginia', 'WV'],
-      ['Wisconsin', 'WI'],
-      ['Wyoming', 'WY']
-    ]
   end
   
   #JDavis: cancan link helpers
@@ -240,6 +192,65 @@ module ApplicationHelper
     else
       return nil
     end
+  end
+  
+#### JDavis: let the states be the second to last item in this helper ####
+  
+  def us_states
+    [
+      ['Alabama', 'AL'],
+      ['Alaska', 'AK'],
+      ['Arizona', 'AZ'],
+      ['Arkansas', 'AR'],
+      ['California', 'CA'],
+      ['Colorado', 'CO'],
+      ['Connecticut', 'CT'],
+      ['Delaware', 'DE'],
+      ['District of Columbia', 'DC'],
+      ['Florida', 'FL'],
+      ['Georgia', 'GA'],
+      ['Hawaii', 'HI'],
+      ['Idaho', 'ID'],
+      ['Illinois', 'IL'],
+      ['Indiana', 'IN'],
+      ['Iowa', 'IA'],
+      ['Kansas', 'KS'],
+      ['Kentucky', 'KY'],
+      ['Louisiana', 'LA'],
+      ['Maine', 'ME'],
+      ['Maryland', 'MD'],
+      ['Massachusetts', 'MA'],
+      ['Michigan', 'MI'],
+      ['Minnesota', 'MN'],
+      ['Mississippi', 'MS'],
+      ['Missouri', 'MO'],
+      ['Montana', 'MT'],
+      ['Nebraska', 'NE'],
+      ['Nevada', 'NV'],
+      ['New Hampshire', 'NH'],
+      ['New Jersey', 'NJ'],
+      ['New Mexico', 'NM'],
+      ['New York', 'NY'],
+      ['North Carolina', 'NC'],
+      ['North Dakota', 'ND'],
+      ['Ohio', 'OH'],
+      ['Oklahoma', 'OK'],
+      ['Oregon', 'OR'],
+      ['Pennsylvania', 'PA'],
+      ['Puerto Rico', 'PR'],
+      ['Rhode Island', 'RI'],
+      ['South Carolina', 'SC'],
+      ['South Dakota', 'SD'],
+      ['Tennessee', 'TN'],
+      ['Texas', 'TX'],
+      ['Utah', 'UT'],
+      ['Vermont', 'VT'],
+      ['Virginia', 'VA'],
+      ['Washington', 'WA'],
+      ['West Virginia', 'WV'],
+      ['Wisconsin', 'WI'],
+      ['Wyoming', 'WY']
+    ]
   end
   
 #### JDavis: let the privacy policy be the last item in this helper ####
