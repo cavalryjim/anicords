@@ -77,12 +77,13 @@ module ApplicationHelper
   
   def number_of_notifications
     #(current_user.all_notifications.count > 0) ? current_user.all_notifications.count : false
-    count =  current_user.all_notifications.count
+    num = current_user.all_notifications.count
     current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |association|
-      count += 1 if (association.group.notifications.count > 0)
+      num += 1 if (association.group.notifications.count > 0)
     end
-    return count
+    #return count
     #current_user.notifications.count
+    num > 0 ? num : false
   end
   
   def user_notifications
