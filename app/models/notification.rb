@@ -21,7 +21,7 @@ class Notification < ActiveRecord::Base
   belongs_to :animal
   
   validates_presence_of :recipient_id, :recipient_type
-  
+  validates_presence_of :message
   #before_save :check_event_or_animal
 
 end

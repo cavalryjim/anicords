@@ -38,7 +38,7 @@
   	<fieldset>
   	  <h5>Household notifications</h5>
   	  <% if @notifications.present? %>
-  	    <div id="household_news" class="fouc">
+  	    <div id="household_news" class="h_news fouc">
 		  <ul>
 		   <% @notifications.each do |notification| %>
 		    <li>
@@ -47,8 +47,9 @@
 		    </li>
 		   <% end %>
 		  </ul>
-	    </div>
+	    </div> 
   	  <% else %>
+  	    <p>Welcome.  As you use the applicaiton, notifications will be generated to help you care for the animal members of your household.</p>
   	  
 	  <% end %>  
   	</fieldset>
