@@ -143,6 +143,7 @@ class Animal < ActiveRecord::Base
   end
   
   def transfer_ownership(new_owner, url="")
+    # JDavis: need to change the notifications to the new owner.  jdhere
     new_owner = new_owner.symbolize_keys
     user = User.find_by(email: new_owner[:email])
     

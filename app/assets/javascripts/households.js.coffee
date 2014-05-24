@@ -35,4 +35,11 @@ jQuery ->
   $(window).bind "load", ->
     #alert 'window loaded'
     blink_border ".animal_alert", 1, 600
+    
+  $("#household_news").easyTicker(
+    direction: 'down'
+    interval: 4000
+    speed: 'slow'
+    visible: 6
+  ).show()
 

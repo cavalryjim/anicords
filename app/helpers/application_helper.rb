@@ -89,7 +89,7 @@ module ApplicationHelper
     if number_of_notifications > 0 
       html = ""
       current_user.all_notifications.each do |n|
-        html = html + "<li>" + link_to(n.message, n.url) + "</li>"
+        html = html + "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"
       end
       current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |m|
         html = html + "<li>" + link_to(m.name + " has notifications", m.group) + "</li>" if m.group.notifications.count > 0 
@@ -220,6 +220,24 @@ module ApplicationHelper
       user.first_name + " household" 
     else
       user.email.split('@').first + " household"
+    end
+  end
+  
+  def basic_notification(notification)
+    if notification.animal.present?
+      notification.animal.name + ": " + notification.message
+    else 
+      notification.message
+    end
+  end
+  
+  def basic_notification_url(notification)
+    if notification.url.present?
+      return notification.url
+    elsif notification.animal.present?
+      return polymorphic_path([:edit, notification.animal.owner, notification.animal])
+    else
+      return nil
     end
   end
   

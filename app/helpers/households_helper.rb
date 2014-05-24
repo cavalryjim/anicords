@@ -37,7 +37,7 @@ module HouseholdsHelper
     if notification.url.present?
       return notification.url
     elsif notification.animal.present?
-      return [notification.animal.owner, notification.animal]
+      return polymorphic_path([:edit, notification.animal.owner, notification.animal])
     else
       return nil
     end
