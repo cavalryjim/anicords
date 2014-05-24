@@ -1,4 +1,4 @@
-<table id="adoption_table" class="fouc"  >
+<table id="adoption_table"  class="fouc" >
   <thead>
 	<tr>
 	  <th></th>
@@ -9,12 +9,14 @@
 	</tr>
   </thead>
   <tbody>
-    <% @organization.adoptions.each do |adoption| %>
-	  <td><%= image_tag(thumbnail(adoption.animal), size: '50x50', class: 'th') %></td>
+    <% @adoptions.each do |adoption| %>
+     <tr>
+	  <td><%= thumbnail(adoption.animal,'50x50', 'none') %></td>
 	  <td><%= adoption.animal.name %></td>
 	  <td><%= adoption.transferee_name_or_email %></td>
 	  <td><%= mo_da_yr(adoption.date) %></td>
 	  <td><%= link_to 'recover?', '#' %></td>
+     </tr>
 	<% end %>
   </tbody>
 </table>

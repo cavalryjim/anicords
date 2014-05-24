@@ -118,7 +118,7 @@ class AnimalsController < ApplicationController
   end
   
   def transfer_ownership
-    @success = (params[:transferee][:email] == params[:transferee][:email2]) && params[:transferee][:email].match(/^\S+@\S+\.\S+$/)
+    @success = ((params[:transferee][:email] == params[:transferee][:email2]) && params[:transferee][:email].match(/^\S+@\S+\.\S+$/))
     if @success
       transferee_id = @animal.transfer_ownership(params[:transferee], animal_url(@animal.id)) 
       @animal.create_qr_code(animal_url(@animal, 'true'))unless @animal.qr_code.present?

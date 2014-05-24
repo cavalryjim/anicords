@@ -19,4 +19,9 @@ class Notification < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
   belongs_to :event,     polymorphic: true
   belongs_to :animal
+  
+  validates_presence_of :recipient_id, :recipient_type
+  
+  #before_save :check_event_or_animal
+
 end

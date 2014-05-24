@@ -84,7 +84,7 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def adoptions
-    
+    @adoptions = @organization.adoptions
   end
   
   def new_foster_home

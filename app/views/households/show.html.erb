@@ -36,10 +36,18 @@
   </div>
   <div class="large-7 columns">
   	<fieldset>
-  	  <h4>Household updates</h4>
+  	  <h5>Household notifications</h5>
+  	  <% if @notifications.present? %>
+  	    <div id="house_news">
+		  <ul>
+		   <% @notifications.each do |notification| %>
+		    <li><%= link_to_if household_notification_url(notification).present?, household_notification(notification), household_notification_url(notification) %></li>
+		   <% end %>
+		  </ul>
+	    </div>
+  	  <% else %>
   	  
-	    <p>(coming soon!)</p>
-	 
+	  <% end %>  
   	</fieldset>
   </div>	
   </fieldset>

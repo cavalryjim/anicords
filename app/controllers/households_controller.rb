@@ -14,7 +14,8 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     #@owner = @household
-    #@activities = @household.activities.last(20)
+    @notifications = @household.notifications.where(active: true)
+    #@notifications = Notification.all
   end
 
   # GET /households/new

@@ -91,7 +91,7 @@ class Household < ActiveRecord::Base
     self.organization_locations.each do |location|
       next unless location.org_profiles.count > 0
       location.org_profiles.each do |profile|
-        foster_animals << profile.animal
+        foster_animals << profile.animal if profile.animal.owner.class.name == "Organization"
       end
     end
     foster_animals

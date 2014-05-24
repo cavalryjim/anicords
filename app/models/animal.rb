@@ -165,7 +165,8 @@ class Animal < ActiveRecord::Base
     
     if user.persisted?
       transfer = AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
-      user.notifications.create(message: self.name + " transfer pending", url: url, event: transfer, animal_id: self.id )
+      org_profile.update_attribute :organization_location_id, nil  if org_profile.present?
+      user.notifications.create(message: "transfer pending", url: url, event: transfer, animal_id: self.id )
       user.animal_transfer_pending(self.id)
       return user.id
     else
