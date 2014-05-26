@@ -177,6 +177,7 @@ class Organization < ActiveRecord::Base
         if row["rabies_annual_date"].present?
           v = Vaccination.where(name: "Rabies (annual)").first
           av = AnimalVaccination.find_or_initialize_by(animal_id: animal.id, vaccination_id: v.id, vaccination_date: row["rabies_annual_date"])
+          av.tag_number = row["rabies_tag_number"] if row["rabies_tag_number"].present?
           av.set_due_date if v.frequency.present?
           av.save
         end
