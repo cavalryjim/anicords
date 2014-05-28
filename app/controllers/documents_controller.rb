@@ -30,10 +30,12 @@ class DocumentsController < ApplicationController
     
     respond_to do |format|
       if @document.save 
+        @success = true
         format.html { redirect_to return_path, notice: 'Document was successfully uploaded.' }
         format.json { render action: 'show', status: :created, location: @document }
         format.js
       else
+        @success = false
         format.html { render action: 'new' }
         format.json { render json: @document.errors, status: :unprocessable_entity }
         format.js

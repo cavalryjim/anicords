@@ -144,7 +144,7 @@ class Organization < ActiveRecord::Base
   
   def spreadsheet_import(file)
     allowed_animal_attrs = [ "name", "animal_type_id", "description", "dob", "gender", "neutered", "neutered_date", "special_instructions", "fur_color",
-      "disposition", "size", "microchipped", "microchip_brand_id", "microchip_id" ]    
+      "disposition", "size", "microchipped", "microchip_brand_id", "microchip_id", "neuter_location" ]    
     allowed_org_profile_attrs = [ "org_animal_id", "intake_date","intake_reason","petfinder_id"]
     spreadsheet = Organization.open_spreadsheet(file)
     header = spreadsheet.row(1)

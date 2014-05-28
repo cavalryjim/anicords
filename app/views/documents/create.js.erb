@@ -1,7 +1,7 @@
-$("form#animal_document_upload").on("ajax:success", function(event, data, status, response) {
-  $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
+<% if @success %>
+  $("form#animal_document_upload").effect("highlight", {color:"#81F781"}, 1500).unbind();
   $("#animal_document_div").html('<%= j render("animals/document_fieldsets") %>')
-  $(this)[0].reset();
-}).on("ajax:error", function(event, response, error) {
+  $("form#animal_document_upload")[0].reset();
+<% else %>
   return alert("There was a problem.  Please try again later.");
-});
+<% end %>

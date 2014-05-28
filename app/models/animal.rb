@@ -89,14 +89,8 @@ class Animal < ActiveRecord::Base
   accepts_nested_attributes_for :animal_associations, allow_destroy: true
   
   validates_presence_of :name
-  #validate :file_size_validation
   after_create :new_health_profile
   before_save  :check_neutered_microchipped_pedigreed
-  
-  mount_uploader :pedigree, FileUploader
-  mount_uploader :health_certification, FileUploader
-  mount_uploader :vaccination_record, FileUploader
-  #mount_uploader :image, AvatarUploader
   
   dragonfly_accessor :qr_code do
     storage_options do |attachment|
@@ -350,12 +344,6 @@ class Animal < ActiveRecord::Base
   
   def new_health_profile
     self.create_health_profile
-  end
-  
-  def file_size_validation
-    errors[:pedigree] << "should be less than 5MB" if pedigree && pedigree.size > 5.megabytes
-    errors[:health_certification] << "should be less than 5MB" if health_certification.size > 5.megabytes
-    errors[:vaccination_record] << "should be less than 5MB" if vaccination_record.size > 5.megabytes
   end
   
   def check_neutered_microchipped_pedigreed

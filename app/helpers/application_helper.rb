@@ -67,14 +67,6 @@ module ApplicationHelper
     ("<button class='small "+button_class+"' id="+"'"+button_id+"'"+">"+text+"</button>").html_safe
   end
   
-  #def fun_button_small(text)
-  #  ("<button class='small round fun_font'>"+text+"</button>").html_safe
-  #end
-  
-  #def fun_button_tiny(text)
-  #  ("<button class='tiny round fun_font'>"+text+"</button>").html_safe
-  #end
-  
   def number_of_notifications
     user_notifications.count > 0 ? user_notifications.count : false
   end
@@ -85,18 +77,6 @@ module ApplicationHelper
       user_notifications << Notification.new(message: ua.name + " has notifications", url: organization_path(ua.group) ) if ua.group.notifications.count > 0
     end
     return user_notifications
-    
-    #if number_of_notifications > 0 
-    #  html = ""
-    #  current_user.all_notifications.each do |n|
-    #    html = html + "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"
-    #  end
-    #  current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |m|
-    #    html = html + "<li>" + link_to(m.name + " has notifications", m.group) + "</li>" if m.group.notifications.count > 0 
-    #  end
-    #else
-    #  html = "<li>" + link_to('No alerts', '#') + "</li>"
-    #end 
   end
   
   def notifications_list

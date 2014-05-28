@@ -20,7 +20,7 @@ module HouseholdsHelper
     notifications << "<li>Schedule appointments by adding service providers.</li>" if animal.service_providers.count == 0
     notifications << "<li>Recieve alerts regarding heartworm meds or vaccinations by updating the health & wellness tab.</li>" if animal.needs_vaccination_info?
     notifications << "<li>Update feeding preferences to easily send instructions to your kennel or sitter.</li>" if animal.needs_diet_info?
-    notifications << "<li>Upload vaccination records for easy access anywhere.</li>" if animal.vaccination_record.blank?
+    #notifications << "<li>Upload vaccination records for easy access anywhere.</li>" if animal.vaccination_record.blank?
     notifications << "<ul>"
     return notifications.html_safe
   end
