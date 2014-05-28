@@ -1,4 +1,4 @@
-  <footer class="row">
+  <footer id="footer" class="row">
     <div class="large-12 columns">
       <div class="row">
       	<div class="large-9 columns"></div>
@@ -10,14 +10,15 @@
 	    </div>
       </div>
       <div class="row">
-        <div class="large-6 columns">
-          <!---<p>&copy; 2013 Copyright DooLiddl, LLC.</p>--->
-          <%= image_tag(s3_url('dlabs.png'), size: '250x250') %>
+        <div class="large-5 columns">
+          <p>&copy; 2013 dooliddl labs, llc.</p>
+          
         </div>
         
-        <div class="large-6 columns">
+        <div class="large-7 columns">
           <ul class="inline-list right">
-          	<li id="beta_li"><%= link_to 'user feedback', "#", "data-reveal-id" => "betaCommentModal", remote: true %></li>
+          	<li><%= link_to 'microchip lookup', "#", "data-reveal-id" => "microchipModal", remote: true %></li>
+          	<li id="beta_li"><%= link_to 'feedback', "#", "data-reveal-id" => "betaCommentModal", remote: true %></li>
             <li><%= link_to 'contact', "#", "data-reveal-id" => "contactModal", remote: true %></li>
             <li><%= link_to "privacy", "#", "data-reveal-id" => "privacyModal", remote: true  %></li>
 			<li><%= link_to image_tag(s3_url('webicon-facebook-s.png'), class: 'selectable_image'), "#"%></li>

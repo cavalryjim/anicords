@@ -15,6 +15,7 @@ class OrganizationsController < InheritedResources::Base
     @animals = @organization.animals
     @location_options = @organization.organization_locations.map{|l| [ l.id, l.name ]}
     @notifications = @organization.notifications
+    #@notifications = Notification.all
   end
   
   # GET /organizations/new
@@ -83,7 +84,7 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def adoptions
-    
+    @adoptions = @organization.adoptions
   end
   
   def new_foster_home

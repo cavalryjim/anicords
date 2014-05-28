@@ -48,7 +48,7 @@
 
 class Animal < ActiveRecord::Base
   include ActiveModel::Validations
-  include PublicActivity::Common
+  #include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }
   
   belongs_to :owner, polymorphic: true
@@ -143,12 +143,12 @@ class Animal < ActiveRecord::Base
   end
   
   def transfer_ownership(new_owner, url="")
+    # JDavis: need to change the notifications to the new owner.  jdhere
     new_owner = new_owner.symbolize_keys
     user = User.find_by(email: new_owner[:email])
     
     unless user
       generated_password = Devise.friendly_token.first(8)
-      #user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
       user = User.new do |u|
         u.email = new_owner[:email]
         u.first_name = new_owner[:first_name]
@@ -164,9 +164,10 @@ class Animal < ActiveRecord::Base
       user.new_account_notice(generated_password) if user.save
     end
     
-    if user
+    if user.persisted?
       transfer = AnimalTransfer.where(animal_id: self.id, transferee: user).first_or_create 
-      user.notifications.create(message: "transfer pending", url: url, event: transfer )
+      org_profile.update_attribute :organization_location_id, nil  if org_profile.present?
+      user.notifications.create(message: "transfer pending", url: url, event: transfer, animal_id: self.id )
       user.animal_transfer_pending(self.id)
       return user.id
     else
@@ -176,6 +177,10 @@ class Animal < ActiveRecord::Base
   
   def pending_transfer?
     animal_transfer ? true : false
+  end
+  
+  def has_notifications?
+    notifications.where(active: true).present?
   end
   
   def fixed
@@ -191,7 +196,6 @@ class Animal < ActiveRecord::Base
   end
   
   def create_qr_code(url)
-    #@animal.update_attribute :qr_code, RQRCode::QRCode.new(animal_url(@animal), :size => 4, :level => :h ).to_img
     qr_size = 4
     qr_code = nil
     
@@ -203,10 +207,7 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    if qr_code
-      qr_code_img = qr_code.to_img
-      self.update_attribute :qr_code, qr_code_img.to_string
-    end
+    self.update_attribute :qr_code, qr_code.to_img.to_string  if qr_code 
   end
 
   def profile_completion
@@ -295,6 +296,7 @@ class Animal < ActiveRecord::Base
   end
   
   def send_vaccination_notification(msg)
+    # JDavis: need to add where receive_notifications: true.  jdhere
     if self.owner.class.name == "Household"
       users = self.owner.users
     elsif self.owner.class.name == "Organization"
@@ -315,7 +317,8 @@ class Animal < ActiveRecord::Base
     #animal_association
   end
   
-  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization)
+  # JDavis: need to add microchip lookup to this!
+  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization, chip_brand = nil, chip_id = nil)
     if animal_id 
       animal = find_by_id(animal_id)
       return animal if (animal && animal.owner == organization)
@@ -331,8 +334,16 @@ class Animal < ActiveRecord::Base
       return profiles.first.animal if profiles.present?
     end
     
+    if chip_brand && chip_id
+      return microchip_search(chip_brand, chip_id).first
+    end
+    
     return nil
     
+  end
+  
+  def self.microchip_search(chip_brand, chip_id)
+    where(microchip_brand_id: chip_brand, microchip_id: chip_id)
   end
   
   private

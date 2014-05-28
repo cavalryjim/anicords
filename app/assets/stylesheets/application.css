@@ -109,7 +109,7 @@ section.gray_background {
 }
 
 .green_background {
-  background-color: #93A889;
+  background-color: #13c4a5;
 }
 
 .green_background_front_page {
@@ -151,6 +151,11 @@ section.gray_background {
 .border_top {
   border-top: solid 2px black !important;
 }
+
+.border_bottom {
+  border-bottom: solid 2px black !important;
+}
+
 
 table {
   margin-top: 1.25em;
@@ -388,13 +393,59 @@ button, input[type="submit"] {
 
 div.innerDetails { display: none; }
 
+footer {
+  padding-top: 1em !important;
+}
+
 /*****trying to fix an error with foundation's sections and displaying charts****/
 /***
 .section-container.auto > section > .content.health_tab {display:block; visibility:hidden;}
 .section-container.auto > section.active > .content.health_tab {visibility:visible;}
 ***/
 
-/*****News Feed****/
+
+/***** Household News Feed ****/
+
+.h_news {
+	border: 1px solid #ccc;
+	margin: 25px 0;
+}
+.h_news ul{
+	padding: 0;
+	list-style: none;
+}
+.h_news li{
+	padding: 20px;
+	border-bottom: 1px dashed #ccc;
+}
+/***
+.h_news li.odd{
+	background: #fafafa;
+}
+.h_news li:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.h_news img{
+	float: left;
+	width: 100px;
+	margin: 5px 15px 0 0;
+}
+.h_news a{
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #06f;
+}
+.h_news p {
+	margin: 15px 0 0;
+	font-size: 14px;
+}
+***/
+
+
+/***** Organization News Feed ****/
 /***
 #org_news {
   width: 100%;
@@ -418,6 +469,9 @@ div.innerDetails { display: none; }
 	display: inline-block;
 	font-style: normal;
 	background: #C20;
+	/***background-image:url('dropdown_arrow.gif');
+	background-repeat: no-repeat;
+    background-position: left center;***/
 	padding: 14px;
 	color: #FFF;
 	font-weight: bold;

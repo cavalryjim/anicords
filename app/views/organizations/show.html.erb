@@ -31,7 +31,7 @@
   <div class="row">
   	<div class="large-12 columns">
   	  <div id="org_news" class="fouc">
-		<ul>
+		<ul id="org_news_ul">
 		  <% @notifications.each do |notification| %>
 			<li><%= link_to_if notification.url.present?, org_notification(notification), notification.url %></li>
 		  <% end %>

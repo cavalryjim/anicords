@@ -49,7 +49,10 @@ class AnimalVaccination < ActiveRecord::Base
     vaccinations.each do |vaccination|
       msg = vaccination.name + " vaccination due."
       animal = vaccination.animal
-      vaccination.notifications.create(message: msg, animal_id: animal.id, recipient: animal.owner  )
+      #vaccination.notifications.create(message: msg, animal_id: animal.id, recipient: animal.owner  )
+      # JDavis: need to create a notification for  this!  JDHere.
+      msg = animal.name + " needs a " + vaccination.name + "vaccination"
+      Notification.where(animal_id: animal.id, event: vaccination, recipient: animal.owner, message: msg).first_or_create 
       vaccination.update_attributes(notify_on: 5.days.from_now.to_date, notification_count: (vaccination.notification_count += 1))
       animal.send_vaccination_notification(msg)
       num += 1

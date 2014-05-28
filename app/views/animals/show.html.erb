@@ -1,10 +1,10 @@
 <% content_for :title, "Animal" %>
-<section class="border_top">
+<section class="border_top full_page">
   <div class="row">
 	<fieldset>
 	  <div class="row">
 	  	<div class="large-9 columns">
-	  	  <h4><%= image_tag(thumbnail(@animal), size: '50x50', class: 'picture_border_2') %><%=@animal.name%><%if can?(:manage, @animal)%><small><%= link_to " (edit)", [:edit, @owner, @animal] %> </small><% end %></h4>
+	  	  <h4><%= thumbnail(@animal, '50x50', 'picture_border_2') %><%=@animal.name%><%if current_user && can?(:manage, @animal)%><small><%= link_to " (edit)", [:edit, @owner, @animal] %> </small><% end %></h4>
 	  	</div>
 	  </div>
 	  <div class="row">

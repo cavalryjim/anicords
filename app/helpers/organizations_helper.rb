@@ -4,6 +4,8 @@ module OrganizationsHelper
     [
       'owner surrender',
       'pulled from animal control',
+      'stray',
+      'returned',
       'other'
     ]
   end

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     #@user = current_user
-    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @user )
+    #@activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @user )
   end
 
   # GET /users/new

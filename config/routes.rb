@@ -62,10 +62,11 @@ Anicords::Application.routes.draw do
   end
   
   resources :animal_vaccinations
-  resources :activities
+  #resources :activities
   resources :beta_comments
   resources :animal_associations
   
+  post 'animals/microchip_lookup' => 'animals#microchip_lookup', as: :microchip_lookup
   get 'privacy_policy' => "pages#privacy_policy", as: :privacy_policy
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'

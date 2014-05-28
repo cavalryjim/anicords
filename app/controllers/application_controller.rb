@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include PublicActivity::StoreController 
+  #include PublicActivity::StoreController 
   protect_from_forgery with: :exception
   #JDavis: this is a work-around for a Rails 4 and Cancan.
   before_filter do

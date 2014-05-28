@@ -1,6 +1,6 @@
 <% content_for :title, "Animal Household" %>
 <%= breadcrumb_nav([@household]) %>
-<section class="border_top">
+<section class="border_top full_page">
 	
  <div class="row">
   <fieldset>
@@ -36,17 +36,22 @@
   </div>
   <div class="large-7 columns">
   	<fieldset>
-  	  <h4>Household updates</h4>
-  	  <% if @activities.present? %>
-  	    <% @activities.each do |activity| %>
-		  <div class="activity">
-		    <%= link_to activity.owner.name_or_email, activity.owner if activity.owner %>
-		    <%= render_activity activity %>
-		  </div>
-	    <% end %>
-	  <% else %>
-	    <p>(coming soon!)</p>
-	  <% end %>
+  	  <h5>Household notifications</h5>
+  	  <% if @notifications.present? %>
+  	    <div id="household_news" class="h_news fouc">
+		  <ul>
+		   <% @notifications.each do |notification| %>
+		    <li>
+		    	<%= thumbnail(notification.animal, '50x50', 'none')%>
+		    	<%= link_to_if household_notification_url(notification).present?, household_notification(notification), household_notification_url(notification) %>
+		    </li>
+		   <% end %>
+		  </ul>
+	    </div> 
+  	  <% else %>
+  	    <p>Welcome.  As you use the applicaiton, notifications will be generated to help you care for the animal members of your household.</p>
+  	  
+	  <% end %>  
   	</fieldset>
   </div>	
   </fieldset>

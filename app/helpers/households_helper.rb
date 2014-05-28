@@ -15,8 +15,6 @@ module HouseholdsHelper
     household_household_association_path(household_id, association.id)
   end
   
-  
-  
   def animal_notifications(animal)
     notifications = "<ul class='notifications'>"
     notifications << "<li>Schedule appointments by adding service providers.</li>" if animal.service_providers.count == 0
@@ -26,4 +24,23 @@ module HouseholdsHelper
     notifications << "<ul>"
     return notifications.html_safe
   end
+  
+  def household_notification(notification)
+    if notification.animal.present?
+      notification.animal.name + ": " + notification.message
+    else 
+      notification.message
+    end
+  end
+  
+  def household_notification_url(notification)
+    if notification.url.present?
+      return notification.url
+    elsif notification.animal.present?
+      return polymorphic_path([:edit, notification.animal.owner, notification.animal])
+    else
+      return nil
+    end
+  end
+  
 end

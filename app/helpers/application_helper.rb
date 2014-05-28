@@ -38,8 +38,9 @@ module ApplicationHelper
   end
   
   def image_classes(animal, classes, view_section)
+    return '' if classes == 'none'
     classes << ' transfer' if animal.pending_transfer? 
-    classes << ' animal_alert' if ((view_section == 'Household') && (animal.profile_completion < 50))
+    classes << ' animal_alert' if ((view_section == 'Household' || 'Organization') && (animal.has_notifications?)) # JDavis: add this if animal has alerts
     return classes
   end
   
@@ -75,28 +76,125 @@ module ApplicationHelper
   #end
   
   def number_of_notifications
-    (current_user.notifications.count > 0) ? current_user.notifications.count : false
-    #current_user.notifications.count
+    user_notifications.count > 0 ? user_notifications.count : false
   end
   
   def user_notifications
-    if current_user.has_notifications?
-      html = ""
-      current_user.notifications.each do |n|
-        #JDavis: need to add the notification.id to the path.
-        html = html + "<li>" + link_to(n.message, n.url) + "</li>"
+    user_notifications = current_user.all_notifications
+    current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |ua|
+      user_notifications << Notification.new(message: ua.name + " has notifications", url: organization_path(ua.group) ) if ua.group.notifications.count > 0
+    end
+    return user_notifications
+    
+    #if number_of_notifications > 0 
+    #  html = ""
+    #  current_user.all_notifications.each do |n|
+    #    html = html + "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"
+    #  end
+    #  current_user.user_associations.where(receive_notifications: true, group_type: "Organization").each do |m|
+    #    html = html + "<li>" + link_to(m.name + " has notifications", m.group) + "</li>" if m.group.notifications.count > 0 
+    #  end
+    #else
+    #  html = "<li>" + link_to('No alerts', '#') + "</li>"
+    #end 
+  end
+  
+  def notifications_list
+    html = "<ul class='dropdown'>"
+    if user_notifications.count > 0
+      user_notifications.each do |n|
+        html += "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"
       end
     else
-      html = "<li>" + link_to('No alerts', '#') + "</li>"
-    end
-    
+      html += "<li>" + link_to('No alerts', '#') + "</li>"
+    end 
+    html += "</ul>"
     return html
-    #html.html_safe
   end
   
   def file_types
     ['vaccination', 'rabies', 'veterinary', 'other']
   end
+  
+  #JDavis: cancan link helpers
+  def show_link(object, content = "Show")
+    link_to(content, object) if can?(:read, object)
+  end
+  
+  def edit_link(object, content = "Edit")
+    link_to(content, [:edit, object]) if can?(:update, object)
+  end
+  
+  def destroy_link(object, content = "Destroy")
+    link_to(content, object, :method => :delete, :confirm => "Are you sure?") if can?(:destroy, object)
+  end
+  
+  def create_link(object, content = "New")
+    if can?(:create, object)
+      object_class = (object.kind_of?(Class) ? object : object.class)
+      link_to(content, [:new, object_class.name.underscore.to_sym])
+    end
+  end
+  
+  def wt_options
+    ["lbs", "kg"]
+  end
+  
+  def size_options
+    ["small", "medium", "large"]
+  end
+  
+  def test_result_options
+    [['pos', true], ['neg', false]]
+  end
+  
+  def medication_routes
+    options_for_select(["topical", "oral", "injection"])
+  end
+  
+  def medication_intervals
+    options_for_select(["daily", "2 x daily", "3 x daily", "4 x daily", "weekly", "monthly", "other"])
+  end
+  
+  def breadcrumb_nav(crumbs)
+    breadcrumb = '<nav id="breadcrumb_nav" class="breadcrumbs">'
+    breadcrumb << link_to('HOME', user_select_association_path) unless crumbs.last == 'home'
+    crumbs.each do |crumb|
+      breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
+    end
+    breadcrumb << '</nav>'
+    breadcrumb.html_safe
+  end
+  
+  def suggested_household_name(user)
+    if user.last_name.present?
+      user.last_name + " household" 
+    elsif user.first_name.present?
+      user.first_name + " household" 
+    else
+      user.email.split('@').first + " household"
+    end
+  end
+  
+  def basic_notification(notification)
+    if notification.animal.present?
+      notification.animal.name + ": " + notification.message
+    else 
+      notification.message
+    end
+  end
+  
+  def basic_notification_url(notification)
+    if notification.url.present?
+      return notification.url
+    elsif notification.animal.present?
+      return polymorphic_path([:edit, notification.animal.owner, notification.animal])
+    else
+      return nil
+    end
+  end
+  
+#### JDavis: let the states be the second to last item in this helper ####
   
   def us_states
     [
@@ -153,66 +251,6 @@ module ApplicationHelper
       ['Wisconsin', 'WI'],
       ['Wyoming', 'WY']
     ]
-  end
-  
-  #JDavis: cancan link helpers
-  def show_link(object, content = "Show")
-    link_to(content, object) if can?(:read, object)
-  end
-  
-  def edit_link(object, content = "Edit")
-    link_to(content, [:edit, object]) if can?(:update, object)
-  end
-  
-  def destroy_link(object, content = "Destroy")
-    link_to(content, object, :method => :delete, :confirm => "Are you sure?") if can?(:destroy, object)
-  end
-  
-  def create_link(object, content = "New")
-    if can?(:create, object)
-      object_class = (object.kind_of?(Class) ? object : object.class)
-      link_to(content, [:new, object_class.name.underscore.to_sym])
-    end
-  end
-  
-  def wt_options
-    ["lbs", "kg"]
-  end
-  
-  def size_options
-    ["small", "medium", "large"]
-  end
-  
-  def test_result_options
-    [['pos', true], ['neg', false]]
-  end
-  
-  def medication_routes
-    options_for_select(["topical", "oral", "injection"])
-  end
-  
-  def medication_intervals
-    options_for_select(["daily", "2 x daily", "3 x daily", "4 x daily", "weekly", "monthly", "other"])
-  end
-  
-  def breadcrumb_nav(crumbs)
-    breadcrumb = '<nav class="breadcrumbs">'
-    breadcrumb << link_to('HOME', user_select_association_path) unless crumbs.last == 'home'
-    crumbs.each do |crumb|
-      breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
-    end
-    breadcrumb << '</nav>'
-    breadcrumb.html_safe
-  end
-  
-  def suggested_household_name(user)
-    if user.last_name.present?
-      user.last_name + " household" 
-    elsif user.first_name.present?
-      user.first_name + " household" 
-    else
-      user.email.split('@').first + " household"
-    end
   end
   
 #### JDavis: let the privacy policy be the last item in this helper ####

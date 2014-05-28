@@ -29,8 +29,9 @@
 #
 
 class User < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   #include ActiveModel::Validations
-  include PublicActivity::Common
+  #include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }
   
   # Include default devise modules. Others available are:
@@ -71,7 +72,15 @@ class User < ActiveRecord::Base
   end
   
   def has_notifications?
-    self.notifications.count > 0 
+    self.all_notifications.count > 0 
+  end
+  
+  def all_notifications
+    full_list = self.notifications 
+    user_associations.where(receive_notifications: true, group_type: "Household").each do |association|
+      full_list += association.group.notifications
+    end
+    return full_list
   end
   
   def has_pending_transfers?

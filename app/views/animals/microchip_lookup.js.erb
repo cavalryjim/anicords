@@ -1,0 +1,11 @@
+
+<% if @animals.present? %>
+  $('#not_found').addClass("hidden");
+  $('#lookupResultsModal').foundation('reveal', 'open');
+  $("div#lookup_results").html('<%= j render("animals/lookup_results") %>');
+  
+<% else %>
+  $('#not_found').removeClass("hidden");
+  $('#not_found').effect("highlight", {color:"#81F781"}, 1500).unbind();
+  $('#not_found').unbind();
+<% end %>

@@ -1,8 +1,9 @@
 class AnimalsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, 
                                       :sitter_instructions, :org_flyer, :photo_gallery, :weight_chart, :check_in, :check_out ]
   before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer]
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   authorize_resource except: [:accept_transfer, :show]
   
   # GET /animals
@@ -53,7 +54,7 @@ class AnimalsController < ApplicationController
       if @animal.save 
         @animal.set_org_location if @animal.owner.class.name == "Organization"
         @animal.create_qr_code(animal_url(@animal, qrc: 'true'))
-        @animal.create_activity :create, owner: current_user, recipient: @animal.owner
+        #@animal.create_activity :create, owner: current_user, recipient: @animal.owner
         format.html { redirect_to return_path, notice: 'Animal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @animal }
         format.js
@@ -117,7 +118,7 @@ class AnimalsController < ApplicationController
   end
   
   def transfer_ownership
-    @success = (params[:transferee][:email] == params[:transferee][:email2]) && params[:transferee][:email].match(/^\S+@\S+\.\S+$/)
+    @success = ((params[:transferee][:email] == params[:transferee][:email2]) && params[:transferee][:email].match(/^\S+@\S+\.\S+$/))
     if @success
       transferee_id = @animal.transfer_ownership(params[:transferee], animal_url(@animal.id)) 
       @animal.create_qr_code(animal_url(@animal, 'true'))unless @animal.qr_code.present?
@@ -185,6 +186,14 @@ class AnimalsController < ApplicationController
     if params[:service_provider_id].present?
       @animal_association = AnimalAssociation.where(animal_id: @animal.id, service_provider_id: params[:service_provider_id]).first_or_create
     end
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def microchip_lookup
+    @animals = Animal.microchip_search(params[:chip_brand], params[:chip_id]) 
+    #@animals = Animal.first(5)
     respond_to do |format|
       format.js 
     end

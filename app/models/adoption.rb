@@ -30,7 +30,7 @@ class Adoption < ActiveRecord::Base
   validates_presence_of  :animal_id
   
   def transferee_name_or_email
-    if transferee_first_name || transferee_last_name
+    if transferee_first_name.present? || transferee_last_name.present?
       transferee_first_name.to_s + ' ' + transferee_last_name.to_s
     else
       transferee_email
