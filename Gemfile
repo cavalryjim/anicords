@@ -24,7 +24,6 @@ gem 'fog', '1.19.0'
 gem 'carrierwave_direct', '0.0.13'
 gem 'sidekiq', '2.14.1'
 gem 'mandrill-api', '1.0.47'
-gem 'letter_opener', '1.1.2', group: :development
 gem 'queue_classic', '2.2.2'
 gem 'simple_form', '3.0.0'
 gem 'html5_validators', '1.1.2'
@@ -83,6 +82,11 @@ group :development, :test do
   gem 'rspec-rails' 
   gem 'factory_girl_rails' 
 end 
+
+group :development do
+  gem 'rails-erd', '~> 1.1.0'
+  gem 'letter_opener', '1.1.2'
+end
 
 group :test do 
   gem 'faker' 
