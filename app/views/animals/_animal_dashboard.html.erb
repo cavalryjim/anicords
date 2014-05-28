@@ -5,7 +5,7 @@
   	<div class="row">
       <div class="large-4 columns">
       	<%= link_to thumbnail(@animal), edit_household_animal_path(@household, @animal), 'data-no-turbolink' => true %></br>
-        <%= @animal.name %>
+        <div ><b><%= @animal.name %></b></div>
       </div>	
       <div class="large-4 columns">
       <% if @animal.qr_code.present? %>
