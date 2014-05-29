@@ -28,6 +28,8 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     
+    #JDavis: if the params[:file_type] is blank, set it to 'other'.  JDHere.
+    
     respond_to do |format|
       if @document.save 
         @success = true
