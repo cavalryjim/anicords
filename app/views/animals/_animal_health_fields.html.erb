@@ -128,8 +128,6 @@
   <%= form_for [@animal, AnimalVaccination.new], remote: true, html: {id: 'animal_vaccination_form', "data-abide" => '', class: 'not_hidden'} do |f| %>
     <div class="row ">
       <div class="large-12 columns">
-        <!--<%= label_tag 'dialog_vaccination_id', 'vaccination' %> 
-	    <%= text_field_tag 'dialog_vaccination_id', nil, { class: 'select' }  %>-->
 	    <%= f.label :vaccination_id, 'vaccination' %>
 	    <%= f.text_field :vaccination_id, class: 'select'  %>
 	    <small class="error">Vaccination required.</small>
@@ -137,25 +135,24 @@
     </div>
 	    
     <div class="row">
-	  <div class="large-6 columns">
-	    <!--<%= label_tag 'dialog_vaccination_date', 'vaccination date' %>
-	    <%= text_field_tag 'dialog_vaccination_date', nil, { class: "datepicker", placeholder: "select a date" } %>-->
+	  <div class="large-4 columns">
 	    <%= f.label :vaccination_date, 'vaccination date'%>
 	    <%= f.text_field :vaccination_date, class: "datepicker", placeholder: "select a date" %>
 	    <small class="error">Vaccination date required.</small>
 	  </div>
-	  <div class="large-6 columns">
-	    <!--<%= label_tag 'dialog_tag_number', 'tag / lot number' %>
-	    <%= text_field_tag 'dialog_tag_number', nil, { placeholder: "vaccination number (ex: rabies tag #)" } %>-->
+	  <div class="large-4 columns">
 	    <%= f.label :tag_number, 'tag / lot number' %>
-		<%= f.text_field :tag_number, placeholder: "vaccination number (ex: rabies tag #)" %> 
+		<%= f.text_field :tag_number, placeholder: "ex: rabies tag #" %> 
+	  </div>
+	  <div class="large-4 columns">
+	    <%= f.label :location, 'location' %>
+		<%= f.text_field :location, placeholder: "location" %> 
 	  </div>
     </div>
 
    <%= f.hidden_field :animal_id, value: @animal.id %>  
    <div class="row">	
     <div class="large-12 columns">
-	  <!--<%= button_small("add vaccination", "add_vaccination")  %>-->
 	  <%= f.submit "add vaccination" %>  
     </div>
    </div>

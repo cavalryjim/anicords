@@ -4,6 +4,7 @@
 	  <th>Date</th>
 	  <th>Due</th>
 	  <th>Tag number</th>
+	  <th>Location</th>
 	  <th></th>
 	 
 	</tr>
@@ -14,6 +15,7 @@
 		<td><%= mo_da_yr(animal_vaccination.date) %></td>
 		<td><%= mo_da_yr(animal_vaccination.due) %></td>
 		<td><%= animal_vaccination.tag_number%></td>
+		<td><%= animal_vaccination.location%></td>
 		<td><%= link_to image_tag('cross.png', :alt => "del"), animal_animal_vaccination_path(@animal, animal_vaccination), method: :delete, remote: true, 
 				 data: { confirm: 'Please confirm you want to remove ' + animal_vaccination.name + ' from the list.' } %></td>
 	  </tr>

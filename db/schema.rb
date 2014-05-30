@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522220920) do
+ActiveRecord::Schema.define(version: 20140530023802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20140522220920) do
     t.integer  "notification_count", default: 0
     t.boolean  "notify",             default: true
     t.date     "notify_on"
+    t.string   "location"
   end
 
   create_table "animals", force: true do |t|

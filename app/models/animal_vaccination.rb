@@ -14,6 +14,7 @@
 #  notification_count :integer          default(0)
 #  notify             :boolean          default(TRUE)
 #  notify_on          :date
+#  location           :string(255)
 #
 
 class AnimalVaccination < ActiveRecord::Base
