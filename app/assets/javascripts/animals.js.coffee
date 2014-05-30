@@ -424,13 +424,13 @@ jQuery ->
   $("#animal_microchipped").change ->
      $(".microchip_disable").prop('disabled', !$("#animal_microchipped").is(':checked'))
      
-  $("img.details").click (event) ->
+  $("img#weight_details").click (event) ->
     if $("#animal_weight_table_div").is(":hidden")
       $("#animal_weight_table_div").slideDown()
-      $("img.details").attr "src", "/img/details_close.png"
+      $("img#weight_details").attr "src", "/img/details_close.png"
     else
       $("#animal_weight_table_div").slideUp()
-      $("img.details").attr "src", "/img/details_open.png"
+      $("img#weight_details").attr "src", "/img/details_open.png"
     
   #$("#animal_health_section").click (event) ->
     #$(window).trigger('resize')
