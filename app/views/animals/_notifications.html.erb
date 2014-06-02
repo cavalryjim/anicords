@@ -1,0 +1,17 @@
+<table id="weight_table" class="" >
+  <thead>
+	<tr>
+	  <th>Notification</th>
+	  <th></th>
+	</tr>
+  </thead>
+  <tbody>
+    <% @animal.notifications.each do |notification| %>
+     <tr>	
+	  <td><%= notification.message %></td>
+	  <td><%= link_to image_tag('cross.png', :alt => "del"), notification_path(notification), method: :delete, remote: true, 
+				 data: { confirm: 'Please confirm you want to remove this notification.' } %></td>
+     </tr>
+	<% end %>
+  </tbody>
+</table>

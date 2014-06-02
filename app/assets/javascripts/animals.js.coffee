@@ -431,6 +431,14 @@ jQuery ->
     else
       $("#animal_weight_table_div").slideUp()
       $("img#weight_details").attr "src", "/img/details_open.png"
+      
+  $("img#notification_details").click (event) ->
+    if $("#animal_notifications_div").is(":hidden")
+      $("#animal_notifications_div").slideDown()
+      $("img#notification_details").attr "src", "/img/details_close.png"
+    else
+      $("#animal_notifications_div").slideUp()
+      $("img#notification_details").attr "src", "/img/details_open.png"
     
   #$("#animal_health_section").click (event) ->
     #$(window).trigger('resize')
