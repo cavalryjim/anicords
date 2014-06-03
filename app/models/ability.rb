@@ -62,7 +62,8 @@ class Ability
     can :manage, Notification do |notification|
       notification.new_record? or
       notification.recipient == user or 
-      notification.animal.owner.users.include?(user) if notification.animal.present?
+      (notification.animal.owner.users.include?(user) if notification.animal.present?) #or
+      #(notification.recipient.users.include?(user if notification.recipient.users.present?))
     end
     
     can :manage, Organization do |organization|

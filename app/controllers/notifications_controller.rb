@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:destroy]
+  before_action :set_animal, only: [:destroy]
   before_filter :authenticate_user!
   authorize_resource
   
@@ -12,9 +13,16 @@ class NotificationsController < ApplicationController
   
   private
     # Use callbacks to share common setup or constraints between actions.
-    #def set_animal
-    #  @animal = Animal.find(params[:animal_id])
-    #end
+    def set_animal
+      if @notification.animal.present?
+        @animal = @notification.animal
+      elsif params[:animal_id].present?
+        @animal = Animal.find(params[:animal_id])
+      else
+        @animal = false
+      end 
+      
+    end
     
     def set_notification
       @notification = Notification.find(params[:id])
