@@ -14,7 +14,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require foundation
+//= require foundation/foundation
+//= require foundation.migrate
 //= require select2
 //= require jquery.Jcrop
 //= require dataTables/jquery.dataTables
@@ -25,14 +26,15 @@
 
 $(function(){
   
-  $(document).foundation()
-  .foundation('abide', {
-    patterns: {
+  //$(document).foundation()
+  //.foundation('abide', {
+  //  patterns: {
       // generic password: upper-case, lower-case, number/special character, and min 8 characters
-      password : /(?=^.{8,}$).*$/
+  //    password : /(?=^.{8,}$).*$/
 
-    }
-   });
+  //  }
+  // });
+  $(document).foundation();
    
   
   $('#animal_table').dataTable({
