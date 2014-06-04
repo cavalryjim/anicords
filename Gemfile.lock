@@ -128,6 +128,8 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     ffi (1.9.3)
     fog (1.19.0)
       builder
@@ -142,6 +144,10 @@ GEM
     formatador (0.2.4)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
+    foursquare2 (2.0.0)
+      faraday (~> 0.8)
+      faraday_middleware (>= 0.8)
+      hashie (>= 1.0, < 3.0.0)
     guard (2.3.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -414,6 +420,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fog (= 1.19.0)
+  foursquare2 (= 2.0.0)
   guard-rspec
   html5_validators (= 1.1.2)
   jbuilder (~> 1.2)
