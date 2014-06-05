@@ -1,29 +1,19 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
   <head>
-  	<meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<!-- Uncomment to make IE8 render like IE7 -->
-  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
-
-  	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  	<title><%= content_for?(:title) ? ("Petabyt | " + yield(:title)) : "Petabyt" %></title>
+    <title><%= content_for?(:title) ? ("Petabyt | " + yield(:title)) : "Petabyt" %></title>
 	<link rel="shortcut icon" href="https://s3.amazonaws.com/petabyt/app_images/petabyt_icon.ico" />
-	<!---<link href='https://fonts.googleapis.com/css?family=Life+Savers' rel='stylesheet' type='text/css'>--->
-  	<%= stylesheet_link_tag    "application" %>
-  	<%= javascript_include_tag "vendor/modernizr" %>
-  	<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-  	<%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
 	
 	<%= devise_error_messages! %>
 	<% flash.each do |name, msg| %>
@@ -33,7 +23,6 @@
 	  </div>
     <% end %>
 
-  
     <section class="gray_background">
         <%= yield %>
     </section>
@@ -41,32 +30,8 @@
     <section class="border_top border_bottom">
       <%= render 'layouts/footer' %>
     </section>
-	
-	<div id="contactModal" class="reveal-modal">
-	  <%= render 'layouts/contact'%>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-
-	<div id="betaCommentModal" class="reveal-modal">
-	  <%= render 'layouts/beta_comment'%>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-	
-	<div id="privacyModal" class="reveal-modal">
-	  <%= render 'layouts/privacy_policy'%>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-	
-	<div id="microchipModal" class="reveal-modal">
-	  <%= render 'layouts/microchip_lookup'%>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-	
-	<div id="lookupResultsModal" class="reveal-modal">
-	  <div id="lookup_results"></div>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-
+    
     <%= javascript_include_tag "application" %>
+    
   </body>
 </html>

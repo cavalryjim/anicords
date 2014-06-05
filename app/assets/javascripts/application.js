@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require foundation
 //= require jquery.remotipart
 //= require foundation/foundation
 //= require foundation.migrate
@@ -139,3 +140,5 @@ function validateFiles(inputFile, type) {
   };
 }
 
+
+$(function(){ $(document).foundation(); });
