@@ -12,7 +12,7 @@
   </div>
 </section>
 
-<div id="stepsOverviewModal" class="reveal-modal">	
+<div id="stepsOverviewModal" class="reveal-modal" data-reveal>	
   <div class="row">
   	<div class="large-7 large-centered columns">
 	    <%= image_tag 'mww.png'%>
@@ -58,7 +58,7 @@
    
 </div>
 
-<div id="stepsOverviewModal2" class="reveal-modal">
+<div id="stepsOverviewModal2" class="reveal-modal" data-reveal>
   <h4>Give us your organization's name & info</h4>
   <%= form_for(@organization, html: {id: "quick_organization_form", "data-abide" => '' }) do |f| %>
 
@@ -85,7 +85,7 @@
 	</div>
 </div>
 
-<div id="stepsOverviewModal3" class="reveal-modal">
+<div id="stepsOverviewModal3" class="reveal-modal" data-reveal>
 	<h4>Are there another admin users that will help manage the account?</h4>
 	<h6>Don't worry, you can add more later!</h6>
 	<fieldset>

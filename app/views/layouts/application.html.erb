@@ -30,6 +30,32 @@
     <section class="border_top border_bottom">
       <%= render 'layouts/footer' %>
     </section>
+      
+    <div id="contactModal" class="reveal-modal" data-reveal>
+	  <%= render 'layouts/contact'%>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<div id="betaCommentModal" class="reveal-modal" data-reveal>
+	  <%= render 'layouts/beta_comment'%>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="privacyModal" class="reveal-modal" data-reveal>
+	  <%= render 'layouts/privacy_policy'%>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="microchipModal" class="reveal-modal" data-reveal>
+	  <%= render 'layouts/microchip_lookup'%>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="lookupResultsModal" class="reveal-modal" data-reveal>
+	  <div id="lookup_results"></div>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+    
     
     <%= javascript_include_tag "application" %>
     

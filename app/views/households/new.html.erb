@@ -4,13 +4,13 @@
     <h4>Tell us about your household</h4>
 
     <%= render 'form' %>
-    <%= link_to 'Launch Quick Start', '#', 'data-reveal-id'=>'stepsOverviewModal'   %>
+    <%= link_to 'Launch Quick Start', '#', 'data-reveal-id'=>'stepsOverviewModal' %>
    </fieldset>
    
   </div>
 </section>
 
-<div id="stepsOverviewModal" class="reveal-modal">	
+<div id="stepsOverviewModal" class="reveal-modal" data-reveal>	
   <div class="row">
 	<div class="large-7 large-centered columns">
 	    <%= image_tag(s3_url('mww.png'), size: '450x450') %>
@@ -88,7 +88,7 @@
    
 </div>
 
-<div id="stepsOverviewModal2" class="reveal-modal">
+<div id="stepsOverviewModal2" class="reveal-modal" data-reveal>
   <h4>Give your household a name & tell us about your animals</h4>
   <%= form_for(@household, html: {id: "quick_household_form", "data-abide" => '' }) do |f| %>
 
@@ -132,7 +132,7 @@
 	</div>
 </div>
 
-<div id="stepsOverviewModal3" class="reveal-modal">
+<div id="stepsOverviewModal3" class="reveal-modal" data-reveal>
 	<h4>Is there another human that will help manage the household?</h4>
 	<div class="row">
       <div class="large-12 columns">

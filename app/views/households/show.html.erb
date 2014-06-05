@@ -60,7 +60,7 @@
 </section>
 	
 
-<div id="providerModal" class="reveal-modal">
+<div id="providerModal" class="reveal-modal" data-reveal>
   <h3>Lookup Service Providers</h3>
   <%= form_for @household, url: {action: 'add_service_provider'} do |f| %>
   <fieldset>
@@ -86,7 +86,7 @@
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
-<div id="newAnimalModal" class="reveal-modal">
+<div id="newAnimalModal" class="reveal-modal" data-reveal>
   <h3>New Animal</h3>
   <%= form_for [@household, Animal.new] do |f| %>
   
@@ -112,13 +112,13 @@
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
-<div id="showAnimalModal" class="reveal-modal">
+<div id="showAnimalModal" class="reveal-modal" data-reveal>
   <div id="animal_show_div"></div>
   
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
-<div id="transferAnimalModal" class="reveal-modal">
+<div id="transferAnimalModal" class="reveal-modal" data-reveal>
   <div id="animal_transfer_div"></div>
   
   <a class="close-reveal-modal">&#215;</a>

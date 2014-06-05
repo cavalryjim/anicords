@@ -11,7 +11,7 @@
 </section>
 
 <% unless @organization.new_record? %>
-	<div id="newHumanModal" class="reveal-modal">
+	<div id="newHumanModal" class="reveal-modal" data-reveal>
 	  <h3>Add users to your organization</h3>
 	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
 	    <div class="row">
@@ -59,7 +59,7 @@
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 	
-	<div id="locationModal" class="reveal-modal">
+	<div id="locationModal" class="reveal-modal" data-reveal>
 	  <div id='org_location_div'></div>
 	  
 	  <a class="close-reveal-modal">&#215;</a>

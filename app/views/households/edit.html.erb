@@ -10,7 +10,7 @@
 </section>
 
 <% unless @household.new_record? %>
-	<div id="newHumanModal" class="reveal-modal">
+	<div id="newHumanModal" class="reveal-modal" data-reveal>
 	  <h3>Add members to your household</h3>
 	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
 	    <div class="row">
