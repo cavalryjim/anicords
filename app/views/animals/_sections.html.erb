@@ -1,62 +1,60 @@
-<div class="section-container auto" data-section>
- 	
-  <%= content_tag :section do %>
-    <p class="title" data-section-title><a href="#panel1">Demographics</a></p>
-	<div class="content" data-section-content>  
-	  <%= render 'animal_demographic_fields' %>	
-	</div>
+<ul class="tabs" data-tab>
+  <li class="tab-title active"><a href="#panel1">Demographics</a></li>
+  <li class="tab-title"><a href="#panel2">Health & Wellness</a></li>
+  <li class="tab-title"><a href="#panel3">Preferences</a></li>
+  <li class="tab-title"><a href="#panel4">Documents</a></li>
+  <% if @household %>
+    <li class="tab-title"><a href="#panel5">Service Providers</a></li>
+  <% end %>
+  <% if @organization %>
+    <li class="tab-title"><a href="#panel6">Pictures</a></li>
+    <li class="tab-title"><a href="#panel7">Adoption</a></li>
+  <% end %>
+</ul>
+
+
+<div class="tabs-content">
+  
+  <%= content_tag :div, id: 'panel1', class: 'content active' do %>
+    <%= render 'animal_demographic_fields' %>	
   <% end %>
 	
-	
-  <%= content_tag :section, id: 'animal_health_section', :class => ('disabled' if @animal.new_record?) do %>
-    <p class="title" data-section-title><a href="#panel2">Health & Wellness</a></p>
-	<div class="content health_tab" data-section-content>
-	  <%= render 'animal_health_fields' %>
-	</div>
+  <%= content_tag :div, id: 'panel2', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
+	<%= render 'animal_health_fields' %>
   <% end %>
 	  
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel3">Preferences</a></p>
-	<div class="content" data-section-content>
-	  <%= render 'animal_preference_fields' %>
-	</div>
+  <%= content_tag :div, id: 'panel3', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
+	<%= render 'animal_preference_fields' %>
   <% end %>
   
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel4">Documents</a></p>
-	<div class="content" data-section-content>
-	  <%= render 'documents' %>
-	</div>
+  <%= content_tag :div, id: 'panel4', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
+	<%= render 'documents' %>
   <% end %>
   
  <% if @household %>	  
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel5">Service Providers</a></p>
-	<div class="content" data-section-content>
-	     <div class="row">	
-		  <div class="large-12 columns">
-		  	<div id="animal_provider_table_div"><%= render 'provider_table'%></div>
+  <%= content_tag :div, id: 'panel5', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
+	
+    <div class="row">	
+	  <div class="large-12 columns">
+		<div id="animal_provider_table_div"><%= render 'provider_table'%></div>
 			
-		  </div>
-		</div>
+	  </div>
     </div>
+    
   <% end %>
  <% end %>
  
  <% if @organization %>
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel6">Pictures</a></p>
-	<div class="content" data-section-content>
-	  <div id="animal_picture_div"><%= render 'pictures/pictures_section' %></div>
-	</div>
+  <%= content_tag :div, id: 'panel6', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
+	
+    <div id="animal_picture_div"><%= render 'pictures/pictures_section' %></div>
+	
   <% end %>
   
-  <%= content_tag :section, :class => ('disabled' if @animal.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel7">Adoption</a></p>
-	<div class="content" data-section-content>
-	  <div id="animal_picture_div"><%= render 'animals/animal_transfer' %></div>
-	</div>
+  <%= content_tag :div, id: 'panel7', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
+    <div id="animal_picture_div"><%= render 'animals/animal_transfer' %></div>
   <% end %>
  <% end %>
-  
+ 
 </div>
+  
