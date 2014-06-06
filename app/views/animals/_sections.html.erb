@@ -19,7 +19,7 @@
     <%= render 'animal_demographic_fields' %>	
   <% end %>
 	
-  <%= content_tag :div, id: 'panel2', class: (@animal.new_record? ? 'content disabled' : 'content active') do %>
+  <%= content_tag :div, id: 'panel2', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
 	<%= render 'animal_health_fields' %>
   <% end %>
 	  

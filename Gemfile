@@ -29,7 +29,7 @@ gem 'queue_classic', '2.2.2'
 gem 'simple_form', '3.0.0'
 gem 'html5_validators', '1.1.2'
 gem 'remotipart', '1.2.1'
-gem 'select2-rails', '3.5.0'
+gem 'select2-rails', '3.5.7'
 #gem 'public_activity', '1.4.0'
 gem 'cancan', '1.6.10'
 gem 'activeadmin', github: 'cavalryjim/active_admin' #JDavis: my version of the gem

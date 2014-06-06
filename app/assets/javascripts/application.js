@@ -109,8 +109,7 @@ $(function(){
 
 });
 
-
-
+//= require turbolinks
 
 function validateFiles(inputFile, type) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
@@ -145,4 +144,4 @@ function validateFiles(inputFile, type) {
 }
 
 
-$(function(){ $(document).foundation(); });
+

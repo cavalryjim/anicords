@@ -415,9 +415,9 @@ jQuery ->
       $("#animal_notifications_div").slideUp()
       $("img#notification_details").attr "src", "/img/details_open.png"
   
-  $(window).load -> 
+  #$(window).load -> 
     #$(".tabs-content").show()
-    $(".tabs-content #panel2").removeClass "active"
+  #  $(".tabs-content #panel2").removeClass "active"
   
   #$("#animal_health_section").click (event) ->
     #$(window).trigger('resize')
