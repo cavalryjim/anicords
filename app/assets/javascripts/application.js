@@ -15,14 +15,12 @@
 //= require jquery_ujs
 //= require foundation
 //= require jquery.remotipart
-//= require foundation/foundation
 //= require select2
 //= require jquery.Jcrop
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require best_in_place
 //= require jquery.easy-ticker.min
-
 //= require_tree .
 
 $(function(){
@@ -90,9 +88,9 @@ $(function(){
     //});
   //});
   
-  //$('.front_page_callout').click(function() {
-  //  $('#registerSigninModal').foundation('reveal', 'open');
-  //});
+  $('.front_page_callout').click(function() {
+    $('#registerSigninModal').foundation('reveal', 'open');
+  });
   
   $(".best_in_place").best_in_place();
   
@@ -147,4 +145,4 @@ function validateFiles(inputFile, type) {
 }
 
 
-
+$(function(){ $(document).foundation(); });

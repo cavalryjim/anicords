@@ -40,7 +40,7 @@ module ApplicationHelper
   def image_classes(animal, classes, view_section)
     return '' if classes == 'none'
     classes << ' transfer' if animal.pending_transfer? 
-    classes << ' animal_alert' if ((view_section == 'Household' || 'Organization') && (animal.has_notifications?)) # JDavis: add this if animal has alerts
+    classes << ' animal_alert' if ((view_section == 'Household' || view_section == 'Organization') && (animal.has_notifications?)) # JDavis: add this if animal has alerts
     return classes
   end
   
