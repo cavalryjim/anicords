@@ -397,13 +397,27 @@ footer {
   padding-top: 1em !important;
 }
 
-/*****trying to fix an error with foundation's sections and displaying charts****/
-/***
-.section-container.auto > section > .content.health_tab {display:block; visibility:hidden;}
-.section-container.auto > section.active > .content.health_tab {visibility:visible;}
-***/
+.tabs .tab-title { 	
+  border-top: 1px solid #DDD; 
+  border-left: 1px solid #DDD; 
+  border-right: 1px solid #DDD; 
+  border-radius: 5px 5px 0px 0px;	
+}
 
+.tabs li.active > a { 			
+  border-bottom: 1px #65c8c6 !important; 
+  background: #65c8c6 !important;	
+}	 
 
+.tabs-content {
+  border: 2px solid #65c8c6; 
+  padding: 1em;
+}
+
+.data_table select {
+  height: 1.5rem !important;
+  padding: 0 !important;
+}
 /***** Household News Feed ****/
 
 .h_news {

@@ -30,12 +30,18 @@ $(function(){
   //$(document).foundation()
   //.foundation('abide', {
   //  patterns: {
-      // generic password: upper-case, lower-case, number/special character, and min 8 characters
   //    password : /(?=^.{8,}$).*$/
 
   //  }
   // });
-  $(document).foundation();
+  $(document).foundation({
+    abide : {
+      patterns: {
+        // generic password: upper-case, lower-case, number/special character, and min 8 characters
+        password : /(?=^.{8,}$).*$/
+      }
+     }
+  });
    
   
   $('#animal_table').dataTable({

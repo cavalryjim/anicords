@@ -5,36 +5,40 @@
   <%= form_for(@user, html: {"data-abide" => ''}) do |f| %>
     <div class="row">
       <div class="large-5 columns">
+      	<%= f.label :first_name, 'first name'%>
 	    <%= f.text_field :first_name, placeholder: "First Name"  %>
       </div>
       <div class="large-6 columns">
+      	<%= f.label :last_name, 'first name'%>
   	    <%= f.text_field :last_name, placeholder: "Last Name" %>
       </div>
     </div>
     
     <div class="row">
       <div class="large-12 columns">
+      	<%= f.label :address1, 'address'%>
         <%= f.text_field :address1, placeholder: "Address1"%>
       </div>
     </div>
     
     <div class="row">
       <div class="large-12 columns">
-      	
+      	<%= f.label :address2, 'address'%>
         <%= f.text_field :address2, placeholder: "Address2"%>
       </div>
     </div>
     
     <div class="row">
       <div class="large-4 columns">
-        
+        <%= f.label :city, 'city'%>
         <%= f.text_field :city, placeholder: "City" %>
       </div>
       <div class="large-3 columns">
+      	<%= f.label :state, 'state'%>
         <%= f.select :state, us_states, {include_blank: true, prompt: 'State'}, {class: 'state_select'} %>
       </div>
       <div class="large-3 columns">
-        
+        <%= f.label :zip, 'zip'%>
         <%= f.text_field :zip, placeholder: "Zip" %>
        
       </div>
@@ -43,11 +47,11 @@
     
     <div class="row">
       <div class="large-4 columns">
-        
+        <%= f.label :phone, 'phone'%>
         <%= f.text_field :phone, placeholder: "Phone:123-123-1234" %>
       </div>
       <div class="large-4 columns">
-        
+        <%= f.label :email, 'email'%>
         <%= f.text_field :email, placeholder: "Email" %>
         <small class="error">Email required.</small>
       </div>
