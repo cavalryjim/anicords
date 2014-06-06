@@ -5,7 +5,7 @@
  <div class="row">
   <fieldset>
   	
-  <h4><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household), 'data-no-turbolink' => true %></small></h4>
+  <h4><%= @household.name %> <small><%= link_to ' (edit)', edit_household_path(@household) %></small></h4>
   <div class="large-5 columns">
 	<fieldset>
 	  	<% if @household.animals.count == 0 %>
@@ -16,16 +16,16 @@
 	    
 		<% @household.animals.each do |animal| %>
 		  <li>
-			  <%= link_to thumbnail(animal, '100x100', 'th', 'Household'), household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
-			  <%= link_to animal.name, household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %>		
+			  <%= link_to thumbnail(animal, '100x100', 'th', 'Household'), household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", remote: true %><br/>
+			  <%= link_to animal.name, household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", remote: true %>		
 		  </li>			
 		<% end %>
 		
 		<% if @household.foster_animals.count > 0 %>
 		  <% @household.foster_animals.each do |animal| %>
 			<li>
-			  <%= link_to thumbnail(animal, '100x100', "th foster", "Household"), household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %><br/>
-			  <%= link_to animal.name, household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", 'data-no-turbolink' => true, remote: true %>		
+			  <%= link_to thumbnail(animal, '100x100', "th foster", "Household"), household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", remote: true %><br/>
+			  <%= link_to animal.name, household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", remote: true %>		
 			</li>			
 		  <% end %>
 		<% end %>

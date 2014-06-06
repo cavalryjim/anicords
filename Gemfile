@@ -57,6 +57,7 @@ gem 'chartkick', '1.2.2'
 gem 'roo', '1.13.2'
 #gem 'rack-ssl', '1.4.1'
 gem 'foursquare2', '2.0.0'
+gem 'jquery-turbolinks', '2.0.2'
 
 
 
@@ -67,7 +68,8 @@ gem 'foursquare2', '2.0.0'
 gem 'jquery-rails', '2.2.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '1.3.0'
+#gem 'turbolinks', '1.3.0'
+gem 'turbolinks', '2.2.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

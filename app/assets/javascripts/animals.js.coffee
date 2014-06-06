@@ -389,31 +389,6 @@ jQuery ->
   
   $("#animal_gender").change ->
     $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
-  
- 
-  # JDaivs: move data to another form and submit it.
-  $("#add_vaccination").click (event) -> 
-    event.preventDefault()
-    if $('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val()
-      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
-      $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
-      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
-      $("#animal_vaccination_tag_number").val( $('#dialog_tag_number').val() )
-      $("#animal_vaccination_form").submit()
-    else
-      alert "Select a vaccination and date."
-      
-  # JDaivs: move data to another form and submit it.
-  $("#add_medication").click (event) ->
-    event.preventDefault()
-    if $('#dialog_medication_id').val() 
-      $("#animal_medication_medication_id").val( $('#dialog_medication_id').val() )
-      $("#animal_medication_volume").val( $('#dialog_medication_volume').val() )
-      $("#animal_medication_route").val( $('#dialog_medication_route').val() )
-      $("#animal_medication_interval").val( $('#dialog_medication_interval').val() )
-      $("#animal_medication_form").submit()
-    else
-      alert "Select a medication."
     
   $("#animal_neutered").change ->
      $(".neuter_disable").prop('disabled', !$("#animal_neutered").is(':checked'))
@@ -514,3 +489,27 @@ jQuery ->
   #    if data.context
   #      progress = parseInt(data.loaded / data.total * 100, 10)
   #      data.context.find('.bar').css('width', progress + '%')
+  
+  # JDaivs: move data to another form and submit it.
+  #$("#add_vaccination").click (event) -> 
+  #  event.preventDefault()
+  #  if $('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val()
+  #    $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+  #    $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
+  #    $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
+  #    $("#animal_vaccination_tag_number").val( $('#dialog_tag_number').val() )
+  #    $("#animal_vaccination_form").submit()
+  #  else
+   #   alert "Select a vaccination and date."
+      
+  # JDaivs: move data to another form and submit it.
+  #$("#add_medication").click (event) ->
+  #  event.preventDefault()
+  #  if $('#dialog_medication_id').val() 
+  #    $("#animal_medication_medication_id").val( $('#dialog_medication_id').val() )
+  #    $("#animal_medication_volume").val( $('#dialog_medication_volume').val() )
+  #    $("#animal_medication_route").val( $('#dialog_medication_route').val() )
+   #   $("#animal_medication_interval").val( $('#dialog_medication_interval').val() )
+   #   $("#animal_medication_form").submit()
+  #  else
+  #    alert "Select a medication."
