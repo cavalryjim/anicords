@@ -445,4 +445,8 @@ $(".org_animal_div").on "show", ->
     else
       $("#animal_weight_table_div").slideUp()
       $("img#weight_details").attr "src", "/img/details_open.png"
+      
+  $(window).load -> 
+    #$(".tabs-content").show()
+    $(".tabs-content #panel2").removeClass "active"
     
