@@ -123,15 +123,15 @@ jQuery ->
       results: (data, page) -> # parse the results into the format expected by Select2.
         # since we are using custom formatting functions we do not need to alter remote JSON data
         results: data
-        
-    # JDavis: the initSelection kills all js on browser 'back'.  JDHere.
+    
+    #JDavis: this is where the js breaks on browser 'back'.  JDHere     
     initSelection: (element, callback) ->
       if $(element).val() isnt '[]'
         ids = JSON.parse($(element).val())
         breeds = ''
         $.each ids, (index, value) ->
           breeds = breeds + '&brd[]=' + value
-   
+          
         $.ajax("/remote_requests/breeds?"+breeds,
           dataType: "json"
         ).done (data) ->
