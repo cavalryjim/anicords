@@ -126,7 +126,7 @@ jQuery ->
         
     # JDavis: the initSelection kills all js on browser 'back'.  JDHere.
     initSelection: (element, callback) ->
-      if ($(element).val() isnt '[]' #&& $(element).length)
+      if $(element).val() isnt '[]'
         ids = JSON.parse($(element).val())
         breeds = ''
         $.each ids, (index, value) ->
@@ -134,7 +134,6 @@ jQuery ->
    
         $.ajax("/remote_requests/breeds?"+breeds,
           dataType: "json"
-          cache: false
         ).done (data) ->
           callback data
   
