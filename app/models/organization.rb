@@ -70,18 +70,33 @@ class Organization < ActiveRecord::Base
   def petfinder_import
     petfinder = Petfinder::Client.new
     pets = petfinder.shelter_pets(self.petfinder_shelter_id, {count: 250})
-    org_petfinder_ids = self.petfinder_ids
+    #org_petfinder_ids = self.petfinder_ids
     pull_count = 0
     pets.each do |pet|
       #JDavis: check to see if the animal is already in Petabyt.
-      if (org_petfinder_ids.include? pet.id.to_i)
-        animal = OrgProfile.find_by_petfinder_id(pet.id.to_i).animal
-        next if animal.updated_at > pet.last_update
-      else
-        animal = Animal.create(name: pet.name, owner: self, organization_id: self.id)
-        animal.build_org_profile
-        animal.org_profile.petfinder_id = pet.id
-      end 
+      #if (org_petfinder_ids.include? pet.id.to_i)
+      #  animal = OrgProfile.find_by_petfinder_id(pet.id.to_i).animal
+      #  next if animal.updated_at > pet.last_update
+      #else
+      #  animal = Animal.create(name: pet.name, owner: self, organization_id: self.id)
+      #  animal.build_org_profile
+      #  animal.org_profile.petfinder_id = pet.id
+      #end 
+      
+      animal = Animal.org_animal_search(nil, nil, pet.id, self, nil, nil, pet.name, 'petfinder' ) || Animal.create(name: pet.name, owner: self, organization_id: self.id)
+      animal.build_org_profile unless animal.org_profile.present?
+      
+      if pet.photos
+        pet.photos.each do |pet_photo|
+          Picture.where(animal_id: animal.id, external_url: pet_photo.medium ).first_or_create
+        end
+        
+        animal.org_profile.update_attribute :thumbnail_url, pet.photos.first.thumbnail unless animal.org_profile.thumbnail_url.present?
+      end
+      
+      next if (animal.updated_at > pet.last_update)
+      
+      animal.org_profile.petfinder_id = pet.id
       
       case pet.animal
       when 'Dog'
@@ -103,17 +118,11 @@ class Organization < ActiveRecord::Base
           AnimalBreed.where(animal_id: animal.id, breed_id: breed.id).first_or_create if breed
         end
       end
-      animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
+      #animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
       (animal.org_profile.organization_location_id = self.organization_locations.first.id) unless animal.org_profile.organization_location_id.present?
       animal.description = Sanitize.clean(pet.description)
       
       pull_count += 1 if animal.save
-      
-      if animal.id && pet.photos
-        pet.photos.each do |pet_photo|
-          Picture.where(animal_id: animal.id, external_url: pet_photo.medium ).first_or_create
-        end
-      end
       
     end
     "Pulled information for #{pull_count} animals from Petfinder."
@@ -151,12 +160,14 @@ class Organization < ActiveRecord::Base
     import_count = 0
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
+      next if row["name"].blank?  #JDavis: must have a name
       animal_id = row["id"] || nil
       org_animal_id = row["org_animal_id"] || nil
       petfinder_id = row["petfinder_id"] || nil
       chip_brand = row["microchip_brand_id"] || nil
       chip_id = row["microchip_id"] || nil
-      animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self, chip_brand, chip_id ) || Animal.new
+      animal_name = row["name"]
+      animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self, chip_brand, chip_id, animal_name, 'spreadsheet' ) || Animal.new
       animal.attributes = row.to_hash.select { |k,v| allowed_animal_attrs.include? k }
       animal.owner = self
       animal.organization_id = self.id

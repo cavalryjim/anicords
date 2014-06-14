@@ -246,6 +246,10 @@ class Animal < ActiveRecord::Base
     return ids
   end
   
+  def org_animal_id
+    self.org_profile.org_animal_id if self.org_profile
+  end
+  
   def petfinder_id
     self.org_profile.petfinder_id if self.org_profile
   end
@@ -312,7 +316,7 @@ class Animal < ActiveRecord::Base
   end
   
   # JDavis: need to add microchip lookup to this!
-  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization, chip_brand = nil, chip_id = nil)
+  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization, chip_brand = nil, chip_id = nil, animal_name, import_type)
     if animal_id 
       animal = find_by_id(animal_id)
       return animal if (animal && animal.owner == organization)
@@ -332,7 +336,23 @@ class Animal < ActiveRecord::Base
       return microchip_search(chip_brand, chip_id).first
     end
     
-    return nil
+    animals = organization.animals.where(name: animal_name)
+    return nil if animals.blank?
+    
+    # JDavis: if an organization wants to import multiple animals with the same name, they must also provide an unique id 
+    #if animals.present? && animals.last.org_profile.org_animal_id.blank?
+    #  return animals.last
+    #elsif animals.present? && (org_animal_id.present? || animal_id.present? || petfinder_id.present?)
+    #  return nil
+    #elsif animals.present?
+    #  return animals.last
+    #end
+    return_animal = nil
+    animals.each do |animal|
+      return_animal = animal if ((animal.org_profile.org_animal_id.blank? && (import_type == 'spreadsheet')) || (animal.org_profile.petfinder_id.blank? && (import_type == 'petfinder')))
+    end
+
+    return return_animal
     
   end
   
