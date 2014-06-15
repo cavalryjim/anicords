@@ -26,11 +26,14 @@ class AnimalVaccination < ActiveRecord::Base
   
   validates_presence_of :animal_id
   validates_presence_of :vaccination_id
-  validates_presence_of :vaccination_date
+  #validates_presence_of :vaccination_date
+  validate   :vaccination_date_or_vaccination_due
   
   before_create do
     self.remove_vaccination_notifications
   end
+  
+  after_save :update_series, if: :vaccination_series?
   
   def name
     self.vaccination.name
@@ -84,6 +87,18 @@ class AnimalVaccination < ActiveRecord::Base
     end
   end
   
+  def vaccination_series?
+    self.vaccination.series?
+  end
   
-    
+  def update_series
+    true
+  end
+  
+private
+  
+  def vaccination_date_or_vaccination_due 
+    errors.add(:base, "Specify a vaccination date.") if (vaccination_date.blank? && vaccination_due.blank?)
+  end
+  
 end

@@ -9,9 +9,16 @@
 #  updated_at         :datetime
 #  animal_type_id     :integer
 #  frequency          :integer
+#  series_name        :string(255)
+#  series_number      :integer
+#  series_interval    :integer
+#  series_next_id     :integer
 #
 
 class Vaccination < ActiveRecord::Base
   belongs_to  :animal_type
   
+  def series?
+    series_name.present?
+  end
 end
