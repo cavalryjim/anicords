@@ -186,11 +186,48 @@ class Organization < ActiveRecord::Base
           AnimalBreed.where(animal_id: animal.id, breed_id: breed.id).first_or_create if breed
         end
         if row["rabies_annual_date"].present?
-          v = Vaccination.where(name: "Rabies (annual)").first
+          v = Vaccination.where(name: "Rabies (annual)", animal_type_id: animal.animal_type_id).first
           av = AnimalVaccination.find_or_initialize_by(animal_id: animal.id, vaccination_id: v.id, vaccination_date: row["rabies_annual_date"])
           av.tag_number = row["rabies_tag_number"] if row["rabies_tag_number"].present?
+          av.location = row["rabies_location"] if row["rabies_location"].present?
           av.set_due_date if v.frequency.present?
           av.save
+        end
+        if row["dhpp_6weeks_date"].present?
+          v = Vaccination.where(name: "DHPP (6-8 weeks)", animal_type_id: animal.animal_type_id).first
+          av = AnimalVaccination.find_or_initialize_by(animal_id: animal.id, vaccination_id: v.id)
+          av.vaccination_date = row["dhpp_6weeks_date"]
+          av.tag_number = row["dhpp_6weeks_tag_number"] if row["dhpp_6weeks_tag_number"].present?
+          av.location = row["dhpp_6weeks_location"] if row["dhpp_6weeks_location"].present?
+          av.save
+          av.update_series
+        end
+        if row["dhpp_10weeks_date"].present?
+          v = Vaccination.where(name: "DHPP (10-12 weeks)", animal_type_id: animal.animal_type_id).first
+          av = AnimalVaccination.find_or_initialize_by(animal_id: animal.id, vaccination_id: v.id)
+          av.vaccination_date = row["dhpp_10weeks_date"]
+          av.tag_number = row["dhpp_10weeks_tag_number"] if row["dhpp_10weeks_tag_number"].present?
+          av.location = row["dhpp_10weeks_location"] if row["dhpp_10weeks_location"].present?
+          av.save
+          av.update_series
+        end
+        if row["dhpp_14weeks_date"].present?
+          v = Vaccination.where(name: "DHPP (14-16 weeks)", animal_type_id: animal.animal_type_id).first
+          av = AnimalVaccination.find_or_initialize_by(animal_id: animal.id, vaccination_id: v.id)
+          av.vaccination_date = row["dhpp_14weeks_date"]
+          av.tag_number = row["dhpp_14weeks_tag_number"] if row["dhpp_14weeks_tag_number"].present?
+          av.location = row["dhpp_14weeks_location"] if row["dhpp_14weeks_location"].present?
+          av.save
+          av.update_series
+        end
+        if row["dhpp_annual_date"].present?
+          v = Vaccination.where(name: "DHPP (annual)", animal_type_id: animal.animal_type_id).first
+          av = AnimalVaccination.find_or_initialize_by(animal_id: animal.id, vaccination_id: v.id)
+          av.vaccination_date = row["dhpp_annual_date"]
+          av.tag_number = row["dhpp_annual_tag_number"] if row["dhpp_annual_tag_number"].present?
+          av.location = row["dhpp_annual_location"] if row["dhpp_annual_location"].present?
+          av.save
+          av.update_series
         end
         
       end

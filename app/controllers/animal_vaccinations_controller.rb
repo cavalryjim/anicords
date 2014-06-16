@@ -5,11 +5,18 @@ class AnimalVaccinationsController < ApplicationController
   authorize_resource
   
   def create
-    @animal_vaccination = AnimalVaccination.new(animal_vaccination_params)
+    vaccination = Vaccination.find(params[:animal_vaccination][:vaccination_id])
+    if vaccination.series_name.present? && vaccination.series_number != 999
+      @animal_vaccination = AnimalVaccination.where(animal_id: params[:animal_vaccination][:animal_id], vaccination_id: vaccination.id).first_or_initialize
+      @animal_vaccination.update(animal_vaccination_params)
+    else 
+      @animal_vaccination = AnimalVaccination.new(animal_vaccination_params)
+    end
     @animal_vaccination.set_due_date if @animal_vaccination.vaccination.frequency.present?
     
     respond_to do |format|
       if @animal_vaccination.save 
+        @animal_vaccination.update_series if @animal_vaccination.vaccination_series?
         format.js
       end
     end

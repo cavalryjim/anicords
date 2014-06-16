@@ -33,7 +33,9 @@ class AnimalVaccination < ActiveRecord::Base
     self.remove_vaccination_notifications
   end
   
-  after_save :update_series, if: :vaccination_series?
+  #after_create do  #JDavis: this never worked correctly when called from here.
+  #   self.update_series if self.vaccination_series?
+  #end
   
   def name
     self.vaccination.name
@@ -76,9 +78,14 @@ class AnimalVaccination < ActiveRecord::Base
     end 
   end
   
-  def set_due_date
-    frequency = self.vaccination.frequency.days
-    self.vaccination_due = self.vaccination_date + frequency 
+  def set_due_date(previous_vaccination_date = nil, frequency = nil, series = false)
+    frequency = self.vaccination.frequency.days if (frequency == nil)
+    
+    if series
+      self.vaccination_due = previous_vaccination_date + frequency
+    else
+      self.vaccination_due = self.vaccination_date + frequency unless series
+    end
 
     if frequency > 30.days
       self.notify_on = self.vaccination_due - 30.days
@@ -92,7 +99,16 @@ class AnimalVaccination < ActiveRecord::Base
   end
   
   def update_series
-    true
+    vaccination = self.vaccination
+
+    if vaccination.series_number == 999
+      animal_vaccination = AnimalVaccination.new(animal_id: self.animal_id, vaccination_id: vaccination.series_next_id)
+    else
+      animal_vaccination = AnimalVaccination.where(animal_id: self.animal_id, vaccination_id: vaccination.series_next_id).first_or_initialize
+    end
+    
+    animal_vaccination.set_due_date(self.vaccination_date, vaccination.series_interval, true)
+    animal_vaccination.save
   end
   
 private
