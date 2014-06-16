@@ -1,31 +1,25 @@
-<div class="section-container auto" data-section>
- 	
-  <%= content_tag :section do %>
-    <p class="title" data-section-title><a href="#panel1">Org Info</a></p>
-	<div class="content" data-section-content>  
-	  <%= render 'organization_demographic_fields' %>	
-	</div>
+<ul class="tabs" data-tab>
+  <li class="tab-title active"><a href="#panel1">Org Info</a></li>
+  <% unless @organization.new_record? %>
+    <li class="tab-title"><a href="#panel2">Locations</a></li>
+    <li class="tab-title"><a href="#panel3">Personnel</a></li>
+  <% end %> 
+</ul>
+
+<div class="tabs-content">
+  
+  <%= content_tag :div, id: 'panel1', class: 'content active' do %>
+	<%= render 'organization_demographic_fields' %>	
   <% end %>
 
- 	
-  <%= content_tag :section, :class => ('disabled' if @organization.new_record?) do %>
-    <p class="title" data-section-title><a href="#panel2">Locations</a></p>
-	<div class="content" data-section-content>
-	  <div id='org_locations_div'><%= render 'locations' unless @organization.new_record?  %></div>
-	</div>
+  <%= content_tag :div, id: 'panel2', class: (@organization.new_record? ? 'content disabled' : 'content') do %>
+	<div id='org_locations_div'><%= render 'locations' unless @organization.new_record?  %></div>
   <% end %>
 	  
-	  
-	  
-  <%= content_tag :section, :class => ('disabled' if @organization.new_record?) do %>
-	<p class="title" data-section-title><a href="#panel3">Personnel</a></p>
-	<div class="content" data-section-content>
-	  <%= render 'personnel' unless @organization.new_record?%>
-	</div>
+  <%= content_tag :div, id: 'panel3', class: (@organization.new_record? ? 'content disabled' : 'content') do %>
+	<%= render 'personnel' unless @organization.new_record?%>
   <% end %>
-  
-	  
-  
+
 </div>
 
 

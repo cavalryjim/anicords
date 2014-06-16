@@ -3,8 +3,29 @@
 <section class="border_top">
   <div class="row">
     <fieldset>
-      <h4>Editing Organization</h4>
+      <div class="row">
+      	<div class="large-7 columns">
+          <h4>Editing Organization</h4>
+        </div>
+        <div class="large-5 columns">
+          <dl class="sub-nav">
+			<dd>
+			  <%= link_to button_small("import pets", "import_button"), "#", "data-dropdown" => "import_drop", "data-options" => "is_hover:true", remote: true %>
+			  <ul id="import_drop" class="f-dropdown" data-dropdown-content>
+				<li>
+		  	      <%= link_to_if @organization.petfinder_shelter_id.present?,  "import from Petfinder", "#", "data-reveal-id" => "importPetFinderModal", remote: true  %>	
+				</li>
+				<li>
+			      <%= link_to_if @organization.id.present?, "import from spreadsheet", "#", "data-reveal-id" => "importSpreadsheetModal", remote: true  %>			  
+				</li>		
+			  </ul> 
+			</dd>
+		  </dl>
+        </div>  
+      </div>
+      
       <div class="large-12 columns"><%= render 'form' %></div>
+      
       <%= link_to button_small('Back'), @organization %>
     </fieldset>
   </div>
@@ -62,6 +83,45 @@
 	<div id="locationModal" class="reveal-modal" data-reveal>
 	  <div id='org_location_div'></div>
 	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="importSpreadsheetModal" class="reveal-modal medium" data-reveal>
+	  <h4>Import Animals</h4>
+	  <%= form_tag import_animals_organization_path, multipart: true  do %>
+	    <div class="row">
+		  <div class="large-6 small-12 columns ">
+		    <%= file_field_tag :file, class: 'upload_file' %>	
+		    
+	      </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 columns ">
+		    <%= submit_tag "import" %>  
+	      </div>
+		</div>
+	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<div id="importPetFinderModal" class="reveal-modal medium" data-reveal>
+	  <h4 class="bottom_padding_1em">Import Animals</h4>
+	  <div class="row">
+		<div class="large-12 columns ">
+		  <%= @organization.name %>
+		</div>
+	  </div>
+	  <div class="row">
+		<div class="large-12 columns bottom_padding_1em">
+		  PetFinder ID: <%= @organization.petfinder_shelter_id %>
+		</div>
+	  </div>
+	  <div class="row">
+		<div class="large-12 columns">
+	      <%= link_to_if @organization.petfinder_shelter_id.present?,  button_small("start import"), organizaiton_petfinder_import_path(@organization)  %>
+		</div>
+	  </div>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 <% end %>
