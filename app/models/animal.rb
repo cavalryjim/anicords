@@ -336,7 +336,7 @@ class Animal < ActiveRecord::Base
       return microchip_search(chip_brand, chip_id).first
     end
     
-    animals = organization.animals.where(name: animal_name)
+    animals = organization.animals.where(name: animal_name )
     return nil if animals.blank?
     
     # JDavis: if an organization wants to import multiple animals with the same name, they must also provide an unique id 

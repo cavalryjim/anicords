@@ -83,7 +83,9 @@ class Organization < ActiveRecord::Base
       #  animal.org_profile.petfinder_id = pet.id
       #end 
       
-      animal = Animal.org_animal_search(nil, nil, pet.id, self, nil, nil, pet.name, 'petfinder' ) || Animal.create(name: pet.name, owner: self, organization_id: self.id)
+      animal = Animal.org_animal_search(nil, nil, pet.id, self, nil, nil, pet.name, 'petfinder' ) 
+      next if (animal.present? && animal.updated_at > pet.last_update)
+      animal = Animal.create(name: pet.name, owner: self, organization_id: self.id) if animal.blank?
       animal.build_org_profile unless animal.org_profile.present?
       
       if pet.photos
@@ -94,7 +96,6 @@ class Organization < ActiveRecord::Base
         animal.org_profile.update_attribute :thumbnail_url, pet.photos.first.thumbnail unless animal.org_profile.thumbnail_url.present?
       end
       
-      next if (animal.updated_at > pet.last_update)
       
       animal.org_profile.petfinder_id = pet.id
       
