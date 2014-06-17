@@ -317,22 +317,22 @@ class Animal < ActiveRecord::Base
   
   # JDavis: need to add microchip lookup to this!
   def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization, chip_brand = nil, chip_id = nil, animal_name, import_type)
-    if animal_id 
+    if animal_id.present? 
       animal = find_by_id(animal_id)
       return animal if (animal && animal.owner == organization)
     end
     
-    if org_animal_id 
+    if org_animal_id.present? 
       profiles = OrgProfile.where(org_animal_id: org_animal_id.to_s, :organization_location_id => organization.organization_location_ids)
       return profiles.first.animal if profiles.present?
     end
     
-    if petfinder_id 
+    if petfinder_id.present? 
       profiles = OrgProfile.where(petfinder_id: petfinder_id, :organization_location_id => organization.organization_location_ids)
       return profiles.first.animal if profiles.present?
     end
     
-    if chip_brand && chip_id
+    if chip_brand.present? && chip_id.present?
       return microchip_search(chip_brand, chip_id).first
     end
     
@@ -348,8 +348,8 @@ class Animal < ActiveRecord::Base
     #  return animals.last
     #end
     return_animal = nil
-    animals.each do |animal|
-      return_animal = animal if ((animal.org_profile.org_animal_id.blank? && (import_type == 'spreadsheet')) || (animal.org_profile.petfinder_id.blank? && (import_type == 'petfinder')))
+    animals.each do |a|
+      return_animal = a if (((import_type == 'spreadsheet') && a.org_profile.org_animal_id.blank? ) || ((import_type == 'petfinder') && a.org_profile.petfinder_id.blank? ))
     end
 
     return return_animal
