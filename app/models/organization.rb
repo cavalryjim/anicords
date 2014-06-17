@@ -119,7 +119,7 @@ class Organization < ActiveRecord::Base
         end
       end
       #animal.org_profile.thumbnail_url = pet.photos.first.thumbnail if pet.photos
-      (animal.org_profile.organization_location_id = self.organization_locations.first.id) unless animal.org_profile.organization_location_id.present?
+      animal.org_profile.organization_location = self.organization_locations.first unless animal.org_profile.organization_location_id.present?
       animal.description = Sanitize.clean(pet.description)
       
       pull_count += 1 if animal.save
