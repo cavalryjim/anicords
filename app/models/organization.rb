@@ -82,9 +82,16 @@ class Organization < ActiveRecord::Base
       #  animal.build_org_profile
       #  animal.org_profile.petfinder_id = pet.id
       #end 
+      case pet.animal
+      when 'Dog'
+        animal_type_id = 1
+      when 'Cat'
+        animal_type_id = 2
+      end
       
-      animal = Animal.org_animal_search(nil, nil, pet.id, self, nil, nil, pet.name, 'petfinder' ) 
+      animal = Animal.org_animal_search(nil, nil, pet.id, self, nil, nil, pet.name, animal_type_id, 'petfinder' ) 
       next if (animal.present? && animal.updated_at > pet.last_update)
+      
       animal = Animal.create(name: pet.name, owner: self, organization_id: self.id) if animal.blank?
       animal.build_org_profile unless animal.org_profile.present?
       
@@ -96,15 +103,9 @@ class Organization < ActiveRecord::Base
         animal.org_profile.update_attribute :thumbnail_url, pet.photos.first.thumbnail unless animal.org_profile.thumbnail_url.present?
       end
       
-      
+      animal.animal_type_id = animal_type_id
       animal.org_profile.petfinder_id = pet.id
       
-      case pet.animal
-      when 'Dog'
-        animal.animal_type_id = 1
-      when 'Cat'
-        animal.animal_type_id = 2
-      end
       
       case pet.sex
       when 'M'
@@ -168,7 +169,8 @@ class Organization < ActiveRecord::Base
       chip_brand = row["microchip_brand_id"] || nil
       chip_id = row["microchip_id"] || nil
       animal_name = row["name"]
-      animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self, chip_brand, chip_id, animal_name, 'spreadsheet' ) || Animal.new
+      animal_type_id = row["animal_type_id"] || nil
+      animal = Animal.org_animal_search(animal_id, org_animal_id, petfinder_id, self, chip_brand, chip_id, animal_name, animal_type_id, 'spreadsheet' ) || Animal.new
       animal.attributes = row.to_hash.select { |k,v| allowed_animal_attrs.include? k }
       animal.owner = self
       animal.organization_id = self.id

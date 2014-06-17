@@ -316,7 +316,7 @@ class Animal < ActiveRecord::Base
   end
   
   # JDavis: need to add microchip lookup to this!
-  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization, chip_brand = nil, chip_id = nil, animal_name, import_type)
+  def self.org_animal_search(animal_id, org_animal_id, petfinder_id, organization, chip_brand = nil, chip_id = nil, animal_name, animal_type_id, import_type)
     if animal_id.present? 
       animal = find_by_id(animal_id)
       return animal if (animal && animal.owner == organization)
@@ -336,7 +336,7 @@ class Animal < ActiveRecord::Base
       return microchip_search(chip_brand, chip_id).first
     end
     
-    animals = organization.animals.where(name: animal_name )
+    animals = organization.animals.where(name: animal_name, animal_type_id: animal_type_id )
     return nil if animals.blank?
     
     # JDavis: if an organization wants to import multiple animals with the same name, they must also provide an unique id 
