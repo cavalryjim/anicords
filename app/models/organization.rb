@@ -90,7 +90,7 @@ class Organization < ActiveRecord::Base
       end
       
       animal = Animal.org_animal_search(nil, nil, pet.id, self, nil, nil, pet.name, animal_type_id, 'petfinder' ) 
-      next if (animal.present? && animal.updated_at > pet.last_update)
+      next if (animal.present? && (animal.updated_at > pet.last_update))
       
       animal = Animal.create(name: pet.name, owner: self, organization_id: self.id) if animal.blank?
       animal.build_org_profile unless animal.org_profile.present?
