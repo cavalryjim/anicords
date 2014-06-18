@@ -333,7 +333,8 @@ class Animal < ActiveRecord::Base
     end
     
     if chip_brand.present? && chip_id.present?
-      return microchip_search(chip_brand, chip_id).first
+      animal = microchip_search(chip_brand, chip_id).first
+      return animal if (animal && animal.owner == organization)
     end
     
     animals = organization.animals.where(name: animal_name, animal_type_id: animal_type_id )

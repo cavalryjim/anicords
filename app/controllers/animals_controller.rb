@@ -109,6 +109,7 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @owner, notice: 'Animal was successfully updated.' }
       format.json { head :no_content }
+      format.js
     end
   end
   
