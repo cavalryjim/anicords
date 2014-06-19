@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 20140619004729) do
     t.boolean  "microchipped"
     t.string   "neuter_location"
     t.integer  "microchip_brand_id"
-    t.boolean  "active"
+    t.boolean  "active",               default: true
   end
 
   create_table "beta_comments", force: true do |t|
