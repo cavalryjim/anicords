@@ -142,10 +142,19 @@
   <%= f.hidden_field :owner_id, value: @owner.id %>	 
   <%= f.hidden_field :owner_type, value: @owner.class.name %> 
   
-  
-  <div class="actions">
-	<%= f.submit "Save" %>
+  <div class="row">
+	<div class="large-4 small-6 columns">
+	  <div class="actions">
+		<%= f.submit "Save" %>
+	  </div>
+	</div>
+	<div class="large-6 small-4 columns"></div>
+    <div class="large-2 small-2 columns">
+      <%= link_to image_tag('cross.png', :alt => "del"), polymorphic_path([@owner, @animal]), method: :delete, remote: @organization.present?, 
+				 data: { confirm: 'Please confirm you want to remove ' + @animal.name + '.' } %>
+    </div>
   </div>
+  
   <%= token_tag form_authenticity_token %>
 <% end %>
 

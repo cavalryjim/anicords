@@ -44,6 +44,7 @@
 #  microchipped         :boolean
 #  neuter_location      :string(255)
 #  microchip_brand_id   :integer
+#  active               :boolean
 #
 
 class Animal < ActiveRecord::Base

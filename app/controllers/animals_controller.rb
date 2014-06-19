@@ -107,7 +107,7 @@ class AnimalsController < ApplicationController
   def destroy
     @animal.destroy
     respond_to do |format|
-      format.html { redirect_to @owner, notice: 'Animal was successfully updated.' }
+      format.html { redirect_to @owner, notice: 'Animal was successfully removed.' }
       format.json { head :no_content }
       format.js
     end
