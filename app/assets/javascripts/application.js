@@ -21,9 +21,11 @@
 //= require dataTables/jquery.dataTables.foundation
 //= require best_in_place
 //= require jquery.easy-ticker.min
+//= require fnAddTr
 //= require_tree .
 
 
+var orgTable;
 
 $(function(){
   
@@ -44,7 +46,7 @@ $(function(){
   });
    
   //orgAnimalDataTable(); // JDavis: might need to call the function later.
-  $('#animal_table').dataTable({
+  orgTable = $('#animal_table').dataTable({
     "aoColumnDefs": [
       { "aDataSort": [ 1 ], "aTargets": [ 1 ] }, 
       { "bSortable": false, "aTargets": [ 0, 7 ] },

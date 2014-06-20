@@ -2,7 +2,8 @@
 $(".reveal-modal").foundation('reveal', 'close');
 
 <% if @organization && @animal.present? %>
-  $('#animal_table').prepend('<tr id="<%= @animal.id %>"><%=j render :partial => 'organizations/animal_table_row', :locals => {:animal => @animal } %></tr>');
+  //$('#animal_table').prepend('<tr id="<%= @animal.id %>"><%=j render :partial => 'organizations/animal_table_row', :locals => {:animal => @animal } %></tr>');
+  orgTable.fnAddTr( $('<tr id="<%= @animal.id %>"><%=j render :partial => 'organizations/animal_table_row', :locals => {:animal => @animal } %></tr>')[0] );
   $('tr#<%= @animal.id %>').effect("highlight", {color:"#81F781"}, 1500).unbind();
   $('tr#<%= @animal.id %>').addClass('blue_background');
 <% end %>
