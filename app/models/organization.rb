@@ -22,7 +22,7 @@ class Organization < ActiveRecord::Base
   include ActiveModel::Validations
   
   #has_many  :adopted_animals, -> { where.not owner_type: "Organization" }, class_name: "Animal"
-  has_many  :animals, as: :owner, dependent: :destroy
+  has_many  :animals, -> { where active: true }, as: :owner, dependent: :destroy
   has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
   has_many  :organization_locations, dependent: :destroy

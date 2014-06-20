@@ -23,6 +23,8 @@
 //= require jquery.easy-ticker.min
 //= require_tree .
 
+
+
 $(function(){
   
   //$(document).foundation()
@@ -41,13 +43,15 @@ $(function(){
      }
   });
    
-  
+  //orgAnimalDataTable(); // JDavis: might need to call the function later.
   $('#animal_table').dataTable({
     "aoColumnDefs": [
-      { "bSortable": false, "aTargets": [ 0 ] } ],
+      { "aDataSort": [ 1 ], "aTargets": [ 1 ] }, 
+      { "bSortable": false, "aTargets": [ 0, 7 ] },
+      ],
     "sPaginationType": "foundation",
     "bStateSave": true
-  }).show();
+  }).show(); 
   
   $('#adoption_table').dataTable({
     "aoColumnDefs": [
@@ -142,6 +146,8 @@ function validateFiles(inputFile, type) {
     $(inputFile).val('');
   };
 }
+
+  
 
 
 

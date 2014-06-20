@@ -1,9 +1,11 @@
   
-  $('#animalModal').foundation('reveal', 'close');
-  $("#org_animal_table_div").html('<%= j render("organizations/animal_table") %>');
-  $('#animal_table').dataTable({
-    "aoColumnDefs": [
-      { "bSortable": false, "aTargets": [ 0 ] } ],
-    "sPaginationType": "foundation",
-    "bStateSave": true
-  }).show();
+$(".reveal-modal").foundation('reveal', 'close');
+
+<% if @organization && @animal.present? %>
+  $('#animal_table').prepend('<tr id="<%= @animal.id %>"><%=j render :partial => 'organizations/animal_table_row', :locals => {:animal => @animal } %></tr>');
+  $('tr#<%= @animal.id %>').effect("highlight", {color:"#81F781"}, 1500).unbind();
+  $('tr#<%= @animal.id %>').addClass('blue_background');
+<% end %>
+  
+  
+  

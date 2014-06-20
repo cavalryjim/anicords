@@ -287,7 +287,7 @@ class Animal < ActiveRecord::Base
   def set_org_location
     self.build_org_profile unless self.org_profile.present?
     self.org_profile.organization_location_id = self.owner.organization_locations.first.id 
-    self.org_profile.save
+    self.org_profile.save unless self.new_record?
   end
   
   def weight_chart_data

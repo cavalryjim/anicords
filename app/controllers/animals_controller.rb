@@ -49,10 +49,11 @@ class AnimalsController < ApplicationController
   def create
     params[:animal][:breed_ids] = Animal.fix_breed_ids(params[:animal][:breed_ids]) if (params[:animal][:breed_ids]).present?
     @animal = Animal.new(animal_params)
+    @animal.set_org_location if ((@animal.owner.class.name == "Organization") && @animal.org_profile.organization_location_id.blank?)
+    @location_options = @organization.organization_locations.map{|l| [ l.id, l.name ]} if @organization.present?
     
     respond_to do |format|
-      if @animal.save 
-        @animal.set_org_location if @animal.owner.class.name == "Organization"
+      if @animal.save! 
         @animal.create_qr_code(animal_url(@animal, qrc: 'true'))
         #@animal.create_activity :create, owner: current_user, recipient: @animal.owner
         format.html { redirect_to return_path, notice: 'Animal was successfully created.' }
@@ -61,6 +62,7 @@ class AnimalsController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

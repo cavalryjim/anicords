@@ -22,7 +22,7 @@ class Breeder < ActiveRecord::Base
   has_many  :user_associations, :dependent => :destroy
   has_many  :users, :through => :user_associations
   has_many  :animals
-  has_many  :owned_animals, as: :owner, dependent: :destroy
+  has_many  :owned_animals, -> { where active: true }, as: :owner, dependent: :destroy
   accepts_nested_attributes_for :animals, allow_destroy: true
   
   validates_presence_of :name

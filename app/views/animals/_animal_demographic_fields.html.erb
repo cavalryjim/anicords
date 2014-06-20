@@ -14,7 +14,8 @@
 	  </div>
 	  <div class="large-4 columns">
 	  	<%= builder.label :organization_location_id, 'location' %>
-		<%= builder.collection_select :organization_location_id, @owner.organization_locations, :id, :name, {prompt:'animal location'}, {class: "regular_select"} %>
+		<%= builder.collection_select :organization_location_id, @organization.organization_locations, :id, :name, {prompt:'animal location'}, {class: "regular_select"} %>
+		<small class="error">Location required.</small>
 	  </div>
 	</div>
 	<div class="row">
@@ -27,7 +28,7 @@
 	    <%= builder.text_field :petfinder_id, placeholder: "petfinder ID", disabled: true %>
 	  </div>
     </div>
-	<%= builder.hidden_field :id %>	  
+	<%= builder.hidden_field :id %>	 
   <% end %>
   </fieldset>
  <% end %>
@@ -150,8 +151,10 @@
 	</div>
 	<div class="large-6 small-4 columns"></div>
     <div class="large-2 small-2 columns">
-      <%= link_to image_tag('cross.png', :alt => "del"), polymorphic_path([@owner, @animal]), method: :delete, remote: @organization.present?, 
+      <% unless @animal.new_record? %>
+        <%= link_to image_tag('cross.png', :alt => "del"), polymorphic_path([@owner, @animal]), method: :delete, remote: @organization.present?, 
 				 data: { confirm: 'Please confirm you want to remove ' + @animal.name + '.' } %>
+	  <% end %>
     </div>
   </div>
   

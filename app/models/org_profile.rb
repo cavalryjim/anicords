@@ -29,7 +29,7 @@ class OrgProfile < ActiveRecord::Base
   belongs_to  :animal
   belongs_to  :organization_location
   
-  validates_presence_of :animal_id
+  #validates_presence_of :animal_id
   validates_presence_of :organization_location_id
   
   
