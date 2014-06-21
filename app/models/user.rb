@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
   
   def self.added_to_group(user_association_id)
     #user_association = UserAssociation.find(user_association_id)
-    UserMailer.added_to_group(user_association_id)
+    UserMailer.added_to_group(user_association_id).deliver
   end
   
   def self.created_and_added_to_group(user_association_id, password)
