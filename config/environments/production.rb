@@ -22,16 +22,26 @@ Anicords::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {  
     # JDavis: for GoDaddy email account
-    address:        'smtpout.secureserver.net', 
-    port:           '80',
-    user_name:      ENV['SECURESERVER_USERNAME'],
-    password:       ENV['SECURESERVER_PASSWORD'],
+    # GoDaddy sucks a great big donkey dick!  Switching back to mandrill.
+    # address:        'smtpout.secureserver.net', 
+    #port:           '80',
+    #user_name:      ENV['SECURESERVER_USERNAME'],
+    #password:       ENV['SECURESERVER_PASSWORD'],
+    
     # JDavis: for mandrill 
     #address:        'smtp.mandrillapp.com',
     #port:           '587',
     #enable_starttls_auto: true,
     #user_name:      ENV['MANDRILL_USERNAME'],
     #password:       ENV['MANDRILL_APIKEY'],
+    
+    address:        'smtp.sendgrid.net',
+    port:           '587',
+    #:authentication => :plain,
+    user_name:      ENV['SENDGRID_USERNAME'],
+    password:       ENV['SENDGRID_PASSWORD'],
+    #:domain         => 'heroku.com',
+    enable_starttls_auto: true,
     
     domain:         'petabyt.com',
     authentication: :plain
