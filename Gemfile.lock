@@ -151,6 +151,7 @@ GEM
       faraday (~> 0.8)
       faraday_middleware (>= 0.8)
       hashie (>= 1.0, < 3.0.0)
+    geocoder (1.2.2)
     guard (2.3.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -426,6 +427,7 @@ DEPENDENCIES
   fog (= 1.19.0)
   foundation-rails (= 5.2.3.0)
   foursquare2 (= 2.0.0)
+  geocoder (= 1.2.2)
   guard-rspec
   html5_validators (= 1.1.2)
   jbuilder (~> 1.2)

@@ -13,6 +13,8 @@
 #  email      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  latitude   :float
+#  longitude  :float
 #
 
 class Household < ActiveRecord::Base
@@ -35,8 +37,20 @@ class Household < ActiveRecord::Base
   validates_presence_of :name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: "email.blank?"
   
+  geocoded_by :full_address
+  after_validation :geocode, if: :address_changed?  # JDavis: need to move this to a backgroup process.  jdhere.
+  
   def to_s
     name
+  end
+  
+  def full_address
+    full_address = ""
+    full_address << (address1 || "") << " " << (address2 || "") << " " << (city || "") << " " << (state || "") << " " << (zip || "")
+  end
+  
+  def address_changed?
+    address1_changed? || address2_changed? || city_changed? || state_changed? || zip_changed?
   end
   
   def associate_user(user_id, administrator=false)

@@ -58,6 +58,7 @@ gem 'roo', '1.13.2'
 #gem 'rack-ssl', '1.4.1'
 gem 'foursquare2', '2.0.0'
 gem 'jquery-turbolinks', '2.0.2'
+gem 'geocoder', '1.2.2'
 
 
 

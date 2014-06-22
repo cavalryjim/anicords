@@ -14,6 +14,8 @@
 #  phone      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  latitude   :float
+#  longitude  :float
 #
 
 class ServiceProvider < ActiveRecord::Base
@@ -40,12 +42,24 @@ class ServiceProvider < ActiveRecord::Base
   
   before_save :replace_nils_with_blank
   
+  geocoded_by :full_address
+  after_validation :geocode, if: :address_changed?  # JDavis: need to move this to a backgroup process.  jdhere.
+  
   #def as_json options={}
   #  { value: id, label: name + ' ' + zip.to_s }
   #end
   
   def to_s
     name
+  end
+  
+  def full_address
+    full_address = ""
+    full_address << (address1 || "") << " " << (address2 || "") << " " << (city || "") << " " << (state || "") << " " << (zip || "")
+  end
+  
+  def address_changed?
+    address1_changed? || address2_changed? || city_changed? || state_changed? || zip_changed?
   end
   
   def services_available

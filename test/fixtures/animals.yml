@@ -44,7 +44,7 @@
 #  microchipped         :boolean
 #  neuter_location      :string(255)
 #  microchip_brand_id   :integer
-#  active               :boolean
+#  active               :boolean          default(TRUE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
