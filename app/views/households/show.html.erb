@@ -37,7 +37,6 @@
   <div class="large-7 columns">
   	<fieldset>
   	  <h5>Household notifications</h5>
-  	  <% if @notifications.present? %>
   	    <div id="household_news" class="h_news fouc">
 		  <ul>
 		   <% @notifications.each do |notification| %>
@@ -45,13 +44,10 @@
 		    	<%= thumbnail(notification.animal, '50x50', 'none')%>
 		    	<%= link_to_if household_notification_url(notification).present?, household_notification(notification), household_notification_url(notification) %>
 		    </li>
-		   <% end %>
+		   <% end %>  
+		   <%= additional_notifications(@household)%>
 		  </ul>
 	    </div> 
-  	  <% else %>
-  	    <p>Welcome.  As you use the applicaiton, notifications will be generated to help you care for the animal members of your household.</p>
-  	  
-	  <% end %>  
   	</fieldset>
   </div>	
   </fieldset>
