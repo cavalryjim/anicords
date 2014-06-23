@@ -107,7 +107,11 @@ class AnimalsController < ApplicationController
   # DELETE /animals/1
   # DELETE /animals/1.json
   def destroy
-    @animal.destroy
+    if params[:archive].present? 
+      @animal.archive
+    else
+      @animal.destroy
+    end
     respond_to do |format|
       format.html { redirect_to @owner, notice: 'Animal was successfully removed.' }
       format.json { head :no_content }

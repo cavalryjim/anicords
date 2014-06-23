@@ -362,6 +362,10 @@ class Animal < ActiveRecord::Base
     where(microchip_brand_id: chip_brand, microchip_id: chip_id)
   end
   
+  def archive
+    update_attribute :active, false
+  end
+  
   private
   
   def new_health_profile

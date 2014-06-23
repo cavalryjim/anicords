@@ -416,6 +416,17 @@ jQuery ->
       $("#animal_notifications_div").slideUp()
       $("img#notification_details").attr "src", "/img/details_open.png"
   
+  $("#delete_dialog").dialog
+    autoOpen: false
+    height: 250
+    width: 350
+    modal: true
+    
+  $("#delete_button").click (event) ->
+    event.preventDefault()
+    $("#delete_dialog").dialog "open"
+    
+  
   $(window).load -> 
     #$(".tabs-content").show()
     $(".tabs-content #panel2").removeClass "active"

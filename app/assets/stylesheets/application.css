@@ -109,7 +109,7 @@ section.gray_background {
 }
 
 .blue_background {
- background-color: #C8DAFF;
+ background-color: #C8DAFF !important;
 }
 
 .green_background {
@@ -122,7 +122,7 @@ section.gray_background {
 }
 
 .red_background {
-  background-color: #e84f40;
+  background-color: #e84f40 !important;
 }
 
 .brown_background {

@@ -149,11 +149,19 @@
 		<%= f.submit "Save" %>
 	  </div>
 	</div>
-	<div class="large-6 small-4 columns"></div>
-    <div class="large-2 small-2 columns">
+	<div class="large-5 small-3 columns"></div>
+    <div class="large-3 small-3 columns">
       <% unless @animal.new_record? %>
-        <%= link_to image_tag('cross.png', :alt => "del"), polymorphic_path([@owner, @animal]), method: :delete, remote: @organization.present?, 
+        <%= button_small("Remove animal", 'delete_button', 'red_background' ) %>
+        
+        <div id="delete_dialog" title="Remove animal" class="fouc dialog">
+		  <p>Selecting delete will permanently remove this animal's record. Archiving will make the account inactive but still viewable. </p> </br>
+          <%= link_to button_small("Delete record", '', 'red_background' ), polymorphic_path([@owner, @animal]), method: :delete, remote: @organization.present?, 
 				 data: { confirm: 'Please confirm you want to remove ' + @animal.name + '.' } %>
+		  <%= link_to button_small("Archive record", '', 'blue_background' ), polymorphic_path([@owner, @animal], archive: true), method: :delete, remote: @organization.present?, 
+				 data: { confirm: 'Please confirm you want to archive this record.' } %>
+		</div>
+      
 	  <% end %>
     </div>
   </div>
