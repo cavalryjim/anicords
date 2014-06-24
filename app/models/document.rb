@@ -29,6 +29,8 @@ class Document < ActiveRecord::Base
     end
   end
   
+  after_save  :set_title
+  
   def file_path
     file.path
   end
@@ -38,6 +40,11 @@ class Document < ActiveRecord::Base
   end
   
   private
+  
+  def set_title
+    update_attribute :title, (Date.today.to_s + " " + file_type) if title.blank?
+    #title = Date.today.to_s + " " + file_type
+  end
   
   def file_xor_external_url
     unless (file.blank? ^ external_url.blank?)
