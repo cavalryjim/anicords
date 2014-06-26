@@ -14,9 +14,7 @@
 	    <% for document in @animal.vaccination_documents %>
 	    <tr>
 	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
-	      <td>
-	      	<%= image_tag s3_url('icon-mail-s.png'), class: 'email' %>
-	      </td>
+	      <td><%= image_tag s3_url('icon-mail-s.png'), class: 'email' %></td>
 	      <td><%= link_to(document.file_name, document.file_location, target: '_blank') %></td>
 	      <td><%= best_in_place [@animal, document], :title, :type => :input %></td>
 		  <td>
@@ -25,9 +23,7 @@
 		  </td>
         </tr>
         <tr class="email_document">
-        	<td colspan="5">
-	      	  <%= render 'animals/email_document', document: document %>	
-        	</td>
+          <td colspan="5"><%= render 'animals/email_document', document: document %></td>
         </tr>
 	  <% end %>
 	</table>
@@ -42,6 +38,7 @@
 	<table>
 	  	<tr>
 	  	  <th></th>
+	  	  <th>Email</th>
 	  	  <th>Filename</th>
 	  	  <th>Description</th>
 	  	  <th>Delete</th>
@@ -49,12 +46,16 @@
 	    <% for document in @animal.rabies_documents %>
 	    <tr>
 	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
+	      <td><%= image_tag s3_url('icon-mail-s.png'), class: 'email' %></td>
 	      <td><%= link_to(document.file_name, document.file_location, target: '_blank') %></td>
 	      <td><%= best_in_place [@animal, document], :title, :type => :input %></td>
 		  <td>
 		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
 		    		data: { confirm: 'Remove this document?' }, remote: true %>	
 		  </td>
+        </tr>
+        <tr class="email_document">
+          <td colspan="5"><%= render 'animals/email_document', document: document %></td>
         </tr>
 	  <% end %>
 	</table>
@@ -70,6 +71,7 @@
 	<table>
 	  	<tr>
 	  	  <th></th>
+	  	  <th>Email</th>
 	  	  <th>Filename</th>
 	  	  <th>Description</th>
 	  	  <th>Delete</th>
@@ -77,12 +79,16 @@
 	    <% for document in @animal.veterinary_documents %>
 	    <tr>
 	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
+	      <td><%= image_tag s3_url('icon-mail-s.png'), class: 'email' %></td>
 	      <td><%= link_to(document.file_name, document.file_location, target: '_blank') %></td>
 	      <td><%= best_in_place [@animal, document], :title, :type => :input %></td>
 		  <td>
 		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
 		    		data: { confirm: 'Remove this document?' }, remote: true %>	
 		  </td>
+        </tr>
+        <tr class="email_document">
+          <td colspan="5"><%= render 'animals/email_document', document: document %></td>
         </tr>
 	  <% end %>
 	</table>
@@ -98,6 +104,7 @@
 	<table>
 	  	<tr>
 	  	  <th></th>
+	  	  <th>Email</th>
 	  	  <th>Filename</th>
 	  	  <th>Description</th>
 	  	  <th>Delete</th>
@@ -105,12 +112,16 @@
 	    <% for document in @animal.other_documents %>
 	    <tr>
 	      <td><%= link_to(image_tag(s3_url('document_icon.png'), size: '20x20'), document.file_location, target: '_blank') %></td>
+	      <td><%= image_tag s3_url('icon-mail-s.png'), class: 'email' %></td>
 	      <td><%= link_to(document.file_name, document.file_location, target: '_blank') %></td>
 	      <td><%= best_in_place [@animal, document], :title, :type => :input %></td>
 		  <td>
 		    <%= link_to image_tag('cross.png', :alt => "del"), animal_document_path(@animal, document), method: :delete, 
 		    		data: { confirm: 'Remove this document?' }, remote: true %>	
 		  </td>
+        </tr>
+        <tr class="email_document">
+          <td colspan="5"><%= render 'animals/email_document', document: document %></td>
         </tr>
 	  <% end %>
 	</table>
