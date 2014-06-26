@@ -454,7 +454,14 @@ $(".org_animal_div").on "show", ->
     
   $("#delete_button").click (event) ->
     event.preventDefault()
-    $("#delete_dialog").dialog "open"    
+    $("#delete_dialog").dialog "open" 
+    
+  $(".document_table .email").click (event) ->
+    nTr = $(this).closest('tr').next()
+    if $(nTr).is(":hidden")
+      $(nTr).slideDown()
+    else
+      $(nTr).slideUp()   
 
   $(".tabs-content #panel2").removeClass "active"
     
