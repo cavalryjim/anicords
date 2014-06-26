@@ -35,7 +35,7 @@
   <% if @animal.rabies_documents.count == 0 %>
       <p>No rabies documentation has been uploaded.</p>
   <% else %>
-	<table>
+	<table class="document_table">
 	  	<tr>
 	  	  <th></th>
 	  	  <th>Email</th>
@@ -68,7 +68,7 @@
   <% if @animal.veterinary_documents.count == 0 %>
       <p>No veterinary note files have been uploaded.</p>
   <% else %>
-	<table>
+	<table class="document_table">
 	  	<tr>
 	  	  <th></th>
 	  	  <th>Email</th>
@@ -101,7 +101,7 @@
   <% if @animal.other_documents.count == 0 %>
       <p>Other documents.</p>
   <% else %>
-	<table>
+	<table class="document_table">
 	  	<tr>
 	  	  <th></th>
 	  	  <th>Email</th>
