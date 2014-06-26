@@ -426,6 +426,13 @@ jQuery ->
     event.preventDefault()
     $("#delete_dialog").dialog "open"
     
+  $(".document_table .email").click (event) ->
+    nTr = $(this).closest('tr').next()
+    if $(nTr).is(":hidden")
+      $(nTr).slideDown()
+    else
+      $(nTr).slideUp()
+    
   
   $(window).load -> 
     #$(".tabs-content").show()

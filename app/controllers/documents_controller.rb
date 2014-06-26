@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :download_file]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :download_file, :email]
   before_action :set_animal, only: [:create, :update, :destroy]
   authorize_resource
 
@@ -73,6 +73,15 @@ class DocumentsController < ApplicationController
   def download_file
     url = @document.file_path.path
     send_file( url, :disposition => 'inline' )
+  end
+  
+  def email
+    if params[:recipient_email].present? && params[:recipient_email].match(/^\S+@\S+\.\S+$/)
+      @document.email_me(params[:recipient_email])
+      @success = true
+    else
+      @success = false
+    end
   end
 
   private

@@ -39,6 +39,11 @@ class Document < ActiveRecord::Base
     file.present? ? file.url : external_url
   end
   
+  def email_me(recipient_email)
+    #Rails.env.production? ? QC.enqueue("User.send_new_account_notice", self.id, password) : UserMailer.new_account_notice(self, password).deliver
+    UserMailer.email_document(self, recipient_email).deliver
+  end
+  
   private
   
   def set_title

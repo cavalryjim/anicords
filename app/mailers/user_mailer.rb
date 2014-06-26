@@ -2,7 +2,7 @@ class UserMailer < ActionMailer::Base
   default from: "james@petabyt.com",
           bcc: ['james.davisphd@gmail.com', 'tylercarruth@live.com']
  
-
+  
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -81,6 +81,14 @@ class UserMailer < ActionMailer::Base
   
   def orphan_associations
     mail to: 'james.davisphd@gmail.com', subject: "Petabyt has orphaned associations!"
+  end
+  
+  def email_document(document, recipient)
+    @recipient = recipient
+    @title = document.title
+    file = open(URI.encode(document.file.remote_url)).read
+    attachments[document.title] = file
+    mail(to: recipient, subject: "Petabyt: " + document.title)
   end
   
 private

@@ -67,6 +67,7 @@ Anicords::Application.routes.draw do
   resources :animal_associations
   resources :notifications
   
+  post 'documents/:id/email_document' => 'documents#email', as: :email_document
   post 'animals/microchip_lookup' => 'animals#microchip_lookup', as: :microchip_lookup
   get 'privacy_policy' => "pages#privacy_policy", as: :privacy_policy
   get 'user/select_association' => 'users#select_association'

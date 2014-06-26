@@ -231,7 +231,7 @@ fieldset.gray_background {
   padding-left: 20px;
 }
 
-li.no_wrap {
+.no_wrap {
   white-space: nowrap !important;
 }
 
@@ -422,6 +422,15 @@ footer {
   height: 1.5rem !important;
   padding: 0 !important;
 }
+
+/* JDavis: this hides the document email form and lets jQuery handle the display */
+tr.email_document { 
+	display: none;
+	background: #ccc;
+	border: 1px solid #999;
+	
+}
+
 /***** Household News Feed ****/
 
 .h_news {
