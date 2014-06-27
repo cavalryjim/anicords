@@ -11,7 +11,7 @@
       <%= f.hidden_field "crop_#{attribute}"%>
     <% end %>
     <%= f.hidden_field :animal_id, value: @animal.id %>
-    <%= f.submit "Crop" %>
+    <%= f.submit "crop", class: "button small" %>
   </div>
 <% end %>
 

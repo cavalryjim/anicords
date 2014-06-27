@@ -146,13 +146,13 @@
   <div class="row">
 	<div class="large-4 small-6 columns">
 	  <div class="actions">
-		<%= f.submit "Save" %>
+		<%= f.submit "save", class: "button small" %>
 	  </div>
 	</div>
 	<div class="large-5 small-3 columns"></div>
     <div class="large-3 small-3 columns">
       <% unless @animal.new_record? %>
-        <%= button_small("Remove animal", 'delete_button', 'red_background' ) %>
+        <%= button_small("remove animal", 'delete_button', 'red_background' ) %>
         
         <div id="delete_dialog" title="Remove animal" class="fouc dialog">
 		  <p>Selecting delete will permanently remove this animal's record. Archiving will make the account inactive but still viewable. </p> </br>

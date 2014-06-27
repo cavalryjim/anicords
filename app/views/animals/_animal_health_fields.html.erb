@@ -18,7 +18,7 @@
 	      </div>
 		</div>
 	    <div class="actions">
-		  <%= f.submit "save" %>
+		  <%= f.submit "save", class: "button small" %>
 	    </div>
 	    
 	  <% end %>
@@ -65,7 +65,7 @@
        
        <%= f.hidden_field :animal_id, value: @animal.id %>	 
        <div class="actions">
-		<%= f.submit "add weight" %>
+		<%= f.submit "add weight", class: "button small" %>
 	   </div>
      <% end %>
  </fieldset>
@@ -109,7 +109,7 @@
 	  <div class="row">	
 	    <div class="large-12 columns">
 		  <!--<%= button_small("add medication", "add_medication")  %>-->
-	      <%= f.submit "add medication" %>  
+	      <%= f.submit "add medication", class: "button small" %>  
 	    </div>
 	  </div>
   <% end %>
@@ -153,7 +153,7 @@
    <%= f.hidden_field :animal_id, value: @animal.id %>  
    <div class="row">	
     <div class="large-12 columns">
-	  <%= f.submit "add vaccination" %>  
+	  <%= f.submit "add vaccination", class: "button small" %>  
     </div>
    </div>
   <% end %>
@@ -216,7 +216,7 @@
    <% end %>
    <div class="row">	
     <div class="large-12 columns">
-	  <%= f.submit "save" %>  
+	  <%= f.submit "save", class: "button small" %>  
     </div>
    </div>
  <% end %>

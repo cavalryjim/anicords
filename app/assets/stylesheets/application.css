@@ -393,6 +393,11 @@ form {
 button, input[type="submit"] {
   color: #000000 !important;
   background-color: #00FF00 !important;
+  border: none !important;
+}
+
+button:hover, .button:hover { 
+  box-shadow: 0 0 6px 1px rgba(0, 140, 186, 0.5); 
 }
 
 div.innerDetails { display: none; }

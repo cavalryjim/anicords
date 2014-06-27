@@ -32,11 +32,11 @@
 		  	  <% else %>
 		  	    <%= form_for @animal, url: accept_transfer_path, html: { id: "accept_transfer_form", "data-abide" => '' } do |f| %>
 		  	      Accept this animal to: <%= select_tag 'association', options_from_collection_for_select(current_user.associations.all, 'id', 'name'), class: "regular_select" %>
-		  	      <%= f.submit 'Accept '%> 
+		  	      <%= f.submit 'accept ', class: "button small"%> 
 		  	      <%= hidden_field_tag 'animal_transfer_id', @transfer_id %>
 		  	    <% end %>
 		  	    
-		  	    <%= link_to "Decline", "#" %>
+		  	    <%= link_to "decline", "#" %>
 		  	  <% end %>
 		  	</div>
 		  </div>

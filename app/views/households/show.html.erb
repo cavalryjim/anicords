@@ -30,8 +30,9 @@
 		  <% end %>
 		<% end %>
 	    </ul>
-			
-	    <%= button_to "Add Animal", "#", "data-reveal-id" => "newAnimalModal" %> 
+			 
+	    <%= link_to button_small("add animal"), "#", "data-reveal-id" => "newAnimalModal" %>
+	    
 	</fieldset>
   </div>
   <div class="large-7 columns">
@@ -72,7 +73,7 @@
     
     <%= hidden_field_tag :service_provider_id %>
     <div class="actions">
-      <%= f.submit 'Add Provider' %>
+      <%= f.submit 'add Provider', class: "button small" %>
     </div>
 
   </fieldset>
@@ -100,7 +101,7 @@
 	<%= f.hidden_field :owner_id, value: @household.id %>	 
 	<%= f.hidden_field :owner_type, value: @household.class.name %>     
     <div class="actions">
-	  <%= f.submit %>
+	  <%= f.submit "submit", class: "button small" %>
 	</div>
     
   <% end %>
