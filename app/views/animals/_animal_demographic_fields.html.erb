@@ -155,11 +155,20 @@
         <%= button_small("remove animal", 'delete_button', 'red_background' ) %>
         
         <div id="delete_dialog" title="Remove animal" class="fouc dialog">
-		  <p>Selecting delete will permanently remove this animal's record. Archiving will make the account inactive but still viewable. </p> </br>
-          <%= link_to button_small("Delete record", '', 'red_background' ), polymorphic_path([@owner, @animal]), method: :delete, remote: @organization.present?, 
-				 data: { confirm: 'Please confirm you want to remove ' + @animal.name + '.' } %>
-		  <%= link_to button_small("Archive record", '', 'blue_background' ), polymorphic_path([@owner, @animal], archive: true), method: :delete, remote: @organization.present?, 
-				 data: { confirm: 'Please confirm you want to archive this record.' } %>
+          <div class="row">
+		    <p>Selecting delete will permanently remove this animal's record. Archiving will make the account inactive but still viewable. </p>
+          	
+          </div>
+          <div class="row">
+            <div class="large-6 small-6 columns">
+              <%= link_to button_small("Delete record", '', 'red_background' ), polymorphic_path([@owner, @animal]), method: :delete, 
+                  remote: @organization.present?, data: { confirm: 'Please confirm you want to remove ' + @animal.name + '.' } %>
+            </div>
+            <div class="large-6 small-6 columns">
+		      <%= link_to button_small("Archive record", '', 'blue_background' ), polymorphic_path([@owner, @animal], archive: true), 
+		          method: :delete, remote: @organization.present?, data: { confirm: 'Please confirm you want to archive this record.' } %>
+		    </div>
+		  </div>
 		</div>
       
 	  <% end %>
