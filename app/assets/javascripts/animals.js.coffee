@@ -429,9 +429,9 @@ jQuery ->
   $(".document_table .email").click (event) ->
     nTr = $(this).closest('tr').next()
     if $(nTr).is(":hidden")
-      $(nTr).slideDown()
+      $(nTr).slideDown("slow", "swing")
     else
-      $(nTr).slideUp()
+      $(nTr).slideUp("slow", "swing")
     
   
   $(window).load -> 
