@@ -1,6 +1,8 @@
 <% if @success %>
   // JDavis: need to close the tr with id = @document.id.  JDhere.
-  alert("Document sent.")
+  $("#form" + <%= @document.id.to_s %>)[0].reset();
+  $("#email_tr<%= @document.id.to_s %>").slideUp();
+  alert("Document sent.");
 <% else %>
-  alert("Please check the email address and try again.")
+  alert("Please check the email address and try again.");
 <% end %>
