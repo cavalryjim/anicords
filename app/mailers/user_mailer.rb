@@ -86,9 +86,16 @@ class UserMailer < ActionMailer::Base
   def email_document(document, recipient)
     @recipient = recipient
     @title = document.title
+    if document.animal.present?
+      @animal_name = document.animal.name 
+      @owner_name = document.animal.owner.name
+    else 
+      @animal_name = "Petabyt"
+      @owner_name = "Petabyt"
+    end
     file = open(URI.encode(document.file.remote_url)).read
     attachments[document.title] = file
-    mail(to: recipient, subject: "Petabyt: " + document.title)
+    mail(to: recipient, subject: @animal_name + ": " + @title )
   end
   
 private
