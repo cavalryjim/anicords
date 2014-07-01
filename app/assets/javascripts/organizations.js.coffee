@@ -459,9 +459,11 @@ $(".org_animal_div").on "show", ->
   $(".document_table .email").click (event) ->
     nTr = $(this).closest('tr').next()
     if $(nTr).is(":hidden")
-      $(nTr).slideDown()
+      $(nTr).show("slow")
+      #$(nTr).slideDown("slow", "swing")
     else
-      $(nTr).slideUp()   
+      $(nTr).hide("slow")
+      #$(nTr).slideUp("slow", "swing")  
 
   $(".tabs-content #panel2").removeClass "active"
     

@@ -57,7 +57,8 @@ class AnimalVaccination < ActiveRecord::Base
       animal = vaccination.animal
       #vaccination.notifications.create(message: msg, animal_id: animal.id, recipient: animal.owner  )
       # JDavis: need to create a notification for  this!  JDHere.
-      msg = animal.name + " needs a " + vaccination.name + "vaccination"
+      msg = animal.name + " has a " + vaccination.name + "vaccination due" 
+      (msg << " on " << vaccination.vaccination_due.to_s) if vaccination.vaccination_due.present?
       Notification.where(animal_id: animal.id, event: vaccination, recipient: animal.owner, message: msg).first_or_create 
       vaccination.update_attributes(notify_on: 5.days.from_now.to_date, notification_count: (vaccination.notification_count += 1))
       animal.send_vaccination_notification(msg)
