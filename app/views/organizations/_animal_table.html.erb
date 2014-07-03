@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @organization.animals.each do |animal| %>
-      <% next if animal.pending_transfer? %>
+      <% next if ( animal.pending_transfer? || animal.org_profile.blank? ) %>
 	  <tr id="<%= animal.id %>">
 	  	<%= render 'organizations/animal_table_row', animal: animal %>
 	  </tr>
