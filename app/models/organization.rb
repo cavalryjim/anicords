@@ -110,7 +110,7 @@ class Organization < ActiveRecord::Base
       animal = Animal.create(name: pet.name, owner: self, organization_id: self.id) if animal.blank?
       animal.build_org_profile unless animal.org_profile.present?
       
-      if pet.photos
+      if pet.photos.present?
         pet.photos.each do |pet_photo|
           Picture.where(animal_id: animal.id, external_url: pet_photo.medium ).first_or_create
         end
@@ -129,7 +129,7 @@ class Organization < ActiveRecord::Base
         animal.gender = 'female'
       end
       
-      if pet.breeds
+      if pet.breeds.present?
         pet.breeds.each do |pet_breed|
           breed = Breed.where(name: pet_breed, animal_type_id: animal.animal_type_id).first
           AnimalBreed.where(animal_id: animal.id, breed_id: breed.id).first_or_create if breed
