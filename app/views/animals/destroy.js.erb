@@ -1,5 +1,7 @@
+//$( ".dialog" ).dialog( "close" );
+$( ".dialog" ).dialog( "destroy" );
+//$("#org_animal_div").html('');
 $(".reveal-modal").foundation('reveal', 'close');
-$( ".dialog" ).dialog( "close" );
 <% if @animal.present? %>
   $("#<%= @animal.id %>").remove();
 <% end %>

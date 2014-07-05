@@ -446,15 +446,20 @@ $(".org_animal_div").on "show", ->
       $("#animal_weight_table_div").slideUp()
       $("img#weight_details").attr "src", "/img/details_open.png"
   
-  $("#delete_dialog").dialog
-    autoOpen: false
-    height: 250
-    width: 350
-    modal: true
+  #$("#delete_dialog").dialog
+  #  autoOpen: false
+  #  height: 250
+  #  width: 350
+  #  modal: true
     
   $("#delete_button").click (event) ->
     event.preventDefault()
-    $("#delete_dialog").dialog "open" 
+    $("#delete_dialog").dialog
+      autoOpen: true
+      height: 250
+      width: 350
+      modal: true
+    #$("#delete_dialog").dialog "open" 
     
   $(".document_table .email").click (event) ->
     nTr = $(this).closest('tr').next()
