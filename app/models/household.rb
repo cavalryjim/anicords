@@ -45,6 +45,10 @@ class Household < ActiveRecord::Base
     name
   end
   
+  def to_param
+    "#{id} #{name}".parameterize
+  end
+  
   def full_address
     full_address = ""
     full_address << (address1 || "") << " " << (address2 || "") << " " << (city || "") << " " << (state || "") << " " << (zip || "")
