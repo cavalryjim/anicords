@@ -112,7 +112,11 @@ $(function(){
   $('.full_page').css("min-height", $(window).height() - ( $("#top_bar").height() + 1.5 * $("#footer").height() + 3 * $("#breadcrumb_nav").height() ) );
   $('.front_page_mainsection').css("min-height", $(window).height() - $("#top_bar").height() );
   $(".front_page_subsection").css("min-height",  $(window).height() );
-
+  
+  $(".no_default").click(function( event ) {
+    event.preventDefault();
+  });
+  
 });
 
 //= require turbolinks

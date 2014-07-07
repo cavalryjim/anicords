@@ -11,9 +11,19 @@
   	</div>
   	<div class="large-5 columns">
   	  <dl class="sub-nav">
+		<dd>
+		  <%= link_to button_small("reports", "report_button"), "#", "data-dropdown" => "report_drop", "data-options" => "is_hover:true", class: "no_default", remote: true %>
+		  <ul id="report_drop" class="f-dropdown" data-dropdown-content>
+			<li>
+		  	  <%= link_to "vaccinations", "#", "data-reveal-id" => "vaccinationReportModal", class: "no_default", remote: true  %>	
+			</li>
+			<li>
+			  <%= link_to "another report", "#", "data-reveal-id" => "reportModal", class: "no_default", remote: true  %>			  
+		    </li>		
+		  </ul> 
+	    </dd>
 		
 		<dd><%= link_to button_small("adopted pets"), organizaiton_adoptions_path(@organization) %></dd>
-		
 	  </dl>
   	</div>
   </div>
@@ -61,6 +71,18 @@
 <div id="editPictureModal" class="reveal-modal" data-reveal>
   <div id="picture_edit_div"></div>
   
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="vaccinationReportModal" class="reveal-modal" data-reveal>
+  <div id="vaccination_report_div"></div>
+   Coming soon!  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="reportModal" class="reveal-modal" data-reveal>
+  <div id="report_div"></div>
+   Coming soon!  
   <a class="close-reveal-modal">&#215;</a>
 </div>
 

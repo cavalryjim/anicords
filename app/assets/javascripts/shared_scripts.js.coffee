@@ -11,7 +11,10 @@ jQuery ->
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
-    
+  
+  #$(".no_default").click (event) ->
+  #  event.preventDefault()
+  
   #$(document).on "page:load", ->
   #  Foundation.libs.dropdown.events()
   #  alert "here"
