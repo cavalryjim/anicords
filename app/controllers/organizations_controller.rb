@@ -118,6 +118,16 @@ class OrganizationsController < InheritedResources::Base
     redirect_to @organization, notice: notice
   end
   
+  def vaccinations_report
+    as_of_date = params[:as_of_date].to_date
+    @animal_vaccinations = @organization.animal_vaccinations_due( as_of_date )
+    
+    respond_to do |format|
+      format.js
+    end
+    
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization

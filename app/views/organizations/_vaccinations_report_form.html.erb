@@ -1,0 +1,22 @@
+<%= form_tag vaccinations_report_organization_path, remote: true, html: { id: "vaccination_report_form", "data-abide" => '' } do |f| %>
+  <fieldset>
+    <legend>Vaccinations Due</legend>
+
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        
+        <%= label_tag 'as_of_date', 'as of date' %>
+        <%= text_field_tag 'as_of_date', (Date.today + 2.weeks), class: "datepicker", placeholder: "through date"  %>
+        
+        
+      </div>
+    </div>
+    
+    
+    <div class="actions">
+      <%= submit_tag "submit", class: "button small" %>  
+    </div>
+
+  </fieldset>
+
+<% end %>

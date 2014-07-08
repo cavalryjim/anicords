@@ -22,6 +22,7 @@ Anicords::Application.routes.draw do
     resources :locations
     member do
       post 'import_animals'
+      post 'vaccinations_report'
     end
   end
 
