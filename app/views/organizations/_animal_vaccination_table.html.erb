@@ -1,0 +1,21 @@
+<table id="animal_vaccination_table"   >
+  <thead>
+	<tr>
+	  <th></th>
+	  <th>name</th>
+	  <th>vaccination</th>
+	  <th>date due</th>
+	</tr>
+  </thead>
+  <tbody>
+    <% @animal_vaccinations.each do |vaccination| %>
+      
+	  <tr id="<%= vaccination.animal.id %>">
+	  	<td>image</td>
+	  	<td><%= vaccination.animal.name %></td>
+	  	<td><%= vaccination.vaccination.name %></td>
+	  	<td><%= vaccination.vaccination_due %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>

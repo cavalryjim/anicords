@@ -1,1 +1,12 @@
-alert("here");
+<% if @animal_vaccinations.present? %>
+  //$( ".dialog" ).dialog( "close" );
+  //alert("found some");
+  $("#animalModal").foundation('reveal', 'open');
+  $("#org_animal_div").html('<%= j render("organizations/animal_vaccination_table") %>');
+
+  
+
+<% else %>
+  alert("no vaccinations found");
+
+<% end %>
