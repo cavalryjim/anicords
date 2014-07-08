@@ -362,6 +362,10 @@ class Animal < ActiveRecord::Base
     where(microchip_brand_id: chip_brand, microchip_id: chip_id)
   end
   
+  def vaccinations_due(as_of_date = (Date.today + 2.weeks) )
+    self.animal_vaccinations.where(notify: true, vaccination_due: (Date.today - 2.year)..as_of_date )
+  end
+  
   def archive
     update_attribute :active, false
   end

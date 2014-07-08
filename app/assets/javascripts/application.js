@@ -115,6 +115,7 @@ $(function(){
   
   $(".no_default").click(function( event ) {
     event.preventDefault();
+    //alert("hey");
   });
   
 });
