@@ -1,5 +1,7 @@
-<table id="animal_vaccination_table"   >
-  <thead>
+<% unless @xls %> <%= link_to image_tag("xls.png"), vaccinations_report_organization_path(format: "xls", as_of_date: @as_of_date) %> <% end %>
+
+<table id="animal_vaccination_table"  >
+  <thead class="fixedHeader">
 	<tr>
 	  <th></th>
 	  <th>name</th>
@@ -7,11 +9,11 @@
 	  <th>date due</th>
 	</tr>
   </thead>
-  <tbody>
+  <tbody class="scrollContent">
     <% @animal_vaccinations.each do |vaccination| %>
       
 	  <tr id="<%= vaccination.animal.id %>">
-	  	<td>image</td>
+	  	<td><%= thumbnail(vaccination.animal, '50x50', 'th' , 'Organization') %></td>
 	  	<td><%= vaccination.animal.name %></td>
 	  	<td><%= vaccination.vaccination.name %></td>
 	  	<td><%= vaccination.vaccination_due %></td>

@@ -119,11 +119,13 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def vaccinations_report
-    as_of_date = params[:as_of_date].to_date
-    @animal_vaccinations = @organization.animal_vaccinations_due( as_of_date )
+    @as_of_date = params[:as_of_date].to_date
+    @animal_vaccinations = @organization.animal_vaccinations_due( @as_of_date )
+    @xls = (params[:format] == "xls")
     
     respond_to do |format|
       format.js
+      format.xls
     end
     
   end

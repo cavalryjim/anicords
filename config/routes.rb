@@ -23,6 +23,7 @@ Anicords::Application.routes.draw do
     member do
       post 'import_animals'
       post 'vaccinations_report'
+      get 'vaccinations_report'
     end
   end
 

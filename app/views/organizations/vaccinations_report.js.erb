@@ -1,8 +1,8 @@
 <% if @animal_vaccinations.present? %>
   //$( ".dialog" ).dialog( "close" );
   //alert("found some");
-  $("#animalModal").foundation('reveal', 'open');
-  $("#org_animal_div").html('<%= j render("organizations/animal_vaccination_table") %>');
+  $("#vaccinationReturnModal").foundation('reveal', 'open');
+  $("#vaccination_return_div").html('<%= j render("organizations/animal_vaccination_table") %>');
 
   
 
