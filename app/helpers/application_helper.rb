@@ -46,7 +46,8 @@ module ApplicationHelper
   end
   
   def petabyt_image
-    image_tag(s3_url('petabyt_f.png'), size: '120x120', class: 'petabyt_image')
+    #image_tag(s3_url('petabyt_f.png'), size: '120x120', class: 'petabyt_image')
+    image_tag(s3_url('animal_minder.png'), size: '220x220', class: 'petabyt_image')
   end
   
   def link_to_home
@@ -138,12 +139,12 @@ module ApplicationHelper
   end
   
   def breadcrumb_nav(crumbs)
-    breadcrumb = '<nav id="breadcrumb_nav" class="breadcrumbs">'
-    breadcrumb << link_to('HOME', user_select_association_path) unless crumbs.last == 'home'
+    breadcrumb = ' <nav id="breadcrumb_nav" class="breadcrumbs">'
+    breadcrumb << link_to('HOME', user_select_association_path) unless (crumbs.last == 'home' || !current_user.present? ) 
     crumbs.each do |crumb|
       breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
     end
-    breadcrumb << '</nav>'
+    breadcrumb << '</nav> </div>'
     breadcrumb.html_safe
   end
   

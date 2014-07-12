@@ -21,13 +21,16 @@
 //= require dataTables/jquery.dataTables.foundation
 //= require best_in_place
 //= require jquery.easy-ticker.min
+//= require jquery.sticky
 //= require fnAddTr
+//= require jquery.sticky
 //= require_tree .
 
 
 var orgTable;
 
 $(function(){
+  
   
   //$(document).foundation()
   //.foundation('abide', {
@@ -44,7 +47,9 @@ $(function(){
       }
      }
   });
-   
+  
+  $(".sticky").sticky();
+  
   //orgAnimalDataTable(); // JDavis: might need to call the function later.
   orgTable = $('#animal_table').dataTable({
     "aoColumnDefs": [
@@ -117,6 +122,8 @@ $(function(){
     event.preventDefault();
     //alert("hey");
   });
+  
+  
   
 });
 

@@ -144,7 +144,7 @@ GEM
     formatador (0.2.4)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
-    foundation-rails (5.2.3.0)
+    foundation-rails (5.3.0.1)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
     foursquare2 (2.0.0)
@@ -425,7 +425,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fog (= 1.19.0)
-  foundation-rails (= 5.2.3.0)
+  foundation-rails (= 5.3.0.1)
   foursquare2 (= 2.0.0)
   geocoder (= 1.2.2)
   guard-rspec

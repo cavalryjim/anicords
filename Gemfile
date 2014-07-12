@@ -15,7 +15,7 @@ gem 'coffee-rails', '4.0.1'
 
 gem 'devise', '3.2.2'
 #gem 'zurb-foundation', '4.3.1'
-gem 'foundation-rails', '5.2.3.0'
+gem 'foundation-rails', '5.3.0.1'
 gem 'omniauth-twitter', '1.0.0'
 gem 'omniauth-facebook', '1.4.1'
 gem 'annotate', '2.5.0'

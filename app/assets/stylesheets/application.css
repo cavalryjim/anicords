@@ -101,7 +101,7 @@ section.front_page_section_login {
 **/
 
 .white_background {
-  background-color: #FFF;
+  background-color: #FFF !important;
 }
 
 section.gray_background {
@@ -137,6 +137,10 @@ section.gray_background {
 .main_content_section {
   padding-bottom: 5px;
   border: solid 3px black;
+}
+
+.breadcrumb_div {
+  padding-top: 65px !important;
 }
 
 .green_background a:link, .green_background a:visited {
@@ -530,4 +534,37 @@ tr.email_document {
 
 
 /*****RSS Feed****/
+
+/****utility*****/
+.utility {
+	margin: 2em 0.5em 2em 0;
+}
+.utility, .utility li {
+	padding: 0;
+	list-style: none;
+}
+.utility li {
+	float: left;
+	margin: 0;
+	font-size: 0.85em;
+}
+.utility li a {
+	color: #848484 !important;
+}
+.utility li a.orange, .utility li.active a {
+	color: #EF6F4E !important;
+}
+.utility li.divider {
+	border-right: 1px solid #ddd !important;
+	margin-right: 0.75em;
+	padding: 0.75em 0.5em !important;
+	height: 1em !important;
+	margin: 1.5em 0em 0.5em 0;
+}
+.utility li.user-stats {
+	padding-right: 1em;
+}
+.utility li.user-stats img {
+	width: 20px;
+}
 

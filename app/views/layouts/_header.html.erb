@@ -1,5 +1,6 @@
 <div class="fixed">
-<nav id="top_bar" class="top-bar" data-topbar data-options="is_hover:true">
+    
+ <nav id="top_bar" class="top-bar" data-topbar data-options="is_hover:true">
   
   
   <ul class="title-area">
@@ -10,10 +11,9 @@
   </ul>
   <section  class="top-bar-section no_bg">
   	
-  	
 	<% if user_signed_in? %>
+    
       <ul class="right nav_text no_bg">
-      <!--<li><%= button_small("scroll", "test_scroll")%></li>-->
 	    <li class="has-dropdown notifications">
 	      <%= link_to('#') do %>
 	        <% if number_of_notifications %>
@@ -37,11 +37,16 @@
 	  </ul>
 	<% else %>
 	  
-	  <ul class="right nav_text no_bg center_text">
+	  <!--<ul class="right nav_text no_bg center_text">-->
+	  <ul class="right utility" >
 		<li><%= link_to "HOME", new_user_registration_path + "#" %></li>
+		<li class="divider"></li>
 		<li><%= link_to "ABOUT", new_user_registration_path + "#about" %></li>
+		<li class="divider"></li>
 		<li><%= link_to "SIGN IN", new_user_registration_path + "#login" %></li>
 	  </ul>
+	  
+	  
 	  
         <!-- 
 		<li> 
@@ -52,8 +57,26 @@
         	-->      
 		
 	<% end %>
-	
+	<!--- 
+	  <ul class="right utility">              
+          <li class="">
+            <a href="#" class="orange" id="signin">Login</a> or <a href="#" class="orange" id="join-free">Join for Free</a>
+          </li>
+          <li class="divider"></li>
+          <li><a href="/business-catalyst-partners">Directory</a></li>
+          <li class="divider"></li>
+          <li><a href="/blog">Blog</a> </li>
+          <li class="divider"></li>
+          <li><a href="/business-catalyst-support">Code Ref</a> </li>
+         
+          <li class="divider"></li>
+          <li><a href="http://helpdesk.bcgurus.com/support/tickets/new" target="_blank">Help</a> </li>
+        </ul>
+	--->
 	
   </section>
-</nav>
-</div> 
+  
+
+ </nav>
+	 
+
