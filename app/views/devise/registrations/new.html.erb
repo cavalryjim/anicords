@@ -10,13 +10,13 @@
 
 </section>
 -->
-<%= breadcrumb_nav( ['Welcome'] ) %>
+<%= breadcrumb_nav %>
 
 <div class="row pad-btm">
   <div class="large-12 columns">
 	<ul class="imgonly">
 	  <li>
-		<%= image_tag('dogs_cats_1920_480.jpg') %>
+		<%= image_tag(s3_url('dogs_cats_1920_480.jpg')) %>
 	  </li>
 	</ul>
 	<hr>
@@ -24,14 +24,16 @@
 </div>
 
 
+
+
 <div class="row pad-btm services">
 		<div class="large-4 columns">
 		<div>
             <h3>EHR for Animals</h3>
-            <p>AnimalMinder is a universal electronic health record for your animals. We are passionate about animal healthcare and making it easier to keep your pets healthy.</p>
+            <p>AnimalMinder is a universal electronic health record and wellness management platform for your animals.</p>
 
            
-            <%= link_to "Learn more #{image_tag('arrow.png')}".html_safe, "#" %>
+            <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
         <!-- end .sections --> 
     </div>
@@ -41,7 +43,7 @@
             <h3>Animal Emergencies</h3>
             <p>Organize your animal's health information and be ready for veterinarian appointments or emergencies.  </p>
 
-            <%= link_to "Learn more #{image_tag('arrow.png')}".html_safe, "#" %>
+            <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
         <!-- end .sections --> 
     </div>
@@ -51,7 +53,7 @@
             <h3>Instant Access</h3>
             <p>You will never be more that a click away from your animal's health information.  Share records with others involved with their care.</p>
 
-            <%= link_to "Learn more #{image_tag('arrow.png')}".html_safe, "#" %>
+            <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
         <!-- end .sections --> 
     </div>
@@ -67,10 +69,11 @@
 <hr>
 		<div class="small-3 large-3 columns">
             <!-- <div class="test-img"><img alt="" src="./Home Page with Image Only_files/user-avatar.png" class="th"></div>-->
-            <%= image_tag('user-avatar.png', class: 'th') %>
+            <%= image_tag(s3_url('dog-stethoscope.jpg'), class: 'th') %>
         </div>
         <div class="small-9 large-9 columns panel callout radius">
-            <p> AnimalMinder is the best! I have moved three times in the past two years for work. AnimalMinder has saved me the trouble of having to transport my dog's medical records.  </p>
+            <p> "AnimalMinder rocks! I have moved several times in the past two years for work. AnimalMinder is the best 
+            	method for sharing my dog's medical records with veterinarians." <i>- Angie, RN & Travel nurse </i>  </p>
 
         </div>
 

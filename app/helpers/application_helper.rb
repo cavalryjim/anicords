@@ -138,7 +138,7 @@ module ApplicationHelper
     options_for_select(["daily", "2 x daily", "3 x daily", "4 x daily", "weekly", "monthly", "other"])
   end
   
-  def breadcrumb_nav(crumbs)
+  def breadcrumb_nav(crumbs = ['Health management platform for animals'] )
     breadcrumb = ' <nav id="breadcrumb_nav" class="breadcrumbs">'
     breadcrumb << link_to('HOME', user_select_association_path) unless (crumbs.last == 'home' || !current_user.present? ) 
     crumbs.each do |crumb|

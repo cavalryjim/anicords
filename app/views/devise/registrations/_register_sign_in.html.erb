@@ -40,10 +40,14 @@
           
          <div class="row collapse bottom_padding_10">
 		    <div class="small-4 columns"><%= f.submit "login", class: "small button" %></div>
+		    <div class="small-8 columns">
+		 		<p>... or use 
+            	  <%= link_to image_tag(s3_url('webicon-facebook-m.png')), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
+		 		</p> 
+		    	
+		    </div>
 		 </div> 
 		 
-		 or use 
-            <%= link_to image_tag(s3_url('webicon-facebook-m.png')), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
      
     <% end %>
   </div>
