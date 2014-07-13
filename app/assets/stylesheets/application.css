@@ -82,6 +82,19 @@ ul.ui-autocomplete {
   padding-left: 0px !important; /* change the values to anything that you want */
   padding-right: 0px !important;
 }
+
+.image_text {
+  position: absolute; 
+  top: 200px; 
+  left: 0; 
+  width: 100%;
+}
+
+div.orbit_slider{
+  background-image: url('/assets/girl_with_dog.png');
+  background-size:   contain;                      /* <------ */
+  background-repeat: no-repeat;
+}
 /**
 
 section.front_page_section_home {

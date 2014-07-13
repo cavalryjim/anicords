@@ -13,10 +13,56 @@
 <%= breadcrumb_nav %>
 
 <div class="row pad-btm">
-  <div class="large-12 columns">
+  <div class="large-12 columns orbit_slider">
+  	<!-- 
+  	<ul class="example-orbit" data-orbit>
+	  <li>
+	    <%= image_tag('girl_with_dog.png') %>
+	    <div class="orbit-caption">
+	      Caption One.
+	    </div>
+	  </li>
+	  <li class="active">
+	    <%= image_tag('girl_with_dog.png') %>
+	    <div class="orbit-caption">
+	      Caption Two.
+	    </div>
+	  </li>
+	  <li>
+	    <%= image_tag('girl_with_dog.png') %>
+	    <div class="orbit-caption">
+	      Caption Three.
+	    </div>
+	  </li>
+	</ul>
+  	
+  	
 	<ul class="imgonly">
 	  <li>
-		<%= image_tag(s3_url('dogs_cats_1920_480.jpg')) %>
+		<%= image_tag('girl_with_dog.png') %>
+		<div class="image_text"><h2>AnimalMinder is a universal health & wellness managment platform for animals.</h2></div>
+	  </li>
+	</ul>
+  		-->
+  		
+  	<ul class="example-orbit-content" data-orbit>
+	  <li data-orbit-slide="headline-1">
+	    <div>
+	      <h1>Headline 1</h1>
+	      <h3>Subheadline</h3>
+	    </div>
+	  </li>
+	  <li data-orbit-slide="headline-2">
+	    <div>
+	      <h1>Headline 2</h1>
+	      <h3>Subheadline</h3>
+	    </div>
+	  </li>
+	  <li data-orbit-slide="headline-3">
+	    <div>
+	      <h1>Headline 3</h1>
+	      <h3>Subheadline</h3>
+	    </div>
 	  </li>
 	</ul>
 	<hr>
@@ -27,57 +73,108 @@
 
 
 <div class="row pad-btm services">
-		<div class="large-4 columns">
+  <div class="large-4 columns">
 		<div>
-            <h3>EHR for Animals</h3>
-            <p>AnimalMinder is a universal electronic health record and wellness management platform for your animals.</p>
+            <h3>Animal Guardians</h3>
+            <p>Store, manage, and share your animals' health & wellness information with 
+            	those involved in their care.</p>
 
            
             <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
         <!-- end .sections --> 
-    </div>
+  </div>
     <!-- end .columns.large-4 -->
-	<div class="large-4 columns">
+  <div class="large-4 columns">
 		<div>
-            <h3>Animal Emergencies</h3>
-            <p>Organize your animal's health information and be ready for veterinarian appointments or emergencies.  </p>
+            <h3>Animal Rescues</h3>
+            <p>Manage information, recieve alerts, and transfer the electronic record to 
+            	the new guardian at adoption.  All at no cost to you or the adopter. </p>
 
             <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
         <!-- end .sections --> 
-    </div>
+  </div>
     <!-- end .columns.large-4 -->
-	<div class="large-4 columns">
+  <div class="large-4 columns">
 		<div>
-            <h3>Instant Access</h3>
-            <p>You will never be more that a click away from your animal's health information.  Share records with others involved with their care.</p>
+            <h3>Animal Breeders</h3>
+            <p>Easily manage  ... enabling a </p>
 
             <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
         <!-- end .sections --> 
-    </div>
+  </div>
     <!-- end .columns.large-4 -->
 
 
 </div>
 <!-- end .row -->
 
+<div class="row pad-btm services">
+  <div class="large-4 columns">
+		<div>
+            <h3>Livestock Management</h3>
+            <p>Easily mantain data for all your livestock such as horses, cattle, and exotics.</p>
+
+           
+            <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
+		</div>
+        <!-- end .sections --> 
+  </div>
+    <!-- end .columns.large-4 -->
+  <div class="large-4 columns">
+		<div>
+            <h3>Disaster Preparedness</h3>
+            <p>Cloud storage for your animal's health information. Easily setup adhoc shelters. </p>
+
+            <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
+		</div>
+        <!-- end .sections --> 
+  </div>
+    <!-- end .columns.large-4 -->
+  <div class="large-4 columns">
+		<div>
+            <h3>Veterinarians</h3>
+            <p>Store, document, and engage with the animal's custodians. </p>
+
+            <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
+		</div>
+        <!-- end .sections --> 
+  </div>
+    <!-- end .columns.large-4 -->
+
+
+</div>
+<!-- end .row -->
+
+
 <div class="row pad-btm">
-    <div class="large-6 columns testimonials">
-    	<h3>Happy Customers</h3>
-<hr>
-		<div class="small-3 large-3 columns">
-            <!-- <div class="test-img"><img alt="" src="./Home Page with Image Only_files/user-avatar.png" class="th"></div>-->
-            <%= image_tag(s3_url('dog-stethoscope.jpg'), class: 'th') %>
-        </div>
-        <div class="small-9 large-9 columns panel callout radius">
-            <p> "AnimalMinder rocks! I have moved several times in the past two years for work. AnimalMinder is the best 
-            	method for sharing my dog's medical records with veterinarians." <i>- Angie, RN & Travel nurse </i>  </p>
-
-        </div>
-
+  <div class="large-6 columns testimonials">
+    <h3>Happy Users</h3>
+    <hr>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <!-- <div class="test-img"><img alt="" src="./Home Page with Image Only_files/user-avatar.png" class="th"></div>-->
+        <%= image_tag(s3_url('dog-stethoscope.jpg'), class: 'th') %>
+      </div>
+      <div class="small-9 large-9 columns panel callout radius">
+        <p> "AnimalMinder rocks! I recently moved and being able to transfer my
+        	dog's vaccination records electronically save me time and effort." <i>- Angie, RN </i>  </p>
+      </div>
     </div>
+    <div class="row">
+      <div class="small-3 large-3 columns">
+        <!-- <div class="test-img"><img alt="" src="./Home Page with Image Only_files/user-avatar.png" class="th"></div>-->
+        <%= image_tag(s3_url('dog-stethoscope.jpg'), class: 'th') %>
+      </div>
+      <div class="small-9 large-9 columns panel callout radius">
+        <p> "We adopted a new puppy from our local rescue and immediately recieved a welcome email
+        	linking us to her health record. Thanks!" <i>- Bob & Jenny </i>  </p>
+      </div>
+    </div>
+
+  </div>
     <!-- end .columns.large-6 -->
     <div class="large-6 columns recent-news">
     	<h3>Recent News</h3>
