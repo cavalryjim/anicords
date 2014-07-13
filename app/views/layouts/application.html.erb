@@ -31,20 +31,17 @@
     <section class="border_top border_bottom">
       <%= render 'layouts/footer' %>
     </section>
-      
-    <div id="contactModal" class="reveal-modal" data-reveal>
-	  <%= render 'layouts/contact'%>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-
-	<div id="betaCommentModal" class="reveal-modal" data-reveal>
-	  <%= render 'layouts/beta_comment'%>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
+    
+    <% unless user_signed_in? %>
+	  <div id="registerSigninModal" class="reveal-modal" data-reveal>
+	    <%= render 'devise/registrations/register_sign_in'%> 
+	    <a class="close-reveal-modal">&#215;</a>
+	  </div>
+	<% end %>
 	
 	<div id="privacyModal" class="reveal-modal" data-reveal>
 	  <h4>Privacy Policy</h4>
-      <div style="overflow:auto;width:100%;height:400px;"">
+      <div style="overflow:auto;width:100%;height:400px;">
 	    <div id="privacy_policy_div"></div>
 	  </div>
 	  <a class="close-reveal-modal">&#215;</a>

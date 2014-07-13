@@ -1,14 +1,18 @@
 <%= form_for BetaComment.new, remote: true, html: {id: 'beta_comment_form'} do |f| %>
-
-  <h4>We value your input. Please tell us how to make Petabyt better.</h4>
   <div class="field">
-    <%= f.text_area :comment %>
+    <%= f.text_field :name, placeholder: "name" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :email, placeholder: "email" %>
+  </div>
+  <div class="field">
+    <%= f.text_area :comment, placeholder: "message" %>
   </div>
   <%= f.hidden_field :page_url, value: request.original_url %>
   <% if current_user %>
 	<%= f.hidden_field :user_id, value: current_user.id %>
   <% end %>
   <div class="actions">
-    <%= f.submit 'submit comment', class: "button small" %>
+    <%= f.submit 'send message', class: "button small" %>
   </div>
 <% end %>

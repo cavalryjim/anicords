@@ -15,6 +15,7 @@ class BetaCommentsController < ApplicationController
       if @beta_comment.save 
         format.js
       else
+        format.js
         format.html { render action: 'new' }
         format.json { render json: @beta_comment.errors, status: :unprocessable_entity }
       end
@@ -24,7 +25,7 @@ class BetaCommentsController < ApplicationController
   private
   
     def beta_comment_params
-      params.require(:beta_comment).permit(:comment, :page_url, :user_id)
+      params.require(:beta_comment).permit(:comment, :page_url, :user_id, :name, :email )
     end
   
   

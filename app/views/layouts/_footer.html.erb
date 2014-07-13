@@ -1,25 +1,15 @@
   <footer id="footer" class="row">
     <div class="large-12 columns">
-      <div class="row">
-      	<div class="large-9 columns"></div>
-        <div class="large-3 columns">
-		  <div class="hidden bottom_flash_alert alert-box success"  data-alert> 
-			  Comment saved.
-			  <a href="" class="close">&times;</a>
-		  </div>
-	    </div>
-      </div>
+      
       <div class="row">
         <div class="large-5 columns">
-          <p>&copy; 2013 dooliddl labs, llc.</p>
+          <p>&copy; 2014 animalminder, llc.</p>
           
         </div>
         
         <div class="large-7 columns">
           <ul class="inline-list right">
           	<li><%= link_to 'microchip lookup', "#", "data-reveal-id" => "microchipModal", remote: true %></li>
-          	<li id="beta_li"><%= link_to 'feedback', "#", "data-reveal-id" => "betaCommentModal", remote: true %></li>
-            <li><%= link_to 'contact', "#", "data-reveal-id" => "contactModal", remote: true %></li>
             <li><%= link_to "privacy", privacy_policy_path, "data-reveal-id" => "privacyModal", remote: true  %></li>
 			<li><%= link_to image_tag(s3_url('webicon-facebook-s.png'), class: 'selectable_image'), "#"%></li>
 			<li><%= link_to image_tag(s3_url('webicon-twitter-s.png'), class: 'selectable_image'), "#"%></li>
@@ -29,3 +19,4 @@
       </div>
     </div>
   </footer>
+  

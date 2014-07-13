@@ -12,115 +12,122 @@
 -->
 <%= breadcrumb_nav( ['Welcome'] ) %>
 
-<section id="home" class="green_background_front_page front_page_section_home front_page_mainsection">
-  <div class="row">
-	 <div class="large-9 large-centered columns">
-	     <h1 class="welcome_header">Empowering pet health & quality of life</h1>
-	  </div>
+<div class="row pad-btm">
+  <div class="large-12 columns">
+	<ul class="imgonly">
+	  <li>
+		<%= image_tag('dogs_cats_1920_480.jpg') %>
+	  </li>
+	</ul>
+	<hr>
   </div>
-  <div class="row">
-	 <div class="large-9 large-centered columns">
-	    <h4 class="subheader center_text bottom_padding_3em white_text">PETABYT is the universal standard for electronic animal health records.  Use it to organize & share 
-	    	your animal's health information with those involved with their care.</h4
-	 </div>
-  </div>
-  
-  <div class="row">
-	<div class="large-10 large-centered columns">
-      <ul class="small-block-grid-3 large-block-grid-5 center_text">
-		<li>
-	      Animal Custodians
-		</li>
-		<li >
-	      Rescue Shelters
-		</li>
-		<li>
-	      Kennels & Daycare
-		</li>
-		<li>
-	      Breeders
-		</li>
-		<li>
-	      Veterinarians
-		</li>
-		<li>
-	      Retail
-		</li>
-		<li>
-	      Pharmacy
-		</li>
-		<li>
-	      Trainers
-		</li>
-		<li>
-	      Sitters
-		</li>
-		<li>
-	      Emergency Management
-		</li>
-	  </ul>
-    </div>
-    
-  </div>
-  	  
-</section>
-
-<section id="about" class="gray_background front_page_section_about front_page_subsection ">
-  <div class="row">
-	 <div class="large-6 large-centered columns">
-	     <h2 class="front_subheader">ABOUT PETABYT</h2>
-	  </div>
-  </div>
-  <div class="row">
-	 <div class="large-9 large-centered columns center_text">
-	    <p>Petabyt is a universal electronic health record for your animals. We are passionate about healthcare (both animal & human) and 
-	    	making it easier to keep your pets healthy through information technology.</p>
-
-		<p>Through Petabyt, we set out to solve a problem that we as animal custodians faced: to ensure that out animal's information 
-			was transmitted, not transported, available to those involved in their care, whenever and wherever it was needed.</p>
-
-		<p>CAPTURE IT ONCE - USE IT AGAIN AND AGAIN. AND NEVER LEAVE YOUR ANIMAL’S INFO STRANDED AT THE VET’S OR IN YOUR FILE CABINET.</p>
-	 </div>
-	 <hr>
-  </div>	
-  
-  <!---<div class="row">
-	 <div class="large-6 large-centered columns center_text show-for-medium-up ">
-	     <%= image_tag(s3_url('wc_P.png'), size: "200x200")%>
-	  </div>
-  </div>--->
-  
-		
-  
-</section>
-
-
-
-<section id="login" class="green_background front_page_section_login front_page_subsection ">
-  <div class="row">
-	 <div class="large-6 large-centered columns">
-	     <h2 class="front_subheader white_text">LOGIN OR JOIN</h2>
-	  </div>
-  </div>
-  <div class="row">
-    <div class="large-10 large-centered columns">
-      <fieldset><%= render 'devise/registrations/register_sign_in'%></fieldset>
-	</div>
-  </div>	
-  
-  
-</section>
-
-<div id="newProviderModal" class="reveal-modal" data-reveal>
-  
-  <%= render 'new_provider'%>
-  
-  <a class="close-reveal-modal">&#215;</a>
 </div>
 
-<script>
-  //window.location.href = "#";
-</script>
+
+<div class="row pad-btm services">
+		<div class="large-4 columns">
+		<div>
+            <h3>EHR for Animals</h3>
+            <p>AnimalMinder is a universal electronic health record for your animals. We are passionate about animal healthcare and making it easier to keep your pets healthy.</p>
+
+           
+            <%= link_to "Learn more #{image_tag('arrow.png')}".html_safe, "#" %>
+		</div>
+        <!-- end .sections --> 
+    </div>
+    <!-- end .columns.large-4 -->
+	<div class="large-4 columns">
+		<div>
+            <h3>Animal Emergencies</h3>
+            <p>Organize your animal's health information and be ready for veterinarian appointments or emergencies.  </p>
+
+            <%= link_to "Learn more #{image_tag('arrow.png')}".html_safe, "#" %>
+		</div>
+        <!-- end .sections --> 
+    </div>
+    <!-- end .columns.large-4 -->
+	<div class="large-4 columns">
+		<div>
+            <h3>Instant Access</h3>
+            <p>You will never be more that a click away from your animal's health information.  Share records with other involved with their care.</p>
+
+            <%= link_to "Learn more #{image_tag('arrow.png')}".html_safe, "#" %>
+		</div>
+        <!-- end .sections --> 
+    </div>
+    <!-- end .columns.large-4 -->
+
+
+</div>
+<!-- end .row -->
+
+<div class="row pad-btm">
+    <div class="large-6 columns testimonials">
+    	<h3>Happy Customers</h3>
+<hr>
+		<div class="small-3 large-3 columns">
+            <!-- <div class="test-img"><img alt="" src="./Home Page with Image Only_files/user-avatar.png" class="th"></div>-->
+            <%= image_tag('user-avatar.png', class: 'th') %>
+        </div>
+        <div class="small-9 large-9 columns panel callout radius">
+            <p> AnimalMinder is the best! I have moved three times in the past two years for work. AnimalMinder has saved me the trouble of having to transport my dog's medical records.  </p>
+
+        </div>
+
+    </div>
+    <!-- end .columns.large-6 -->
+    <div class="large-6 columns recent-news">
+    	<h3>Recent News</h3>
+<hr>
+		<article class="blogPicture">
+            <h1><%= link_to "AnimalMinder selected as the official animal registry for Louisiana", "#" %></h1>
+            <div class="blog-options">
+				<span><em class="icon-user"></em> tyler </span>
+				<span><em class="icon-pencil"></em> 03-Jun-2014</span>
+				<span><em class="icon-comment"></em> 0 comments</span>
+			</div>
+            <div class="blog-description">
+                <p>AnimalMinder works great for accessing records during emergenices and was selected by the Louisiana Animal Welfare Comission as the official animal registry for the state.</p>
+            </div>
+            <%= link_to button_small('Read More', 'blog_btn', 'radius' ) , "#" %>
+        </article>
+
+    </div>
+    <!-- end .columns.large-6 --> 
+</div>
+
+<div class="panel no_margin_bottom">
+  <div class="row">
+    <div class="large-9 columns">
+      <h5 class="alt">Contact Details</h5>
+      <div class="columns large-6">
+	    <p class="deets"> <strong>Address:</strong> 7117 Florida Blvd, Baton Rouge, LA 70806 </p>
+	    <p class="deets"> <strong>Email:</strong> <a href="mailto:james@animalminder.com">james@animalminder.com</a></p>
+	    <p class="deets"> <strong>Google Maps:</strong> <%= link_to "See our location online", "http://goo.gl/maps/CbX8f", target: "_blank" %> </p>
+	    <p class="deets"> <strong>Phone:</strong> 225.892.0230</p>
+      </div>
+      <div class="large-6 columns">
+	    <%= render 'layouts/beta_comment'%>
+
+      </div>
+
+    </div>
+        
+    <div class="small-12 large-3 columns" data-twttr-id="twttr-sandbox-0">
+        	<h5 class="alt">Twitter Updates</h5>
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-timeline twitter-timeline-rendered" style="width: 1px; height: 0px; border: none; position: absolute; visibility: hidden;"></iframe><a class="twitter-timeline" href="https://twitter.com/animalminder" data-widget-id="314484206858272769" data-tweet-limit="2" data-chrome="nofooter transparent noheader noborders noscrollbar" data-link-color="#444" width="100%" data-twttr-rendered="true">Tweets by @animalminder</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+  </div>
+    <!-- end .row --> 
+</div>
+
+
+
+
+
+
+
 
 
 

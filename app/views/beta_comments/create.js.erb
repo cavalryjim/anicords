@@ -1,9 +1,10 @@
-$("form#beta_comment_form").on("ajax:success", function(event, data, status, response) {
-  $('#beta_comment_comment').val('');
-  $('#betaCommentModal').foundation('reveal', 'close');
-  $(".bottom_flash_alert").removeClass("hidden");
-  $(".bottom_flash_alert").show().delay(2000).fadeOut();
-  $("#beta_li").effect("highlight", {color:"#81F781"}, 1500).unbind();
-}).on("ajax:error", function(event, response, error) {
-  return alert("There was a problem.  Please try again later.");
-});
+<% if @beta_comment.present? %>
+  $("form#beta_comment_form").on("ajax:success", function(event, data, status, response) {
+    $(".reveal-modal").foundation('reveal', 'close');
+    $(this)[0].reset();
+    $(this).effect("highlight", {color:"#81F781"}, 1500).unbind();
+    //alert("Thanks for the note!");
+  }).on("ajax:error", function(event, response, error) {
+    alert("There was a problem.  Please try again later.");
+  });
+<% end %>
