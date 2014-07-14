@@ -10,10 +10,21 @@
 
 </section>
 -->
-<%= breadcrumb_nav %>
+<%= breadcrumb_nav(["Welcome"]) %>
 
-<div class="row pad-btm">
-  <div class="large-12 columns orbit_slider">
+<div class="row">
+  <div class="large-12 columns ">
+   <h2 class="center">Universal health & wellness platform for animals</h2>
+  </div>
+</div>
+
+<div class="row ">
+  <div class="large-12 columns ">
+  	<ul class="imgonly">
+	  <li>
+		<%= image_tag(s3_url('dogs_cats_1920_480.jpg')) %>
+	  </li>
+	</ul>
   	<!-- 
   	<ul class="example-orbit" data-orbit>
 	  <li>
@@ -43,7 +54,6 @@
 		<div class="image_text"><h2>AnimalMinder is a universal health & wellness managment platform for animals.</h2></div>
 	  </li>
 	</ul>
-  		-->
   		
   	<ul class="example-orbit-content" data-orbit>
 	  <li data-orbit-slide="headline-1">
@@ -65,9 +75,12 @@
 	    </div>
 	  </li>
 	</ul>
-	<hr>
+  		-->
+  	
+    <hr>
   </div>
 </div>
+
 
 
 
@@ -99,7 +112,7 @@
   <div class="large-4 columns">
 		<div>
             <h3>Animal Breeders</h3>
-            <p>Easily manage  ... enabling a </p>
+            <p>Develop a rich lineage of health information for your animals. (Coming soon!)  </p>
 
             <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
@@ -115,7 +128,7 @@
   <div class="large-4 columns">
 		<div>
             <h3>Livestock Management</h3>
-            <p>Easily mantain data for all your livestock such as horses, cattle, and exotics.</p>
+            <p>Easily mantain data for all your livestock such as horses, cattle, and exotics. (Coming soon!) </p>
 
            
             <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
@@ -136,7 +149,7 @@
   <div class="large-4 columns">
 		<div>
             <h3>Veterinarians</h3>
-            <p>Store, document, and engage with the animal's custodians. </p>
+            <p>Store, document, and engage with the animal's custodians. (Coming soon!)  </p>
 
             <%= link_to "Learn more #{image_tag(s3_url('arrow.png'))}".html_safe, "#", "data-reveal-id" => "registerSigninModal" %>
 		</div>
@@ -180,7 +193,7 @@
     	<h3>Recent News</h3>
 <hr>
 		<article class="blogPicture">
-            <h1><%= link_to "AnimalMinder selected as the official animal registry for Louisiana", "#" %></h1>
+            <h1><%= link_to "AnimalMinder was selected as the official animal registry for Louisiana", "#" %></h1>
             <div class="blog-options">
 				<span><em class="icon-user"></em> tyler </span>
 				<span><em class="icon-pencil"></em> 03-Jun-2014</span>
