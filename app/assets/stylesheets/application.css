@@ -117,7 +117,7 @@ section.front_page_section_login {
   background-color: #FFF !important;
 }
 
-section.gray_background {
+.gray_background {
   background-color: #E9E9E9;
 }
 
@@ -766,8 +766,23 @@ aside li{
 	margin-bottom: 30px !important;
 }
 .wrapper{
-	background: url(images/pagebkg.jpg) repeat-x scroll center top;
+	/*background: url(images/pagebkg.jpg) repeat-x scroll center top;*/
+  background: #D8D8D8;
 }
+
+.associations-main ul {
+	margin: 0;
+	padding: 0;
+}
+.associations-main li {
+	background:none;
+	list-style: none;
+}
+
+.associations-main ul.associationList li{
+	width:auto;
+}
+
 .blog-Picture {
 	position: relative;
 }
@@ -1033,15 +1048,11 @@ aside h5.noMar {
 /* ========
 	MISC BC Overrides
 ======================= */
-.shop-product-small h2 a {
+.associationList h2 a {
 	color: #008cba;
-	font-size: 85%;
+	font-size: 75%;
 }
 
-.shop-product-small li.price {
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 1.5rem;
-}
 
 a#catshopbuy:link, a#catshopbuy:visited {
 	background: none repeat scroll 0 0 #008CBA;
