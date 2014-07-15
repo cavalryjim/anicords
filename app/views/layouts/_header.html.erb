@@ -43,7 +43,9 @@
 		<li class="divider"></li>
 		<li><%= link_to "ABOUT", new_user_registration_path + "#about" %></li>
 		<li class="divider"></li>--->
-		<li><%= link_to "SIGN IN", "#", "data-reveal-id" => "registerSigninModal" %></li>
+		<% if (defined? resource) %>
+		  <li><%= link_to "SIGN IN", "#", "data-reveal-id" => "registerSigninModal" %></li>
+		<% end %>
 	  </ul>
 	  
 	  

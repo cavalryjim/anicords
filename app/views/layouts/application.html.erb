@@ -32,7 +32,7 @@
       <%= render 'layouts/footer' %>
     </section>
     
-    <% unless user_signed_in? %>
+    <% if !user_signed_in? && (defined? resource) %>
 	  <div id="registerSigninModal" class="reveal-modal" data-reveal>
 	    <%= render 'devise/registrations/register_sign_in'%> 
 	    <a class="close-reveal-modal">&#215;</a>

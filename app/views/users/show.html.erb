@@ -1,4 +1,6 @@
 <% content_for :title, "Animal's Human".html_safe %>
+<%= breadcrumb_nav %>
+
 <section class="border_top full_page">
    <div class="row">
      <h4><%=@user.name%><%if current_user==@user%><small><%= link_to ' (edit)', edit_user_path(@user) %></small><%end%></h4>

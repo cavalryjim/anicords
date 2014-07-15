@@ -176,6 +176,8 @@ module ApplicationHelper
     end
   end
   
+ 
+  
 #### JDavis: let the states be the second to last item in this helper ####
   
   def us_states
