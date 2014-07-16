@@ -45,18 +45,18 @@ module ApplicationHelper
     return classes
   end
   
-  def petabyt_image
+  def animalminder_image
     #image_tag(s3_url('petabyt_f.png'), size: '120x120', class: 'petabyt_image')
-    image_tag(s3_url('animal_minder2.png'), size: '220x220', class: 'petabyt_image')
+    image_tag(s3_url('animal_minder2.png'), size: '220x220', class: 'animalminder_image')
   end
   
   def link_to_home
     if current_user && current_user.no_associations?
-     link_to(petabyt_image, user_select_account_type_path)
+     link_to(animalminder_image, user_select_account_type_path)
     elsif current_user 
-     link_to(petabyt_image, user_select_association_path ) 
+     link_to(animalminder_image, user_select_association_path ) 
     else 
-     link_to(petabyt_image, new_user_registration_path + "#" )
+     link_to(animalminder_image, new_user_registration_path + "#" )
     end
   end
   

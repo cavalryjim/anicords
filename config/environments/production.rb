@@ -43,10 +43,10 @@ Anicords::Application.configure do
     #:domain         => 'heroku.com',
     enable_starttls_auto: true,
     
-    domain:         'petabyt.com',
+    domain:         'animalminder.com',
     authentication: :plain
   }
-  config.action_mailer.default_url_options = { host: 'www.petabyt.com' }
+  config.action_mailer.default_url_options = { host: 'www.animalminder.com' }
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
@@ -111,8 +111,8 @@ Anicords::Application.configure do
   # JDavis: notifications for exceptions
   config.middleware.use ExceptionNotification::Rack,
   :email => {
-    :email_prefix => "[Petabyt_error] ",
-    :sender_address => %{"notifier" <notifier@petabyt.com>},
+    :email_prefix => "[AnimalMinder_error] ",
+    :sender_address => %{"notifier" <notifier@animalminder.com>},
     :exception_recipients => %w{james.davisphd@gmail.com, tylercarruth@live.com}
   }
   

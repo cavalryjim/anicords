@@ -96,7 +96,7 @@ class Organization < ActiveRecord::Base
     #org_petfinder_ids = self.petfinder_ids
     pull_count = 0
     pets.each do |pet|
-      #JDavis: check to see if the animal is already in Petabyt.
+      #JDavis: check to see if the animal is already in AnimalMinder.
       #if (org_petfinder_ids.include? pet.id.to_i)
       #  animal = OrgProfile.find_by_petfinder_id(pet.id.to_i).animal
       #  next if animal.updated_at > pet.last_update
