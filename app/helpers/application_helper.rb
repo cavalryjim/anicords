@@ -31,7 +31,7 @@ module ApplicationHelper
       when'tiger'
         image_tag(s3_url('tiger_icon.png'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
       else
-        image_tag(s3_url('petabyt_icon.ico'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
+        image_tag(s3_url('animalminder.ico'), size: size, id: 'animal'+animal.id.to_s, class: image_classes(animal, classes, view_section) )
       end
     end
     
@@ -47,7 +47,7 @@ module ApplicationHelper
   
   def petabyt_image
     #image_tag(s3_url('petabyt_f.png'), size: '120x120', class: 'petabyt_image')
-    image_tag(s3_url('animal_minder.png'), size: '220x220', class: 'petabyt_image')
+    image_tag(s3_url('animal_minder2.png'), size: '220x220', class: 'petabyt_image')
   end
   
   def link_to_home
