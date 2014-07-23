@@ -15,7 +15,7 @@
 	    		data: { confirm: 'Remove this picture?' }, remote: true %>
 	    	  </div>
 	    	  
-	    	  <div class="small-6 columns">
+	    	  <div class="small-6 columns right">
 	    	    <!--- JDavis: only allow croping of images uploaded through AnimalMinder. Perhaps this should include Petfinder images. --->
 		    <% if picture.image.present? && @animal.owner.class.name == "Household" %>
 		      <%= link_to image_tag(s3_url('crop_icon.png')), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", remote: true, 'data-tooltip' => true, class: 'has-tip', title: 'Crop picture for avatar' %>
