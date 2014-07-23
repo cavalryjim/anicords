@@ -10,28 +10,28 @@
 		
 		
 	     <div class="row collapse">
-		   <div class="small-8 columns">
+		   <div class="small-10 columns">
 		     <%= f.text_field :email, placeholder: "email address" %>
 		     <small class="error">Valid email required.</small>
 		   </div>
 		 </div>
 	      
 	     <div class="row collapse">
-		   <div class="small-8 columns">
+		   <div class="small-10 columns">
 		     <%= f.password_field :password, placeholder: "password", 'required' => :required %>
 		     <small class="error" >Password required.</small>
 		   </div>
 		 </div>
 		 
 		 <div class="row collapse">
-		   <div class="small-4 columns">
+		   <div class="small-6 columns">
 		     <label for="user_remember_me">
       	       <%= f.check_box :remember_me %> 
       	       <span class="custom checkbox"></span> 
       	       Remember me
              </label>
 		   </div>
-		   <div class="small-8 columns">
+		   <div class="small-6 columns">
 		     <small><%= link_to "Forgot password?", new_user_password_path %>	</small>
 		   	
 		   </div>
@@ -62,7 +62,7 @@
 		</div>
 		
 		<div class="row collapse">
-		  <div class="small-8 columns">
+		  <div class="small-10 columns">
 		    <%= f.email_field :email, placeholder: 'email address' %>
 		    <small class="error">Valid email required.</small>
 		  </div>
@@ -71,14 +71,14 @@
 		<% if f.object.password_required? %>
 		  <div class="row collapse">
 		      
-		    <div class="small-8 columns">
+		    <div class="small-10 columns">
 		      <%= f.password_field :password, placeholder: 'password (8 or more characters)', 'required' => :required  %>
 		      <small class="error" >Passwords must be at least 8 characters.</small>
 		    </div>
 		  </div>
 		
 		  <div class="row collapse">
-		    <div class="small-8 columns">
+		    <div class="small-10 columns">
 		      <%= f.password_field :password_confirmation, placeholder: 'password confirmation', 'required' => :required %>
 		      <small class="error" >Confirmation required.</small>
 		    </div>
@@ -88,8 +88,8 @@
 		  <div class="row collapse bottom_padding_10">
 		    <div class="small-4 columns"><%= f.submit "sign up", class: "small button" %> </div>
 		    
+		    <small>Signing up indicates agreement with our <%= link_to "privacy policy", privacy_policy_path, "data-reveal-id" => "privacyModal", remote: true  %>.</small>
 		  </div>
-		  <small>Signing up indicates agreement with our <%= link_to "privacy policy", privacy_policy_path, "data-reveal-id" => "privacyModal", remote: true  %>.</small>
     <% end %>	
   </div>
   
