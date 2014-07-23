@@ -11,7 +11,7 @@
 	    	</br>
 	        <div class="row collapse">
 	          <div class="small-6 columns">
-	    	    <%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, 
+	    	    <%= link_to image_tag((s3_url('cross.png'), alt: "del"), animal_picture_path(@animal, picture), method: :delete, 
 	    		data: { confirm: 'Remove this picture?' }, remote: true %>
 	    	  </div>
 	    	  
