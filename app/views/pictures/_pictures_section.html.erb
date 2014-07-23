@@ -6,17 +6,23 @@
 	  
 	  <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 	    <% for picture in @animal.pictures %>
-		  <li>
+	      <li>
 	    	<%= link_to_if picture.image.present?, image_tag(picture.image_location, class: 'th'), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", remote: true %>
 	    	</br>
-	    	<%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, 
+	        <div class="row collapse">
+	          <div class="small-6 columns">
+	    	    <%= link_to image_tag('cross.png', :alt => "del"), animal_picture_path(@animal, picture), method: :delete, 
 	    		data: { confirm: 'Remove this picture?' }, remote: true %>
+	    	  </div>
+	    	  
+	    	  <div class="small-6 columns">
 	    	    <!--- JDavis: only allow croping of images uploaded through AnimalMinder. Perhaps this should include Petfinder images. --->
 		    <% if picture.image.present? && @animal.owner.class.name == "Household" %>
-		      &nbsp; &nbsp; &nbsp; &nbsp;
-		      <%= link_to image_tag(s3_url('crop_icon.png')), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", remote: true %>
+		      <%= link_to image_tag(s3_url('crop_icon.png')), edit_animal_picture_path(@animal, picture), "data-reveal-id" => "editPictureModal", remote: true, 'data-tooltip' => true, class: 'has-tip', title: 'Crop picture for avatar' %>
 		    <% end %>
-		  </li>
+	    	  </div>
+	        </div>
+	      </li>
 		  
 	    <% end %>
 	  </ul>
