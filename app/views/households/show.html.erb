@@ -1,17 +1,12 @@
 <% content_for :title, "Animal Household" %>
-<%= breadcrumb_nav([@household]) %>
 
 <div class="full_page">
  <section class="gray_background ">
   <div class="row pad-btm">
     <div class="column large-12">
 	  <h1 class="ptitle left"><%= @household.name %></h1>
-	  <div class="breadcrumb right">
-	  	<%= link_to 'Edit', edit_household_path(@household) %>
-	  	
-	  </div>
+      <%= breadcrumb_nav([@household.name, edit_link(@household)]) %>
 	</div>
-		<!-- end .columns.large-12 -->
   </div>
  </section>
  

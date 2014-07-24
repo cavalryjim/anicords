@@ -1,6 +1,17 @@
-<%= breadcrumb_nav([@user]) %>
-<section class="border_top full_page">
- <div class="row">
+
+<div class="full_page">
+	
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @user.name %></h1>
+      <%= breadcrumb_nav(['Edit']) %>
+	</div>
+  </div>
+ </section>	
+	
+ <section class="white_background ">
+  <div class="row">
     <div class="large-12 columns">
    	  <fieldset> 
 	    <h4>Editing Profile</h4>
@@ -10,6 +21,7 @@
 	 
    	  </fieldset>
     </div>
-  </div>
-</section>  
+   </div>
+ </section>  
 
+</div>

@@ -1,5 +1,13 @@
 <% content_for :title, "Edit Animal Organization" %>
-<%= breadcrumb_nav( [@organization, 'edit'] ) %>
+<section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @organization.name %></h1>
+      <%= breadcrumb_nav([show_link(@organization, @organization.name), "Edit" ]) %>
+	</div>
+  </div>
+</section>
+ 
 <section class="border_top full_page">
   <div class="row">
     <fieldset>

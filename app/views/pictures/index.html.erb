@@ -1,5 +1,14 @@
 <% content_for :title, "Animal Photo Gallery" %>
-<%= breadcrumb_nav( @animal.owner ? [@animal.owner, @animal] : [@animal] ) %>
+
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @animal.name %></h1>
+      <%= breadcrumb_nav( @animal.owner.present? ? [show_link(@animal.owner, @animal.owner.name), @animal.name] : [edit_link(@animal, @animal.name)] ) %>
+	</div>
+  </div>
+ </section>
+
 
 <div id='animal_picture_div'>
   <%= render 'pictures_section' %>	

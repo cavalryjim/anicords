@@ -1,18 +1,124 @@
 
-<%= breadcrumb_nav( [@household, 'edit'] ) %>
-
-<section class="border_top">
-  <div class="row">
-    <fieldset>
-  	  <h4>Editing Household</h4>
-      <div class="large-12 columns"><%= render 'form' %></div>
-      <%= link_to button_small('Back'), @household %>
-    </fieldset>
+<div class="full_page">
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @household.name %></h1>
+      <%= breadcrumb_nav([show_link(@household, @household.name), "Edit" ]) %>
+	</div>		
   </div>
-</section>
+ </section>
+ 
+ <section class="white_background"> 
+  <div class="row add-bottom white_background">
+    <div class="columns large-9">
+     <%= render 'form' %>
+    </div>
+    
+    <div class="columns large-3">
+      <table >
+	    <thead>
+	      <tr>
+	        <th>Household Members</th>
+	        <th></th>
+	      </tr>
+	    </thead>
+	
+	    <tbody>
+	      <% @household.user_associations.each do |ua| %>
+	        <% if ua.user.present? %>
+	          <tr>
+	            <td><%= ua.user.name %></td>
+	            <td>
+	               <% if ua.user != current_user %>
+	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
+				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
+				   <% end %>
+	            </td>
+	          </tr>
+	        <% end %>
+	      <% end %>     
+	    </tbody>
+	  </table>
+      
+      <%= link_to button_small('Add Member'), "#", "data-reveal-id" => "newHumanModal" %>
+    </div>
+  </div>
+   
+  <!---  
+  <div class="row">
+    <div class="large-9 columns">
+	  <table class="margin-bottom_25em">
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Email</th>
+	        <th>Phone</th>
+	        <th></th>
+	      </tr>
+	    </thead>
+	
+	    <tbody>
+	      <% @household.user_associations.each do |ua| %>
+	        <% if ua.user.present? %>
+	          <tr>
+	            <td><%= ua.user.name %></td>
+	            <td><%= ua.user.email %></td>
+	            <td><%= ua.user.phone %></td>
+	            <td>
+	               <% if ua.user != current_user %>
+	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
+				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
+				   <% end %>
+	            </td>
+	          </tr>
+	        <% end %>
+	      <% end %>     
+	    </tbody>
+	  </table>
+	        
+    </div>
+    
+    <div class="columns large-3"> 
+      <aside class="gray_background">
+      	<h5 class="center">Add Human</h5>
+      	<%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
+	      <div class="row">
+	        <div class="large-12 columns">
+	          <%= f.text_field :email, placeholder: "Email"  %>
+	          <small class="error">Email required.</small>
+	        </div>
+	      </div>
+	    
+	      <div class="row">
+	        <div class="large-12 columns">
+	          <%= f.text_field :first_name, placeholder: "First Name"  %>
+	        </div>
+	      </div>
+	    
+	      <div class="row">
+	        <div class="large-12 columns">
+	          <%= f.text_field :last_name, placeholder: "Last Name"  %>
+	        </div>
+	      </div>
+	    
+	      <%= f.hidden_field :household_id, value: @household.id %>
+	    
+	      <div class="actions">
+	        <%= f.submit "add member", class: "button small" %>
+	      </div>
+	  
+	    <% end %>
+      </aside>     
+    </div>   
+  </div>
+  ---> 
+   
+ </section>
 
-<% unless @household.new_record? %>
-	<div id="newHumanModal" class="reveal-modal" data-reveal>
+</div> 
+
+<div id="newHumanModal" class="reveal-modal" data-reveal>
 	  <h3>Add members to your household</h3>
 	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
 	    <div class="row">
@@ -43,5 +149,10 @@
 	  <% end %>
 	  
 	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-<% end %>
+</div>
+
+<div id="editHumanModal" class="reveal-modal" data-reveal>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+

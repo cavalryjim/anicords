@@ -1,14 +1,19 @@
 <% content_for :title, "Animal Organization" %>
-<%= breadcrumb_nav([@organization]) %>
+
+<section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @organization.name %></h1>
+      <%= breadcrumb_nav([@organization.name, edit_link(@organization)]) %>
+	</div>
+  </div>
+ </section>
 
 <section class="border_top full_page">
 	
  <div class="row">
   <fieldset>
   <div class="row">
-  	<div class="large-7 columns">
-      <h4><%= @organization.name %> <small><%= link_to ' (edit)', edit_organization_path(@organization), 'data-no-turbolink' => true %></small></h4>
-  	</div>
   	<div class="large-5 columns">
   	  <dl class="sub-nav">
 		<dd>

@@ -1,13 +1,22 @@
 <% content_for :title, "Animal Adoptions" %>
-<%= breadcrumb_nav([@organization, 'adoptions']) %>
+<div class="full_page">
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @organization.name %> </h1>
+      <%= breadcrumb_nav([show_link(@organization, @organization.name), "Adoptions" ]) %>
+	</div>		
+  </div>
+ </section>
 
-<section class="border_top full_page">
+
+ <section class="border_top">
 	
  <div class="row">
   <fieldset>
   <div class="row">
   	<div class="large-7 columns">
-      <h4><%= @organization.name %> Adoptions</h4>
+      <h4> Adoptions</h4>
   	</div>
   	
   </div>
@@ -28,6 +37,7 @@
    </div>
    <%= link_to button_small('Back'), @organization %>
   </fieldset>
- </div>
+  </div>
  
-</section>
+ </section>
+</div>

@@ -1,4 +1,14 @@
-<%= breadcrumb_nav( @household.present? ? [@household, @animal] : [@animal] ) %>
+
+<section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @animal.name %></h1>
+      <%= breadcrumb_nav( @household.present? ? [show_link(@household, @household.name)] : ['Editing']) %>
+	</div>
+  </div>
+</section>
+
+
 <section class="border_top">
   <div class="row">
 	<fieldset>

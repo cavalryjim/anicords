@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   has_many  :beta_comments, dependent: :destroy
   has_many  :animal_transfers,  as: :transferee, dependent: :destroy
   has_many  :notifications, as: :recipient, dependent: :destroy
+  accepts_nested_attributes_for :user_associations, allow_destroy: true
   
   validates_presence_of :email
   #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"

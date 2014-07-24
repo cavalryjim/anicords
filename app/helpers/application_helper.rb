@@ -140,12 +140,16 @@ module ApplicationHelper
   end
   
   def breadcrumb_nav(crumbs = ['Health management platform for animals'] )
-    breadcrumb = ' <nav id="breadcrumb_nav" class="breadcrumbs">'
-    breadcrumb << link_to('HOME', user_select_association_path) unless (crumbs.last == 'home' || !current_user.present? ) 
+    breadcrumb = ' <div class="breadcrumb right"> '
+    breadcrumb << ((crumbs.last == 'Home') ? 'Home' : link_to('Home', user_select_association_path) if current_user.present? )
     crumbs.each do |crumb|
-      breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
+      break if crumb == 'Home'
+      #breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
+      #breadcrumb << crumb 
+      breadcrumb << (' &nbsp;|&nbsp; ' + crumb) 
+      #breadcrumb << ' &nbsp;|&nbsp; ' unless (crumb == crumbs.last)
     end
-    breadcrumb << '</nav> </div>'
+    breadcrumb << '</div>'
     breadcrumb.html_safe
   end
   

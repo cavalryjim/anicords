@@ -867,23 +867,22 @@ aside h5.noMar {
 	Breadcrumbs
 ======================= */
 .breadcrumb{
-	color: #008CBA;
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: 300;
-	font-size: .875em;
-	margin: 48px 0 0;
+  color: #000;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: .875em;
+  margin: 24px 0 0;	
 }
-	.breadcrumb a:link,
-	.breadcrumb a:visited{
-		color: #008CBA;
-	}
-	.breadcrumb a:active,
-	.breadcrumb a:hover{
-		opacity: .8;
-	}
+
+.breadcrumb a:link, .breadcrumb a:visited{
+  color: #008CBA;
+}
+.breadcrumb a:active, .breadcrumb a:hover{
+  opacity: .8;
+}
 .ptitle{
-	margin: 20px 0 26px;
-	font-weight: 400;
+  margin: 20px 0 26px;
+  font-weight: 400;
 }
 
 /* ========
