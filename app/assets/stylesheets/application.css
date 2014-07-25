@@ -291,8 +291,10 @@ label.nav_dropdown {
   margin: 0 0 1em 0 !important;
 }
 
-nav.top-bar {
+.menu-bar {
   /*border: 3px solid #000 !important;*/
+ height: 45px !important;
+ background-color: #000000 !important;
 }
 
 .top-bar-section .has-dropdown > a:after {
@@ -614,7 +616,9 @@ header{
 
 #utility-nav { margin-top: 50px; }
 
-.navigation { background-color: #333333; }
+section.navigation { 
+  background-color: #333333; 
+}
 
 #divider {
 	border-right: 1px solid #008CBA;

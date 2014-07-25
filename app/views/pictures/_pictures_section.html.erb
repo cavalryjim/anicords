@@ -1,9 +1,9 @@
-<section>
-  <div class="row">
-	<fieldset>
-	  	<%= image_tag(@animal.avatar.url, size: '50x50', class: "picture_border_2") if @animal.avatar_stored? %> 
-	  <h4><%= @animal.name %> Pictures</h4>
-	  
+<section class="white_background">
+  
+  <%= image_tag(@animal.avatar.url, size: '50x50', class: "picture_border_2") if @animal.avatar_stored? %> 
+	
+  <div class="row add-bottom">
+	<div class="columns large-9">
 	  <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 	    <% for picture in @animal.pictures %>
 	      <li>
@@ -26,11 +26,13 @@
 		  
 	    <% end %>
 	  </ul>
-	  
-		
+	</div>
+	
+	<div class="columns large-3">
+	  <h5>Upload Photo</h5>
 	  <%= form_for([@animal, Picture.new], remote: true, html: { id: "animal_picture_upload", "data-abide" => '' }) do |f| %>
 		<div class="row">
-	      <div class="large-4 columns">
+	      <div class="small-12 columns">
 		    <%= f.file_field :image, class: 'upload_picture', required: true %>
 		    <small class="error">File required.</small>
 		  </div>
@@ -40,8 +42,6 @@
 		  <%= f.submit 'upload photo', class: "button small" %>
 		</div>
 	  <% end %>
-	
-	<%= link_to 'back', @animal.owner %>
-	</fieldset>
+	</div>	
   </div>
 </section>
