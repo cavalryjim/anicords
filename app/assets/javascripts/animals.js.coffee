@@ -403,18 +403,18 @@ jQuery ->
   $("img#weight_details").click (event) ->
     if $("#animal_weight_table_div").is(":hidden")
       $("#animal_weight_table_div").slideDown()
-      $("img#weight_details").attr "src", "/img/details_close.png"
+      $("img#weight_details").attr "src", "/assets/details_close.png"
     else
       $("#animal_weight_table_div").slideUp()
-      $("img#weight_details").attr "src", "/img/details_open.png"
+      $("img#weight_details").attr "src", "/assets/details_open.png"
       
   $("img#notification_details").click (event) ->
     if $("#animal_notifications_div").is(":hidden")
       $("#animal_notifications_div").slideDown()
-      $("img#notification_details").attr "src", "/img/details_close.png"
+      $("img#notification_details").attr "src", "/assets/details_close.png"
     else
       $("#animal_notifications_div").slideUp()
-      $("img#notification_details").attr "src", "/img/details_open.png"
+      $("img#notification_details").attr "src", "/assets/details_open.png"
   
   $("#delete_dialog").dialog
     autoOpen: false
