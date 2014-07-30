@@ -83,7 +83,7 @@ module ApplicationHelper
   end
   
   def notifications_list
-    html = "<ul class='dropdown'>"
+    html = "<ul id='notifications_drop' class='f-dropdown' data-dropdown-content>"
     if user_notifications.count > 0
       user_notifications.each do |n|
         html += "<li>" + link_to_if(basic_notification_url(n).present?, basic_notification(n), basic_notification_url(n)) + "</li>"

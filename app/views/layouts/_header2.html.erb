@@ -1,21 +1,48 @@
-<header>
-  <div class="row">
-    <div class="large-12 columns">
-	  <ul id="utility-nav" class="inline-list right">
+<header class=" border_bottom">
+ <div class="row">
+  <div class="large-12 columns">
+	<ul id="utility-nav" class="inline-list right">
+  	  <% if user_signed_in? %>
         <li>
-	      <%= image_tag s3_url('white-flag-icone-6376-48.png'), size: '25x25' %>
+          <%= link_to('#', 'data-dropdown' => 'notifications_drop') do %>
+	        <% if number_of_notifications %>
+	         <div class="notifications">
+               <div class="notifications_text"><%= number_of_notifications %></div>
+	         </div>
+	        <% else %>
+	         <%= image_tag s3_url('white-flag-icone-6376-48.png'), size: '25x25' %>
+            <% end %>
+          <% end %>
+		  <%= raw notifications_list %>	
 	    </li>
 	    
 	    <li>
-	      <%= image_tag 'icon-user-small.png', size: '25x25' %>
+	      <!--<%= image_tag 'icon-user-small.png', size: '25x25' %>-->
+	      <%= link_to current_user.name, '#', 'data-dropdown' => 'user_drop' %>
+	      <ul id='user_drop' class='f-dropdown' data-dropdown-content> 	
+		    <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
+		  	<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	
+	      </ul>
 	    </li>
-      </ul>
+      <% else %>  
+		<!--<li><%= link_to "HOME", new_user_registration_path + "#" %></li>
+		<li class="divider"></li>
+		<li><%= link_to "ABOUT", new_user_registration_path + "#about" %></li>
+		<li class="divider"></li>
+		<% if (defined? resource) %>
+		  <li><%= link_to "SIGN IN", "#", "data-reveal-id" => "registerSigninModal" %></li>
+		<% end %>
+		-->
+		<li><%= link_to "SIGN IN", new_user_registration_path + "#login" %></li>
+      <% end %>
+    </ul>
+    
       
-			<!-- end .utility -->
-	  <%= link_to_home %>
-			<!-- end #logo -->
-    </div>
-		<!-- end .columns.large-12 -->
+			
+	<%= link_to_home %>
+			
   </div>
-	<!-- end .row -->
+		
+ </div>
+	
 </header> 

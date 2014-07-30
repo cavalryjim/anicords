@@ -619,7 +619,7 @@ header{
 #utility-nav { margin-top: 25px; }
 
 section.navigation { 
-  background-color: #333333; 
+  background-color: #000; 
 }
 
 #divider {
@@ -645,6 +645,10 @@ section.navigation {
 
 ul.imgonly li {
 	list-style-type: none;
+}
+
+div#login {
+  margin-bottom: 0 !important;
 }
 
 /* ========
