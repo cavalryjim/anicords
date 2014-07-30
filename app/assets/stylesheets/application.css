@@ -15,6 +15,7 @@
  *= require jquery-ui-1.10.3.custom
  *= require jquery.Jcrop
  *= require dataTables/jquery.dataTables.foundation
+ *= require font-awesome
  */
 
 ul.ui-autocomplete {
@@ -603,8 +604,9 @@ p { font-size: 0.85rem !important; }
 #home header{
 	padding-bottom: 25px;
 }
+
 header{
-	padding: 15px 0;
+/**padding: 15px 0;**/
 	position: relative;
 	z-index: 2;
 }
@@ -614,7 +616,7 @@ header{
 }
 	#logo:hover{ opacity: 0.7; }
 
-#utility-nav { margin-top: 50px; }
+#utility-nav { margin-top: 25px; }
 
 section.navigation { 
   background-color: #333333; 
@@ -625,28 +627,6 @@ section.navigation {
 	padding-right: 1.375rem;
 }
 
-/* Search Box - Hidden until clicked */
-#js-search{
-	display: none;
-	position: absolute;
-	right: 44px;
-	top: 43px;
-	width: 260px;
-}
-#js-search input[type="text"]{
-	background: #fff;
-	font-size: 0.85em;
-}
-#js-search-btn .icon-remove,
-#js-search-btn.open .icon-search{
-	display: none; }
-#js-search-btn.open .icon-remove{
-	display: block;
-	font-size: 18px;
-	padding: 3px 0 0; }
-#utn-0,#utn-1 {
-	display: none;
-}
 
 /* ====================
 	Home Page

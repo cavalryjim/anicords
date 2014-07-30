@@ -59,6 +59,7 @@ gem 'roo', '1.13.2'
 gem 'foursquare2', '2.0.0'
 gem 'jquery-turbolinks', '2.0.2'
 gem 'geocoder', '1.2.2'
+gem 'font-awesome-rails', '4.1.0.0'
 
 
 
