@@ -50,15 +50,17 @@ module ApplicationHelper
     image_tag(s3_url('animal_minder2.png'), size: '220x220', class: 'animalminder_image')
   end
   
-  def link_to_home
+  def link_to_home(anchor = animalminder_image)
     if current_user && current_user.no_associations?
-     link_to(animalminder_image, user_select_account_type_path)
+     link_to(anchor, user_select_account_type_path)
     elsif current_user 
-     link_to(animalminder_image, user_select_association_path ) 
+     link_to(anchor, user_select_association_path ) 
     else 
-     link_to(animalminder_image, new_user_registration_path + "#" )
+     link_to(anchor, new_user_registration_path + "#" )
     end
   end
+  
+  
   
   def s3_url(file_name)
     #'https://s3-us-west-2.amazonaws.com/petabyt/app_images/' << file_name
@@ -141,12 +143,13 @@ module ApplicationHelper
   
   def breadcrumb_nav(crumbs = ['Health management platform for animals'] )
     breadcrumb = ' <div class="breadcrumb right"> '
-    breadcrumb << ((crumbs.last == 'Home') ? 'Home' : link_to('Home', user_select_association_path) if current_user.present? )
+    #breadcrumb << ((crumbs.last == 'Home') ? 'Home' : link_to('Home', user_select_association_path) if current_user.present? )
     crumbs.each do |crumb|
       break if crumb == 'Home'
       #breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
       #breadcrumb << crumb 
-      breadcrumb << (' &nbsp;|&nbsp; ' + crumb) 
+      breadcrumb << ' &nbsp;|&nbsp; ' unless (crumb == crumbs.first)
+      breadcrumb << crumb
       #breadcrumb << ' &nbsp;|&nbsp; ' unless (crumb == crumbs.last)
     end
     breadcrumb << '</div>'

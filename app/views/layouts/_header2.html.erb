@@ -1,4 +1,4 @@
-<header class=" border_bottom">
+<header id="header" class="border_bottom">
  <div class="row">
   <div class="large-12 columns">
 	<ul id="utility-nav" class="inline-list right">
@@ -46,3 +46,7 @@
  </div>
 	
 </header> 
+
+
+<%= render 'layouts/regular_menu2' if user_signed_in? %>
+

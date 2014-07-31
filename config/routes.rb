@@ -72,6 +72,8 @@ Anicords::Application.routes.draw do
   post 'documents/:id/email_document' => 'documents#email', as: :email_document
   post 'animals/microchip_lookup' => 'animals#microchip_lookup', as: :microchip_lookup
   get 'privacy_policy' => "pages#privacy_policy", as: :privacy_policy
+  get 'about' => "pages#about", as: :about_us
+  get 'contact' => "pages#contact", as: :contact_us
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'
   get 'user/select_account_type' => 'users#select_account_type'
