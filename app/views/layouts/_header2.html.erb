@@ -7,7 +7,7 @@
           <%= link_to('#', 'data-dropdown' => 'notifications_drop') do %>
 	        <% if number_of_notifications %>
 	         <div class="notifications">
-               <div class="notifications_text"><%= number_of_notifications %></div>
+               <%= number_of_notifications %>
 	         </div>
 	        <% else %>
 	         <%= image_tag s3_url('white-flag-icone-6376-48.png'), size: '25x25' %>

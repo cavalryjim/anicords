@@ -298,9 +298,7 @@ label.nav_dropdown {
  background-color: #000000 !important;
 }
 
-.top-bar-section .has-dropdown > a:after {
-   border-color: transparent transparent transparent !important;
-}
+
 
 input.upload_file, input.upload_picture {
   border: 1px solid #CCC !important;
@@ -346,10 +344,11 @@ div.notifications {
   width: 30px;
   background: url('white-flag-icone-6376-48.png') no-repeat center;
   background-size:contain;
+  color: #FF0000 !important;
+  font-weight: bold;
 }
 
 .notifications_text, .notifications_text a {
-  color: #FFFFFF !important;
   background: url('box_red_16.png') no-repeat center;
 }
 

@@ -10,8 +10,26 @@
 	    <ul class="right">
 	      <li><%= link_to_home('Home')%></li>
 	      
-	      
-	      
+	      <% if @organization.present? %>
+	        <li class="has-dropdown">
+	          <%= link_to 'Reports', '#' %>
+	          <ul class="dropdown">
+	          	<li><%= link_to "vaccinations", "#", "data-reveal-id" => "vaccinationReportModal", class: "no_default" %></li>
+	          </ul>
+	        </li>
+	        <li><%= link_to 'Adoptions', organizaiton_adoptions_path(@organization) %></li>
+	        <li class="has-dropdown">
+	          <%= link_to 'Import', '#' %>
+	          <ul class="dropdown">
+	          	<li>
+		  	      <%= link_to_if @organization.petfinder_shelter_id.present?,  "import from Petfinder", "#", "data-reveal-id" => "importPetFinderModal", remote: true  %>	
+				</li>
+				<li>
+			      <%= link_to_if @organization.id.present?, "import from spreadsheet", "#", "data-reveal-id" => "importSpreadsheetModal", remote: true  %>			  
+				</li>	
+	          </ul>
+	        </li>
+	      <% end %>
 	      
 	      <li><%= link_to 'About', about_us_path %></li>
 	      <li><%= link_to 'Contact', contact_us_path %></li>

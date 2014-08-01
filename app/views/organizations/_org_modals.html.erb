@@ -1,0 +1,125 @@
+<div id="animalModal" class="reveal-modal" data-reveal>
+  <div id="org_animal_div" class="org_animal_div"></div>
+  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+<div id="reportModal" class="reveal-modal" data-reveal>
+  <div id="report_div"></div>
+   Coming soon!  
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<% unless @organization.new_record? %>
+	<div id="editPictureModal" class="reveal-modal" data-reveal>
+	  <div id="picture_edit_div"></div>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="vaccinationReturnModal" class="reveal-modal" data-reveal>
+	  <div id="vaccination_return_div"></div>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="vaccinationReportModal" class="reveal-modal" data-reveal>
+	  <div id="vaccination_report_div"></div>
+	   <%= render 'vaccinations_report_form'%>  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="newHumanModal" class="reveal-modal" data-reveal>
+	  <h3>Add users to your organization</h3>
+	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :email, placeholder: "email"  %>
+	        <small class="error">Email required.</small>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :first_name, placeholder: "first name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :last_name, placeholder: "last name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :phone, placeholder: "phone number"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	      	<%= label_tag 'user_admin' do %>
+			    
+	          <%= check_box 'user', 'admin'  %> administrator?
+			<% end %>
+	      </div>
+	    </div>
+	    
+	    <%= f.hidden_field :organization_id, value: @organization.id %>
+	    
+	    <div class="actions">
+	      <%= f.submit "submit", class: "button small" %>
+	    </div>
+	  
+	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="locationModal" class="reveal-modal" data-reveal>
+	  <div id='org_location_div'></div>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<div id="importSpreadsheetModal" class="reveal-modal medium" data-reveal>
+	  <h4>Import Animals</h4>
+	  <%= form_tag import_animals_organization_path, multipart: true  do %>
+	    <div class="row">
+		  <div class="large-6 small-12 columns ">
+		    <%= file_field_tag :file, class: 'upload_file' %>	
+		    
+	      </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 columns ">
+		    <%= submit_tag "import", class: "button small" %>  
+	      </div>
+		</div>
+	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<div id="importPetFinderModal" class="reveal-modal medium" data-reveal>
+	  <h4 class="bottom_padding_1em">Import Animals</h4>
+	  <div class="row">
+		<div class="large-12 columns ">
+		  <%= @organization.name %>
+		</div>
+	  </div>
+	  <div class="row">
+		<div class="large-12 columns bottom_padding_1em">
+		  PetFinder ID: <%= @organization.petfinder_shelter_id %>
+		</div>
+	  </div>
+	  <div class="row">
+		<div class="large-12 columns">
+	      <%= link_to_if @organization.petfinder_shelter_id.present?,  button_small("start import"), organizaiton_petfinder_import_path(@organization)  %>
+		</div>
+	  </div>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+<% end %>

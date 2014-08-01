@@ -13,25 +13,6 @@
 	
  <div class="row">
   <fieldset>
-  <div class="row">
-  	<div class="large-5 columns">
-  	  <dl class="sub-nav">
-		<dd>
-		  <%= link_to button_small("reports", "report_button"), "#", "data-dropdown" => "report_drop", "data-options" => "is_hover:true", class: "no_default" %>
-		  <ul id="report_drop" class="f-dropdown" data-dropdown-content>
-			<li>
-		  	  <%= link_to "vaccinations", "#", "data-reveal-id" => "vaccinationReportModal", class: "no_default" %>	
-			</li>
-			<!--<li>
-			  <%= link_to "another report", "#", "data-reveal-id" => "reportModal", class: "no_default", remote: true  %>			  
-		    </li>-->		
-		  </ul> 
-	    </dd>
-		
-		<dd><%= link_to button_small("adopted pets"), organizaiton_adoptions_path(@organization) %></dd>
-	  </dl>
-  	</div>
-  </div>
  <% if @notifications.count > 0 %>
   <div class="row">
   	<div class="large-12 columns">
@@ -66,36 +47,8 @@
  
 </section>
 
+<%= render 'organizations/org_modals'%>
 
-<div id="animalModal" class="reveal-modal" data-reveal>
-  <div id="org_animal_div" class="org_animal_div"></div>
-  
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="editPictureModal" class="reveal-modal" data-reveal>
-  <div id="picture_edit_div"></div>
-  
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="vaccinationReturnModal" class="reveal-modal" data-reveal>
-  <div id="vaccination_return_div"></div>
-  
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="vaccinationReportModal" class="reveal-modal" data-reveal>
-  <div id="vaccination_report_div"></div>
-   <%= render 'vaccinations_report_form'%>  
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="reportModal" class="reveal-modal" data-reveal>
-  <div id="report_div"></div>
-   Coming soon!  
-  <a class="close-reveal-modal">&#215;</a>
-</div>
 
 
 

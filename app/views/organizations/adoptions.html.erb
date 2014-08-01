@@ -3,7 +3,7 @@
  <section class="gray_background ">
   <div class="row pad-btm">
     <div class="column large-12">
-	  <h1 class="ptitle left"><%= @organization.name %> </h1>
+	  <h1 class="ptitle left">Adoptions </h1>
       <%= breadcrumb_nav([show_link(@organization, @organization.name), "Adoptions" ]) %>
 	</div>		
   </div>
@@ -41,3 +41,5 @@
  
  </section>
 </div>
+
+<%= render 'organizations/org_modals'%>
