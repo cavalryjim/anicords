@@ -1,6 +1,7 @@
 <% content_for :title, "Animal Organization" %>
 
-<section class="gray_background ">
+<div class="full_page">
+ <section class="gray_background ">
   <div class="row pad-btm">
     <div class="column large-12">
 	  <h1 class="ptitle left"><%= @organization.name %></h1>
@@ -9,23 +10,23 @@
   </div>
  </section>
 
-<section class="border_top full_page">
+ <section class="white_background ">
 	
- <div class="row">
-  <fieldset>
- <% if @notifications.count > 0 %>
   <div class="row">
-  	<div class="large-12 columns">
-  	  <div id="org_news" class="fouc">
-		<ul id="org_news_ul">
-		  <% @notifications.each do |notification| %>
-			<li><%= link_to_if notification.url.present?, org_notification(notification), notification.url %></li>
-		  <% end %>
-		</ul>
-	 </div>
-  	</div>	
-  </div>
- <% end %>
+  
+   <% if @notifications.count > 0 %>
+    <div class="row">
+  	  <div class="large-12 columns">
+  	    <div id="org_news" class="fouc">
+		  <ul id="org_news_ul">
+		    <% @notifications.each do |notification| %>
+			  <li><%= link_to_if notification.url.present?, org_notification(notification), notification.url %></li>
+		    <% end %>
+		  </ul>
+	   </div>
+  	  </div>	
+    </div>
+   <% end %>
     
   <div class="large-12 columns">
 	<fieldset>
@@ -39,13 +40,12 @@
        </div>
       </div>
 			
-	    <%= link_to "Add Animal", new_organization_animal_path(@organization), "data-reveal-id" => "animalModal", remote: true %> 
+	    <%= link_to button_small("Add Animal"), new_organization_animal_path(@organization), "data-reveal-id" => "animalModal", remote: true %> 
 	</fieldset>
    </div>
-  </fieldset>
- </div>
- 
-</section>
+  </div>
+ </section>
+</div>
 
 <%= render 'organizations/org_modals'%>
 
