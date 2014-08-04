@@ -30,6 +30,9 @@ $("#org_news").easyTicker(
 $("#import_button").click (event) ->
   event.preventDefault()
   
+$("#panel2").css "min-height", $("#panel1").height()
+$("#panel3").css "min-height", $("#panel1").height()
+  
 $(".org_animal_div").on "show", ->
   $(document).foundation()
   

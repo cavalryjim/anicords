@@ -1,24 +1,24 @@
 <% content_for :title, "Edit Animal Organization" %>
-<section class="gray_background ">
+
+<div class="full_page">
+ <section class="gray_background ">
   <div class="row pad-btm">
     <div class="column large-12">
 	  <h1 class="ptitle left"><%= @organization.name %></h1>
       <%= breadcrumb_nav([show_link(@organization, @organization.name), "Edit" ]) %>
 	</div>
   </div>
-</section>
+ </section>
  
-<section class="border_top full_page">
-  <div class="row">
-    <fieldset>
-      
-      
-      <div class="large-12 columns"><%= render 'form' %></div>
-      
-      <%= link_to button_small('Back'), @organization %>
-    </fieldset>
-  </div>
-</section>
+
+ <section class="white_background ">
+   <div class="row">
+
+     <div class="large-12 columns"><%= render 'form' %></div>
+    
+   </div>
+ </section>
+</div>
 
 <%= render 'organizations/org_modals'%>
 
