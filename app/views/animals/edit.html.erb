@@ -1,46 +1,40 @@
+<div class="hidden flash_alert alert-box success"  data-alert> 
+  Animal information saved.
+  <a href="" class="close">&times;</a>
+</div>
+
 
 <section class="gray_background ">
   <div class="row pad-btm">
     <div class="column large-12">
-	  <h1 class="ptitle left"><%= @animal.name %></h1>
+	  <h1 class="ptitle left">
+	  	<%= thumbnail(@animal, "50x50", 'none') %> <%=@animal.name%> 
+	  	<% if @animal.has_notifications? %>
+	  	  <%= image_tag 'details_open.png', id: 'notification_details',  class: 'details' %>
+	  	<% end %>
+	  </h1>
       <%= breadcrumb_nav( @household.present? ? [show_link(@household, @household.name)] : ['Editing']) %>
 	</div>
   </div>
 </section>
 
 
-<section class="border_top">
+<section class="white_background">
   <div class="row">
-	<fieldset>
-	  <div class="row">
-	  	<div class="large-9 columns">
-	  	  <h4>
-	  	  	<%= thumbnail(@animal, "50x50", 'none') %> <%=@animal.name%> 
-	  	  	<% if @animal.has_notifications? %>
-	  	      <%= image_tag 'details_open.png', id: 'notification_details',  class: 'details' %>
-	  	    <% end %>
-	  	  </h4>
-	  	</div>
-	  	<div class="large-3 columns">
-		  <div class="hidden flash_alert alert-box success"  data-alert> 
-			  Animal information saved.
-			  <a href="" class="close">&times;</a>
-		  </div>
-		</div>
-	  </div>
-	  
 	  <div class="row">
 	  	<div class="large-11 columns">
 	       <div id="animal_notifications_div" class="innerDetails"><%= render 'animals/notifications'%></div>
 	    </div>
 	  </div>
 	  
-	  <div id='animal_form_div'><%= render 'sections' %></div>
+	  <div id='animal_form_div'>
+	  	<%= render 'sections' %>
+	  </div>
 	  
 	  <!---<%= link_to 'Delete this record', household_animal_path(@owner, @animal), 
 						:confirm => "Select 'OK' to delete this animal. All system records will be lost.", method: :delete%>--->
 	<%= link_to button_small('back'), @animal.owner %>
-	</fieldset>
+	
 	
   </div>
 </section>
