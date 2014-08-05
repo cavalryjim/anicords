@@ -1,14 +1,30 @@
-<section class="border_top">
+<% content_for :title, "Animal Household" %>
+
+<div class="full_page">
+
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left">New Household</h1>
+      <%= breadcrumb_nav(["New Household"]) %>
+	</div>
+  </div>
+ </section>
+ <section class="white_background ">
+
   <div class="row">
-   <fieldset>
+   
     <h4>Tell us about your household</h4>
 
-    <%= render 'form' %>
-    <%= link_to 'Launch Quick Start', '#', 'data-reveal-id'=>'stepsOverviewModal' %>
-   </fieldset>
-   
+    <%= render 'households/form' %>
+    <%= link_to button_small('Launch Quick Start'), '#', 'data-reveal-id'=>'stepsOverviewModal'   %>
+
   </div>
-</section>
+ </section>
+ 
+</div>
+
+
 
 <div id="stepsOverviewModal" class="reveal-modal" data-reveal>	
   <div class="row">
