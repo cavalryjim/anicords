@@ -34,9 +34,11 @@ task :orphan_associations => :environment do
 end
 
 task :weekly_usage => :environment do
-  stat = UsageStatistic.new
-  stat.usage_snapshot
-  stat.save
-  UserMailer.weekly_usage_snapshot.deliver
+  if Date.today.monday?
+    stat = UsageStatistic.new
+    stat.usage_snapshot
+    stat.save
+    UserMailer.weekly_usage_snapshot.deliver
+  end 
 end
 

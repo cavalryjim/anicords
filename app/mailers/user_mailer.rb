@@ -100,7 +100,7 @@ class UserMailer < ActionMailer::Base
   
   def weekly_usage_snapshot
     @stat = UsageStatistic.last
-    mail to: ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com'], subject: "AnimalMinder usage report"
+    mail to: ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com'], subject: "AnimalMinder weekly usage report"
   end
   
 private
