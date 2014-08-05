@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   default from: "james@animalminder.com",
-          bcc: ['james.davisphd@gmail.com', 'tylercarruth@live.com']
+          bcc: "james.davisphd@gmail.com"
  
   
   # Subject can be set in your I18n file at config/locales/en.yml
