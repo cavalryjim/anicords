@@ -33,3 +33,10 @@ task :orphan_associations => :environment do
   end
 end
 
+task :weekly_usage => :environment do
+  stat = UsageStatistic.new
+  stat.usage_snapshot
+  stat.save
+  UserMailer.weekly_usage_snapshot.deliver
+end
+
