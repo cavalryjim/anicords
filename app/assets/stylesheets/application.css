@@ -91,11 +91,15 @@ ul.ui-autocomplete {
   width: 100%;
 }
 
-div.orbit_slider{
-  background-image: url('/assets/girl_with_dog.png');
+div.front_image {
+  background-image: url('/assets/banner2.png');
   background-size:   contain;                      /* <------ */
   background-repeat: no-repeat;
+  text-align: center;
 }
+
+
+
 /**
 
 section.front_page_section_home {
