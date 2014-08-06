@@ -34,7 +34,7 @@ task :orphan_associations => :environment do
 end
 
 task :weekly_usage => :environment do
-  if Date.today.monday?
+  if Date.today.sunday?
     stat = UsageStatistic.new
     stat.usage_snapshot
     stat.save
