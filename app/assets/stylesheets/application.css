@@ -126,6 +126,10 @@ section.front_page_section_login {
   background-color: #E9E9E9;
 }
 
+.gray_background_dark {
+  background-color: #333333;
+}
+
 .blue_background {
  background-color: #C8DAFF !important;
 }
