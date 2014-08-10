@@ -316,6 +316,10 @@ div.panel:hover {
   box-shadow: 0 0 6px 1px rgba(0, 140, 186, 0.5); 
 }
 
+.no_highlight { 
+  box-shadow: 0 0 0 0 !important; 
+}
+
 /*.selectable_image { border: solid 1px transparent; }*/
 .selectable_image:hover { 
   opacity:0.8;
