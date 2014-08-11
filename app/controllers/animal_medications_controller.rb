@@ -6,6 +6,8 @@ class AnimalMedicationsController < ApplicationController
   
   def create
     @animal_medication = AnimalMedication.new(animal_medication_params)
+    @animal_medication.set_due_date if @animal_medication.medication.frequency.present?
+    
     respond_to do |format|
       if @animal_medication.save 
         format.js
@@ -33,6 +35,7 @@ class AnimalMedicationsController < ApplicationController
     end
     
     def animal_medication_params
-      params.require(:animal_medication).permit(:animal_id, :medication_id, :volume, :route, :interval)
+      params.require(:animal_medication).permit(:animal_id, :medication_id, :volume, :route, :interval, :medication_date, :medication_due, 
+                   :notification_count, :notify, :notify_on, :location, :lot_number)
     end
 end

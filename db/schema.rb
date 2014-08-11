@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805000514) do
+ActiveRecord::Schema.define(version: 20140811014127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,13 @@ ActiveRecord::Schema.define(version: 20140805000514) do
     t.string   "volume"
     t.string   "route"
     t.string   "interval"
+    t.date     "medication_date"
+    t.date     "medication_due"
+    t.integer  "notification_count"
+    t.boolean  "notify",             default: true
+    t.date     "notify_on"
+    t.string   "location"
+    t.string   "lot_number"
   end
 
   create_table "animal_transfers", force: true do |t|
@@ -332,6 +339,16 @@ ActiveRecord::Schema.define(version: 20140805000514) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
+    t.integer  "animal_type_id"
+    t.string   "series_name"
+    t.integer  "series_number"
+    t.integer  "series_interval"
+    t.integer  "series_next_id"
+    t.string   "recommended_dosage"
+    t.integer  "frequency"
+    t.string   "route"
+    t.boolean  "chronic",            default: false
   end
 
   create_table "microchip_brands", force: true do |t|

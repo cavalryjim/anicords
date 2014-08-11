@@ -1,12 +1,7 @@
 $("form#animal_medication_form").on("ajax:success", function(event, data, status, response) {
   $('#animal_medication_table_div').html('<%= j render("animals/medication_table") %>'); 
   $('#medication_fieldset').effect("highlight", {color:"#81F781"}, 1500).unbind();
-  $('#dialog_medication_id').val("");
-  $('#dialog_medication_volume').val("");
-  $('#dialog_medication_route').val("");
-  $('#dialog_medication_interval').val("");
-  $('this .regular_select').select2('data', null);
-  $('this .select').select2('data', null);
+  $(this)[0].reset();
 }).on("ajax:error", function(event, response, error) {
   return alert("There was a problem.  Please try again later.");
 });

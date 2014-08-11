@@ -2,10 +2,20 @@
 #
 # Table name: medications
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  type               :string(255)
+#  animal_type_id     :integer
+#  series_name        :string(255)
+#  series_number      :integer
+#  series_interval    :integer
+#  series_next_id     :integer
+#  recommended_dosage :string(255)
+#  frequency          :integer
+#  route              :string(255)
+#  chronic            :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

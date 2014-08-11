@@ -18,6 +18,11 @@
 class Vaccination < ActiveRecord::Base
   belongs_to  :animal_type
   
+  has_many :animals, through: :animal_vaccinations
+  has_many :animal_vaccinations
+  
+  validates_presence_of :name
+  
   def series?
     series_name.present?
   end

@@ -79,36 +79,42 @@
 	      <%= f.label :medication_id, 'medication' %>
 		  <%= f.text_field :medication_id, class: 'select'  %>
 		  <small class="error">Medication required.</small>
-		  <!--<%= text_field_tag 'dialog_medication_id', nil, { class: 'select' }  %>-->
+		</div>
+	  </div>
+	  
+	  <div class="row">
+		<div class="large-4 columns">
+		  <%= f.label :medication_date, 'medication date'%>
+		  <%= f.text_field :medication_date, class: "datepicker", placeholder: "select a date" %>
+		</div>
+		<div class="large-4 columns">
+		  <%= f.label :lot_number, 'tag / lot number' %>
+	      <%= f.text_field :lot_number, placeholder: "ex: medication lot #" %> 
+		</div>
+		<div class="large-4 columns">
+		  <%= f.label :location, 'location' %>
+	      <%= f.text_field :location, placeholder: "clinic name" %> 
 		</div>
 	  </div>
 		    
 	  <div class="row">
 		<div class="large-4 columns">
-		   <!--<%= label_tag 'dialog_medication_volume', 'volume' %>
-		   <%= text_field_tag 'dialog_medication_volume', nil, { placeholder: "volume" } %>-->
 		   <%= f.label :volume, 'volume' %>
 		   <%= f.text_field :volume, placeholder: 'volume'  %>
 		</div>
 		<div class="large-4 columns">
-		  <!--<%= label_tag 'dialog_medication_route', 'route' %>
-		  <%= select_tag 'dialog_medication_route', medication_routes, prompt: "select route", class: "regular_select" %>-->
 		  <%= f.label :route, 'route' %>
 		  <%= f.select :route, medication_routes, {include_blank: true, prompt: 'select route'}, {class: 'regular_select'} %>
 		</div>
 		<div class="large-4 columns">
-		  <!--<%= label_tag 'dialog_medication_interval', 'interval' %>
-		  <%= select_tag 'dialog_medication_interval', medication_intervals, prompt: "select interval", class: "regular_select" %>-->
 		  <%= f.label :interval, 'interval' %>
 		  <%= f.select :interval, medication_intervals, {include_blank: true, prompt: 'select interval'}, {class: 'regular_select'} %>
 		</div>
 	  </div>
-	  
 	
 	  <%= f.hidden_field :animal_id, value: @animal.id %>  
 	  <div class="row">	
 	    <div class="large-12 columns">
-		  <!--<%= button_small("add medication", "add_medication")  %>-->
 	      <%= f.submit "add medication", class: "button small" %>  
 	    </div>
 	  </div>
@@ -211,8 +217,8 @@
 	    </div>
 	  </div>
     <% end %>
-   <%= p.hidden_field :id %>
-   <%= p.hidden_field :animal_id, value: @animal.id %>  
+    <%= p.hidden_field :id %>
+    <%= p.hidden_field :animal_id, value: @animal.id %>  
    <% end %>
    <div class="row">	
     <div class="large-12 columns">

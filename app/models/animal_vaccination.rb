@@ -61,7 +61,7 @@ class AnimalVaccination < ActiveRecord::Base
       (msg << " on " << vaccination.vaccination_due.to_s) if vaccination.vaccination_due.present?
       Notification.where(animal_id: animal.id, event: vaccination, recipient: animal.owner, message: msg).first_or_create 
       vaccination.update_attributes(notify_on: 5.days.from_now.to_date, notification_count: (vaccination.notification_count += 1))
-      animal.send_vaccination_notification(msg)
+      #animal.send_vaccination_notification(msg)
       num += 1
     end
     return num
@@ -73,7 +73,7 @@ class AnimalVaccination < ActiveRecord::Base
       vaccinations.update_all(notify: false) 
       
       vaccinations.each do |vaccination|
-        vaccination.notifications.destroy_all if vaccination.notifications
+        vaccination.notifications.destroy_all if vaccination.notifications.present?
       end
       
     end 
@@ -87,7 +87,8 @@ class AnimalVaccination < ActiveRecord::Base
     else
       self.vaccination_due = self.vaccination_date + frequency unless series
     end
-
+    
+    # JDavis: not sure I want to use the notify_on or just send weekly updates.  jdhere.
     if frequency > 30.days
       self.notify_on = self.vaccination_due - 30.days
     else 
