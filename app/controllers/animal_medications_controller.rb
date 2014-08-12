@@ -6,6 +6,10 @@ class AnimalMedicationsController < ApplicationController
   
   def create
     @animal_medication = AnimalMedication.new(animal_medication_params)
+    if params[:heartworm_id].present?
+      @animal_medication.medication_id = params[:heartworm_id] 
+      @heartworm = true
+    end
     @animal_medication.set_due_date if @animal_medication.medication.frequency.present?
     
     respond_to do |format|

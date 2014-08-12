@@ -309,6 +309,24 @@ jQuery ->
       results: (data, page) -> # parse the results into the format expected by Select2.
         # since we are using custom formatting functions we do not need to alter remote JSON data
         results: data
+  
+  $('#heartworm_id').select2
+    placeholder: "heartworm medication"
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/medications"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        hw_only: true
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
         
   $('#animal_vaccination_vaccination_id').select2
     placeholder: "vaccination"

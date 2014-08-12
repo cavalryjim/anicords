@@ -70,15 +70,14 @@
      <% end %>
  </fieldset>
  
-  
- <fieldset id="medication_fieldset">
-  <legend>medications</legend>
-  <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_medication_form', "data-abide" => '', class: 'animal_form'} do |f| %>
-	  <div class="row">
+ <fieldset id="heartworm_fieldset">
+   <legend>heartworm medication</legend>
+   <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_heartworm_form', "data-abide" => '', class: 'animal_form'} do |f| %>
+     <div class="row">
 	    <div class="large-10 columns"> 
-	      <%= f.label :medication_id, 'medication' %>
-		  <%= f.text_field :medication_id, class: 'select'  %>
-		  <small class="error">Medication required.</small>
+	      <%= label_tag 'heartworm_id', 'heartworm medication' %>
+		  <%= text_field_tag 'heartworm_id', nil, class: 'select'  %>
+		  <small class="error">Heartworm required.</small>
 		</div>
 	  </div>
 	  
@@ -88,12 +87,39 @@
 		  <%= f.text_field :medication_date, class: "datepicker", placeholder: "select a date" %>
 		</div>
 		<div class="large-4 columns">
-		  <%= f.label :lot_number, 'tag / lot number' %>
-	      <%= f.text_field :lot_number, placeholder: "ex: medication lot #" %> 
+		   <%= f.label :volume, 'volume' %>
+		   <%= f.text_field :volume, placeholder: 'volume'  %>
 		</div>
 		<div class="large-4 columns">
-		  <%= f.label :location, 'location' %>
-	      <%= f.text_field :location, placeholder: "clinic name" %> 
+		  <%= f.label :route, 'route' %>
+		  <%= f.select :route, medication_routes, {include_blank: true, prompt: 'select route'}, {class: 'regular_select'} %>
+		</div>
+		<div class="large-4 columns"></div>
+	  </div>
+	
+	  <%= f.hidden_field :animal_id, value: @animal.id %>  
+	  <div class="row">	
+	    <div class="large-12 columns">
+	      <%= f.submit "add heartworm", class: "button small" %>  
+	    </div>
+	  </div>
+   <% end %>
+
+   <div class="row">	
+     <div class="large-12 columns">
+	   <div id="animal_heartworm_table_div"><%= render 'animals/heartworm_table'%></div>
+     </div>
+   </div>
+ </fieldset>
+  
+ <fieldset id="medication_fieldset">
+  <legend>medications</legend>
+  <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_medication_form', "data-abide" => '', class: 'animal_form'} do |f| %>
+	  <div class="row">
+	    <div class="large-10 columns"> 
+	      <%= f.label :medication_id, 'medication' %>
+		  <%= f.text_field :medication_id, class: 'select'  %>
+		  <small class="error">Medication required.</small>
 		</div>
 	  </div>
 		    

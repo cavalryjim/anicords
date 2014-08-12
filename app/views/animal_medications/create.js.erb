@@ -1,7 +1,17 @@
-$("form#animal_medication_form").on("ajax:success", function(event, data, status, response) {
-  $('#animal_medication_table_div').html('<%= j render("animals/medication_table") %>'); 
-  $('#medication_fieldset').effect("highlight", {color:"#81F781"}, 1500).unbind();
-  $(this)[0].reset();
-}).on("ajax:error", function(event, response, error) {
-  return alert("There was a problem.  Please try again later.");
-});
+<% if @heartworm %>
+	$("form#animal_heartworm_form").on("ajax:success", function(event, data, status, response) {
+	  $('#animal_heartworm_table_div').html('<%= j render("animals/heartworm_table") %>'); 
+	  $('#heartworm_fieldset').effect("highlight", {color:"#81F781"}, 1500).unbind();
+	  $(this)[0].reset();
+	}).on("ajax:error", function(event, response, error) {
+	  return alert("There was a problem.  Please try again later.");
+	});
+<% else %>
+	$("form#animal_medication_form").on("ajax:success", function(event, data, status, response) {
+	  $('#animal_medication_table_div').html('<%= j render("animals/medication_table") %>'); 
+	  $('#medication_fieldset').effect("highlight", {color:"#81F781"}, 1500).unbind();
+	  $(this)[0].reset();
+	}).on("ajax:error", function(event, response, error) {
+	  return alert("There was a problem.  Please try again later.");
+	});
+<% end %>

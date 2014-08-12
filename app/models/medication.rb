@@ -6,7 +6,7 @@
 #  name               :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
-#  type               :string(255)
+#  medication_type    :string(255)
 #  animal_type_id     :integer
 #  series_name        :string(255)
 #  series_number      :integer
