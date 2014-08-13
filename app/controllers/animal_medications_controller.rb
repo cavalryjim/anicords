@@ -5,20 +5,13 @@ class AnimalMedicationsController < ApplicationController
   authorize_resource
   
   def create
+    @heartworm = (params[:animal_medication][:heartworm]).present?  
     @animal_medication = AnimalMedication.new(animal_medication_params)
-    if params[:heartworm].present?
-      #@animal_medication.medication_id = params[:heartworm_id] 
-      @heartworm = true  #JDavis: this is not getting set....need to fix.  jdhere.
-    end
+    #JDavis: this is not getting set....need to fix.  jdhere.
+    @success = @animal_medication.save
     
     respond_to do |format|
-      if @animal_medication.save 
-        @sucess = true
-        format.js
-      else
-        @sucess = false
-        format.js
-      end
+      format.js
     end
   end
   
