@@ -10,14 +10,14 @@ class AnimalMedicationsController < ApplicationController
       @animal_medication.medication_id = params[:heartworm_id] 
       @heartworm = true
     end
-    #@animal_medication.set_due_date if @animal_medication.medication.frequency.present?
-    #@animal_medication.medication_type = @animal_medication.medication.medication_type
     
     respond_to do |format|
       if @animal_medication.save 
+        @sucess = true
         format.js
       else
-        breakage
+        @sucess = false
+        format.js
       end
     end
   end
