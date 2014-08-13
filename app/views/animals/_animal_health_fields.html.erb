@@ -70,6 +70,47 @@
      <% end %>
  </fieldset>
  
+ <fieldset id="medication_fieldset">
+  <legend>medications</legend>
+  <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_medication_form', "data-abide" => '', class: 'animal_form'} do |f| %>
+	  <div class="row">
+	    <div class="large-10 columns"> 
+	      <%= f.label :medication_id, 'medication' %>
+		  <%= f.text_field :medication_id, class: 'select animal_medication'  %>
+		  <small class="error">Medication required.</small>
+		</div>
+	  </div>
+		    
+	  <div class="row">
+		<div class="large-4 columns">
+		   <%= f.label :volume, 'volume' %>
+		   <%= f.text_field :volume, placeholder: 'volume'  %>
+		</div>
+		<div class="large-4 columns">
+		  <%= f.label :route, 'route' %>
+		  <%= f.select :route, medication_routes, {include_blank: true, prompt: 'select route'}, {class: 'regular_select'} %>
+		</div>
+		<div class="large-4 columns">
+		  <%= f.label :interval, 'interval' %>
+		  <%= f.select :interval, medication_intervals, {include_blank: true, prompt: 'select interval'}, {class: 'regular_select'} %>
+		</div>
+	  </div>
+	
+	  <%= f.hidden_field :animal_id, value: @animal.id %>  
+	  <div class="row">	
+	    <div class="large-12 columns">
+	      <%= f.submit "add medication", class: "button small" %>  
+	    </div>
+	  </div>
+  <% end %>
+
+  <div class="row">	
+    <div class="large-12 columns">
+	  <div id="animal_medication_table_div"><%= render 'animals/medication_table'%></div>
+    </div>
+  </div>
+ </fieldset>
+  
  <fieldset id="heartworm_fieldset">
    <legend>heartworm treatment</legend>
    <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_heartworm_form', "data-abide" => '', class: 'animal_form'} do |f| %>
@@ -111,47 +152,6 @@
 	   <div id="animal_heartworm_table_div"><%= render 'animals/heartworm_table'%></div>
      </div>
    </div>
- </fieldset>
-  
- <fieldset id="medication_fieldset">
-  <legend>medications</legend>
-  <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_medication_form', "data-abide" => '', class: 'animal_form'} do |f| %>
-	  <div class="row">
-	    <div class="large-10 columns"> 
-	      <%= f.label :medication_id, 'medication' %>
-		  <%= f.text_field :medication_id, class: 'select animal_medication'  %>
-		  <small class="error">Medication required.</small>
-		</div>
-	  </div>
-		    
-	  <div class="row">
-		<div class="large-4 columns">
-		   <%= f.label :volume, 'volume' %>
-		   <%= f.text_field :volume, placeholder: 'volume'  %>
-		</div>
-		<div class="large-4 columns">
-		  <%= f.label :route, 'route' %>
-		  <%= f.select :route, medication_routes, {include_blank: true, prompt: 'select route'}, {class: 'regular_select'} %>
-		</div>
-		<div class="large-4 columns">
-		  <%= f.label :interval, 'interval' %>
-		  <%= f.select :interval, medication_intervals, {include_blank: true, prompt: 'select interval'}, {class: 'regular_select'} %>
-		</div>
-	  </div>
-	
-	  <%= f.hidden_field :animal_id, value: @animal.id %>  
-	  <div class="row">	
-	    <div class="large-12 columns">
-	      <%= f.submit "add medication", class: "button small" %>  
-	    </div>
-	  </div>
-  <% end %>
-
-  <div class="row">	
-    <div class="large-12 columns">
-	  <div id="animal_medication_table_div"><%= render 'animals/medication_table'%></div>
-    </div>
-  </div>
  </fieldset>
   
 </fieldset>
