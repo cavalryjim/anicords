@@ -71,11 +71,11 @@
  </fieldset>
  
  <fieldset id="heartworm_fieldset">
-   <legend>heartworm medication</legend>
+   <legend>heartworm treatment</legend>
    <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_heartworm_form', "data-abide" => '', class: 'animal_form'} do |f| %>
      <div class="row">
 	    <div class="large-10 columns"> 
-	      <%= f.label :medication_id, 'medication' %>
+	      <%= f.label :medication_id, 'heartworm' %>
 		  <%= f.text_field :medication_id, class: 'select animal_heartworm'  %>
 		  <small class="error">Heartworm required.</small>
 		</div>
@@ -83,9 +83,9 @@
 	  
 	  <div class="row">
 		<div class="large-4 columns">
-		  <%= f.label :medication_date, 'medication date'%>
+		  <%= f.label :medication_date, 'treatment date'%>
 		  <%= f.text_field :medication_date, class: "datepicker", placeholder: "select a date" %>
-		  <small class="error">Heartworm date required.</small>
+		  <small class="error">Treatment date required.</small>
 		</div>
 		<div class="large-4 columns">
 		   <%= f.label :volume, 'volume' %>
@@ -101,7 +101,7 @@
 	  <%= f.hidden_field :animal_id, value: @animal.id %>  
 	  <div class="row">	
 	    <div class="large-12 columns">
-	      <%= f.submit "add heartworm", class: "button small" %>  
+	      <%= f.submit "add treatment", class: "button small" %>  
 	    </div>
 	  </div>
    <% end %>
