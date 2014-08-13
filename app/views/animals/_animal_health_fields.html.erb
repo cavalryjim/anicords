@@ -75,7 +75,7 @@
    <%= form_for [@animal, AnimalMedication.new], remote: true, html: {id: 'animal_heartworm_form', "data-abide" => '', class: 'animal_form'} do |f| %>
      <div class="row">
 	    <div class="large-10 columns"> 
-	      <%= f.label :medication_id, 'heartworm' %>
+	      <%= f.label :medication_id, 'heartworm brand' %>
 		  <%= f.text_field :medication_id, class: 'select animal_heartworm'  %>
 		  <small class="error">Heartworm required.</small>
 		</div>
