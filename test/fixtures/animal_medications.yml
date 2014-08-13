@@ -17,6 +17,7 @@
 #  notify_on          :date
 #  location           :string(255)
 #  lot_number         :string(255)
+#  medication_type    :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

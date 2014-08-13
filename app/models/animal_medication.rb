@@ -17,6 +17,7 @@
 #  notify_on          :date
 #  location           :string(255)
 #  lot_number         :string(255)
+#  medication_type    :string(255)
 #
 
 class AnimalMedication < ActiveRecord::Base
@@ -31,6 +32,7 @@ class AnimalMedication < ActiveRecord::Base
   
   before_create do
     self.remove_medication_notifications
+    self.set_fields
   end
   
   
@@ -80,6 +82,11 @@ class AnimalMedication < ActiveRecord::Base
   
   def medication_series?
     self.medication.series?
+  end
+  
+  def set_fields
+    self.set_due_date if self.medication.frequency.present?
+    self.medication_type = self.medication.medication_type
   end
   
 end

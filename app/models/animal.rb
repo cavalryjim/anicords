@@ -370,6 +370,14 @@ class Animal < ActiveRecord::Base
     update_attribute :active, false
   end
   
+  def heartworm_medications
+    self.animal_medications.where(medication_type: 'heartworm')
+  end
+  
+  def other_medications
+    self.animal_medications.where.not(medication_type: 'heartworm')
+  end
+  
   private
   
   def new_health_profile
