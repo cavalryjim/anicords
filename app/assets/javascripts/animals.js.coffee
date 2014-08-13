@@ -293,7 +293,7 @@ jQuery ->
       results: (data, page) -> 
         results: data
   
-  $('#animal_medication_medication_id').select2
+  $('input.animal_medication').select2
     placeholder: "medication"
     width: "100%"
     id: (obj) ->
@@ -310,7 +310,7 @@ jQuery ->
         # since we are using custom formatting functions we do not need to alter remote JSON data
         results: data
   
-  $('#heartworm_id').select2
+  $('input.animal_heartworm').select2
     placeholder: "heartworm medication"
     width: "100%"
     id: (obj) ->

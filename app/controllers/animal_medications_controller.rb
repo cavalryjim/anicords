@@ -6,9 +6,9 @@ class AnimalMedicationsController < ApplicationController
   
   def create
     @animal_medication = AnimalMedication.new(animal_medication_params)
-    if params[:heartworm_id].present?
-      @animal_medication.medication_id = params[:heartworm_id] 
-      @heartworm = true
+    if params[:heartworm].present?
+      #@animal_medication.medication_id = params[:heartworm_id] 
+      @heartworm = true  #JDavis: this is not getting set....need to fix.  jdhere.
     end
     
     respond_to do |format|

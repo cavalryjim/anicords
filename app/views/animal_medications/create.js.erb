@@ -15,3 +15,8 @@
 	  return alert("There was a problem.  Please try again later.");
 	});
 <% end %>
+
+<% if @heartworm && !@success %>
+  alert("Select a heartworm medication and date administered");
+
+<% end %>
