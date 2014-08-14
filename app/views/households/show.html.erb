@@ -60,7 +60,7 @@
 	  	
 		  <% @notifications.each_with_index do |notification, i| %>
 		     <div class="mcp-list">
-			    <div class="mcp-comment hide-for-middle-up"><%= i %></div>
+			    <div class="mcp-comment hide-for-middle-up"><%= i+1 %></div>
 			    <div class="mcp-title">
 			    <h6><%= link_to_if household_notification_url(notification).present?, household_notification(notification), household_notification_url(notification) %></h6>
 			    <span class="post-date"><%= notification.updated_at.to_date %></span>
