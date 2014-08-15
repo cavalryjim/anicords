@@ -16,6 +16,7 @@
  *= require jquery.Jcrop
  *= require dataTables/jquery.dataTables.foundation
  *= require font-awesome
+ *= require addtohomescreen
  */
 
 ul.ui-autocomplete {

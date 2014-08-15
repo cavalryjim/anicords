@@ -24,6 +24,7 @@
 //= require jquery.sticky
 //= require fnAddTr
 //= require jquery.sticky
+//= require addtohomescreen
 //= require_tree .
 
 
