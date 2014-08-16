@@ -124,9 +124,9 @@ $(function(){
     //alert("hey");
   });
   
-  addToHomescreen({
-  	debug: true
-  });
+  //addToHomescreen({
+  //	debug: true
+  //});
   
 });
 
