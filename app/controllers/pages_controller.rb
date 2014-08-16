@@ -12,4 +12,12 @@ class PagesController < ApplicationController
     
   end
   
+  def learn_more
+    @learn_about = params[:learn_about]
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
 end
