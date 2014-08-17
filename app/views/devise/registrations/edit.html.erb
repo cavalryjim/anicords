@@ -1,62 +1,76 @@
-<section class="border_top">
- <div class="row">
-    <div class="large-12 columns">
-   	  <fieldset>
-		<h4>Change Password</h4>
-		
-		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, "data-abide" => '' }) do |f| %>
-		  
-		
-		  <div class="row">
-	  		<div class="large-4 columns">
+<div class="full_page">
+	
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @user.name %></h1>
+      <%= breadcrumb_nav(['Password']) %>
+	</div>
+  </div>
+ </section>	
+
+
+
+
+ <section class="white_background ">
+   <div class="row">
+     <div class="large-9 columns">
+	   <h4>Change Password</h4>
+	   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, "data-abide" => '' }) do |f| %>
+	     <div class="row">
+	  	   <div class="large-6 columns">
 	  		  <%= f.label :email %>
 		      <%= f.email_field :email, :autofocus => true %><small class="error">Email required.</small>
 		
 		      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
 		        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
 		      <% end %>
-		    </div>
-		  </div>
+		   </div>
+	     </div>
 		
-		  <div class="row">
-	  		<div class="large-4 columns">
-	  		  <%= f.label :password, 'New Password' %> 
-		      <%= f.password_field :password, :autocomplete => "off", 'required' => :required  %><small class="error">New password required.</small>
-		    </div>
-		  </div>
+		 <div class="row">
+	  	   <div class="large-6 columns">
+	  		 <%= f.label :password, 'New Password' %> 
+		     <%= f.password_field :password, :autocomplete => "off", 'required' => :required  %><small class="error">New password required.</small>
+		   </div>
+		 </div>
 		
-		  <div class="row">
-	  		<div class="large-4 columns">
-	  		  <%= f.label :password_confirmation %>
-		      <%= f.password_field :password_confirmation, 'required' => :required  %><small class="error">Confirmation required.</small>
-		    </div>
-		  </div>
+		 <div class="row">
+	  	   <div class="large-6 columns">
+	  		 <%= f.label :password_confirmation %>
+		     <%= f.password_field :password_confirmation, 'required' => :required  %><small class="error">Confirmation required.</small>
+		   </div>
+		 </div>
 		
-		  <div class="row">
-	  		<div class="large-4 columns">
-	  		  <%= f.label :current_password %>
-		      <%= f.password_field :current_password, 'required' => :required %><small class="error">Old password required.</small>
-		    </div>
-		  </div>
+		 <div class="row">
+	  	   <div class="large-6 columns">
+	  		 <%= f.label :current_password %>
+		     <%= f.password_field :current_password, 'required' => :required %><small class="error">Old password required.</small>
+		   </div>
+		 </div>
 		
-		  <div class="row">
-	  		<div class="large-4 columns">
-	  		  <%= f.submit "update", class: "button small" %>
-	  		</div>
-	      </div>
+		 <div class="row">
+	  	   <div class="large-4 columns">
+	  		 <%= f.submit "update", class: "button small" %>
+	  	   </div>
+	     </div>
 		<% end %>
-		
-		<h6>Cancel my account</h6>
-		
-		<div class="row">
-	  	  <div class="large-4 columns">
-	  	  	Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-	  	  </div>
+	  </div>
+	  
+	  <div id="cancel" class="columns large-3">
+	  	<div class="row">
+		  <div class="large-12 columns"><h6>Cancel account</h6></div>
+	  		
 	  	</div>
 		
-		<%= link_to button_small("Back"), edit_user_path(current_user) %>
+		<div class="row">
+	  	  <div class="large-12 columns">
+	  	  	Unhappy? 
+	  	  	<%= link_to button_small("Cancel account"), registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+	  	  </div>
+	  	</div>
 
-   	  </fieldset>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

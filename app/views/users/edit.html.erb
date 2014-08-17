@@ -12,11 +12,39 @@
 	
  <section class="white_background ">
   <div class="row">
-    <div class="large-12 columns">
+    <div class="large-9 columns">
 	  <h4>Editing Profile</h4>
 	  <%= render 'form' %>
     </div>
-   </div>
+    
+    <div class="columns large-3">
+	  <table>
+	    <thead>
+		  <tr>
+		    <th min-width="200" colspan="3">Associations</th>
+		  </tr>
+		</thead>
+		
+		<tbody>
+		  <% @user.associations.each do |association| %>
+		    <tr>
+		      <td><%= link_to image(association), association.organization %></td>   
+		      <td><%= link_to association.name, association.organization %></td> 
+		      <td><%= link_to image_tag('cross.png', alt:"del", size: '20x20'), user_user_association_path(@user, association), method: :delete, 
+					data: { confirm: 'Please confirm you want to remove ' + association.name + ' from your account.' } %></td>      
+		     </tr>
+		   <% end %>
+		 </tbody>
+	  </table>
+	  <%= link_to button_small("Add association"), user_select_account_type_path %>
+    </div>
+    
+  </div>
  </section>  
- <%= button_small('Add to homescreen', 'homescreen')%>
+ 
+ <div class="row hidden-for-medium-up">
+   <div class="columns large-6">
+     <%= button_small('Add to homescreen', 'homescreen')%>
+   </div>
+ </div>
 </div>
