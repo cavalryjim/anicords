@@ -124,9 +124,10 @@ $(function(){
     //alert("hey");
   });
   
-  //addToHomescreen({
-  //	debug: true
-  //});
+  //addToHomescreen.removeSession();
+  var addtohome = addToHomescreen({
+  	debug: true	
+  });
   
 });
 
