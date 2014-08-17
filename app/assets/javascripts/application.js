@@ -126,7 +126,7 @@ $(function(){
   
   //addToHomescreen.removeSession();
   var addtohome = addToHomescreen({
-  	debug: true	
+  	//debug: true	
   });
   
 });
