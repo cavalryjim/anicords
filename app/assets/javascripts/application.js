@@ -32,14 +32,6 @@ var orgTable;
 
 $(function(){
   
-  
-  //$(document).foundation()
-  //.foundation('abide', {
-  //  patterns: {
-  //    password : /(?=^.{8,}$).*$/
-
-  //  }
-  // });
   $(document).foundation({
     abide : {
       patterns: {
@@ -90,30 +82,8 @@ $(function(){
     matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; }
   });
   
-  //$('#org_animal_edit_div').on('show', function() {
-  	//$(document).foundation();
-    //alert("ehool");
-    //$(".regular_select2").select2("destroy");
-    //$(".org_regular_select2").select2({ minimumResultsForSearch: 55, width: '100%'});
-    //$(".org_animal_breed").select2({
-    //  data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
-    //});
-  //});
-  
-  $('.front_page_callout').click(function() {
-    $('#registerSigninModal').foundation('reveal', 'open');
-  });
   
   $(".best_in_place").best_in_place();
-  
-  $("#test_scroll").click(function(){
-  	var num = $("#target_scroll").offset().top;
-  	//alert(num);
-  	$("html,body").animate({
-  	  scrollTop:$("#target_scroll").offset().top},"500"
-  	);
-  	return false;
-  });
    
   $('.full_page').css("min-height", $(window).height() - ( $("#header").height() + 1.5 * $("#nav_menu").height() + $("#footer").height() ) );
   $('.front_page_mainsection').css("min-height", $(window).height() - $("#top_bar").height() );
