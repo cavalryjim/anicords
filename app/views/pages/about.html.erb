@@ -4,18 +4,45 @@
  <section class="gray_background ">
   <div class="row pad-btm">
     <div class="column large-12">
-	  <h1 class="ptitle left">About us</h1>
-      
+	  <h1 class="ptitle left">Team</h1>
 	</div>
   </div>
  </section>
  
  <section class="white_background"> 
-  <div class="row add-bottom white_background">
-    <div class="columns large-9">
-    	Coming soon.
+  <div class="row bottom_padding_1em">
+    <div class="columns large-4">
+      <%= image_tag s3_url('tyler_dog.jpg'), class: 'picture_border_2' %>
+      <h5>Tyler</h5>
+      <p class="about_text">
+      	Tyler is all about developing original ideas based on insights from data whether it's in geophysics, 
+      	molecular spectroscopy or women's fashion.  Outside the office, he is likely attending a 
+      	sporting event his sons.
+      </p>
+      <%= link_to "<i class='fa fa-linkedin'></i>".html_safe, "https://www.linkedin.com/profile/view?id=14411262", target: "_blank" %>
+    </div>
+    
+    <div class="columns large-4">
+      <%= image_tag s3_url('james_dog.jpg'), class: 'picture_border_2' %>
+      <h5>James</h5>
+      <p class="about_text">
+      	James enjoys knock knock jokes, data, salted almonds, Ruby, Rails, Ruby on Rails, and copious
+      	amounts of black coffee.  When not coding, he is likely sipping on a smooth whisky.
+      </p>
+      <%= link_to "<i class='fa fa-linkedin'></i>".html_safe, "https://www.linkedin.com/in/jdavisphd", target: "_blank" %>
+    </div>
+    
+    <div class="columns large-4">
+      <%= image_tag s3_url('mike_dog.jpg'), class: 'picture_border_2' %>
+      <h5>Mike</h5>
+      <p class="about_text">
+      	Mike thrives on big ideas and putting them into action by connecting the impossible. During his freetime he 
+      	plays his guitar, golfs, and constantly looks for the next big thing.
+      </p>
+      <%= link_to "<i class='fa fa-linkedin'></i>".html_safe, "https://www.linkedin.com/in/michaelbeirne", target: "_blank" %>
     </div>
   </div>
+  
  </section>
 
 </div>

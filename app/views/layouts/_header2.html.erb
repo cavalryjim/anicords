@@ -33,7 +33,11 @@
 		  <li><%= link_to "SIGN IN", "#", "data-reveal-id" => "registerSigninModal" %></li>
 		<% end %>
 		-->
-		<li><%= link_to "SIGN IN", new_user_registration_path + "#login" %></li>
+		<li><%= link_to "Contact", contact_us_path %></li>
+		<li class="divider"></li>
+		<li><%= link_to "About", about_us_path %></li>
+		<li class="divider"></li>
+		<li><%= link_to "Sign in", new_user_registration_path + "#login" %></li>
       <% end %>
     </ul>
     
