@@ -1,18 +1,38 @@
+<h4>Leave us a comment</h4>
 <%= form_for BetaComment.new, remote: true, html: {id: 'beta_comment_form'} do |f| %>
-  <div class="field">
-    <%= f.text_field :name, placeholder: "name" %>
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :name, 'name'%>
+      <%= f.text_field :name, placeholder: "name" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.text_field :email, placeholder: "email" %>
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :email, 'email'%>
+      <%= f.text_field :email, placeholder: "email" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.text_area :comment, placeholder: "message" %>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :comment, 'comment'%>
+      <%= f.text_area :comment, placeholder: "message" %>
+    </div>
   </div>
+  
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :mailing_list do %>
+	    <%= f.check_box :mailing_list %><span id="microchipped_label"> join mailing list?</span> 
+	  <% end %>
+    </div>
+  </div>
+    
   <%= f.hidden_field :page_url, value: request.original_url %>
   <% if current_user %>
 	<%= f.hidden_field :user_id, value: current_user.id %>
   <% end %>
   <div class="actions">
-    <%= f.submit 'send message', class: "button small" %>
+    <%= f.submit 'send', class: "button small" %>
   </div>
 <% end %>

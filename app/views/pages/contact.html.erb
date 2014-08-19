@@ -1,4 +1,4 @@
-<% content_for :title, "About us" %>
+<% content_for :title, "Contact us" %>
 
 <div class="full_page">
  <section class="gray_background ">
@@ -11,16 +11,21 @@
  </section>
  
  <section class="white_background"> 
-  <div class="row add-bottom white_background">
-    <div class="columns large-9">
-      
-
-	  <p>
-		AnimalMinder, LLC</br>
-		
-		225.892.0230</br>
-		<%= mail_to 'james@animalminder.com' %>
-	  </p>
+  <div class="row bottom_padding_3em ">
+    <div class="columns large-8">
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=640x300&sensor=false&zoom=14&markers=30.4516347%2C-91.1167001" %>
+    </div>
+    <div class="columns large-4">
+      <h4>AnimalMinder, LLC</h4>
+      <hr>
+      <p><i class="fa fa-phone"></i><strong> Phone:</strong> 225.892.0230</p>
+      <p><i class="fa fa-home"></i><strong> Address:</strong> 7117 Florida Blvd, Baton Rouge, LA 70806</p>
+      <p><i class="fa fa-envelope"></i><strong> Email:</strong> <%= mail_to 'james@animalminder.com' %></p>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="columns large-7">
+      <%= render 'layouts/beta_comment'%>
     </div>
   </div>
  </section>

@@ -1,4 +1,4 @@
-<% if @beta_comment.present? %>
+<% if @beta_comment.persisted? %>
   $("form#beta_comment_form").on("ajax:success", function(event, data, status, response) {
     $(".reveal-modal").foundation('reveal', 'close');
     $(this)[0].reset();
@@ -7,4 +7,6 @@
   }).on("ajax:error", function(event, response, error) {
     alert("There was a problem.  Please try again later.");
   });
+<% else %>  
+  alert("Please leave a comment or join our mailing list");
 <% end %>

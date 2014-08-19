@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813011531) do
+ActiveRecord::Schema.define(version: 20140819010825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -222,6 +222,7 @@ ActiveRecord::Schema.define(version: 20140813011531) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "email"
+    t.boolean  "mailing_list", default: true
   end
 
   create_table "breeders", force: true do |t|

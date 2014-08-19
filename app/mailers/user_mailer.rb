@@ -103,6 +103,11 @@ class UserMailer < ActionMailer::Base
     mail to: ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com'], subject: "AnimalMinder weekly usage report"
   end
   
+  def email_comment(comment)
+    @comment = comment
+    mail to: ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com'], subject: "AnimalMinder comment"
+  end
+  
 private
   
   
