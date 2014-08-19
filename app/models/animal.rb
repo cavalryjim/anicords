@@ -359,7 +359,11 @@ class Animal < ActiveRecord::Base
   end
   
   def self.microchip_search(chip_brand, chip_id)
-    where(microchip_brand_id: chip_brand, microchip_id: chip_id)
+    if chip_brand.present?
+      where(microchip_brand_id: chip_brand, microchip_id: chip_id)
+    else
+      where(microchip_id: chip_id)  
+    end
   end
   
   def vaccinations_due(as_of_date = (Date.today + 2.weeks) )
