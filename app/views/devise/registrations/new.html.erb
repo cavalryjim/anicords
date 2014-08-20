@@ -128,13 +128,27 @@
     </div>
         
     <div class="small-12 large-4 columns">
-      <h5 class="alt">Contact Details</h5>
-      <div class="columns large-12">
-	    <p class="deets"> <strong>Address:</strong> 7117 Florida Blvd, Baton Rouge, LA 70806 </p>
-	    <p class="deets"> <strong>Email:</strong> <a href="mailto:james@animalminder.com">james@animalminder.com</a></p>
-	    <p class="deets"> <strong>Google Maps:</strong> <%= link_to "See our location online", "http://goo.gl/maps/CbX8f", target: "_blank" %> </p>
-	    <p class="deets"> <strong>Phone:</strong> 225.892.0230</p>
-      </div>
+      <h5 class="alt">Mailing List</h5>
+      	
+      	<h4><small>
+      	  Not ready to create an account.  Stay informed on our mailing list.
+      	</small></h4>
+        <%= form_for BetaComment.new, remote: true, html: {id: 'beta_comment_form'} do |f| %>
+		  <div class="row">
+		    <div class="large-12 columns">
+		      <%= f.text_field :email, placeholder: "email address" %>
+		    </div>
+		  </div>
+		    
+		  <%= f.hidden_field :mailing_list, value: true %>
+		  
+		  <div class="actions">
+		    <%= f.submit 'sign up', class: "button small" %>
+		  </div>
+        <% end %>
+     
+      
+      
     </div>
   </div>
    
