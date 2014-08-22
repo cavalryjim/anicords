@@ -301,7 +301,24 @@ $(".org_animal_div").on "show", ->
         # since we are using custom formatting functions we do not need to alter remote JSON data
         results: data
   
-  $('#heartworm_id').select2
+  $('input.animal_medication').select2
+    placeholder: "medication"
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/remote_requests/medications"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        page_limit: 10
+
+      results: (data, page) -> # parse the results into the format expected by Select2.
+        # since we are using custom formatting functions we do not need to alter remote JSON data
+        results: data
+  
+  $('input.animal_heartworm').select2
     placeholder: "heartworm medication"
     width: "100%"
     id: (obj) ->
@@ -462,10 +479,10 @@ $(".org_animal_div").on "show", ->
   $("img#weight_details").click (event) ->
     if $("#animal_weight_table_div").is(":hidden")
       $("#animal_weight_table_div").slideDown()
-      $("img#weight_details").attr "src", "/img/details_close.png"
+      $("img#weight_details").attr "src", "/assets/details_close.png"
     else
       $("#animal_weight_table_div").slideUp()
-      $("img#weight_details").attr "src", "/img/details_open.png"
+      $("img#weight_details").attr "src", "/assets/details_open.png"
   
   #$("#delete_dialog").dialog
   #  autoOpen: false

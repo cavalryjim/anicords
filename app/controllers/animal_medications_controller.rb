@@ -5,7 +5,7 @@ class AnimalMedicationsController < ApplicationController
   authorize_resource
   
   def create
-    @heartworm = (params[:commit] == "add heartworm")
+    @heartworm = (params[:commit] == "add treatment")
     @animal_medication = AnimalMedication.new(animal_medication_params)
     #JDavis: this is not getting set....need to fix.  jdhere.
     @success = @animal_medication.save
