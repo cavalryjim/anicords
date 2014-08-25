@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819010825) do
+ActiveRecord::Schema.define(version: 20140823161511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -565,6 +565,10 @@ ActiveRecord::Schema.define(version: 20140819010825) do
     t.integer  "series_number"
     t.integer  "series_interval"
     t.integer  "series_next_id"
+    t.string   "vaccination_type"
+    t.string   "vaccination_subtype"
+    t.string   "route"
+    t.string   "produced_by"
   end
 
   create_table "veterinarians", force: true do |t|
