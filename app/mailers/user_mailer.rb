@@ -107,10 +107,12 @@ class UserMailer < ActionMailer::Base
     @comment = comment
     if @comment.present?
       mailing_list = ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com']
+      email_subject = "AnimalMinder comment"
     else
-      mailing_list = ['james.davisphd@gmail.com']
+      mailing_list = 'james.davisphd@gmail.com'
+      email_subject = "Joined mailing list"
     end
-    mail to: mailing_list, subject: "AnimalMinder comment"
+    mail to: mailing_list, subject: email_subject
   end
   
 private
