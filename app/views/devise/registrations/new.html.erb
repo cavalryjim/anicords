@@ -103,16 +103,19 @@
     	<h3>Recent News</h3>
 		<hr>
 		<article class="blogPicture">
-            <h1><%= link_to "AnimalMinder was selected as the official animal registry for Louisiana", "#" %></h1>
+            <h5>AnimalMinder was selected as the official animal registry for Louisiana</h5>
             <div class="blog-options">
 				<span><em class="icon-user"></em> tyler </span>
 				<span><em class="icon-pencil"></em> 03-Jun-2014</span>
 				<span><em class="icon-comment"></em> 0 comments</span>
 			</div>
             <div class="blog-description">
-                <p>AnimalMinder works great for accessing records during emergenices and was selected by the Louisiana Animal Welfare Comission as the official animal registry for the state.</p>
+                <p>
+                  AnimalMinder works great for accessing records during emergenices and was selected by the 
+                  Louisiana Animal Welfare Comission as the official animal registry for the state.
+                </p>
             </div>
-            <%= link_to button_small('Read More', 'blog_btn', 'radius' ) , "#" %>
+            <%= link_to button_small('Read More', 'blog_btn', 'radius' ), news_path %>
         </article>
 
     </div>

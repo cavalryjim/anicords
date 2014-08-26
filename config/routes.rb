@@ -75,6 +75,7 @@ Anicords::Application.routes.draw do
   get 'about' => "pages#about", as: :about_us
   get 'contact' => "pages#contact", as: :contact_us
   get 'learn_more' => "pages#learn_more", as: :learn_more
+  get 'news' => "pages#news", as: :news
   get 'user/select_association' => 'users#select_association'
   patch 'user/set_association' => 'users#set_association'
   get 'user/select_account_type' => 'users#select_account_type'
