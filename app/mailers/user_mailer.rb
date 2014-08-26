@@ -105,7 +105,12 @@ class UserMailer < ActionMailer::Base
   
   def email_comment(comment)
     @comment = comment
-    mail to: ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com'], subject: "AnimalMinder comment"
+    if @comment.present?
+      mailing_list = ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com']
+    else
+      mailing_list = ['james.davisphd@gmail.com']
+    end
+    mail to: mailing_list, subject: "AnimalMinder comment"
   end
   
 private
