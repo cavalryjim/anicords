@@ -19,14 +19,8 @@
 	  <% end %>
 	  
 	  <% @household.animals.each do |animal| %>
-	    <div class="columns large-4 small-12">
-	     <%= link_to(household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", remote: true) do %>
-		  <div class="panel callout radius center">
-		    <%= thumbnail(animal, '100x100', '', 'Household') %>
-			<h6><%= animal.name %></h6>
-			<p><%= animal.breed_names%></p>
-		  </div>
-		 <% end %> 
+	    <div class="columns large-6 small-12">
+	      <%= render 'households/animal_panel', animal: animal %>
 		</div>
 	  <% end %>
     </div>

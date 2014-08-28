@@ -1,0 +1,26 @@
+<div class="panel callout radius center no_highlight">
+  <div class="row">
+    <div class="columns large-6 small-6">
+	  <%= thumbnail(animal, '100x100', '', 'Household') %>
+	  <h6><%= animal.name %></h6>
+	  <p><small><%= animal.breed_names%></small></p>
+	</div>
+	
+	<div class="columns large-6 small-6">
+	  
+  	    <%= link_to button_small("edit"), household_animal_path(@household, animal) %>
+  		<%= link_to button_small("instructions"), household_animal_path(@household, animal) %>
+		<%= link_to button_small("edit"), household_animal_path(@household, animal) %>
+		<%= link_to button_small("edit"), household_animal_path(@household, animal) %>
+		<%= link_to button_small("edit"), household_animal_path(@household, animal) %>
+		<%= link_to button_small("edit"), household_animal_path(@household, animal) %>
+      
+	  
+	</div>
+  </div>
+</div>
+
+<!---  
+<%= link_to(household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", remote: true) do %>
+		 <% end %> 
+	--->
