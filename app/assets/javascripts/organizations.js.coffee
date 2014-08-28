@@ -116,6 +116,7 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -217,6 +218,7 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -244,6 +246,7 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -270,6 +273,7 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> 
@@ -295,6 +299,7 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -312,6 +317,7 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -330,6 +336,7 @@ $(".org_animal_div").on "show", ->
       data: (term, page) ->
         term: term # search term
         hw_only: true
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> # parse the results into the format expected by Select2.
@@ -347,6 +354,7 @@ $(".org_animal_div").on "show", ->
       dataType: "json"
       data: (term, page) ->
         term: term # search term
+        at_id: $('#animal_animal_type_id').val()
         page_limit: 10
 
       results: (data, page) -> 

@@ -140,7 +140,9 @@ class RemoteRequestsController < ApplicationController
   end
   
   def vaccinations
-    @vaccinations = Vaccination.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|v| {id: v.id, text: v.name }}
+    n = "%#{params[:term]}%"
+    a = "#{params[:at_id]}"
+    @vaccinations = Vaccination.order(:name).where("name ILIKE ? and animal_type_id = ?", n, a).map{|v| {id: v.id, text: v.name }}
     render json: @vaccinations
   end
   
