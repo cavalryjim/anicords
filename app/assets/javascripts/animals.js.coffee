@@ -460,12 +460,14 @@ jQuery ->
       $(nTr).hide("slow")
       #$(nTr).slideUp("slow", "swing")
     
-  $("#qr_code_img").click (event) ->
+  $(".qr_code_img").click (event) ->
     event.preventDefault()
-    $("#largeQRCode").dialog "open"
+    #$(".qr_code_img").dialog "close"
+    name = "#largeQRCode" + this.id
+    $(name).dialog "open"
     
   
-  $("#largeQRCode").dialog
+  $(".largeQRCode").dialog
     autoOpen: false
     buttons:
       close: ->

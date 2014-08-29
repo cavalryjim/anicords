@@ -1,13 +1,17 @@
 <div class="panel callout radius center no_highlight">
   <div class="row">
     <div class="columns large-6 small-6">
-	  <%= thumbnail(animal, '100x100', '', 'Household') %>
+      <span data-tooltip aria-haspopup="true" class="has-tip" title="change the display image in the photo gallery">
+	    <%= thumbnail(animal, '100x100', '', 'Household') %>
+      </span>
 	  <h6><%= animal.name %></h6>
 	  <p><small><%= animal.breed_names%></small></p>
 	  
 	  <% if animal.qr_code.present? %>
-        <%= image_tag( animal.qr_code.url, size: '50x50', class: 'th', id: 'qr_code_img' ) %>
-        <div id="largeQRCode" class="fouc" title= "<%= animal.name%>'s QR Code">
+	    <span data-tooltip aria-haspopup="true" class="has-tip" title="download your animal's qr code">
+          <%= image_tag( animal.qr_code.url, size: '50x50', class: 'th qr_code_img', id: animal.id.to_s ) %>
+		</span>
+        <div id="largeQRCode<%=animal.id.to_s%>" class="fouc largeQRCode" title= "<%= animal.name%>'s QR Code">
 		  <p>This is a downloadable QR code.</p>
 		  <p align="center">
 		    <%= link_to image_tag( animal.qr_code.url, size: '100x100', class: 'picture_border_3'), animal.qr_code.remote_url %> 
@@ -19,24 +23,48 @@
 	</div>
 	
 	<div class="columns large-6 small-6">
-	  
-  	    <%= link_to button_small("edit"), edit_household_animal_path(@household, animal) %>
-  		<%= link_to button_small("medical record (pdf)"), household_animal_path(@household, animal, format: "pdf"), target: '_blank' %>
-		<%= link_to button_small("photo gallery"), animal_pictures_path(animal) %>
-		<%= link_to button_small("sitter instructions"), animal_sitter_instructions_path(animal, format: "pdf"), target: '_blank' %>
-		<% if animal.pending_transfer? %>
-          <%= link_to button_small("cancel transfer"), "#", remote: true %>
-        <% else %>
-          <%= link_to button_small("transfer ownership"), "#", "data-reveal-id" => "transferAnimalModal", remote: true %>
-        <% end %>
+		<%= link_to edit_household_animal_path(@household, animal) do %>
+		  <div class="panel panel_as_button">
+		  	edit
+		  </div>
+		<% end %> 
 		
-      
-	  
+		<%= link_to household_animal_path(@household, animal, format: "pdf"), target: '_blank' do %>
+		  <div class="panel panel_as_button">
+		  	medical record (pdf)
+		  </div>
+		<% end %> 
+		
+  	    <%= link_to animal_pictures_path(animal) do %>
+		  <div class="panel panel_as_button">
+		  	photo gallery
+		  </div>
+		<% end %> 
+  		
+		<%= link_to animal_sitter_instructions_path(animal, format: "pdf"), target: '_blank' do %>
+		  <div class="panel panel_as_button">
+		  	sitter instructions (pdf)
+		  </div>
+		<% end %> 
+		
+		
+		<% if animal.pending_transfer? %>
+		  <%= link_to "#", remote: true do %>
+		    <div class="panel panel_as_button">
+		  	  cancel transfer
+		    </div>
+		  <% end %> 
+        <% else %>
+          <%= link_to "#", "data-reveal-id" => "transferAnimalModal", remote: true do %>
+		    <div class="panel panel_as_button">
+		  	  transfer ownership
+		    </div>
+		  <% end %> 
+        <% end %>
+
 	</div>
   </div>
 </div>
 
 <!---  
-<%= link_to(household_animal_path(@household, animal), "data-reveal-id" => "showAnimalModal", remote: true) do %>
-		 <% end %> 
 	--->

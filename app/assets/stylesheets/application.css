@@ -157,6 +157,14 @@ section.front_page_section_login {
   color: #fff;
 }
 
+.panel_as_button {
+ background-color: #008cba !important;
+ color: #FFFFFF;
+ padding: 0.5em !important; 
+ font-size: 0.75em;
+ margin-bottom: 1em !important;
+}
+
 .main_content_section {
   padding-bottom: 5px;
   border: solid 3px black;
