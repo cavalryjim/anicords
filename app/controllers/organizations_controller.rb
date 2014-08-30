@@ -34,9 +34,9 @@ class OrganizationsController < InheritedResources::Base
   def create
     @organization = Organization.new(organization_params)
     respond_to do |format|
-      if @organization.save && @organization.associate_user(current_user.id, true)
-        User.create_user_to_group(params[:admin1_email], @organization, params[:admin1_first_name], params[:admin1_last_name], true ) if (params[:admin1_email].present?)
-        User.create_user_to_group(params[:admin2_email], @organization, params[:admin2_first_name], params[:admin2_last_name], true ) if (params[:admin2_email].present?)
+      if @organization.save && @organization.associate_user(current_user, 'admin')
+        User.create_user_to_group(params[:admin1_email], @organization, 'admin', params[:admin1_first_name], params[:admin1_last_name], params[:admin1_phone] ) if (params[:admin1_email].present?)
+        User.create_user_to_group(params[:admin2_email], @organization, 'admin', params[:admin2_first_name], params[:admin2_last_name], params[:admin2_phone] ) if (params[:admin2_email].present?)
         
         format.html { redirect_to organization_path(@organization), notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
@@ -72,7 +72,8 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def create_user
-    User.create_user_to_group(params[:user][:email], @organization, params[:user][:first_name], params[:user][:last_name], params[:user][:admin] )
+    User.create_user_to_group(params[:user][:email], @organization, params[:user_role],
+          params[:user][:first_name], params[:user][:last_name], params[:user][:phone] )
     
     redirect_to edit_organization_path(@organization), notice: 'Human was successfully added.'
   end

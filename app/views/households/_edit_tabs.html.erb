@@ -1,0 +1,23 @@
+<ul class="tabs" data-tab>
+  <li class="tab-title active"><a href="#panel1">Household info</a></li>
+  <% unless @household.new_record? %>
+    <li class="tab-title"><a href="#panel2">Household members</a></li>
+    <li class="tab-title"><a href="#panel3">Sitters</a></li>
+  <% end %> 
+</ul>
+
+<div class="tabs-content">
+  
+  <%= content_tag :div, id: 'panel1', class: 'content active' do %>
+	<%= render 'form' %>	
+  <% end %>
+
+  <%= content_tag :div, id: 'panel2', class: (@household.new_record? ? 'content disabled' : 'content') do %>
+	<div id='members_div'><%= render 'members' unless @household.new_record?  %></div>
+  <% end %>
+	  
+  <%= content_tag :div, id: 'panel3', class: (@household.new_record? ? 'content disabled' : 'content') do %>
+	<%= render 'sitters' unless @household.new_record?%>
+  <% end %>
+
+</div>

@@ -4,7 +4,7 @@
 	<div class="large-12 columns">
   	
   	  <fieldset>
-		<h4>Is this account for a household, animal group, or service provider?</h4> 
+		<h4>Select the type of account to create</h4> 
 			
 	    <ul class="small-block-grid-3 large-block-grid-3">
 	      <li>
@@ -17,14 +17,28 @@
 		  <li >
 		   <%= link_to new_organization_path do %>
 		    <div class="panel callout front_page_callout">
-	          <p>Animal group (such as a pet rescue).</p>
+	          <p>Animal group (such as a pet rescue)</p>
+	        </div>
+	       <% end %>
+		  </li>
+		  <li>
+		   <%= link_to "#" do %>
+		    <div class="panel callout front_page_callout">
+	          <p>Veterinarians (coming soon!)</p>
 	        </div>
 	       <% end %>
 		  </li>
 		  <li>
 		   <%= link_to new_service_provider_path do %>
 		    <div class="panel callout front_page_callout">
-	          <p>Service provider (veterinarians, groomers, etc.). <u>pre-Beta!</u></p>
+	          <p>Service provider (groomers, sitters, kennels, etc.). <u>pre-Beta!</u></p>
+	        </div>
+	       <% end %>
+		  </li>
+		  <li>
+		   <%= link_to "#" do %>
+		    <div class="panel callout front_page_callout">
+	          <p>Livestock managers (cattle, horses, exotics). Coming soon!</p>
 	        </div>
 	       <% end %>
 		  </li>

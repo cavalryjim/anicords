@@ -59,9 +59,10 @@ class Household < ActiveRecord::Base
     address1_changed? || address2_changed? || city_changed? || state_changed? || zip_changed?
   end
   
-  def associate_user(user_id, administrator=false)
-    user_association = UserAssociation.where(user_id: user_id, group: self).first_or_create
-    user_association.update_attribute :administrator, administrator if administrator
+  def associate_user(user, role)
+    user_association = UserAssociation.where(user_id: user.id, group: self).first_or_create
+    #user_association.update_attribute :administrator, administrator if administrator
+    user.add_role(role, self)
   end
   
   def associate_service_provider(service_provider_id)

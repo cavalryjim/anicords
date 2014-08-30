@@ -59,9 +59,7 @@ module ApplicationHelper
      link_to(anchor, new_user_registration_path + "#" )
     end
   end
-  
-  
-  
+
   def s3_url(file_name)
     #'https://s3-us-west-2.amazonaws.com/petabyt/app_images/' << file_name
     #'https://s3.amazonaws.com/petabyt/app_images/' << file_name
@@ -184,7 +182,10 @@ module ApplicationHelper
     end
   end
   
- 
+  def display_roles(user, entity)
+    roles = user.roles.where(resource: entity)
+    roles.map{|r| r.name}.join(", ")
+  end
   
 #### JDavis: let the states be the second to last item in this helper ####
   

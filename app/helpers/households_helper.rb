@@ -63,4 +63,10 @@ module HouseholdsHelper
     end
   end
   
+  def household_roles
+    [['member (full access)', :member], 
+    ['member (limited access)', :limited_member], 
+    ['sitter (care instructions only)', :sitter]]
+  end
+  
 end

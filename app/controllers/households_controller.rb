@@ -36,10 +36,10 @@ class HouseholdsController < ApplicationController
     #breakage
     @household = Household.new(household_params)
     respond_to do |format|
-      if @household.save && @household.associate_user(current_user.id, true)
-        User.create_user_to_group(params[:human_email], @household, params[:human_first_name], params[:human_last_name], true ) if (params[:human_email] != "")
-        
-        @household.transfer_animals(params[:animal_transfers]) if params[:animal_transfers]
+      if @household.save && @household.associate_user(current_user, 'member')
+        #User.create_user_to_group(params[:human_email], @household, 'member', params[:human_first_name], params[:human_last_name], params[:human_phone]) if (params[:human_email] != "")
+
+        @household.transfer_animals(params[:animal_transfers]) if params[:animal_transfers].present?
         format.html { redirect_to @household, notice: 'Household was successfully created.' }
         format.json { render action: 'show', status: :created, location: @household }
       else
@@ -54,9 +54,11 @@ class HouseholdsController < ApplicationController
   def update
     respond_to do |format|
       if @household.update(household_params)
-        format.html { redirect_to @household, notice: 'Household was successfully updated.' }
+        format.js
+        format.html { redirect_to edit_household_path(@household), notice: 'Household was successfully updated.' }
         format.json { head :no_content }
       else
+        format.js
         format.html { render action: 'edit' }
         format.json { render json: @household.errors, status: :unprocessable_entity }
       end
@@ -83,8 +85,10 @@ class HouseholdsController < ApplicationController
   end
   
   def create_user
-    new_user = User.create_user_to_group(params[:user][:email], @household, params[:user][:first_name], params[:user][:last_name])
+    new_user = User.create_user_to_group(params[:user][:email], @household, params[:user_role],
+      params[:user][:first_name], params[:user][:last_name], params[:user][:phone])
     #new_user.create_activity :added_to_group, owner: current_user, recipient: @household
+    
     redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
   end
   

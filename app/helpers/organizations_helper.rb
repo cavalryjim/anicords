@@ -30,4 +30,10 @@ module OrganizationsHelper
     end
   end
   
+  def organization_roles
+    [['administrator (full access)', :admin], 
+    ['administrator (dogs only)', :admin_dogs], 
+    ['administrator (cats only)', :admin_cats]]
+  end
+  
 end

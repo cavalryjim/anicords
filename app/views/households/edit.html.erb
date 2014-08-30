@@ -11,107 +11,13 @@
  
  <section class="white_background"> 
   <div class="row add-bottom white_background">
-    <div class="columns large-9">
-     <%= render 'form' %>
-    </div>
-    
-    <div class="columns large-3">
-      <table >
-	    <thead>
-	      <tr>
-	        <th>Household Members</th>
-	        <th></th>
-	      </tr>
-	    </thead>
-	
-	    <tbody>
-	      <% @household.user_associations.each do |ua| %>
-	        <% if ua.user.present? %>
-	          <tr>
-	            <td><%= ua.user.name %></td>
-	            <td>
-	               <% if ua.user != current_user %>
-	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
-				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
-				   <% end %>
-	            </td>
-	          </tr>
-	        <% end %>
-	      <% end %>     
-	    </tbody>
-	  </table>
-      
-      <%= link_to button_small('Add Member'), "#", "data-reveal-id" => "newHumanModal" %>
-    </div>
+  	
+    <div class="columns large-12"> <%= render 'edit_tabs' %> </div>
+  	
   </div>
    
   <!---  
-  <div class="row">
-    <div class="large-9 columns">
-	  <table class="margin-bottom_25em">
-	    <thead>
-	      <tr>
-	        <th>Name</th>
-	        <th>Email</th>
-	        <th>Phone</th>
-	        <th></th>
-	      </tr>
-	    </thead>
-	
-	    <tbody>
-	      <% @household.user_associations.each do |ua| %>
-	        <% if ua.user.present? %>
-	          <tr>
-	            <td><%= ua.user.name %></td>
-	            <td><%= ua.user.email %></td>
-	            <td><%= ua.user.phone %></td>
-	            <td>
-	               <% if ua.user != current_user %>
-	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
-				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
-				   <% end %>
-	            </td>
-	          </tr>
-	        <% end %>
-	      <% end %>     
-	    </tbody>
-	  </table>
-	        
-    </div>
-    
-    <div class="columns large-3"> 
-      <aside class="gray_background">
-      	<h5 class="center">Add Human</h5>
-      	<%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
-	      <div class="row">
-	        <div class="large-12 columns">
-	          <%= f.text_field :email, placeholder: "Email"  %>
-	          <small class="error">Email required.</small>
-	        </div>
-	      </div>
-	    
-	      <div class="row">
-	        <div class="large-12 columns">
-	          <%= f.text_field :first_name, placeholder: "First Name"  %>
-	        </div>
-	      </div>
-	    
-	      <div class="row">
-	        <div class="large-12 columns">
-	          <%= f.text_field :last_name, placeholder: "Last Name"  %>
-	        </div>
-	      </div>
-	    
-	      <%= f.hidden_field :household_id, value: @household.id %>
-	    
-	      <div class="actions">
-	        <%= f.submit "add member", class: "button small" %>
-	      </div>
-	  
-	    <% end %>
-      </aside>     
-    </div>   
-  </div>
+  
   ---> 
    
  </section>
@@ -130,13 +36,25 @@
 	    
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :first_name, placeholder: "First Name"  %>
+	        <%= f.text_field :first_name, placeholder: "first name"  %>
 	      </div>
 	    </div>
 	    
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+	        <%= f.text_field :last_name, placeholder: "last name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :phone, placeholder: "phone"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	      	<%= select_tag 'user_role', options_for_select(household_roles), include_blank: false, class:'regular_select' %>  
 	      </div>
 	    </div>
 	    
