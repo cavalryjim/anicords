@@ -19,6 +19,7 @@
 
 class Household < ActiveRecord::Base
   include ActiveModel::Validations
+  resourcify
   #include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }
   

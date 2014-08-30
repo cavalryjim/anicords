@@ -30,6 +30,7 @@
 
 class User < ActiveRecord::Base
   include Rails.application.routes.url_helpers
+  rolify
   #include ActiveModel::Validations
   #include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }

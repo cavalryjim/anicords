@@ -4,7 +4,7 @@
 	<ul id="utility-nav" class="inline-list right">
   	  <% if user_signed_in? %>
         <li>
-          <%= link_to('#', 'data-dropdown' => 'notifications_drop') do %>
+          <%= link_to('#', 'data-dropdown' => 'notifications_drop', 'data-options' => 'is_hover:true') do %>
 	        <% if number_of_notifications %>
 	         <div class="notifications">
                <%= number_of_notifications %>
@@ -18,7 +18,7 @@
 	    
 	    <li>
 	      <!--<%= image_tag 'icon-user-small.png', size: '25x25' %>-->
-	      <%= link_to current_user.name, '#', 'data-dropdown' => 'user_drop' %>
+	      <%= link_to current_user.name, '#', 'data-dropdown' => 'user_drop', 'data-options' => 'is_hover:true' %>
 	      <ul id='user_drop' class='f-dropdown' data-dropdown-content> 	
 		    <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
 		  	<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>	

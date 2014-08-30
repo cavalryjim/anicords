@@ -61,6 +61,7 @@ gem 'jquery-turbolinks', '2.0.2'
 gem 'geocoder', '1.2.2'
 gem 'font-awesome-rails', '4.1.0.0'
 gem 'add-to-homescreen-rails', '3.0.7'
+gem 'rolify', '3.4.0'
 
 
 
