@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :microchip_lookup]
-  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, 
+  before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, :cancel_transfer,
                                       :sitter_instructions, :org_flyer, :photo_gallery, :weight_chart, :check_in, :check_out ]
   before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer]
   #before_filter :authenticate_user!
@@ -130,8 +130,17 @@ class AnimalsController < ApplicationController
       transferee_id = @animal.transfer_ownership(params[:transferee], animal_url(@animal.id)) 
       @animal.create_qr_code(animal_url(@animal, 'true'))unless @animal.qr_code.present?
       @owner.capture_transfer(@animal.id, transferee_id, params[:transferee], params[:org] ) if @owner.class.name == 'Organization'
+      @household = @animal.owner if @animal.owner.class.name == "Household"
     end
     
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def cancel_transfer
+    @success = @animal.cancel_transfer
+    @household = @animal.owner if @animal.owner.class.name == "Household"
     respond_to do |format|
       format.js 
     end

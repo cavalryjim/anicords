@@ -4,9 +4,9 @@
  <section class="gray_background ">
   <div class="row pad-btm">
     <div class="column large-12">
-	  <h1 class="ptitle left">
-	    Photo Gallery <%= image_tag(@animal.avatar.url, size: '50x50', class: "picture_border_2") if @animal.avatar_stored? %>
-	  </h1>
+      <div id='animal_header_div'>
+      	<%= render 'header_section' %>
+      </div>
       <%= breadcrumb_nav( @animal.owner.present? ? [show_link(@animal.owner, @animal.owner.name), @animal.name] : [edit_link(@animal, @animal.name)] ) %>
 	</div>
   </div>

@@ -1,0 +1,3 @@
+<h1 class="ptitle left">
+  Photo Gallery <%= image_tag(@animal.avatar.url, size: '50x50', class: "picture_border_2") if @animal.avatar_stored? %>
+</h1>

@@ -14,15 +14,9 @@
  <section class="white_background"> 
   <div class="row add-bottom white_background">
     <div class="columns large-9">
-      <% if @household.animals.count == 0 %>
-	    <h3>Tell us about your animals</h3>
-	  <% end %>
-	  
-	  <% @household.animals.each do |animal| %>
-	    <div class="columns large-6 small-12">
-	      <%= render 'households/animal_panel', animal: animal %>
-		</div>
-	  <% end %>
+      <div id='anmials_section_div'>
+      	<%= render 'households/animals_listing'%>
+      </div>
     </div>
     
     <div class="columns large-3">

@@ -174,6 +174,10 @@ class Animal < ActiveRecord::Base
     animal_transfer ? true : false
   end
   
+  def cancel_transfer
+    animal_transfer.destroy if self.animal_transfer.present?
+  end
+  
   def has_notifications?
     notifications.where(active: true).present?
   end

@@ -1,0 +1,9 @@
+<% if @success %>
+  $("#animal<%=@animal.id.to_s%>").removeClass("transfer").addClass("th");
+  <% if @household.present? %>
+    $('#anmials_section_div').html('<%= j render("households/animals_listing") %>')
+  <% end %>
+<% else %>
+  //$("#transfer_error").removeClass("hidden");
+  alert("There was a problem.  Please try again later.");
+<% end %>
