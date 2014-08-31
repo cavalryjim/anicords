@@ -89,7 +89,11 @@ class HouseholdsController < ApplicationController
       params[:user][:first_name], params[:user][:last_name], params[:user][:phone])
     #new_user.create_activity :added_to_group, owner: current_user, recipient: @household
     
-    redirect_to edit_household_path(@household), notice: 'Human was successfully added.'
+    respond_to do |format|
+      format.js
+      format.html { redirect_to edit_household_path(@household), notice: 'Human was successfully added.' }
+      format.json { head :no_content }
+    end
   end
   
   def external_view

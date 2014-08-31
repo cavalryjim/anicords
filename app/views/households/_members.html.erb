@@ -1,4 +1,4 @@
-<fieldset id='members_fieldset'>
+<fieldset id='members_fieldset' class="member_fieldset">
   <legend>Members</legend> 
      <table>
 	    <thead>
@@ -23,7 +23,7 @@
 	            <td>
 	               <% if ua.user != current_user %>
 	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
-				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
+				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.', remote: true } %>
 				   <% end %>
 	            </td>
 	          </tr>
@@ -33,7 +33,7 @@
 	  </table>
 </fieldset>
 
-<fieldset id='sitters_fieldset'>
+<fieldset id='sitters_fieldset' class="member_fieldset">
   <legend>Sitters</legend> 
     <table>
 	    <thead>
@@ -58,7 +58,7 @@
 	            <td>
 	               <% if ua.user != current_user %>
 	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
-				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' } %>
+				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' }, remote: true %>
 				   <% end %>
 	            </td>
 	          </tr>
