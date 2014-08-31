@@ -1,0 +1,30 @@
+<p><%= @sender.name %> wants to know if you are available 
+	from <%= @request.start_datetime %> to <%= @request.end_datetime %> to pet sit.
+</p>
+
+<p>	
+<%= link_to "Yes, I'm available", sitter_response_household_sitter_request_url(@request.household, @request, response: "available", user: @sitter.id ) %>
+&nbsp; &nbsp; &nbsp;
+<%= link_to "Sorry, I can't", sitter_response_household_sitter_request_url(@request.household, @request, response: "not available", user: @sitter.id) %>
+</p>
+
+<p>
+  <%= @sender.name %> is using <%= link_to "<b>Animal Minder</b>".html_safe, root_url %>, 
+  a universal wellness management platform for animal guardians. Store and organize your animal's health 
+  and wellness information in the cloud, receive reminders about important events such as heartworm treatments 
+  and annual checkups), schedule sitters, groomers, and vet visits, 
+  share important info such as vaccination records and care instructions, and never leave your animal's information 
+  trapped in your home filing cabinet or the vet's office again.
+</p>
+
+<p>
+  Are you an animal guardian and new to <b>Animal Minder</b>?  Click <%= link_to 'here', root_url %> to create a free account and let 
+  Animal Minder assists you in the care of your animals.
+</p>
+ 
+Do you have an animal sitting business?  Create a free <b>Animal Minder</b> account, add your business to the <b>Animal Minder</b> provider directory, and connect to your customers.</p> 
+ 
+<p>Cheers,</p>
+ 
+<p>Team Animal Minder</p>  
+

@@ -1,2 +1,50 @@
-<h1>SitterRequests#show</h1>
-<p>Find me in app/views/sitter_requests/show.html.erb</p>
+<% content_for :title, "Sitter requests" %>
+
+<div class="full_page">
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left">Pet Sitter Request</h1>
+      <%= breadcrumb_nav([link_to(@household.name, household_path(@household)), @request.name]) %>
+	</div>
+  </div>
+ </section>
+ 
+ <section class="white_background"> 
+  <div class="row add-bottom white_background">
+    <div class="columns large-8">
+      <h5>Sitter responses</h5>
+      <table>
+       <thead>
+      	<tr>
+      	  <th>Sitter</th>
+      	  <th>Response</th>
+      	  <th></th>
+      	</tr>
+       </thead>
+       <tbody>
+       	<% @request.sitter_responses.each do |sr| %>
+	      
+	      <tr>
+	        <td><%= sr.sitter_name %></td>
+	        <td><%= sr.response %></td>
+	        <td><%= (link_to button_small('confirm'), '#') if sr.response == 'available' %></td>
+	      </tr>
+	          
+	          
+	    <% end %>
+       </tbody>
+      	
+      	
+      	
+      </table>
+    </div>
+    
+    <div class="columns large-4">
+      
+      
+    </div>
+  </div>
+ </section>
+ 
+</div>

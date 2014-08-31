@@ -115,6 +115,13 @@ class UserMailer < ActionMailer::Base
     mail to: mailing_list, subject: email_subject
   end
   
+  def sitter_request(sitter, request, sender)
+    @request = request
+    @sitter = sitter
+    @sender = sender
+    mail to: sitter.email, subject: "Petsitter request"
+  end
+  
 private
   
   

@@ -39,7 +39,12 @@ Anicords::Application.routes.draw do
     resources :service_providers
     resources :household_associations
     resources :user_associations
-    resources :sitter_requests
+    resources :sitter_requests do
+      member do
+        get 'sitter_response'
+      end
+    end
+    
   end
 
   resources :animals do
