@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831005317) do
+ActiveRecord::Schema.define(version: 20140831063027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -516,6 +516,15 @@ ActiveRecord::Schema.define(version: 20140831005317) do
     t.datetime "end_datetime"
     t.text     "comments"
     t.integer  "confirmed_sitter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+  end
+
+  create_table "sitter_responses", force: true do |t|
+    t.integer  "sitter_request_id"
+    t.integer  "user_id"
+    t.string   "response"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

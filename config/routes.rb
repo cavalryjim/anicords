@@ -42,6 +42,7 @@ Anicords::Application.routes.draw do
     resources :sitter_requests do
       member do
         get 'sitter_response'
+        get 'confirm_sitter'
       end
     end
     

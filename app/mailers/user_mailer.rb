@@ -122,6 +122,18 @@ class UserMailer < ActionMailer::Base
     mail to: sitter.email, subject: "Petsitter request"
   end
   
+  def confirmed_sitter(sitter, request)
+    @request = request
+    @sitter = sitter
+    mail to: sitter.email, subject: "Petsitting confirmed"
+  end
+  
+  def non_confirmed_sitter(sitter, request)
+    @request = request
+    @sitter = sitter
+    mail to: sitter.email, subject: "Petsitting update"
+  end
+  
 private
   
   

@@ -28,7 +28,7 @@
 	      <tr>
 	        <td><%= sr.sitter_name %></td>
 	        <td><%= sr.response %></td>
-	        <td><%= (link_to button_small('confirm'), '#') if sr.response == 'available' %></td>
+	        <td><%= (link_to button_small('confirm'), confirm_sitter_household_sitter_request_path(@household, @request, confirmed_response: sr.id)) if sr.response == 'available' %></td>
 	      </tr>
 	          
 	          

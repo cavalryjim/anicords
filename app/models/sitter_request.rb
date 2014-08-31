@@ -33,6 +33,18 @@ class SitterRequest < ActiveRecord::Base
     end
   end
   
+  def confirm_sitter(response_id)
+    confirmed_response = SitterResponse.find(response_id)
+    confirmed_user = confirmed_response.user
+    UserMailer.confirmed_sitter(confirmed_user, self).deliver
+    
+    household.pet_sitters.each do |sitter|
+      next if sitter == confirmed_user
+      UserMailer.non_confirmed_sitter(sitter, self).deliver
+    end
+  
+  end
+  
   private
   
   def create_responses

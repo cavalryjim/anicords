@@ -18,6 +18,8 @@ class UserAssociation < ActiveRecord::Base
   
   validates :user_id, presence: true
   
+  before_destroy :remove_roles
+  
   def name
     group.name
   end
@@ -36,6 +38,10 @@ class UserAssociation < ActiveRecord::Base
   
   def self.orphan_associations
     UserAssociation.where("user_associations.user_id = ? OR user_associations.group_id = ?", nil, nil)
+  end
+  
+  def remove_roles
+    # JDavis: need to remove all roles granting a user access to a resources when the association is destroyed. jdhere.
   end
   
 end

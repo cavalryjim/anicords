@@ -128,4 +128,8 @@ class Household < ActiveRecord::Base
     #PublicActivity::Activity.where(recipient: self).order("created_at desc")
   end
   
+  def pet_sitters
+    users.with_role(:sitter, self)
+  end
+  
 end

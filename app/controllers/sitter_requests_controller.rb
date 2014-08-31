@@ -47,8 +47,14 @@ class SitterRequestsController < ApplicationController
         format.html { redirect_to root_url, notice: 'Response recieved.' }
       end
     end
+  end
+  
+  def confirm_sitter
+    @request.confirm_sitter(params[:confirmed_response])
     
-    
+    respond_to do |format|
+      format.html { redirect_to household_path(@household), notice: 'Pet sitter confirmed.' }
+    end
   end
   
   private
