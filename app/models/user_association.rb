@@ -41,6 +41,10 @@ class UserAssociation < ActiveRecord::Base
   end
   
   def remove_roles
+    group.applied_roles.each do |role|
+      user.remove_role role.name, group
+    end
+    
     # JDavis: need to remove all roles granting a user access to a resources when the association is destroyed. jdhere.
   end
   

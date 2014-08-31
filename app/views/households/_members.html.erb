@@ -6,7 +6,7 @@
 	        <th>Household Members</th>
 	        <th>Email</th>
 	        <th>Phone</th>
-	        <th>Type</th>
+	        <th>Access</th>
 	        <th></th>
 	      </tr>
 	    </thead>
@@ -14,7 +14,7 @@
 	    <tbody>
 	      <% @household.user_associations.each do |ua| %>
 	        <% if ua.user.present? %>
-	          <% next if ua.user.has_role? :sitter, @household %>
+	          <% next unless (ua.user.has_role? :member, @household) || (ua.user.has_role? :limited_member, @household)  %>
 	          <tr>
 	            <td><%= ua.user.name %></td>
 	            <td><%= ua.user.email %></td>
@@ -41,7 +41,7 @@
 	        <th>Household Members</th>
 	        <th>Email</th>
 	        <th>Phone</th>
-	        <th>Type</th>
+	        <th>Access</th>
 	        <th></th>
 	      </tr>
 	    </thead>
