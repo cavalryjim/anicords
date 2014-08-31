@@ -76,7 +76,7 @@ class AnimalMedication < ActiveRecord::Base
     if series
       self.medication_due = previous_medication_date + frequency
     else
-      self.medication_due = self.medicawtion_date + frequency
+      self.medication_due = self.medication_date + frequency
     end
   end
   
