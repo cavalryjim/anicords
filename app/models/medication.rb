@@ -6,7 +6,7 @@
 #  name               :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
-#  medication_type    :string(255)
+#  type               :string(255)
 #  animal_type_id     :integer
 #  series_name        :string(255)
 #  series_number      :integer
@@ -16,6 +16,7 @@
 #  frequency          :integer
 #  route              :string(255)
 #  chronic            :boolean          default(FALSE)
+#  medication_type    :string(255)
 #
 
 class Medication < ActiveRecord::Base

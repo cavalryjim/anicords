@@ -98,7 +98,7 @@ class HouseholdsController < ApplicationController
   end
   
   def schedule_sitter
-    
+    @request = SitterRequest.new
   end
   
   def external_view

@@ -13,8 +13,14 @@
  
  <section class="white_background"> 
   <div class="row add-bottom white_background">
-    <div class="columns large-9">
-      <%= render 'schedule_sitter_form'%>	
+    <div class="columns large-8">
+      <h5>Schedule a pet sitter</h5>
+      <%= render 'sitter_requests/form'%>	
+    </div>
+    
+    <div class="columns large-4">
+      <div id="requests_div"><%= render 'requests_table' %></div>
+      
     </div>
   </div>
  </section>

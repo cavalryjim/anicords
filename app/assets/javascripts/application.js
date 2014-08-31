@@ -100,6 +100,10 @@ $(function(){
   	//debug: true	
   });
   
+  $('.datetimepicker').datetimepicker({
+  	formatTime: 'h:i a'
+  });
+  
 });
 
 //= require turbolinks

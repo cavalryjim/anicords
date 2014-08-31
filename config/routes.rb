@@ -39,6 +39,7 @@ Anicords::Application.routes.draw do
     resources :service_providers
     resources :household_associations
     resources :user_associations
+    resources :sitter_requests
   end
 
   resources :animals do

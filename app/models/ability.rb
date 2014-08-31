@@ -103,6 +103,11 @@ class Ability
       provider.users.include?(user)
     end
     
+    can :manage, SitterRequest do |request|
+      request.new_record? or
+      request.household.users.include?(user)
+    end
+    
     can :manage, User do |u|
       u.new_record? or
       u == user

@@ -33,6 +33,7 @@ class Household < ActiveRecord::Base
   has_many  :organization_locations, as: :location, dependent: :destroy
   has_many  :organizations, through: :organization_locations
   has_many  :notifications, as: :recipient, dependent: :destroy
+  has_many  :sitter_requests, dependent: :destroy
   accepts_nested_attributes_for :animals, allow_destroy: true
   #accepts_nested_attributes_for :user_associations, allow_destroy: true
   

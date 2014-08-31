@@ -1,0 +1,27 @@
+<%= form_for([@household, @request], html: {"data-abide" => ''}) do |f| %>
+
+    <div class="row">
+      <div class="large-6 columns">
+      	<%= f.label :start_datetime, 'starts' %>
+      	<%= f.text_field :start_datetime , class: "datetimepicker", placeholder: "start date/time" %>
+      	<small class="error">State date/time required.</small>
+      </div>
+      <div class="large-6 columns">
+      	<%= f.label :end_datetime, 'ends' %>
+	    <%= f.text_field :end_datetime,  class: "datetimepicker", placeholder: "start date/time" %>
+	    <small class="error">End date/time required.</small>
+      </div>
+    </div>
+    
+    <div class="row">
+	  <div class="large-12 columns">
+		<%= f.label :comments, 'comments' %>
+		<%= f.text_area :comments, class: "text_area_10em" %>
+	  </div>
+	</div>
+    
+    
+    <%= f.hidden_field :household_id, value: @household.id %>
+    
+  	<%= f.submit 'submit', class: "button small" %>
+  <% end %>

@@ -1,0 +1,20 @@
+      <table>
+	    <thead>
+	      <tr>
+	        <th>Existing requests</th>
+	        <th></th>
+	      </tr>
+	    </thead>
+	
+	    <tbody>
+	      <% @household.sitter_requests.each do |request| %>
+	        
+	        <tr>
+	          <td><%= link_to request.name, household_sitter_request_path(@household, request) %></td>
+	          <td><%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_sitter_request_path(@household, request), method: :delete, 
+				 	   data: { confirm: 'Please confirm you want to remove this request.' }, remote: true %></td>
+	        </tr>
+	       
+	      <% end %>     
+	    </tbody>
+	  </table>
