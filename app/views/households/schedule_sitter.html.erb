@@ -1,0 +1,21 @@
+<% content_for :title, "Schedule sitter" %>
+
+<div class="full_page">
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @household.name %></h1>
+      <%= breadcrumb_nav([link_to(@household.name, household_path(@household)), 'Schedule a sitter']) %>
+	</div>
+  </div>
+ </section>
+ 
+ 
+ <section class="white_background"> 
+  <div class="row add-bottom white_background">
+    <div class="columns large-9">
+      <%= render 'schedule_sitter_form'%>	
+    </div>
+  </div>
+ </section>
+</div>

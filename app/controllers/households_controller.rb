@@ -1,5 +1,6 @@
 class HouseholdsController < ApplicationController
-  before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider, :create_user, :external_view]
+  before_action :set_household, only: [:show, :edit, :update, :destroy, :add_service_provider, 
+                              :create_user, :external_view, :schedule_sitter ]
   before_filter :authenticate_user!
   authorize_resource except: [:external_view]
 
@@ -94,6 +95,10 @@ class HouseholdsController < ApplicationController
       format.html { redirect_to edit_household_path(@household), notice: 'Human was successfully added.' }
       format.json { head :no_content }
     end
+  end
+  
+  def schedule_sitter
+    
   end
   
   def external_view

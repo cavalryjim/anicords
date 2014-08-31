@@ -28,6 +28,9 @@ Anicords::Application.routes.draw do
   end
 
   resources :households do
+    member do
+      get 'schedule_sitter'
+    end
     resources :animals do
       resources :pictures
       resources :documents

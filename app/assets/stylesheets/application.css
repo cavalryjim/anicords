@@ -17,6 +17,7 @@
  *= require dataTables/jquery.dataTables.foundation
  *= require font-awesome
  *= require addtohomescreen
+ *= require jquery.datetimepicker
  */
 
 ul.ui-autocomplete {

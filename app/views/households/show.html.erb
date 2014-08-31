@@ -5,8 +5,9 @@
   <div class="row pad-btm">
     <div class="column large-12">
 	  <h1 class="ptitle left"><%= @household.name %></h1>
-      <%= breadcrumb_nav([@household.name, edit_link(@household), link_to('Schedule a sitter', '#'), 
-      			link_to('Document expenses', '#'), link_to('Email Vet', '#') ]) %>
+      <%= breadcrumb_nav([@household.name, edit_link(@household), link_to('Schedule a sitter', 
+      		schedule_sitter_household_path(@household)), link_to('Document expenses', '#'), 
+      		link_to('Email Vet', '#') ]) %>
 	</div>
   </div>
  </section>

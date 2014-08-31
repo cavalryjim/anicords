@@ -7,7 +7,10 @@
 	
 	<% @animal.animal_associations.each do |animal_association|%>
 	  <tr>
+		<!--- 
 		<td><%= link_to animal_association.name, animal_association.service_provider %></td>
+			--->
+		<td><%= animal_association.name %></td>
 		
 		<td><%= animal_association.provider_types %></td>
 		
