@@ -103,6 +103,13 @@ class UserMailer < ActionMailer::Base
     mail to: ['james.davisphd@gmail.com', 'tylercarruth@live.com', 'mike@vettedcapital.com'], subject: "AnimalMinder weekly usage report"
   end
   
+  def weekly_update(user_emails, group)
+    #@user = user
+    @group = group
+    
+    mail to: user_emails, subject: @group.name + "weekly snapshot"
+  end
+  
   def email_comment(comment)
     @comment = comment
     if @comment.comment.present?

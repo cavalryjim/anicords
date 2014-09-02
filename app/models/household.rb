@@ -132,4 +132,12 @@ class Household < ActiveRecord::Base
     users.with_role(:sitter, self)
   end
   
+   def animal_vaccinations_due(as_of_date = (Date.today + 2.weeks) )
+    AnimalVaccination.where(animal_id: self.animal_ids, notify: true, vaccination_due: (Date.today - 2.year)..as_of_date )
+  end
+  
+  def animal_medications_due(as_of_date = (Date.today + 2.weeks) )
+    AnimalMedication.where(animal_id: self.animal_ids, notify: true, medication_due: (Date.today - 2.year)..as_of_date )
+  end
+  
 end
