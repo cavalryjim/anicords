@@ -51,7 +51,8 @@ class Ability
     
     can :manage, Household do |household|
       household.new_record? or
-      household.users.include?(user)
+      household.users.include?(user) or 
+      user.has_role? :memeber, household
     end
     
     can :manage, Location do |location|
