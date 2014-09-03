@@ -55,7 +55,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   #validates :email, format: { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'Please provide a valid e-mail address'}, if: "provider.blank?"
   #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, if: "provider.blank?" 
-  #validates_presence_of :password, if: "provider.blank?"    
+  #validates_presence_of :password, if: "provider.blank?"  
+  
+  before_save { |user| user.email = user.email.downcase }  
       
   def to_s
     name
@@ -102,7 +104,7 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    user = User.where(email: auth.info.email).first
+    user = User.where(email: auth.info.email.lowercase).first
     
     if user
       #user.update(auth.slice(:provider, :uid))
@@ -113,7 +115,7 @@ class User < ActiveRecord::Base
       where(auth.slice(:provider, :uid)).first_or_create do |fb_user|
         fb_user.provider = auth.provider
         fb_user.uid = auth.uid
-        fb_user.email = auth.info.email
+        fb_user.email = auth.info.email.lowercase
       end
       user = fb_user
     end
@@ -141,7 +143,7 @@ class User < ActiveRecord::Base
   end
   
   def self.send_new_account_notice(user_id, password)
-    user = User.find_by(email: email)
+    user = User.find(user_id)
     UserMailer.new_account_notice(user, password).deliver
   end
   
@@ -161,6 +163,7 @@ class User < ActiveRecord::Base
   end
   
   def self.create_user_to_group(email, group, role, first_name="", last_name="", phone="")
+    email = email.downcase
     user = User.find_by(email: email)
     
     if user
@@ -191,7 +194,7 @@ class User < ActiveRecord::Base
   
   def self.return_foster_user(foster)
     foster = foster.symbolize_keys
-    user = User.find_by_email(foster[:email])
+    user = User.find_by_email(foster[:email].downcase)
     unless user.present?
       #JDavis: user password & confirmation!
       generated_password = Devise.friendly_token.first(8)

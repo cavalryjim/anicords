@@ -40,7 +40,6 @@ class Document < ActiveRecord::Base
   end
   
   def email_me(recipient_email)
-    #Rails.env.production? ? QC.enqueue("User.send_new_account_notice", self.id, password) : UserMailer.new_account_notice(self, password).deliver
     UserMailer.email_document(self, recipient_email).deliver
   end
   
