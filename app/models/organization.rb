@@ -66,7 +66,7 @@ class Organization < ActiveRecord::Base
   end
   
   def associate_user(user, role)
-    user_association = UserAssociation.where(user_id: user_id, group: self).first_or_create
+    user_association = UserAssociation.where(user_id: user.id, group: self).first_or_create
     #user_association.update_attribute :administrator, administrator 
     user.add_role(role, self)
   end
