@@ -26,7 +26,7 @@
 
 <div id="newHumanModal" class="reveal-modal" data-reveal>
 	  <h3>Add members to your household</h3>
-	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' }, remote: true do |f| %>
+	  <%= form_for User.new, url: {action: "create_user"}, html: { id: "add_user_form", "data-abide" => '' }, remote: true do |f| %>
 	    <div class="row">
 	      <div class="large-12 columns">
 	        <%= f.text_field :email, placeholder: "Email"  %>
