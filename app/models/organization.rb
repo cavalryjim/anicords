@@ -73,6 +73,7 @@ class Organization < ActiveRecord::Base
   
   def associate_location(location)
     OrganizationLocation.where(organization_id: self.id, location: location).first_or_create
+    #JDavis: need to add an email notification for foster households.  jdhere.
   end
   
   def fosters
