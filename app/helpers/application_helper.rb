@@ -147,7 +147,7 @@ module ApplicationHelper
       #breadcrumb << ((crumb == crumbs.last) ? link_to(crumb, "#", {class: 'current'}) : link_to(crumb, crumb))
       #breadcrumb << crumb 
       breadcrumb << ' &nbsp;|&nbsp; ' unless (crumb == crumbs.first)
-      breadcrumb << crumb
+      breadcrumb << crumb if crumb.present?
       #breadcrumb << ' &nbsp;|&nbsp; ' unless (crumb == crumbs.last)
     end
     breadcrumb << '</div>'
