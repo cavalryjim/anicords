@@ -91,7 +91,7 @@ class OrganizationsController < InheritedResources::Base
   def new_foster_home
     @foster_home = Household.return_foster_home(params[:home])
     if @foster_home
-      @foster_home.associate_user(params[:foster_user_id]) 
+      @foster_home.associate_user(User.find(params[:foster_user_id]), 'member') 
       @organization.associate_location(@foster_home)
     end
     

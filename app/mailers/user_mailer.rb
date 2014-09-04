@@ -141,6 +141,13 @@ class UserMailer < ActionMailer::Base
     mail to: sitter.email, subject: "Petsitting update"
   end
   
+  def welcome_foster(organization, household)
+    @organization = organization
+    @household = household
+    
+    mail to: @household.admin_users.map{|u| u.email}, subject: "Welcome #{@organization.name} Foster Household"
+  end
+  
 private
   
   

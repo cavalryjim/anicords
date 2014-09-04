@@ -27,8 +27,6 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-    @document.file_type = 'other' if @document.file_type.blank?
-    #JDavis: if the params[:file_type] is blank, set it to 'other'.  JDHere.
     
     respond_to do |format|
       if @document.save 

@@ -120,7 +120,8 @@ class Household < ActiveRecord::Base
   end
   
   def admin_users
-    self.users
+    #self.users
+    User.with_role(:member, self)
   end
   
   def activities
@@ -139,5 +140,6 @@ class Household < ActiveRecord::Base
   def animal_medications_due(as_of_date = (Date.today + 2.weeks) )
     AnimalMedication.where(animal_id: self.animal_ids, notify: true, medication_due: (Date.today - 2.year)..as_of_date )
   end
+  
   
 end

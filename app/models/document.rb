@@ -18,7 +18,7 @@ class Document < ActiveRecord::Base
   belongs_to :animal
   
   validates_presence_of :animal_id
-  validates_presence_of :file_type
+  #validates_presence_of :file_type
   validates_size_of :file, maximum: 2048.kilobytes
   #validates_property :format, of: :file, in: ['pdf', 'tiff', 'doc', 'docx', 'xls', 'xlsx', 'zip']
   validate :file_xor_external_url
@@ -29,7 +29,7 @@ class Document < ActiveRecord::Base
     end
   end
   
-  after_save  :set_title
+  before_save  :set_defaults
   
   def file_path
     file.path
@@ -45,8 +45,9 @@ class Document < ActiveRecord::Base
   
   private
   
-  def set_title
-    update_attribute :title, (Date.today.to_s + " " + file_type) if title.blank?
+  def set_defaults
+    self.file_type = 'other' if self.file_type.blank?
+    self.title = (Date.today.to_s + " " + file_type) if self.title.blank?
     #title = Date.today.to_s + " " + file_type
   end
   

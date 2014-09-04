@@ -33,7 +33,10 @@ module OrganizationsHelper
   def organization_roles
     [['administrator (full access)', :admin], 
     ['administrator (dogs only)', :admin_dogs], 
-    ['administrator (cats only)', :admin_cats]]
+    ['administrator (cats only)', :admin_cats],
+    ['member (limited access)', :org_member],
+    ['foster', :org_foster],
+    ['vet services', :org_vet]]
   end
   
 end
