@@ -6,4 +6,6 @@
 
 <p><%= link_to "Manage your account here.", edit_user_url(@user) %></p>
 
-<p><%= link_to "Help manage the " + @group.name  + " account here.", polymorphic_url(@group) %></p>
+<% if @user.can_manage?(@group)  %>
+  <p><%= link_to "Help manage the " + @group.name  + " account here.", polymorphic_url(@group) %></p>
+<% end %>
