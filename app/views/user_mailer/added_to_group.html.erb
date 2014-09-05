@@ -2,7 +2,11 @@
 
 <p>You have been added to the <%=@group.name%> account on AnimalMinder, a universal wellness management platform for animals.</p>
 
-<p><%= link_to "Help manage the account here.", polymorphic_url(@group)  %></p>
+<% if @user.manage_group?(@group)  %>
+  <p><%= link_to "Help manage the account here.", polymorphic_url(@group)  %></p>
+<% else %>
+  <p><%= link_to "www.animalminder.com", root_url  %></p>
+<% end %>
 
 <p>
   Store and organize your animal's health and wellness information in the cloud, receive reminders about important 
