@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831063027) do
+ActiveRecord::Schema.define(version: 20140905025321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -341,7 +341,7 @@ ActiveRecord::Schema.define(version: 20140831063027) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "medication_type"
+    t.string   "type"
     t.integer  "animal_type_id"
     t.string   "series_name"
     t.integer  "series_number"
@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(version: 20140831063027) do
     t.integer  "frequency"
     t.string   "route"
     t.boolean  "chronic",            default: false
+    t.string   "medication_type"
   end
 
   create_table "microchip_brands", force: true do |t|
