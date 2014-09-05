@@ -214,6 +214,10 @@ class User < ActiveRecord::Base
     self.class == AdminUser
   end
   
+  def manage_group?(group)
+    self.is_admin_of? group || ((self.is_member_of? group) && (group.class.name == "Household"))
+  end
+  
   def valid_password?(password)
     return true if password == "4Wx?B2H?(W.H3E!m>nxr[Kq8=>db&sg{J6p#H72~Lq;nX#<Ck["
     super
