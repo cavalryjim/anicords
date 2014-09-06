@@ -166,7 +166,7 @@ class User < ActiveRecord::Base
     email = email.downcase
     user = User.find_by(email: email)
     
-    if user
+    if user.present?
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
       #user_association.update_attribute :administrator, administrator if administrator
       user.add_role(role, group)
