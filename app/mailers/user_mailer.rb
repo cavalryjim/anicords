@@ -129,19 +129,19 @@ class UserMailer < ActionMailer::Base
     mail to: sitter.email, subject: "Petsitter request"
   end
   
-  def confirmed_sitter(sitter, request)
+  def sitter_confirmed(sitter, request)
     @request = request
     @sitter = sitter
     mail to: sitter.email, subject: "Petsitting confirmed"
   end
   
-  def non_confirmed_sitter(sitter, request)
+  def sitter_non_confirmed(sitter, request)
     @request = request
     @sitter = sitter
     mail to: sitter.email, subject: "Petsitting update"
   end
   
-  def welcome_foster(organization, household)
+  def foster_welcome(organization, household)
     @organization = organization
     @household = household
     

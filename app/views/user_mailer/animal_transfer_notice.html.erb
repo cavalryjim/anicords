@@ -1,6 +1,14 @@
 <p><%= @user.name_or_email %>,</p>
 
-<p>You have a new animal transfer on AnimalMinder.</p>
+<p>
+  You have a new animal transfer on AnimalMinder.
+</p>
 
 
-<p><%= link_to "Confirm the transfer here.", polymorphic_url(@animal) %></p>
+<p>
+  Transfer from: <%= @animal.owner.name %>
+  Animal name: <%= @animal.name %>
+  <%= link_to "Confirm the transfer here.", polymorphic_url(@animal) %>
+</p>
+
+<% render 'user_mailer/email_closing'%>

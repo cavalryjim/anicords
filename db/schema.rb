@@ -341,7 +341,7 @@ ActiveRecord::Schema.define(version: 20140905025321) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
+    t.string   "medication_type"
     t.integer  "animal_type_id"
     t.string   "series_name"
     t.integer  "series_number"
@@ -351,7 +351,6 @@ ActiveRecord::Schema.define(version: 20140905025321) do
     t.integer  "frequency"
     t.string   "route"
     t.boolean  "chronic",            default: false
-    t.string   "medication_type"
   end
 
   create_table "microchip_brands", force: true do |t|

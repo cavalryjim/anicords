@@ -1,0 +1,8 @@
+<p><%= @sitter.name %>,</p>
+
+<p>
+  <%= @request.household %> would like to confirm you as the pet sitter from <%= @request.start_datetime %> to <%= @request.end_datetime %>.  
+  Please expect a follow up email reminder containing care instructions.
+</p>
+
+<% render 'user_mailer/email_closing'%>

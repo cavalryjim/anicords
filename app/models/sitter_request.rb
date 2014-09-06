@@ -20,6 +20,7 @@ class SitterRequest < ActiveRecord::Base
   
   validates_presence_of :start_datetime
   validates_presence_of :end_datetime
+  validates_presence_of :household_id
   
   after_create :create_responses
   
@@ -36,11 +37,11 @@ class SitterRequest < ActiveRecord::Base
   def confirm_sitter(response_id)
     confirmed_response = SitterResponse.find(response_id)
     confirmed_user = confirmed_response.user
-    UserMailer.confirmed_sitter(confirmed_user, self).deliver
+    UserMailer.sitter_confirmed(confirmed_user, self).deliver
     
     household.pet_sitters.each do |sitter|
       next if sitter == confirmed_user
-      UserMailer.non_confirmed_sitter(sitter, self).deliver
+      UserMailer.sitter_non_confirmed(sitter, self).deliver
     end
   
   end

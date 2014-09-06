@@ -5,3 +5,5 @@
 <p>Login using your email: <%=@user.email%> and this temporary password: <%=@password%> or you can use the Facebook login.</p>
 
 <p><%= link_to "Manage your account here.", edit_user_url(@user) %></p>
+
+<% render 'user_mailer/email_closing'%>
