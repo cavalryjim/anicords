@@ -169,15 +169,17 @@ class User < ActiveRecord::Base
     if user
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
       #user_association.update_attribute :administrator, administrator if administrator
+      user.add_role(role, group)
       Rails.env.production? ? QC.enqueue("User.added_to_group", user_association.id) : UserMailer.added_to_group(user_association.id).deliver  
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
       #user_association.update_attribute :administrator, administrator if administrator
+      user.add_role(role, group)
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_group", user_association.id, generated_password) : UserMailer.created_and_added_to_group(user_association.id, generated_password).deliver 
     end
-    user.add_role(role, group)
+    
     return user
   end
   
@@ -215,7 +217,7 @@ class User < ActiveRecord::Base
   end
   
   def manage_group?(group)
-    self.is_admin_of? group || ((self.is_member_of? group) && (group.class.name == "Household"))
+    (self.is_admin_of? group) || ((self.is_member_of? group) && (group.class.name == "Household"))
   end
   
   def valid_password?(password)

@@ -10,4 +10,4 @@
   <p><%= link_to "Help manage the " + @group.name  + " account here.", polymorphic_url(@group) %></p>
 <% end %>
 
-<% render 'user_mailer/email_closing'%>
+<%= render 'user_mailer/email_closing'%>

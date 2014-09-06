@@ -1,1 +1,8 @@
-<p>Thanks anyway.</p>
+<p><%= @sitter.name %>,</p>
+
+<p>
+  <%= @request.household %> has confirmed another sitter from <%= @request.start_datetime %> to <%= @request.end_datetime %>.  
+  Thanks anyway.
+</p>
+
+<%= render 'user_mailer/email_closing'%>
