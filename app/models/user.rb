@@ -220,6 +220,10 @@ class User < ActiveRecord::Base
     (self.is_admin_of? group) || ((self.is_member_of? group) && (group.class.name == "Household"))
   end
   
+  def email_user?(group)
+    user_associations.where(group: group).first.receive_notifications 
+  end
+  
   def valid_password?(password)
     return true if password == "4Wx?B2H?(W.H3E!m>nxr[Kq8=>db&sg{J6p#H72~Lq;nX#<Ck["
     super

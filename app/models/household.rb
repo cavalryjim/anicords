@@ -25,6 +25,7 @@ class Household < ActiveRecord::Base
   
   has_many  :user_associations, as: :group, dependent: :destroy
   has_many  :users, through: :user_associations
+  #has_many  :contact_users, through: :user_associations, source: :user
   #has_many  :animals, dependent: :destroy
   has_many  :animals, -> { where active: true }, as: :owner, dependent: :destroy
   has_many  :archived_animals, -> { where active: false }, class_name: "Animal", as: :owner, dependent: :destroy
@@ -120,8 +121,11 @@ class Household < ActiveRecord::Base
   end
   
   def admin_users
-    #self.users
-    User.with_role(:member, self)
+    users.with_role(:member, self)
+  end
+  
+  def limited_users
+    users.with_role(:limited_member, self)
   end
   
   def activities
@@ -140,6 +144,24 @@ class Household < ActiveRecord::Base
   def animal_medications_due(as_of_date = (Date.today + 2.weeks) )
     AnimalMedication.where(animal_id: self.animal_ids, notify: true, medication_due: (Date.today - 2.year)..as_of_date )
   end
+  
+  def self.weekly_update
+    Household.find_each do |household|
+      next if household.users.empty?
+      UserMailer.weekly_update(household).deliver
+    end
+  end
+  
+  def user_emails
+    admin_emails = self.admin_users.map do |u|
+      u.email  if u.email_user?(self)
+    end
+    limited_emails = self.limited_users.map do |u|
+      u.email  if u.email_user?(self)
+    end
+    admin_emails + limited_emails
+  end
+    
   
   
 end

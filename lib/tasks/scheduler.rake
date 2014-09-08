@@ -33,8 +33,13 @@ task :orphan_associations => :environment do
   end
 end
 
+task :weekly_update => :environment do
+  Household.weekly_update if Date.today.sunday?
+  #Organization.weekly_update if Date.today.monday?
+end
+
 task :weekly_usage => :environment do
-  if Date.today.sunday?
+  if Date.today.friday?
     stat = UsageStatistic.new
     stat.usage_snapshot
     stat.save

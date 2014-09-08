@@ -89,6 +89,18 @@ class Organization < ActiveRecord::Base
     self.animals.map{|a|  a.petfinder_id }.compact
   end
   
+  def admin_users
+    users.with_role(:admin, self)
+  end
+  
+  def dog_admin_users
+    users.with_role(:admin_dogs, self)
+  end
+  
+  def cat_admin_users
+    users.with_role(:admin_cats, self)
+  end
+  
   def animal_vaccinations_due(as_of_date = (Date.today + 2.weeks) )
     AnimalVaccination.where(animal_id: self.animal_ids, notify: true, vaccination_due: (Date.today - 2.year)..as_of_date )
   end
@@ -272,6 +284,26 @@ class Organization < ActiveRecord::Base
     when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"
     end
+  end
+  
+  def self.weekly_update
+    Organization.find_each do |organization|
+      next if organization.users.empty? || organization.notifications.empty?
+      UserMailer.weekly_update(organization).deliver
+    end
+  end
+  
+  def user_emails
+    admin_emails = self.admin_users.map do |u|
+      u.email  if u.email_user?(self)
+    end
+    dog_admin_emails = self.dog_admin_users.map do |u|
+      u.email  if u.email_user?(self)
+    end
+    cat_admin_emails = self.cat_admin_users.map do |u|
+      u.email  if u.email_user?(self)
+    end
+    admin_emails + dog_admin_emails + cat_admin_emails
   end
     
 end
