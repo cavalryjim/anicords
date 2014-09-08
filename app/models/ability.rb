@@ -22,8 +22,8 @@ class Ability
       animal.new_record? or
       #animal.owner.users.include?(user) or
       can? :manage, animal.owner or
-      ((user.has_role? :admin_dogs, animal.owner) && animal.species == 'dog') or
-      ((user.has_role? :admin_cats, animal.owner) && animal.species == 'cat') or
+      ((user.has_role? :admin_dogs, animal.owner) && (animal.species == 'dog')) or
+      ((user.has_role? :admin_cats, animal.owner) && (animal.species == 'cat')) or
       if animal.org_profile.present? && animal.org_profile.organization_location.present?
         #user.households.include?(animal.org_profile.organization_location.location)
         can? :manage, animal.org_profile.organization_location.location
@@ -31,9 +31,9 @@ class Ability
     end
     
     can :update, Animal do |animal|
-      user.has_role? :member_limited, animal.owner 
-      user.has_role? :org_member, animal.owner
-      user.has_role? :org_vet, animal.owner
+      (user.has_role? :member_limited, animal.owner) or
+      (user.has_role? :org_member, animal.owner) or
+      (user.has_role? :org_vet, animal.owner)
     end
     
     can [:read, :change_owner], Animal do |animal|
@@ -84,11 +84,11 @@ class Ability
     can :manage, Household do |household|
       household.new_record? or
       #household.users.include?(user) or 
-      user.has_role? :member, household
+      (user.has_role? :member, household)
     end
     
     can :read, Household do |household|
-      user.has_role? :member_limited 
+      (user.has_role? :member_limited )
     end
     
     can :manage, Location do |location|
@@ -145,7 +145,7 @@ class Ability
     
     can :manage, ServiceProvider do |provider|
       provider.new_record? or
-      user.has_role? :admin, provider
+      (user.has_role? :admin, provider)
       #provider.users.include?(user)
     end
     
@@ -177,7 +177,7 @@ class Ability
     
     can :manage, Veterinarian do |veterinarian|
       veterinarian.new_record? or
-      user.has_role? :admin, veterinarian
+      (user.has_role? :admin, veterinarian)
       #veterinarian.users.include?(user)
     end
     
