@@ -32,7 +32,7 @@
   <ul>
     <% @notifications.each do |notification| %>
       <li>
-        <%= notification.message %> 	
+        <%= notification.animal.present? ? ("<b>" + notification.animal.name + ": </b>" + notification.message).html_safe : notification.message %> 
       </li>
     <% end %>
   </ul>
