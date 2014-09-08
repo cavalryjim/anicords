@@ -22,8 +22,8 @@ class Ability
       animal.new_record? or
       #animal.owner.users.include?(user) or
       can? :manage, animal.owner or
-      (user.has_role? :admin_dogs, animal.owner && animal.species == 'dog') or
-      (user.has_role? :admin_cats, animal.owner && animal.species == 'cat') or
+      ((user.has_role? :admin_dogs, animal.owner) && animal.species == 'dog') or
+      ((user.has_role? :admin_cats, animal.owner) && animal.species == 'cat') or
       if animal.org_profile.present? && animal.org_profile.organization_location.present?
         #user.households.include?(animal.org_profile.organization_location.location)
         can? :manage, animal.org_profile.organization_location.location
