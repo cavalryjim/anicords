@@ -108,7 +108,7 @@ class UserMailer < ActionMailer::Base
     @group = group
     @notifications = @group.notifications
     
-    mail to: @group.user_emails, subject: @group.name + " weekly snapshot from AnimalMinder"
+    mail to: @group.user_emails, subject: "AnimalMinder: " + @group.name + " weekly update"
   end
   
   def email_comment(comment)
