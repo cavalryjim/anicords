@@ -14,15 +14,15 @@
   <div class="row pad-btm associations-main">
     <div class="large-12 columns">
       <ul class="associationList ">
-       <% @user.associations.each do |association| %>
+       <% @user.user_associations.each do |association| %>
         <% next if cannot? :read, association.group %>
       	<li>
       	  <div class="medium-6 large-4 columns shop-product-small text-center pad-btm clearfix">
 	        <div class="image">
-	          <%= link_to image(association), association.organization %>
+	          <%= link_to image(association), association.group %>
 	        </div>
-	        <h2><%= link_to association.name, association.organization %></h2>
-	        <%= link_to button_small("go there"), association.organization %>
+	        <h2><%= link_to association.name, association.group %></h2>
+	        <%= link_to button_small("go there"), association.group %>
 	        
          </div>
         </li>
