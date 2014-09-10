@@ -2,7 +2,7 @@
   <div class="row">
     <div class="columns large-6 small-6">
       <span data-tooltip aria-haspopup="true" class="has-tip" title="change the display image in the photo gallery">
-	    <%= thumbnail(animal, '100x100', '', 'Household') %>
+	    <%= link_to thumbnail(animal, '100x100', '', 'Household'), animal_pictures_path(animal) %>
       </span>
 	  <h6><%= animal.name %></h6>
 	  <p><small><%= animal.breed_names%></small></p>
@@ -19,8 +19,8 @@
 		  
 		</div>
       <% end %>
-	  
 	</div>
+	  
 	
 	<div class="columns large-6 small-6">
 		<%= link_to edit_household_animal_path(@household, animal) do %>

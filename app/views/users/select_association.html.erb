@@ -9,27 +9,26 @@
     </div>
   </section>
  
- <section class="white_background">
-	
-  <div class="row pad-btm associations-main">
-    <div class="large-12 columns">
-      <ul class="associationList ">
-       <% @user.user_associations.each do |association| %>
-        <% next if cannot? :read, association.group %>
-      	<li>
-      	  <div class="medium-6 large-4 columns shop-product-small text-center pad-btm clearfix">
-	        <div class="image">
-	          <%= link_to image(association), association.group %>
-	        </div>
-	        <h2><%= link_to association.name, association.group %></h2>
-	        <%= link_to button_small("go there"), association.group %>
-	        
-         </div>
-        </li>
-       <% end %>
-      </ul>	
-    </div>
+ <section class="white_background">	
+  <div class="row pad-btm">
+  	<div class="large-12 columns center">
+  	  <ul class="small-block-grid-2 medium-block-grid-2 large-block-grid-3">
+  	    <% @user.associations.each do |association| %>
+          <% next if cannot? :read, association.group %>
+          <li>
+            <%= link_to association.organization do %>
+          	  <div class="image">
+	            <%= image(association)%>
+	          </div>
+	          <h4><%= association.name %></h4>
+	          <%= button_small("go there") %>
+            <% end %>
+          </li>
+        <% end %>
+  	  </ul>
+  	</div>
   </div>
+	
   <div class="row">
 	<div class="large-12 columns">
 	  <p>

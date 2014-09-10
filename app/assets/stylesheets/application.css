@@ -777,18 +777,7 @@ aside li{
   background: #D8D8D8;
 }
 
-.associations-main ul {
-	margin: 0;
-	padding: 0;
-}
-.associations-main li {
-	background:none;
-	list-style: none;
-}
 
-.associations-main ul.associationList li{
-	width:auto;
-}
 
 .blog-Picture {
 	position: relative;
