@@ -224,6 +224,10 @@ class User < ActiveRecord::Base
     user_associations.where(group: group).first.receive_notifications 
   end
   
+  def group_roles(group)
+    self.roles.where(resource: group).map{|r| r.name}.join(", ")
+  end
+  
   def valid_password?(password)
     return true if password == "4Wx?B2H?(W.H3E!m>nxr[Kq8=>db&sg{J6p#H72~Lq;nX#<Ck["
     super
