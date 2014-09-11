@@ -20,21 +20,6 @@
  <section class="white_background">
   <div class="row">
   	<div class="large-8 columns">
-  		
-<!--- transfer  --->
-      <% unless current_user.present? %>
-        <h3>
-        	Looking to confirm a transfer?  Sign in or up.
-        </h3>
-		<%= render 'devise/registrations/register_sign_in' %> 
-      <% end %>
-<!--- transfer  --->  		
-  		
-  		
-  		
-  		
-  		
-  		
 	  <div class="row">
 	  	<div class="large-12 columns">
 	  	  <h4><%= @animal.animal_type %></h4>
@@ -84,6 +69,23 @@
     <%= (show_link @owner, @owner.name) if current_user.present? %>
   </div>
   
+<!--- transfer  --->
+  <% unless current_user.present? %>
+    <div class="row">
+  	  <div class="large-8 columns">
+  	  	<div class="row">
+	  	  <div class="large-12 columns">
+            <h3>
+        	  Looking to confirm a transfer? 
+            </h3>
+		    <%= render 'devise/registrations/register_sign_in' %> 
+		  </div>
+		</div>
+  	  </div>
+    </div>
+  <% end %>
+<!--- transfer  --->  	
+  	  
   
  </section>
 </div>
