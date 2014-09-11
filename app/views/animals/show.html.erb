@@ -19,72 +19,15 @@
 
  <section class="white_background">
   <div class="row">
-  	<div class="large-7 columns">
+  	<div class="large-8 columns">
   		
 <!--- transfer  --->
-  	 <div class="row">
-	  	<div class="large-12 columns">
-	
-<fieldset>
-	  	  <p>
-	  	    <b>Looking to confirm a transfer?</b>  Create an account to obtain your animals healthcare records.
-	  	  </p>	
-	  	  
-	  	  
-  
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { "data-abide" => ''}) do |f| %>
-		  
-		<div class="row collapse">
-		  <div class="small-12 columns">
-		    <h4>create an account <small>(it's free!)</small></h4>
-		  </div>
-		</div>
-		
-		<div class="row collapse">
-		  <div class="small-12 columns">
-		    <%= f.email_field :email, placeholder: 'email address' %>
-		    <small class="error">Valid email required.</small>
-		  </div>
-		</div>
-		
-		<% if f.object.password_required? %>
-		  <div class="row collapse">
-		      
-		    <div class="small-12 columns">
-		      <%= f.password_field :password, placeholder: 'password (8 or more characters)', 'required' => :required  %>
-		      <small class="error" >Passwords must be at least 8 characters.</small>
-		    </div>
-		  </div>
-		
-		  <div class="row collapse">
-		    <div class="small-12 columns">
-		      <%= f.password_field :password_confirmation, placeholder: 'password confirmation', 'required' => :required %>
-		      <small class="error" >Confirmation required.</small>
-		    </div>
-		  </div>
-	    <% end %>
-		  
-		  <div class="row collapse bottom_padding_10">
-		    <div class="small-2 columns"><%= f.submit "join", class: "small button" %> </div>
-		    
-		    <div class="small-3 columns">
-		 		<p>... or use 
-            	  <%= link_to image_tag(s3_url('webicon-facebook-m.png')), user_omniauth_authorize_path(:facebook), class: "fc-webicon" %>
-		 		</p> 
-		    	
-		    </div>
-		    
-		    <div class="small-7 columns">
-		      <small>Signing up indicates agreement with our <%= link_to "privacy policy", privacy_policy_path, "data-reveal-id" => "privacyModal", remote: true  %>.</small>
-		    </div>
-		  </div>
-    <% end %>	
-</fieldset>
-  
-	  	  
-	  
-	  	</div>
-	  </div>
+      <% unless current_user.present? %>
+        <h3>
+        	Looking to confirm a transfer?  Sign in or up.
+        </h3>
+		<%= render 'devise/registrations/register_sign_in' %> 
+      <% end %>
 <!--- transfer  --->  		
   		
   		
@@ -130,7 +73,7 @@
 	 
   	</div>
 	 
-	<div class="large-5 columns">	
+	<div class="large-4 columns">	
 	  <div class="row">
 	  	<div class="large-12 columns">
 	  	  <%= render 'animals/contact_owner'%>
