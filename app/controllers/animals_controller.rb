@@ -9,9 +9,10 @@ class AnimalsController < ApplicationController
   
   # GET /animals
   # GET /animals.json
-  #def index
+  def index
+    redirect_to root_path
   #  @animals = Animal.all
-  #end
+  end
 
   # GET /animals/1
   # GET /animals/1.json
