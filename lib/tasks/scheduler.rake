@@ -40,7 +40,6 @@ end
 
 task :remind_transferees => :environment do
   AnimalTransfer.remind_transferees if Date.today.tuesday?
-  #Organization.weekly_update if Date.today.monday?
 end
 
 task :weekly_usage => :environment do
