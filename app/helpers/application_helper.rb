@@ -182,10 +182,10 @@ module ApplicationHelper
     end
   end
   
-  def display_roles(user, entity)
-    roles = user.roles.where(resource: entity)
-    roles.map{|r| r.name}.join(", ")
-  end
+  #def display_roles(user, entity)
+  #  roles = user.roles.where(resource: entity)
+  #  roles.map{|r| r.name}.join(", ")
+  #end
   
   def resource_name
     :user
