@@ -19,7 +19,7 @@
 	            <td><%= ua.user.name %></td>
 	            <td><%= ua.user.email %></td>
 	            <td><%= ua.user.phone %></td>
-	            <td><%= display_roles(ua.user, @household) %></td>
+	            <td><%= ua.user.group_roles(@household, true) %></td>
 	            <td>
 	               <% if ua.user != current_user %>
 	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
