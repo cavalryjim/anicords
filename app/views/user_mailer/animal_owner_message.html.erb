@@ -1,0 +1,11 @@
+<p><%= @animal.owner.name %>,</p>
+
+<p>
+  You were sent the following message about <b><%= @animal.name %></b>.
+</p>
+
+<p>
+  <i><%= @message %></i>
+</p>
+
+<%= render 'user_mailer/email_closing'%>

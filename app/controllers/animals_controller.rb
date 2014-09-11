@@ -1,10 +1,11 @@
 class AnimalsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :microchip_lookup]
+  before_action :authenticate_user!, except: [ :show, :microchip_lookup, :contact_owner ]
   before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, :cancel_transfer,
-                                      :sitter_instructions, :org_flyer, :photo_gallery, :weight_chart, :check_in, :check_out ]
-  before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer]
+                                      :sitter_instructions, :org_flyer, :photo_gallery, :weight_chart, :check_in, :check_out, :contact_owner ]
+  before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer,
+                                      :contact_owner ]
   #before_filter :authenticate_user!
-  authorize_resource except: [:accept_transfer, :show, :microchip_lookup]
+  authorize_resource except: [:accept_transfer, :show, :microchip_lookup, :contact_owner ]
   
   # GET /animals
   # GET /animals.json
@@ -210,6 +211,15 @@ class AnimalsController < ApplicationController
   def microchip_lookup
     @animals = Animal.microchip_search(params[:chip_brand], params[:chip_id]) 
     #@animals = Animal.first(5)
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def contact_owner
+    params[:sender_id].present? || params[:sender_id] = nil
+    @success = @animal.contact_owner(params[:message], params[:sender_id])
+
     respond_to do |format|
       format.js 
     end

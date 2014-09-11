@@ -19,24 +19,19 @@
 
  <section class="white_background">
   <div class="row">
-
+  	<div class="large-6 columns">
 	  <div class="row">
-	  	<div class="large-9 columns">
-	  	  <h4><%= thumbnail(@animal, '50x50', 'picture_border_2') %><%=@animal.name%></h4>
+	  	<div class="large-12 columns">
+	  	  <h4><%=@animal.animal_type%></h4>
 	  	</div>
 	  </div>
 	  <div class="row">
-	  	<div class="large-9 columns">
-	  	  <%=@animal.animal_type%>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="large-9 columns">
+	  	<div class="large-12 columns">
 	  	  <%=@animal.breed_names%>
 	  	</div>
 	  </div>
 	  <div class="row">
-	  	<div class="large-9 columns">
+	  	<div class="large-12 columns">
 	  	  <%=@animal.description%>
 	  	</div>
 	  </div>
@@ -60,9 +55,20 @@
 		  </div>
 	    </div>
 	  <% end %>
+  	</div>
+	 
+	<div class="large-6 columns">	
+	  <div class="row">
+	  	<div class="large-12 columns">
+	  	  <%= render 'animals/contact_owner'%>
+	  	</div>
+	  </div>
+	</div>  
     
     <%= (show_link @owner, @owner.name) if current_user.present? %>
   </div>
+  
+  
  </section>
 </div>
 

@@ -111,6 +111,13 @@ class UserMailer < ActionMailer::Base
     mail to: @group.user_emails, subject: "AnimalMinder: " + @group.name + " weekly update"
   end
   
+  def animal_owner_message(animal, message)
+    @animal = animal
+    @message = message
+    
+    mail to: @animal.owner.user_emails, subject: "AnimalMinder: message about " + @animal.name
+  end
+  
   def email_comment(comment)
     @comment = comment
     if @comment.comment.present?

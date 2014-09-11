@@ -386,6 +386,13 @@ class Animal < ActiveRecord::Base
     self.animal_medications.where.not(medication_type: 'heartworm')
   end
   
+  def contact_owner(message, sender_id = nil)
+    return false unless message.present?
+    #sender = User.find(sender_id)
+    
+    UserMailer.animal_owner_message(self, message).deliver 
+  end
+  
   private
   
   def new_health_profile
