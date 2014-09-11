@@ -10,7 +10,7 @@ class AnimalsController < ApplicationController
   # GET /animals
   # GET /animals.json
   def index
-    redirect_to root_path
+    redirect_to user_select_association_path
   #  @animals = Animal.all
   end
 
