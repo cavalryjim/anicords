@@ -88,7 +88,7 @@ class Ability
     end
     
     can :read, Household do |household|
-      (user.has_role? :member_limited )
+      (user.has_role? :limited_member )
     end
     
     can :manage, Location do |location|
