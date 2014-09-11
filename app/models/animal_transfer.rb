@@ -20,7 +20,7 @@ class AnimalTransfer < ActiveRecord::Base
   end
   
   def self.older_transfers(go_back = 7)
-    where('updated_at >= ?', go_back.days.ago)
+    where('updated_at <= ?', go_back.days.ago)
   end
   
   def self.remind_transferees
