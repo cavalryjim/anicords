@@ -8,7 +8,7 @@
 <p>
   Transfer from: <%= @animal.owner.name %>
   Animal name: <%= @animal.name %>
-  <%= link_to "Confirm the transfer here.", polymorphic_url(@animal) %>
+  <%= link_to "Confirm the transfer here.", polymorphic_url(@animal) + "?transfer=true" %>
 </p>
 
 <%= render 'user_mailer/email_closing'%>

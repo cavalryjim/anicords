@@ -222,7 +222,6 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
-    newrelic_rpm (3.7.0.177)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -445,7 +444,6 @@ DEPENDENCIES
   launchy
   letter_opener (= 1.1.2)
   mandrill-api (= 1.0.47)
-  newrelic_rpm (= 3.7.0.177)
   omniauth-facebook (= 1.4.1)
   omniauth-twitter (= 1.0.0)
   petfinder (= 1.0.1)

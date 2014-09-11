@@ -187,6 +187,18 @@ module ApplicationHelper
     roles.map{|r| r.name}.join(", ")
   end
   
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+  
 #### JDavis: let the states be the second to last item in this helper ####
   
   def us_states
