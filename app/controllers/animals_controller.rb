@@ -148,6 +148,7 @@ class AnimalsController < ApplicationController
   end
   
   def accept_transfer
+    # JDavis: need to move this logic to the animal model.  jdhere.
     association = UserAssociation.find(params[:association])
     transfer = AnimalTransfer.find(params[:animal_transfer_id])
     notice = 'There was a problem with the transfer.'
