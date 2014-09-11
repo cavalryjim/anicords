@@ -12,7 +12,7 @@
 	</tr>
   </thead>
   <tbody>
-    <% @organization.animals.each do |animal| %>
+    <% @organization.animals.find_each do |animal| %>
       <% next if ( animal.pending_transfer? || animal.org_profile.blank? ) %>
 	  <tr id="<%= animal.id %>">
 	  	<%= render 'organizations/animal_table_row', animal: animal %>

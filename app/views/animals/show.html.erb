@@ -61,7 +61,7 @@
 	    </div>
 	  <% end %>
     
-    <%= show_link @owner, @owner.name %>
+    <%= (show_link @owner, @owner.name) if current_user.present? %>
   </div>
  </section>
 </div>

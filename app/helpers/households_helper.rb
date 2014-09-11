@@ -28,7 +28,7 @@ module HouseholdsHelper
   def additional_notifications(household)
     #household_notifications = household.notifications
     notes = ""
-    household.animals.each do |animal|
+    household.animals.find_each do |animal|
       notes << "<li>" + notification_image_link(household, animal) + " Schedule appointments for " + notification_name_link(household, animal) + " by adding service providers.</li>" if animal.service_providers.count == 0
       notes << "<li>" + notification_image_link(household, animal) + " Recieve health alerts for " + notification_name_link(household, animal) + "  by updating the health & wellness tab.</li>" if animal.needs_vaccination_info?
       notes << "<li>" + notification_image_link(household, animal) + " Update feeding preferences for " + notification_name_link(household, animal) + " to easily send instructions to your kennel or sitter.</li>" if animal.needs_diet_info?

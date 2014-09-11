@@ -111,9 +111,9 @@ class Household < ActiveRecord::Base
   def foster_animals
     foster_animals = []
     return foster_animals unless self.organization_locations.count > 0
-    self.organization_locations.each do |location|
+    self.organization_locations.find_each do |location|
       next unless location.org_profiles.count > 0
-      location.org_profiles.each do |profile|
+      location.org_profiles.find_each do |profile|
         foster_animals << profile.animal if profile.animal.owner.class.name == "Organization"
       end
     end

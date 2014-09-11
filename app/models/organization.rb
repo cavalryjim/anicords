@@ -110,7 +110,7 @@ class Organization < ActiveRecord::Base
     pets = petfinder.shelter_pets(self.petfinder_shelter_id, {count: 250})
     #org_petfinder_ids = self.petfinder_ids
     pull_count = 0
-    pets.each do |pet|
+    pets.find_each do |pet|
       #JDavis: check to see if the animal is already in AnimalMinder.
       #if (org_petfinder_ids.include? pet.id.to_i)
       #  animal = OrgProfile.find_by_petfinder_id(pet.id.to_i).animal
