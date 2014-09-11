@@ -22,5 +22,13 @@ class AnimalTransfer < ActiveRecord::Base
   def self.older_transfers(go_back = 7)
     where('updated_at >= ?', go_back.days.ago)
   end
+  
+  def self.remind_transferees
+    transfers = AnimalTransfer.older_transfers
+    transfers.find_each do |transfer|
+      next unless transfer.transferee.class.name == "User"
+      UserMailer.animal_transfer_notice(transfer.transferee, transfer.animal).deliver
+    end
+  end
 
 end
