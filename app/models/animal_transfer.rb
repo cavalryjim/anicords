@@ -18,5 +18,9 @@ class AnimalTransfer < ActiveRecord::Base
   def display_name
     animal.name + " from " + animal.owner.name
   end
+  
+  def self.older_transfers(go_back = 7)
+    where('updateed_at >= ?', go_back.days.ago)
+  end
 
 end
