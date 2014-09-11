@@ -4,8 +4,10 @@
   You were sent the following message about <b><%= @animal.name %></b>.
 </p>
 
-<p>
-  <i><%= @message %></i>
-</p>
+<frameset style="background-color:lightgrey">
+  <p>
+    <i><%= @message %></i>
+  </p>
+</frameset>
 
 <%= render 'user_mailer/email_closing'%>
