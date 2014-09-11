@@ -22,17 +22,17 @@
   	<div class="large-6 columns">
 	  <div class="row">
 	  	<div class="large-12 columns">
-	  	  <h4><%=@animal.animal_type%></h4>
+	  	  <h4><%= @animal.animal_type %></h4>
 	  	</div>
 	  </div>
 	  <div class="row">
 	  	<div class="large-12 columns">
-	  	  <%=@animal.breed_names%>
+	  	  <%= @animal.breed_names %>
 	  	</div>
 	  </div>
-	  <div class="row">
+	  <div class="row bottom_padding_3em">
 	  	<div class="large-12 columns">
-	  	  <%=@animal.description%>
+	  	  <%= @animal.description %>
 	  	</div>
 	  </div>
 	  <% if @transfer_id %>
@@ -55,6 +55,14 @@
 		  </div>
 	    </div>
 	  <% end %>
+	  <div class="row">
+	  	<div class="large-12 columns">
+	  	  <p>
+	  	    Looking to confirm a transfer?  Click <%= link_to button_small("here"),  new_user_registration_path + "#login" %> to create an account and 
+	  	    obtain your animals healthcare records.
+	  	  </p>	
+	  	</div>
+	  </div>
   	</div>
 	 
 	<div class="large-6 columns">	
