@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
       where(auth.slice(:provider, :uid)).first_or_create do |fb_user|
         fb_user.provider = auth.provider
         fb_user.uid = auth.uid
-        fb_user.email = auth.info.email.lowercase
+        fb_user.email = auth.info.email.downcase
       end
       user = fb_user
     end
