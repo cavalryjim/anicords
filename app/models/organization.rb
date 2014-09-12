@@ -22,7 +22,7 @@
 
 class Organization < ActiveRecord::Base
   include ActiveModel::Validations
-  
+  resourcify
   #has_many  :adopted_animals, -> { where.not owner_type: "Organization" }, class_name: "Animal"
   has_many  :animals, -> { where active: true }, as: :owner, dependent: :destroy
   has_many  :archived_animals, -> { where active: false }, class_name: "Animal", as: :owner, dependent: :destroy

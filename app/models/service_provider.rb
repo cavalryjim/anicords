@@ -19,6 +19,8 @@
 #
 
 class ServiceProvider < ActiveRecord::Base
+  include ActiveModel::Validations
+  resourcify
   #attr_accessible :veterinarians_attributes
   has_many  :households, through: :household_associations
   has_many  :household_associations, dependent: :destroy

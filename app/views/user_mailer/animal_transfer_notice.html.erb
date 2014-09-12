@@ -1,17 +1,13 @@
 <p><%= @user.name_or_email %>,</p>
 
 <p>
-Congratulations on the adoption of <%= @animal.name %> from <%= @animal.owner.name %>.
+  Congratulations on the adoption of <%= link_to @animal.name, polymorphic_url(@animal) + "?transfer=true" %> from <%= @animal.owner.name %>.
 </p>
 
 <p>
-Click <%= link_to "here", polymorphic_url(@animal) + "?transfer=true" %> to create your free account with Animal Minder and accept your animal‘s electronic health and wellness record.  Use <%= @user.name_or_email %> as your login ID.</p>
+  Click <%= link_to "here", polymorphic_url(@animal) + "?transfer=true" %> to create your free 
+  account with Animal Minder and accept your animal‘s electronic health and wellness record.
 </p>
 
-<p>Animal Minder is a free resource for animal guardians that allows you to store and organize your animal's health and wellness information in the cloud, receive reminders about important events such as heartworm treatments and annual checkups via your mobile devices, schedule sitters, groomers, and vet visits and share important info such as vaccination records and care instructions.  Never leave your animal's information trapped in your home filing cabinet or the vet's office again.</p> 
-
-<p>Best regards,</br>
-
-Team AnimalMinder</p>
 <%= render 'user_mailer/email_closing'%>
 
