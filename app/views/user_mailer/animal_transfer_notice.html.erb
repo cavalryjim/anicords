@@ -1,14 +1,13 @@
 <p><%= @user.name_or_email %>,</p>
 
 <p>
-  You have a new animal transfer on AnimalMinder.
+  Congratulations on the adoption of <%= link_to @animal.name, polymorphic_url(@animal) + "?transfer=true" %> from <%= @animal.owner.name %>.
 </p>
 
-
 <p>
-  Transfer from: <%= @animal.owner.name %>
-  Animal name: <%= @animal.name %>
-  <%= link_to "Confirm the transfer here.", polymorphic_url(@animal) + "?transfer=true" %>
+  Click <%= link_to "here", polymorphic_url(@animal) + "?transfer=true" %> to create your free 
+  account with Animal Minder and accept your animal‘s electronic health and wellness record.
 </p>
 
 <%= render 'user_mailer/email_closing'%>
+
