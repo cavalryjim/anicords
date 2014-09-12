@@ -10,28 +10,22 @@
 		  
   </div>
 	  
-  
-	<!--<div class="large-6 columns">
-      <%= text_field_tag 'feeding_display', @animal.feeding_comment ,placeholder: 'feeding size and frequency (3 cups daily)'%>
-	</div>-->
-	<!--<div id="feeding_dialog" title="Feeding information">
-	  <p class="validateTips">All form fields are required.</p>-->
-	<div class="row">
-		<div class="large-6 columns">
-		  <%= f.label :volume_per_serving, "serving number" %>
-		  <%= f.text_field :volume_per_serving , placeholder: 'serving number ex: 2' %>
-	    </div>
-		<div class="large-6 columns">
-		  <%= f.label :serving_measure, "serving measure" %>
-		  <%= f.select :serving_measure, options_for_select(["cups", "grams", "ounces", "lbs", "scoops"], @animal.serving_measure), { }, {class: "regular_select"}  %>
-		</div>
+  <div class="row">
+	<div class="large-6 columns">
+	  <%= f.label :volume_per_serving, "serving number" %>
+	  <%= f.text_field :volume_per_serving , placeholder: 'serving number ex: 2' %>
 	</div>
-	<div class="row">
-	  <div class="large-6 columns">
-	  	<%= f.label :servings_per_day, "feedings per day"%>
-		<%= f.select :servings_per_day, options_for_select(feeding_frequency_options, @animal.servings_per_day), { }, class: 'regular_select' %>
-	  </div>
+	<div class="large-6 columns">
+	  <%= f.label :serving_measure, "serving measure" %>
+	  <%= f.select :serving_measure, options_for_select(["cups", "grams", "ounces", "lbs", "scoops"], @animal.serving_measure), { }, {class: "regular_select"}  %>
 	</div>
+  </div>
+  <div class="row">
+	<div class="large-6 columns">
+	  <%= f.label :servings_per_day, "feedings per day"%>
+	  <%= f.select :servings_per_day, options_for_select(feeding_frequency_options, @animal.servings_per_day), { }, class: 'regular_select' %>
+	</div>
+  </div>
 		   
   
 		  

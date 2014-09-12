@@ -35,11 +35,6 @@ $("#panel3").css "min-height", $("#panel1").height()
   
 $(".org_animal_div").on "show", ->
   $(document).foundation()
-  
-  
-  $(".regular_select").select2
-    minimumResultsForSearch: 55
-    width: "100%"
 
   $('#animal_breed_ids').select2
     placeholder: "breed"
@@ -360,65 +355,6 @@ $(".org_animal_div").on "show", ->
       results: (data, page) -> 
         results: data
   
-  # JDavis: jquery dialog form for capturing feeding information
-  updateTips = (t) ->
-    tips.text(t).addClass "ui-state-highlight"
-    setTimeout (->
-      tips.removeClass "ui-state-highlight", 1500
-    ), 500
-  checkNumeric = (n) ->
-    unless $.isNumeric n.val() 
-      n.addClass "ui-state-error"
-      updateTips "enter number, such as 2 cups"
-      false
-    else
-      true
-      
-  checkValue = (v) ->
-    unless v.val()
-      v.addClass "ui-state-error"
-      updateTips "all fields are required"
-      false
-    else
-      true
-      
-  amount = $("#feeding_volume")
-  measure = $("#feeding_measure")
-  frequency = $("#feeding_frequency")
-  allFields = $([]).add(amount).add(measure).add(frequency)
-  tips = $(".validateTips")
-  
-  $("#feeding_dialog").dialog
-    autoOpen: false
-    height: 250
-    width: 350
-    modal: true
-    buttons:
-      "Done": ->
-        bValid = true
-        text = ""
-        allFields.removeClass "ui-state-error"
-        bValid = bValid and checkNumeric(amount)
-        bValid = bValid and checkValue(measure)
-        bValid = bValid and checkValue(frequency)
-        if bValid
-          $("#animal_volume_per_serving").val amount.val()
-          $("#animal_serving_measure").val measure.val()
-          $("#animal_servings_per_day").val frequency.val()
-          text = amount.val() + ' ' + measure.val() + ' / ' + frequency.val() + ' x per day'
-          $("#feeding_display").val text
-          $(this).dialog "close"
-
-      Cancel: ->
-        $(this).dialog "close"
-
-    close: ->
-      allFields.val("").removeClass "ui-state-error"
-
-  $("#feeding_display").click ->
-    $("#feeding_dialog").dialog "open"
-        
-  
   $('#animal_registration_club_id').select2
     placeholder: "registration club"
     minimumResultsForSearch: 15
@@ -447,30 +383,6 @@ $(".org_animal_div").on "show", ->
           dataType: "json"
         ).done (data) ->
           callback data    
-  
-  # JDaivs: move data to another form and submit it.
-  $("#add_vaccination").click (event) -> 
-    event.preventDefault()
-    if $('#dialog_vaccination_id').val() and $('#dialog_vaccination_date').val()
-      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
-      $("#animal_vaccination_vaccination_date").val( $('#dialog_vaccination_date').val() )
-      $("#animal_vaccination_vaccination_id").val( $('#dialog_vaccination_id').val() )
-      $("#animal_vaccination_tag_number").val( $('#dialog_tag_number').val() )
-      $("#animal_vaccination_form").submit()
-    else
-      alert "Select a vaccination and date."
-      
-  # JDaivs: move data to another form and submit it.
-  $("#add_medication").click (event) ->
-    event.preventDefault()
-    if $('#dialog_medication_id').val() 
-      $("#animal_medication_medication_id").val( $('#dialog_medication_id').val() )
-      $("#animal_medication_volume").val( $('#dialog_medication_volume').val() )
-      $("#animal_medication_route").val( $('#dialog_medication_route').val() )
-      $("#animal_medication_interval").val( $('#dialog_medication_interval').val() )
-      $("#animal_medication_form").submit()
-    else
-      alert "Select a medication."
       
   $("#animal_gender").change ->
     $("#neutered_label").text( if ($("#animal_gender").val() == 'female') then ' Spayed?' else ' Neutered?')
@@ -491,30 +403,26 @@ $(".org_animal_div").on "show", ->
     else
       $("#animal_weight_table_div").slideUp()
       $("img#weight_details").attr "src", "/assets/details_open.png"
-  
-  #$("#delete_dialog").dialog
-  #  autoOpen: false
-  #  height: 250
-  #  width: 350
-  #  modal: true
-    
+
   $("#delete_button").click (event) ->
     event.preventDefault()
     $("#delete_dialog").dialog
       autoOpen: true
       height: 250
       width: 350
-      modal: true
-    #$("#delete_dialog").dialog "open" 
+      modal: true 
     
   $(".document_table .email").click (event) ->
     nTr = $(this).closest('tr').next()
     if $(nTr).is(":hidden")
       $(nTr).show("slow")
-      #$(nTr).slideDown("slow", "swing")
     else
-      $(nTr).hide("slow")
-      #$(nTr).slideUp("slow", "swing")  
+      $(nTr).hide("slow") 
 
+  # JDavis: the regular_select suddenly started causing a issue.
+  #$(".select").select2
+  #  minimumResultsForSearch: 55
+  #  width: "100%"
+    
   $(".tabs-content #panel2").removeClass "active"
     
