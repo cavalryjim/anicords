@@ -113,7 +113,8 @@ Anicords::Application.configure do
   :email => {
     :email_prefix => "[AnimalMinder_error] ",
     :sender_address => %{"notifier" <notifier@animalminder.com>},
-    :exception_recipients => %w{james.davisphd@gmail.com, tylercarruth@live.com}
+    #:exception_recipients => %w{james.davisphd@gmail.com, tylercarruth@live.com}
+    :exception_recipients => %w{james.davisphd@gmail.com}
   }
   
   # config.middleware.use Rack::SSL
