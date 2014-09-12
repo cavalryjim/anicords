@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    user = User.where(email: auth.info.email.lowercase).first
+    user = User.where(email: auth.info.email.downcase).first
     
     if user
       #user.update(auth.slice(:provider, :uid))
