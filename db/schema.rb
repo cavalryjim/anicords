@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140913003348) do
+ActiveRecord::Schema.define(version: 20140913021204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -353,6 +353,8 @@ ActiveRecord::Schema.define(version: 20140913003348) do
     t.boolean  "chronic",            default: false
     t.string   "nada_id"
     t.string   "produced_by"
+    t.text     "description"
+    t.text     "side_effects"
   end
 
   create_table "microchip_brands", force: true do |t|
