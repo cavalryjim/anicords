@@ -46,18 +46,19 @@
 	        <li><%= link_to 'About', about_us_path %></li>
 	      <% end %>
 	      
-	      <li><%= link_to 'Contact', contact_us_path %></li>
-	      
-	      <% if current_user && current_page?(edit_user_path(current_user.id)) %>
+	      <% if current_user.present? %>
 	        <li class="has-dropdown">
 	          <%= link_to 'Account', '#' %>
 	          <ul class="dropdown">
+	          	<li><%= link_to "edit my profile", edit_user_path(current_user) %></li>
 	          	<li><%= link_to 'change password', edit_user_registration_path %></li>
 	          	<li><%= link_to 'create another account', user_select_account_type_path %> </li>
 	          	<li><%= link_to 'cancel my account', edit_user_registration_path + "#cancel" %></li>
 	          </ul>
 	        </li>
 	      <% end %>
+	      
+	      <li><%= link_to 'Contact', contact_us_path %></li>
 	      <!--- 
 	      <li class="has-dropdown not-click"><a href="http:www.animalminder.com/features">Features</a>
 	      	<ul class="dropdown">
