@@ -61,13 +61,13 @@ $(function(){
     "bStateSave": true
   }).show();
   
-	
-  setTimeout(function(){
-    $("div.success").fadeOut("slow", function () {
-    $("div.success").hide();
-        });
- 
-  }, 2000);
+  // JDavis: this was used to fade out the success messages.  Mike B. requested the messages persist.	
+  //setTimeout(function(){
+  //  $("div.success").fadeOut("slow", function () {
+  //  $("div.success").hide();
+  //      });
+  //
+  //}, 2000);
   
   $( ".datepicker" ).datepicker({ 
   	dateFormat: 'yy-mm-dd',
