@@ -5,6 +5,7 @@ class AnimalMedicationsController < ApplicationController
   authorize_resource
   
   def create
+    (params[:animal_medication][:medication_id] = Medication.new_submission(params[:animal_medication][:medication_id], @animal.animal_type_id)) unless (params[:animal_medication][:medication_id]).blank? 
     @heartworm = (params[:commit] == "add treatment")
     @animal_medication = AnimalMedication.new(animal_medication_params)
     #JDavis: this is not getting set....need to fix.  jdhere.

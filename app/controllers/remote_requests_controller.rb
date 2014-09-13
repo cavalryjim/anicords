@@ -87,6 +87,8 @@ class RemoteRequestsController < ApplicationController
       @medications = Medication.order(:name).where("name ILIKE ? AND animal_type_id = ? AND medication_type = 'heartworm'", n, a ).map{|m| {id: m.id, text: m.name }}
     else
       @medications = Medication.order(:name).where("name ILIKE ? AND animal_type_id = ? AND medication_type != 'heartworm'", n, a ).map{|m| {id: m.id, text: m.name }}
+      #@medications.empty? ? (render json: [{id: n, text: "New: " + n}]) : (render json: @medications)
+      @medications = [{:id => params[:term], :text => "New: " + params[:term] }] if @medications.empty? 
     end
     render json: @medications
   end

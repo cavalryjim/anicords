@@ -26,7 +26,7 @@ class Medication < ActiveRecord::Base
   belongs_to  :animal_type
   
   has_many :animals, through: :animal_medications
-  has_many :animal_medications
+  has_many :animal_medications, dependent: :destroy
   
   validates_presence_of :name
   
@@ -36,6 +36,10 @@ class Medication < ActiveRecord::Base
   
   def chronic?
     self.chronic
+  end
+  
+  def self.new_submission(medication, animal_type_id)
+    Medication.create(name: medication, animal_type_id: animal_type_id, medication_type: 'other').id 
   end
   
 end
