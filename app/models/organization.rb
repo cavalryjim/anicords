@@ -305,5 +305,13 @@ class Organization < ActiveRecord::Base
     end
     admin_emails + dog_admin_emails + cat_admin_emails
   end
+  
+  def self.abandoned
+    orgs = []
+    Organization.find_each do |organization|
+      orgs << organization if organization.users.empty?
+    end
+    orgs
+  end
     
 end

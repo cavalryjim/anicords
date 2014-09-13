@@ -162,6 +162,12 @@ class Household < ActiveRecord::Base
     admin_emails + limited_emails
   end
     
-  
+  def self.abandoned
+    homes = []
+    Household.find_each do |household|
+      homes << household if household.users.empty?
+    end
+    homes
+  end
   
 end
