@@ -104,6 +104,8 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
+    return false unless auth.info.email.present?
+  
     user = User.where(email: auth.info.email.downcase).first
     
     if user
