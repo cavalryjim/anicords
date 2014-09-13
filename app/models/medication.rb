@@ -18,6 +18,8 @@
 #  chronic            :boolean          default(FALSE)
 #  nada_id            :string(255)
 #  produced_by        :string(255)
+#  description        :text
+#  side_effects       :text
 #
 
 class Medication < ActiveRecord::Base
