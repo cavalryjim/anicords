@@ -79,12 +79,14 @@ class RemoteRequestsController < ApplicationController
   end
   
   def medications
+    n = "%#{params[:term]}%"
+    a = "#{params[:at_id]}"
     if params[:meds]
       @medications = Medication.where(id: params[:meds]).all.map{|m| {id: m.id, text: m.name }}
     elsif params[:hw_only] == 'true'
-      @medications = Medication.order(:name).where("name ILIKE ? AND medication_type = 'heartworm'", "%#{params[:term]}%").map{|m| {id: m.id, text: m.name }}
+      @medications = Medication.order(:name).where("name ILIKE ? AND animal_type_id = ? AND medication_type = 'heartworm'", n, a ).map{|m| {id: m.id, text: m.name }}
     else
-      @medications = Medication.order(:name).where("name ILIKE ?", "%#{params[:term]}%").map{|m| {id: m.id, text: m.name }}
+      @medications = Medication.order(:name).where("name ILIKE ? AND animal_type_id = ? AND medication_type != 'heartworm'", n, a ).map{|m| {id: m.id, text: m.name }}
     end
     render json: @medications
   end
