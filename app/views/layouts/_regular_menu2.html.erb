@@ -31,7 +31,21 @@
 	        </li>
 	      <% end %>
 	      
-	      <li><%= link_to 'About', about_us_path %></li>
+	      <% if @household.present? %>
+	        <li class="has-dropdown">
+	          <%= link_to 'Schedule Service', '#' %>
+	          <ul class="dropdown">
+	          	<li>
+	          	  <%= link_to 'schedule a sitter', schedule_sitter_household_path(@household) %>
+	          	</li>
+	          </ul>
+	        </li>
+	      <% end %>
+	      
+	      <% unless @household.present? || @organization.present? %>
+	        <li><%= link_to 'About', about_us_path %></li>
+	      <% end %>
+	      
 	      <li><%= link_to 'Contact', contact_us_path %></li>
 	      
 	      <% if current_user && current_page?(edit_user_path(current_user.id)) %>

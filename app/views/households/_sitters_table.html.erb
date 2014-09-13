@@ -1,0 +1,21 @@
+<table>
+  <thead>
+	<tr>
+	  <th>Pet sitters</th>
+	  <th></th>
+	 </tr>
+  </thead>
+	
+  <tbody>
+	<% @household.user_associations.each do |ua| %>
+	  <% if ua.user.present? %>
+	    <% next unless ua.user.has_role? :sitter, @household %> 
+	  <tr>
+	    <td><%= ua.user.name %></td>
+	    <td><%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
+				 data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' }, remote: true %></td>
+	  </tr>     
+	  <% end %>
+	<% end %>     
+  </tbody>
+</table>

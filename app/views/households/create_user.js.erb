@@ -1,4 +1,10 @@
-$("#add_user_form")[0].reset();
+<% if @sitter_page %>
+  $("#sitters_div").html('<%= j render("households/sitters_table") %>');
+  $("#sitters_div").effect("highlight", {color:"#81F781"}, 1500).unbind();
+<% else %>
+  $("#members_div").html('<%= j render("households/members") %>');
+  $("#member_fieldset").effect("highlight", {color:"#81F781"}, 1500).unbind();
+<% end %>
+  
+$("form.user_form")[0].reset();
 $(".reveal-modal").foundation('reveal', 'close');
-$("#members_div").html('<%= j render("households/members") %>');
-$("#member_fieldset").effect("highlight", {color:"#81F781"}, 1500).unbind();

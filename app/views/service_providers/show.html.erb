@@ -1,18 +1,34 @@
 <% content_for :title, "Animal Service Provider" %>
 
-<section class="border_top">
+<div class="full_page">
+ <section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @service_provider.name %></h1>
+	  
+      <%= breadcrumb_nav([@service_provider.name]) %>
+     
+	</div>
+  </div>
+ </section>
 	
  <div class="row">
-  <fieldset>
+  
   <div class="row">
   	<div class="large-7 columns">
-      <h4><%= @service_provider.name %> <small><%= link_to ' (edit)', edit_service_provider_path(@service_provider), 'data-no-turbolink' => true %></small></h4>
+      <h4><%= @service_provider.name %></h4>
+      <p>
+      	<%= @service_provider.address1 %> </br>
+      	<%= @service_provider.address2 %> </br>
+      	<%= @service_provider.city %> 
+      	<%= @service_provider.state %> 
+      	<%= @service_provider.zip %> </br>
+      	<%= @service_provider.phone %> </br>
+      </p>
+      
+      <p><b>More functionality coming soon!</b></p>
   	</div>
-  	<div class="large-5 columns">
-  	  <dl class="sub-nav">
-		<dd><%= link_to button_small("full client list"), client_list_service_provider_path(@service_provider) %></dd>
-	  </dl>
-  	</div>
+  	
   	
  <% if @notifications.count > 0 %>
   <div class="row">
@@ -28,26 +44,11 @@
   </div>
  <% end %>
     
-  <div class="large-12 columns">
-	<fieldset>
-	  <% if @service_provider.current_clients.count == 0 %>
-	    <h4>No animals are currently checked in.</h4>
-	    
-	  <% else %>
-	    <div class="row">
-	      <div class="large-12 columns">
-	       	<div id="provider_client_table_div"><%= render 'current_clients'%></div>
-	      </div>
-	    </div>
-      <% end %>
-			
-	    
-	</fieldset>
-   </div>
-  </fieldset>
+  
+  </div>
  </div>
 
-</section>
+</div>
 
 <div id="clientModal" class="reveal-modal small">
   <div id="sp_animal_div" ></div>

@@ -34,7 +34,6 @@ class HouseholdsController < ApplicationController
   # POST /households
   # POST /households.json
   def create
-    #breakage
     @household = Household.new(household_params)
     respond_to do |format|
       if @household.save && @household.associate_user(current_user, 'member')
@@ -86,6 +85,7 @@ class HouseholdsController < ApplicationController
   end
   
   def create_user
+    @sitter_page = (params[:commit] == 'add sitter')
     new_user = User.create_user_to_group(params[:user][:email], @household, params[:user_role],
       params[:user][:first_name], params[:user][:last_name], params[:user][:phone])
     #new_user.create_activity :added_to_group, owner: current_user, recipient: @household

@@ -14,14 +14,61 @@
  <section class="white_background"> 
   <div class="row add-bottom white_background">
     <div class="columns large-8">
-      <h5>Schedule a pet sitter</h5>
-      <%= render 'sitter_requests/form'%>	
+      <% if @household.pet_sitters.present? %>
+        <h5>Schedule a pet sitter</h5>
+        <%= render 'sitter_requests/form'%>
+      <% else %>
+        <h5>No pet sitters listed</h5>
+      
+      <% end %>	
     </div>
     
     <div class="columns large-4">
       <div id="requests_div"><%= render 'requests_table' %></div>
+      <div id="sitters_div"><%= render 'sitters_table' %></div>
+      <%= link_to button_small('add sitter'), "#", "data-reveal-id" => "newSitterModal" %>
       
     </div>
   </div>
  </section>
+</div>
+
+<div id="newSitterModal" class="reveal-modal" data-reveal>
+	  <h3>Add a new sitter</h3>
+	  <%= form_for User.new, url: {action: "create_user"}, html: { id: "add_sitter_form", "data-abide" => '', class: "user_form" }, remote: true do |f| %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :email, placeholder: "Email"  %>
+	        <small class="error">Email required.</small>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :first_name, placeholder: "first name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :last_name, placeholder: "last name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :phone, placeholder: "phone"  %>
+	      </div>
+	    </div>
+	    
+	    <%= hidden_field_tag 'user_role', :sitter %>
+	    <%= f.hidden_field :household_id, value: @household.id %>
+	    
+	    <div class="actions">
+	      <%= f.submit "add sitter", class: "button small" %>
+	    </div>
+	  
+	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
 </div>
