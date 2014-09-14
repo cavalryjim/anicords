@@ -114,13 +114,18 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.save
     else
-      user = User.where(auth.slice(:provider, :uid)).first_or_create do |fb_user|
-        fb_user.provider = auth.provider
-        fb_user.uid = auth.uid
-        fb_user.email = auth.info.email.downcase
-        fb_user.first_name = auth.info.first_name if auth.info.first_name.present?
-        fb_user.last_name = auth.info.last_name if auth.info.last_name.present?
-      end
+      user = User.where(auth.slice(:provider, :uid)).first_or_initialize
+      user.email = auth.info.email.downcase
+      user.first_name = auth.info.first_name if auth.info.first_name.present?
+      user.last_name = auth.info.last_name if auth.info.last_name.present?
+      user.save
+      #user = User.where(auth.slice(:provider, :uid)).first_or_create do |fb_user|
+      #  fb_user.provider = auth.provider
+      #  fb_user.uid = auth.uid
+      #  fb_user.email = auth.info.email.downcase
+      #  fb_user.first_name = auth.info.first_name if auth.info.first_name.present?
+      #  fb_user.last_name = auth.info.last_name if auth.info.last_name.present?
+      #end
       
       #user = User.create do |u|
       #  u.email = foster[:email]
