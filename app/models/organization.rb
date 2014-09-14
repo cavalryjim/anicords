@@ -107,7 +107,12 @@ class Organization < ActiveRecord::Base
   
   def petfinder_import
     petfinder = Petfinder::Client.new
-    pets = petfinder.shelter_pets(self.petfinder_shelter_id, {count: 250})
+    begin
+      pets = petfinder.shelter_pets(self.petfinder_shelter_id, {count: 250})
+    rescue => e
+      logger.warn 'Unable to connect with Petfinder with ID ' + self.petfinder_shelter_id
+      pets = []
+    end
     #org_petfinder_ids = self.petfinder_ids
     pull_count = 0
     pets.each do |pet|

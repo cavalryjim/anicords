@@ -22,10 +22,10 @@
 	          <%= link_to 'Import', '#' %>
 	          <ul class="dropdown">
 	          	<li>
-		  	      <%= link_to_if @organization.petfinder_shelter_id.present?,  "import from Petfinder", "#", "data-reveal-id" => "importPetFinderModal", remote: true  %>	
+		  	      <%= link_to_if @organization.petfinder_shelter_id.present?,  "import from Petfinder", "#", "data-reveal-id" => "importPetFinderModal"  %>	
 				</li>
 				<li>
-			      <%= link_to_if @organization.id.present?, "import from spreadsheet", "#", "data-reveal-id" => "importSpreadsheetModal", remote: true  %>			  
+			      <%= link_to_if @organization.id.present?, "import from spreadsheet", "#", "data-reveal-id" => "importSpreadsheetModal"  %>			  
 				</li>	
 	          </ul>
 	        </li>

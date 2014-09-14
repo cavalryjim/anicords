@@ -13,6 +13,7 @@
   <div class="row pad-btm">
   	<div class="large-12 columns center">
   	  <ul class="small-block-grid-2 medium-block-grid-2 large-block-grid-3">
+  	  	<% n = 0 %>
   	    <% @user.associations.each do |association| %>
           <% next if cannot? :read, association.group %>
           <li>
@@ -24,6 +25,7 @@
 	          <%= button_small("go there") %>
             <% end %>
           </li>
+          <% n += 1%>
         <% end %>
   	  </ul>
   	</div>
@@ -32,7 +34,7 @@
   <div class="row">
 	<div class="large-12 columns">
 	  <p>
-	  	You are associated with <%= pluralize(current_user.associations.count, 'account') %>.  
+	  	You are associated with <%= pluralize(n, 'account') %>.  
 	  	If needed, click <%= link_to button_small("here"), user_select_account_type_path %> to add another account.
 	  </p>
 	</div>
