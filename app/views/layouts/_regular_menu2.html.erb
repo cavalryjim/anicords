@@ -31,7 +31,7 @@
 	        </li>
 	      <% end %>
 	      
-	      <% if @household.present? %>
+	      <% if @household.present? && @household.persisted? %>
 	        <li class="has-dropdown">
 	          <%= link_to 'Schedule Service', '#' %>
 	          <ul class="dropdown">
@@ -48,7 +48,7 @@
 	      
 	      <% if current_user.present? %>
 	        <li class="has-dropdown">
-	          <%= link_to 'Account', '#' %>
+	          <%= link_to 'My Account', '#' %>
 	          <ul class="dropdown">
 	          	<li><%= link_to "edit my profile", edit_user_path(current_user) %></li>
 	          	<li><%= link_to 'change password', edit_user_registration_path %></li>
