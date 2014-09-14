@@ -114,7 +114,10 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.save
     else
-      user = User.where(auth.slice(:provider, :uid)).first_or_initialize
+      #user = User.where(auth.slice(:provider, :uid)).first_or_initialize
+      user = User.new
+      user.provider = auth.provider
+      user.uid = auth.uid
       user.email = auth.info.email.downcase
       user.first_name = auth.info.first_name if auth.info.first_name.present?
       user.last_name = auth.info.last_name if auth.info.last_name.present?
