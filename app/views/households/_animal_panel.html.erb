@@ -47,19 +47,20 @@
 		  </div>
 		<% end %> 
 		
-		
-		<% if animal.pending_transfer? %>
+		<% if can? :manage, animal %>
+		 <% if animal.pending_transfer? %>
 		  <%= link_to cancel_transfer_path(animal), remote: true, data: { confirm: 'Please confirm you want to cancel this transfer.' } do %>
 		    <div class="panel panel_as_button">
 		  	  cancel transfer
 		    </div>
 		  <% end %> 
-        <% else %>
+         <% else %>
           <%= link_to household_animal_path(@household, animal), "data-reveal-id" => "transferAnimalModal", remote: true do %>
 		    <div class="panel panel_as_button">
 		  	  transfer ownership
 		    </div>
 		  <% end %> 
+         <% end %>
         <% end %>
 
 	</div>

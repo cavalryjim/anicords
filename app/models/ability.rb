@@ -23,17 +23,17 @@ class Ability
       #animal.owner.users.include?(user) or
       can? :manage, animal.owner or
       ((user.has_role? :admin_dogs, animal.owner) && (animal.species == 'dog')) or
-      ((user.has_role? :admin_cats, animal.owner) && (animal.species == 'cat')) or
-      if animal.org_profile.present? && animal.org_profile.organization_location.present?
-        #user.households.include?(animal.org_profile.organization_location.location)
-        can? :manage, animal.org_profile.organization_location.location
-      end
+      ((user.has_role? :admin_cats, animal.owner) && (animal.species == 'cat'))
     end
     
     can :update, Animal do |animal|
       (user.has_role? :member_limited, animal.owner) or
       (user.has_role? :org_member, animal.owner) or
-      (user.has_role? :org_vet, animal.owner)
+      (user.has_role? :org_vet, animal.owner) or 
+      # JDavis: this is for fosters.
+      if animal.org_profile.present? && animal.org_profile.organization_location.present?
+        can? :manage, animal.org_profile.organization_location.location
+      end
     end
     
     can [:read, :change_owner], Animal do |animal|

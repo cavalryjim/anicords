@@ -151,7 +151,8 @@
 	</div>
 	<div class="large-5 small-3 columns"></div>
     <div class="large-3 small-3 columns">
-      <% unless @animal.new_record? %>
+      <% if (can? :manage, @animal) && @animal.persisted? %>
+      
         <%= button_small("remove animal", 'delete_button', 'red_background' ) %>
         
         <div id="delete_dialog" title="Remove animal" class="fouc dialog">
