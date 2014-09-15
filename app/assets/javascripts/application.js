@@ -23,7 +23,6 @@
 //= require jquery.easy-ticker.min
 //= require jquery.sticky
 //= require fnAddTr
-//= require jquery.sticky
 //= require addtohomescreen
 //= require jquery.datetimepicker
 //= require_tree .
