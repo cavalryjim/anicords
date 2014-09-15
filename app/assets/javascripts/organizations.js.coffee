@@ -403,6 +403,13 @@ $(".org_animal_div").on "show", ->
     else
       $("#animal_weight_table_div").slideUp()
       $("img#weight_details").attr "src", "/assets/details_open.png"
+    
+  $(".document_table .email").click (event) ->
+    nTr = $(this).closest('tr').next()
+    if $(nTr).is(":hidden")
+      $(nTr).show("slow")
+    else
+      $(nTr).hide("slow") 
 
   $("#delete_button").click (event) ->
     event.preventDefault()
@@ -411,13 +418,6 @@ $(".org_animal_div").on "show", ->
       height: 250
       width: 350
       modal: true 
-    
-  $(".document_table .email").click (event) ->
-    nTr = $(this).closest('tr').next()
-    if $(nTr).is(":hidden")
-      $(nTr).show("slow")
-    else
-      $(nTr).hide("slow") 
 
   # JDavis: the regular_select suddenly started causing a issue.
   #$(".select").select2
