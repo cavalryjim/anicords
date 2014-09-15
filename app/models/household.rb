@@ -120,6 +120,10 @@ class Household < ActiveRecord::Base
     foster_animals
   end
   
+  def is_foster?
+    self.organization_locations.present?
+  end
+  
   def admin_users
     users.with_role(:member, self)
   end
