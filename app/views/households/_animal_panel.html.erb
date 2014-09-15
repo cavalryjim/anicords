@@ -47,7 +47,7 @@
 		  </div>
 		<% end %> 
 		
-		<% if can? :manage, animal %>
+		<% if (can? :manage, animal) && (@household == animal.owner) %>
 		 <% if animal.pending_transfer? %>
 		  <%= link_to cancel_transfer_path(animal), remote: true, data: { confirm: 'Please confirm you want to cancel this transfer.' } do %>
 		    <div class="panel panel_as_button">
