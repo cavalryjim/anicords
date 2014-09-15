@@ -108,6 +108,11 @@ class Household < ActiveRecord::Base
     household
   end
   
+  def all_animals
+    all_animals = animals.where(active: true)
+    all_animals << self.foster_animals if self.is_foster?
+  end
+  
   def foster_animals
     foster_animals = []
     #return foster_animals unless self.organization_locations.count > 0
