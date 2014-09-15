@@ -1,6 +1,4 @@
-<% if @animals.count == 0 %>
-  <h3>Tell us about your animals</h3>
-<% else %>  
+<% if @animals.present? %>
   <ul class="large-block-grid-2 medium-block-grid-2 small-block-grid-1">
     <% @animals.each do |animal| %>
       <li>	
@@ -8,4 +6,6 @@
 	  </li>
     <% end %>
   </ul>
+<% else %>  
+  <h3>Tell us about your animals</h3>
 <% end %>
