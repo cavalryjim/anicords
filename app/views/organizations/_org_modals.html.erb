@@ -31,7 +31,11 @@
 	</div>
 	
 	<div id="newHumanModal" class="reveal-modal" data-reveal>
-	  <h3>Add users to your organization</h3>
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <h3>Add users to your organization</h3>
+	    </div>
+	  </div>
 	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
 	    <div class="row">
 	      <div class="large-12 columns">
@@ -66,8 +70,10 @@
 	    
 	    <%= f.hidden_field :organization_id, value: @organization.id %>
 	    
-	    <div class="actions">
-	      <%= f.submit "submit", class: "button small" %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.submit "submit", class: "button small" %>
+	      </div>
 	    </div>
 	  
 	  <% end %>
