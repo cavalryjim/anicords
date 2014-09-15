@@ -46,11 +46,12 @@
 	        <li><%= link_to 'About', about_us_path %></li>
 	      <% end %>
 	      
-	      <% if current_user.present? %>
+	      <% if user_signed_in? %>
 	        <li class="has-dropdown">
 	          <%= link_to 'My Account', '#' %>
 	          <ul class="dropdown">
 	          	<li><%= link_to "edit my profile", edit_user_path(current_user) %></li>
+	          	<li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
 	          	<li><%= link_to 'change password', edit_user_registration_path %></li>
 	          	<li><%= link_to 'create another account', user_select_account_type_path %> </li>
 	          	<li><%= link_to 'cancel my account', edit_user_registration_path + "#cancel" %></li>
