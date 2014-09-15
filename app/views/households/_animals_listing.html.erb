@@ -1,8 +1,8 @@
-<% if @household.animals.count == 0 %>
+<% if @animals.count == 0 %>
   <h3>Tell us about your animals</h3>
 <% else %>  
   <ul class="large-block-grid-2 medium-block-grid-2 small-block-grid-1">
-    <% @household.animals.find_each do |animal| %>
+    <% @animals.each do |animal| %>
       <li>	
 	    <%= render 'households/animal_panel', animal: animal %>
 	  </li>
