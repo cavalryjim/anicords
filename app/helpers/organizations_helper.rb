@@ -34,8 +34,8 @@ module OrganizationsHelper
     [['administrator (full access)', :admin], 
     ['administrator (dogs only)', :admin_dogs], 
     ['administrator (cats only)', :admin_cats],
+    ['administrator (vaccinations)', :admin_vaccinations],
     ['member (limited access)', :org_member],
-    ['foster', :org_foster],
     ['vet services', :org_vet]]
   end
   

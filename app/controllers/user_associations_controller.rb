@@ -2,6 +2,14 @@ class UserAssociationsController < ApplicationController
   before_action :set_user_association
   before_filter :authenticate_user!
   authorize_resource
+  
+  def edit
+    @user = @user_association.user
+    @roles = @user.group_roles(@user_association.group)
+    respond_to do |format|
+      format.js
+    end
+  end
 
   # DELETE /household_associations/1
   # DELETE /households/1.json
