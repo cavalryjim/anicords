@@ -17,7 +17,9 @@ class HouseholdsController < ApplicationController
     #@owner = @household
     @notifications = @household.notifications.where(active: true)
     #@notifications = Notification.all
-    @animals = @household.animals.where(active: true)
+    #@animals = @household.animals.where(active: true)
+    #@animals << @household.foster_animals if @household.is_foster?
+    @animals = @household.all_animals
   end
 
   # GET /households/new
