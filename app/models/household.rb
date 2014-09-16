@@ -111,6 +111,7 @@ class Household < ActiveRecord::Base
   def all_animals
     all_animals = animals.where(active: true)
     all_animals += self.foster_animals if self.is_foster?
+    return all_animals
   end
   
   def foster_animals
