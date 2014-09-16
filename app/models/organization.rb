@@ -293,7 +293,7 @@ class Organization < ActiveRecord::Base
   
   def self.weekly_update
     Organization.find_each do |organization|
-      next if organization.users.empty? || organization.notifications.empty?
+      next if organization.users.empty?
       UserMailer.weekly_update(organization).deliver
     end
   end
