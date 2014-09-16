@@ -35,7 +35,7 @@ end
 
 task :weekly_update => :environment do
   Household.weekly_update if Date.today.sunday?
-  #Organization.weekly_update if Date.today.monday?
+  Organization.weekly_update if Date.today.monday?
 end
 
 task :remind_transferees => :environment do
