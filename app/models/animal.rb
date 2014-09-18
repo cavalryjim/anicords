@@ -386,11 +386,11 @@ class Animal < ActiveRecord::Base
     self.animal_medications.where.not(medication_type: 'heartworm')
   end
   
-  def contact_owner(message, sender_id = nil)
+  def contact_owner( message, sender_id = nil, sender_name = nil, sender_contact = nil )
     return false unless message.present?
     #sender = User.find(sender_id)
     
-    UserMailer.animal_owner_message(self, message).deliver 
+    UserMailer.animal_owner_message(self, message, sender_name, sender_contact ).deliver 
   end
   
   private

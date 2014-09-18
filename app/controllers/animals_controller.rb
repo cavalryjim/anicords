@@ -93,7 +93,7 @@ class AnimalsController < ApplicationController
     end
     
     respond_to do |format|
-      if @animal.update(animal_params)
+      if @animal.update!(animal_params)
         @animal.create_qr_code(animal_url(@animal, qrc: 'true')) unless @animal.qr_code.present?
         #@animal.create_activity :update, owner: current_user
         format.html { redirect_to return_path, notice: @animal.name + ' was successfully updated.' }
@@ -102,6 +102,7 @@ class AnimalsController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -132,7 +133,10 @@ class AnimalsController < ApplicationController
       transferee_id = @animal.transfer_ownership(params[:transferee], animal_url(@animal.id) + "?transfer=true" ) 
       @animal.create_qr_code(animal_url(@animal, qrc: 'true')) unless @animal.qr_code.present?
       @owner.capture_transfer(@animal.id, transferee_id, params[:transferee], params[:org] ) if @owner.class.name == 'Organization'
-      @household = @animal.owner if @animal.owner.class.name == "Household"
+      if @animal.owner.class.name == "Household"
+        @household = @animal.owner 
+        @animals = @household.all_animals
+      end
     end
     
     respond_to do |format|
@@ -142,7 +146,10 @@ class AnimalsController < ApplicationController
   
   def cancel_transfer
     @success = @animal.cancel_transfer
-    @household = @animal.owner if @animal.owner.class.name == "Household"
+    if @animal.owner.class.name == "Household"
+      @household = @animal.owner 
+      @animals = @household.all_animals
+    end
     respond_to do |format|
       format.js 
     end
@@ -220,7 +227,7 @@ class AnimalsController < ApplicationController
   
   def contact_owner
     params[:sender_id].present? || params[:sender_id] = nil
-    @success = @animal.contact_owner(params[:message], params[:sender_id])
+    @success = @animal.contact_owner(params[:message], params[:sender_id], params[:sender_name], params[:sender_contact])
 
     respond_to do |format|
       format.js 
