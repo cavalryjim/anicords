@@ -95,7 +95,7 @@ class Animal < ActiveRecord::Base
   
   dragonfly_accessor :qr_code do
     storage_options do |attachment|
-      { path: "qr_codes/#{Rails.env}/#{id}.png" }
+      { path: "qr_codes/#{Rails.env}/#{id}.png?dt=#{qr_code_date}" }
     end
   end
   
@@ -207,7 +207,11 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    self.update_attribute :qr_code, qr_code.to_img.to_string  if qr_code 
+    if qr_code 
+      self.qr_code_date = Date.today  
+      self.qr_code = qr_code.to_img.to_string
+      self.save
+    end
   end
 
   def profile_completion

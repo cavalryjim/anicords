@@ -94,7 +94,7 @@ class AnimalsController < ApplicationController
     
     respond_to do |format|
       if @animal.update(animal_params)
-        @animal.create_qr_code(animal_url(@animal, qrc: 'true')) if @animal.qr_code.blank? || (@animal.created_at < Date.new(2014,8,1) )
+        @animal.create_qr_code(animal_url(@animal, qrc: 'true')) if (@animal.qr_code.blank? || @animal.qr_code_date.blank?)
         #@animal.create_activity :update, owner: current_user
         format.html { redirect_to return_path, notice: @animal.name + ' was successfully updated.' }
         format.json { head json: return_path }
@@ -131,7 +131,7 @@ class AnimalsController < ApplicationController
     @success = ((params[:transferee][:email] == params[:transferee][:email2]) && params[:transferee][:email].match(/^\S+@\S+\.\S+$/))
     if @success
       transferee_id = @animal.transfer_ownership(params[:transferee], animal_url(@animal.id) + "?transfer=true" ) 
-      @animal.create_qr_code(animal_url(@animal, qrc: 'true')) unless @animal.qr_code.present?
+      @animal.create_qr_code(animal_url(@animal, qrc: 'true')) if (@animal.qr_code.blank? || @animal.qr_code_date.blank?)
       @owner.capture_transfer(@animal.id, transferee_id, params[:transferee], params[:org] ) if @owner.class.name == 'Organization'
       if @animal.owner.class.name == "Household"
         @household = @animal.owner 
