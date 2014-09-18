@@ -195,6 +195,7 @@ class Animal < ActiveRecord::Base
   end
   
   def create_qr_code(url)
+    #self.update_attribute :qr_code, nil if self.qr_code.present?
     qr_size = 4
     qr_code = nil
     
