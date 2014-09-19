@@ -63,7 +63,7 @@ module ApplicationHelper
   def s3_url(file_name)
     #'https://s3-us-west-2.amazonaws.com/petabyt/app_images/' << file_name
     #'https://s3.amazonaws.com/petabyt/app_images/' << file_name
-    'https://s3.amazonaws.com/animal_minder/app_images/' << file_name
+    'https://s3.amazonaws.com/animalminder/app_images/' << file_name
   end
   
   def button_small(text, button_id = 'button1', button_class = '' )
