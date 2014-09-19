@@ -330,7 +330,7 @@ class Animal < ActiveRecord::Base
   def self.create_qr_code_for_all
     cnt = 0
     Animal.find_each do |animal|
-      if animal.qr_code.present?
+      if false # animal.qr_code.present?
         animal.qr_code = nil
         animal.save
         animal.create_qr_code 
