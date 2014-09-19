@@ -328,9 +328,16 @@ class Animal < ActiveRecord::Base
   end
   
   def self.create_qr_code_for_all
+    cnt = 0
     Animal.find_each do |animal|
-      animal.create_qr_code if animal.qr_code.present?
+      if animal.qr_code.present?
+        animal.qr_code = nil
+        animal.save
+        animal.create_qr_code 
+        cnt += 1
+      end
     end
+    cnt
   end
   
   def check_in(service_provider_id)
