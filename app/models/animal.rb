@@ -95,13 +95,13 @@ class Animal < ActiveRecord::Base
   
   dragonfly_accessor :qr_code do
     storage_options do |attachment|
-      { path: "qr_codes/#{Rails.env}/#{id}.png?dt=#{qr_code_date}" }
+      { path: "qr_codes/#{Rails.env}/#{id}_#{qr_code_date}.png" }
     end
   end
   
   dragonfly_accessor :avatar do
     storage_options do |attachment|
-      { path: "avatars/#{Rails.env}/#{id}.png?rnd=#{rand(36**4).to_s(36)}" }
+      { path: "avatars/#{Rails.env}/#{id}_#{Date.today}.png" }
     end
   end
  
@@ -194,7 +194,15 @@ class Animal < ActiveRecord::Base
     food_id ? Food.find(food_id).name : "None"
   end
   
-  def create_qr_code(url)
+  def create_qr_code(url = nil)
+    if Rails.env.production?
+      host = "https://animalminder.com"
+    else
+      host = "localhost:3000"
+    end
+    
+    url = Rails.application.routes.url_helpers.animal_url(self, m: 'qrc', host: host)
+    
     #self.update_attribute :qr_code, nil if self.qr_code.present?
     qr_size = 4
     qr_code = nil
@@ -316,6 +324,12 @@ class Animal < ActiveRecord::Base
     
     users.each do |user|
       UserMailer.vaccination_notice(user, self, msg).deliver 
+    end
+  end
+  
+  def self.create_qr_code_for_all
+    Animal.find_each do |animal|
+      animal.create_qr_code if animal.qr_code.present?
     end
   end
   
