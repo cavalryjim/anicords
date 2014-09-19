@@ -62,8 +62,12 @@
 	      </div>
 	    </div>
 	    
+	    
 	    <div class="row">
 	      <div class="large-12 columns">
+	      	<%= f.label :role_ids, "roles (all that apply)" %>
+	        <%= f.text_field :role_ids %>
+	        
 	      	<%= select_tag 'user_role', options_for_select(organization_roles), include_blank: false, class:'regular_select' %>  
 	      </div>
 	    </div>
