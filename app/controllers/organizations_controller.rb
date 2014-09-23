@@ -72,7 +72,8 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def create_user
-    User.create_user_to_group(params[:user][:email], @organization, params[:user_role],
+    #breakage
+    User.create_user_to_group(params[:user][:email], @organization, params[:user_roles],
           params[:user][:first_name], params[:user][:last_name], params[:user][:phone] )
     
     redirect_to edit_organization_path(@organization), notice: 'Human was successfully added.'

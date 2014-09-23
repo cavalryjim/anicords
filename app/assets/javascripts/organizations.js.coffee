@@ -32,6 +32,21 @@ $("#import_button").click (event) ->
   
 $("#panel2").css "min-height", $("#panel1").height()
 $("#panel3").css "min-height", $("#panel1").height()
+
+#$("#user_roles").select2
+#  minimumResultsForSearch: 55
+#  width: "100%"
+
+#data = [
+#    {text: 'administrator (full access)', id: 'admin'} 
+#    {text: 'administrator (dogs only)', id: 'admin_dogs'} 
+#    {text: 'administrator (cats only)', id: 'admin_cats'}
+#    {text: 'administrator (vaccinations)', id: 'admin_vaccinations'}
+#    {text: 'member (limited access)', id: 'org_member'}
+#    {text: 'vet services', id: 'org_vet'}
+#]
+
+  
   
 $(".org_animal_div").on "show", ->
   $(document).foundation()
@@ -403,14 +418,14 @@ $(".org_animal_div").on "show", ->
     else
       $("#animal_weight_table_div").slideUp()
       $("img#weight_details").attr "src", "/assets/details_open.png"
-    
+  
   $(".document_table .email").click (event) ->
     nTr = $(this).closest('tr').next()
     if $(nTr).is(":hidden")
       $(nTr).show("slow")
     else
       $(nTr).hide("slow") 
-
+  
   $("#delete_button").click (event) ->
     event.preventDefault()
     $("#delete_dialog").dialog
