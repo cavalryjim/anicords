@@ -186,20 +186,20 @@ class User < ActiveRecord::Base
     
     if user.present?
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
-      user.add_roles(group, roles)
+      user.add_roles(roles, group)
       Rails.env.production? ? QC.enqueue("User.added_to_group", user_association.id) : UserMailer.added_to_group(user_association.id).deliver  
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
-      user.add_roles(group, roles)
+      user.add_roles(roles, group)
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_group", user_association.id, generated_password) : UserMailer.created_and_added_to_group(user_association.id, generated_password).deliver 
     end
     
     return user
   end
   
-  def add_roles(group, roles)
+  def add_roles(roles, group)
     # JDavis: remove existing roles
     self.group_roles(group).each do |existing_role|
       self.remove_role existing_role.name, group
