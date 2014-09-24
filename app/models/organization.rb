@@ -65,10 +65,10 @@ class Organization < ActiveRecord::Base
     address1_changed? || address2_changed? || city_changed? || state_changed? || zip_changed?
   end
   
-  def associate_user(user, role)
+  def associate_user(user, roles)
     user_association = UserAssociation.where(user_id: user.id, group: self).first_or_create
     #user_association.update_attribute :administrator, administrator 
-    user.add_role(role, self)
+    user.add_roles(roles, self)
   end
   
   def associate_location(location)
