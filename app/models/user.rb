@@ -173,29 +173,25 @@ class User < ActiveRecord::Base
   end
   
   def self.added_to_group(user_association_id)
-    #user_association = UserAssociation.find(user_association_id)
     UserMailer.added_to_group(user_association_id).deliver
   end
   
   def self.created_and_added_to_group(user_association_id, password)
-    #user_association = UserAssociation.find(user_association_id)
     UserMailer.created_and_added_to_household(user_association_id, password).deliver
   end
   
-  def self.create_user_to_group(group, roles, email, first_name="", last_name="", phone="")
+  def self.add_user_to_group(group, roles, email, first_name="", last_name="", phone="")
     email = email.downcase
     user = User.find_by(email: email)
     
     if user.present?
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
-      #user_association.update_attribute :administrator, administrator if administrator
       user.add_roles(roles, group)
       Rails.env.production? ? QC.enqueue("User.added_to_group", user_association.id) : UserMailer.added_to_group(user_association.id).deliver  
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
-      #user_association.update_attribute :administrator, administrator if administrator
       user.add_roles(roles, group)
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_group", user_association.id, generated_password) : UserMailer.created_and_added_to_group(user_association.id, generated_password).deliver 
     end
