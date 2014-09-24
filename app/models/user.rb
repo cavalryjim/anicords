@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
     name
   end
   
+  def ability
+    @ability ||= Ability.new(self)
+  end
+  delegate :can?, :cannot?, :to => :ability
+  
   def name
     if first_name.present? || last_name.present?
       first_name.to_s + ' ' + last_name.to_s
@@ -82,7 +87,7 @@ class User < ActiveRecord::Base
   def all_notifications
     full_list = self.notifications 
     user_associations.where(receive_notifications: true, group_type: "Household").each do |association|
-      full_list += association.group.notifications if (can? :read, association.group)
+      full_list += association.group.notifications if (self.can?(:read, association.group))
     end
     return full_list
   end
