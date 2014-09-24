@@ -72,10 +72,10 @@ class ServiceProvider < ActiveRecord::Base
     Service.where(service_provider_type_id: self.service_provider_type_ids).all
   end
   
-  def associate_user(user, role)
+  def associate_user(user, roles)
     user_association = UserAssociation.where(user_id: user_id, group: self).first_or_create
     #user_association.update_attribute :administrator, administrator 
-    user.add_role(role, self)
+    user.add_roles(roles, self)
   end
   
   def associate_animal(animal_id)
