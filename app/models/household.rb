@@ -64,7 +64,7 @@ class Household < ActiveRecord::Base
   def associate_user(user, roles)
     user_association = UserAssociation.where(user_id: user.id, group: self).first_or_create
     #user_association.update_attribute :administrator, administrator if administrator
-    user.add_roles(roles, self)
+    user.add_roles(self, roles)
   end
   
   def associate_service_provider(service_provider_id)
