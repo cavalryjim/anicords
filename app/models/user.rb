@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   def all_notifications
     full_list = self.notifications 
     user_associations.where(receive_notifications: true, group_type: "Household").each do |association|
-      full_list += association.group.notifications
+      full_list += association.group.notifications if (can? :read, association.group)
     end
     return full_list
   end
