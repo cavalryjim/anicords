@@ -45,6 +45,7 @@
 #  neuter_location      :string(255)
 #  microchip_brand_id   :integer
 #  active               :boolean          default(TRUE)
+#  qr_code_date         :date
 #
 
 class Animal < ActiveRecord::Base
