@@ -2,8 +2,19 @@
 
 <%= form_tag contact_owner_path(@animal), remote: true, id: "contact_form" do %>
   <div class="row">
-    <div class="large-12 columns">
-      	
+    <div class="large-12 columns"> 	
+  	  <%= text_field_tag 'sender_name', nil, placeholder: "your name"%> 
+    </div> 
+  </div>
+  
+  <div class="row">
+    <div class="large-12 columns"> 	
+  	  <%= text_field_tag 'sender_contact', nil, placeholder: "email address or phone"%> 
+    </div> 
+  </div>
+  
+  <div class="row">
+    <div class="large-12 columns">	
   	  <%= text_area_tag 'message', nil, placeholder: "message to owner", class: "text_area_10em"%> 
     </div> 
   </div>

@@ -24,50 +24,7 @@
 
 </div> 
 
-<div id="newHumanModal" class="reveal-modal" data-reveal>
-	  <h3>Add members to your household</h3>
-	  <%= form_for User.new, url: {action: "create_user"}, html: { id: "add_user_form", "data-abide" => '', class: "user_form" }, remote: true do |f| %>
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :email, placeholder: "Email"  %>
-	        <small class="error">Email required.</small>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :first_name, placeholder: "first name"  %>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :last_name, placeholder: "last name"  %>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :phone, placeholder: "phone"  %>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	      	<%= select_tag 'user_role', options_for_select(household_roles), include_blank: false, class:'regular_select' %>  
-	      </div>
-	    </div>
-	    
-	    <%= f.hidden_field :household_id, value: @household.id %>
-	    
-	    <div class="actions">
-	      <%= f.submit "add member", class: "button small" %>
-	    </div>
-	  
-	  <% end %>
-	  
-	  <a class="close-reveal-modal">&#215;</a>
-</div>
+<%= render 'layouts/add_user'%>
 
 <div id="editHumanModal" class="reveal-modal" data-reveal>
   

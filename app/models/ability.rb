@@ -163,7 +163,7 @@ class Ability
     can :manage, UserAssociation do |association|
       association.new_record? or
       #association.user == user or
-      can? :manage, association.user
+      can? :manage, association.user or
       can? :manage, association.group
       #user.has_role? :admin, association.group or
       #association.group.admin_users.include?(user) or 

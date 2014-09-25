@@ -35,7 +35,7 @@ class HouseholdsController < ApplicationController
   def create
     @household = Household.new(household_params)
     respond_to do |format|
-      if @household.save && @household.associate_user(current_user, 'member')
+      if @household.save && @household.associate_user(current_user, ['member'])
         #User.create_user_to_group(params[:human_email], @household, 'member', params[:human_first_name], params[:human_last_name], params[:human_phone]) if (params[:human_email] != "")
 
         @household.transfer_animals(params[:animal_transfers]) if params[:animal_transfers].present?
@@ -85,7 +85,7 @@ class HouseholdsController < ApplicationController
   
   def create_user
     @sitter_page = (params[:commit] == 'add sitter')
-    new_user = User.create_user_to_group(params[:user][:email], @household, params[:user_role],
+    User.add_user_to_group(@household, params[:user_roles], params[:user][:email],
       params[:user][:first_name], params[:user][:last_name], params[:user][:phone])
     #new_user.create_activity :added_to_group, owner: current_user, recipient: @household
     

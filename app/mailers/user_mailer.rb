@@ -111,10 +111,11 @@ class UserMailer < ActionMailer::Base
     mail to: @group.user_emails, subject: "AnimalMinder: " + @group.name + " weekly update"
   end
   
-  def animal_owner_message(animal, message)
+  def animal_owner_message(animal, message, sender_name, sender_contact )
     @animal = animal
     @message = message
-    
+    @sender_name = sender_name
+    @sender_contact = sender_contact
     mail to: @animal.owner.user_emails, subject: "AnimalMinder: message about " + @animal.name
   end
   

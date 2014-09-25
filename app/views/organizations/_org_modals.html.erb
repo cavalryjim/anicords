@@ -30,57 +30,6 @@
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 	
-	<div id="newHumanModal" class="reveal-modal" data-reveal>
-	  <div class="row">
-	    <div class="large-12 columns">
-	      <h3>Add users to your organization</h3>
-	    </div>
-	  </div>
-	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :email, placeholder: "email"  %>
-	        <small class="error">Email required.</small>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :first_name, placeholder: "first name"  %>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :last_name, placeholder: "last name"  %>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.text_field :phone, placeholder: "phone number"  %>
-	      </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	      	<%= select_tag 'user_role', options_for_select(organization_roles), include_blank: false, class:'regular_select' %>  
-	      </div>
-	    </div>
-	    
-	    <%= f.hidden_field :organization_id, value: @organization.id %>
-	    
-	    <div class="row">
-	      <div class="large-12 columns">
-	        <%= f.submit "submit", class: "button small" %>
-	      </div>
-	    </div>
-	  
-	  <% end %>
-	  
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-	
 	<div id="locationModal" class="reveal-modal" data-reveal>
 	  <div id='org_location_div'></div>
 	  

@@ -143,6 +143,8 @@ class RemoteRequestsController < ApplicationController
     
   end
   
+  
+  
   def vaccinations
     n = "%#{params[:term]}%"
     a = "#{params[:at_id]}"

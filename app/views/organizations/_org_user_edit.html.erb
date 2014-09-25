@@ -1,5 +1,5 @@
 <h4><%= @user.name %></h4>
-<p>This not functional.  Will be able to add / remove multiple roles to a user by September 19.</p>
+<p>This not functional.  Will be able to edit / remove roles to a user by September 25.</p>
 <table>
   <% @roles.each do |role| %>
     <tr>
@@ -8,9 +8,3 @@
     </tr>
   <% end %>
 </table>
-
-<div class="row">
-  <div class="large-6 columns">
-    <%= select_tag 'user_role', options_for_select(organization_roles), include_blank: true %>  
-  </div>
-</div>

@@ -1,0 +1,57 @@
+<div id="addUserModal" class="reveal-modal" data-reveal>
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <h3>Add users</h3>
+	    </div>
+	  </div>
+	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :email, placeholder: "email"  %>
+	        <small class="error">Email required.</small>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :first_name, placeholder: "first name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :last_name, placeholder: "last name"  %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :phone, placeholder: "phone number"  %>
+	      </div>
+	    </div>
+	    
+	    
+	    <div class="row bottom_padding_1em">
+	      <div class="large-12 columns">        
+	      	<%= label_tag 'user_roles', 'roles (select all that apply)'%>
+	      	<% if @organization.present? %>
+	      	  <%= select_tag 'user_roles', options_for_select(organization_roles, organization_roles.first), multiple: true, class: 'regular_select' %>
+	          <%= f.hidden_field :organization_id, value: @organization.id %>
+	      	<% elsif @household.present? %>
+	      	  <%= select_tag 'user_roles', options_for_select(household_roles, household_roles.first), multiple: true, class: 'regular_select' %>
+	      	  <%= f.hidden_field :household_id, value: @household.id %>
+	      	<% end %>
+	      </div>
+	    </div>
+	    
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.submit "submit", class: "button small" %>
+	      </div>
+	    </div>
+	  
+	  <% end %>
+	  
+	  <a class="close-reveal-modal">&#215;</a>
+</div>

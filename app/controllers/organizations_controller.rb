@@ -34,9 +34,9 @@ class OrganizationsController < InheritedResources::Base
   def create
     @organization = Organization.new(organization_params)
     respond_to do |format|
-      if @organization.save && @organization.associate_user(current_user, 'admin')
-        User.create_user_to_group(params[:admin1_email], @organization, 'admin', params[:admin1_first_name], params[:admin1_last_name], params[:admin1_phone] ) if (params[:admin1_email].present?)
-        User.create_user_to_group(params[:admin2_email], @organization, 'admin', params[:admin2_first_name], params[:admin2_last_name], params[:admin2_phone] ) if (params[:admin2_email].present?)
+      if @organization.save && @organization.associate_user(current_user, ['admin'])
+        User.add_user_to_group(@organization, ['admin'], params[:admin1_email], params[:admin1_first_name], params[:admin1_last_name], params[:admin1_phone] ) if (params[:admin1_email].present?)
+        User.add_user_to_group(@organization, ['admin'], params[:admin2_email], params[:admin2_first_name], params[:admin2_last_name], params[:admin2_phone] ) if (params[:admin2_email].present?)
         
         format.html { redirect_to organization_path(@organization), notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
@@ -72,10 +72,11 @@ class OrganizationsController < InheritedResources::Base
   end
   
   def create_user
-    User.create_user_to_group(params[:user][:email], @organization, params[:user_role],
+    #breakage
+    user = User.add_user_to_group( @organization, params[:user_roles], params[:user][:email],
           params[:user][:first_name], params[:user][:last_name], params[:user][:phone] )
-    
-    redirect_to edit_organization_path(@organization), notice: 'Human was successfully added.'
+    notice = user.present? ? 'User was successfully added' : 'Not able to add this user.  Try again later.'
+    redirect_to edit_organization_path(@organization), notice: notice
   end
   
   def petfinder_import

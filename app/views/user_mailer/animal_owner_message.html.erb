@@ -5,6 +5,8 @@
 </p>
 
 <p style="background-color:yellow">
+  <%= (@sender_name + '</br>').html_safe if @sender_name.present? %>
+  <%= (@sender_contact + '</br>').html_safe if @sender_contact.present? %>
   <i><%= @message %></i>
 </p>
 

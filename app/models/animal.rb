@@ -95,13 +95,13 @@ class Animal < ActiveRecord::Base
   
   dragonfly_accessor :qr_code do
     storage_options do |attachment|
-      { path: "qr_codes/#{Rails.env}/#{id}.png" }
+      { path: "qr_codes/#{Rails.env}/#{id}_#{qr_code_date}.png" }
     end
   end
   
   dragonfly_accessor :avatar do
     storage_options do |attachment|
-      { path: "avatars/#{Rails.env}/#{id}.png?rnd=#{rand(36**4).to_s(36)}" }
+      { path: "avatars/#{Rails.env}/#{id}_#{Date.today}.png" }
     end
   end
  
@@ -194,7 +194,16 @@ class Animal < ActiveRecord::Base
     food_id ? Food.find(food_id).name : "None"
   end
   
-  def create_qr_code(url)
+  def create_qr_code(url = nil)
+    if Rails.env.production?
+      host = "https://animalminder.com"
+    else
+      host = "localhost:3000"
+    end
+    
+    url = Rails.application.routes.url_helpers.animal_url(self, m: 'qrc', host: host)
+    
+    #self.update_attribute :qr_code, nil if self.qr_code.present?
     qr_size = 4
     qr_code = nil
     
@@ -206,7 +215,11 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    self.update_attribute :qr_code, qr_code.to_img.to_string  if qr_code 
+    if qr_code 
+      self.qr_code_date = Date.today  
+      self.qr_code = qr_code.to_img.to_string
+      self.save
+    end
   end
 
   def profile_completion
@@ -314,6 +327,19 @@ class Animal < ActiveRecord::Base
     end
   end
   
+  def self.create_qr_code_for_all
+    cnt = 0
+    Animal.find_each do |animal|
+      if false # animal.qr_code.present?
+        animal.qr_code = nil
+        animal.save
+        animal.create_qr_code 
+        cnt += 1
+      end
+    end
+    cnt
+  end
+  
   def check_in(service_provider_id)
     #animal_association = AnimalAssociation.where(animal_id: self.id, service_provider_id: service_provider_id).first_or_create
     #animal_association.update_attribute :checked_in, true
@@ -386,11 +412,11 @@ class Animal < ActiveRecord::Base
     self.animal_medications.where.not(medication_type: 'heartworm')
   end
   
-  def contact_owner(message, sender_id = nil)
+  def contact_owner( message, sender_id = nil, sender_name = nil, sender_contact = nil )
     return false unless message.present?
     #sender = User.find(sender_id)
     
-    UserMailer.animal_owner_message(self, message).deliver 
+    UserMailer.animal_owner_message(self, message, sender_name, sender_contact ).deliver 
   end
   
   private

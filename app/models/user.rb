@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
     name
   end
   
+  def ability
+    @ability ||= Ability.new(self)
+  end
+  delegate :can?, :cannot?, :to => :ability
+  
   def name
     if first_name.present? || last_name.present?
       first_name.to_s + ' ' + last_name.to_s
@@ -82,7 +87,7 @@ class User < ActiveRecord::Base
   def all_notifications
     full_list = self.notifications 
     user_associations.where(receive_notifications: true, group_type: "Household").each do |association|
-      full_list += association.group.notifications
+      full_list += association.group.notifications if (self.can?(:read, association.group))
     end
     return full_list
   end
@@ -173,34 +178,42 @@ class User < ActiveRecord::Base
   end
   
   def self.added_to_group(user_association_id)
-    #user_association = UserAssociation.find(user_association_id)
     UserMailer.added_to_group(user_association_id).deliver
   end
   
   def self.created_and_added_to_group(user_association_id, password)
-    #user_association = UserAssociation.find(user_association_id)
     UserMailer.created_and_added_to_household(user_association_id, password).deliver
   end
   
-  def self.create_user_to_group(email, group, role, first_name="", last_name="", phone="")
+  def self.add_user_to_group(group, roles, email, first_name="", last_name="", phone="")
     email = email.downcase
     user = User.find_by(email: email)
     
     if user.present?
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
-      #user_association.update_attribute :administrator, administrator if administrator
-      user.add_role(role, group)
+      user.add_roles(roles, group)
       Rails.env.production? ? QC.enqueue("User.added_to_group", user_association.id) : UserMailer.added_to_group(user_association.id).deliver  
     else
       generated_password = Devise.friendly_token.first(8)
       user = User.create(email: email, password: generated_password, password_confirmation: generated_password, first_name: first_name, last_name: last_name )
       user_association = UserAssociation.where(user_id: user.id, group: group).first_or_create
-      #user_association.update_attribute :administrator, administrator if administrator
-      user.add_role(role, group)
+      user.add_roles(roles, group)
       Rails.env.production? ? QC.enqueue("User.created_and_added_to_group", user_association.id, generated_password) : UserMailer.created_and_added_to_group(user_association.id, generated_password).deliver 
     end
     
     return user
+  end
+  
+  def add_roles(roles, group)
+    # JDavis: remove existing roles
+    self.group_roles(group).each do |existing_role|
+      self.remove_role existing_role.name, group
+    end
+    
+    # JDavis: add new roles
+    roles.each do |role|
+      self.add_role role, group
+    end
   end
   
   def animal_transfer_pending(animal_id)

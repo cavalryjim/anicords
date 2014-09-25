@@ -31,11 +31,11 @@ module OrganizationsHelper
   end
   
   def organization_roles
-    [['administrator (full access)', :admin], 
+    [['member (limited access)', :org_member],
     ['administrator (dogs only)', :admin_dogs], 
     ['administrator (cats only)', :admin_cats],
     ['administrator (vaccinations)', :admin_vaccinations],
-    ['member (limited access)', :org_member],
+    ['administrator (full access)', :admin],
     ['vet services', :org_vet]]
   end
   

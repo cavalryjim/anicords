@@ -30,7 +30,14 @@ class OrgProfile < ActiveRecord::Base
   belongs_to  :organization_location
   
   #validates_presence_of :animal_id
-  validates_presence_of :organization_location_id
+  #validates_presence_of :organization_location_id
+  
+  before_save  :check_organization_location
+  
+  def check_organization_location
+    return true unless self.animal.owner.class.name == "Organization"
+    self.organization_location_id ||= self.animal.owner.organization_locations.first.id 
+  end
   
   
 end
