@@ -1,0 +1,60 @@
+
+	<h4><%= @user.name %></h4>
+	
+	<%= form_for @user, url: user_association_path(@user_association), html: { "data-abide" => '' }, remote: true do |f| %>
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :email, placeholder: "email", disabled: (cannot? :update, @user)  %>
+	        <small class="error">Email required.</small>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :first_name, placeholder: "first name", disabled: (cannot? :update, @user)   %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :last_name, placeholder: "last name", disabled: (cannot? :update, @user)   %>
+	      </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.text_field :phone, placeholder: "phone number", disabled: (cannot? :update, @user)   %>
+	      </div>
+	    </div>
+	    
+	    
+	    <div class="row bottom_padding_1em">
+	      <div class="large-12 columns">        
+	      	<%= label_tag 'user_roles', 'roles (select all that apply)'%>    	
+	      	<% if @organization.present? %>
+	      	  <%= select_tag 'user_roles', options_for_select(organization_roles, @user.group_roles(@organization)), multiple: true, class: 'regular_select2' %>
+	          <%= f.hidden_field :organization_id, value: @organization.id %>
+	      	<% elsif @household.present? %>
+	      	  <%= select_tag 'user_roles', options_for_select(household_roles, household_roles.first), multiple: true, class: 'regular_select2' %>
+	      	  <%= f.hidden_field :household_id, value: @household.id %>
+	      	<% end %>
+	      </div>
+	    </div>
+	    
+	    
+	    <div class="row">
+	      <div class="large-12 columns">
+	        <%= f.submit "submit", class: "button small" %>
+	      </div>
+	    </div>
+	  
+	  <% end %>
+	  
+<script>
+  //alert('hello');
+  //$(document).ready(function() { $(".regular_select").select2(); });
+  $(".regular_select2").select2({ 
+  	minimumResultsForSearch: 55, 
+  	width: '100%'
+  });
+</script>

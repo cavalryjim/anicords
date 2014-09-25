@@ -1,5 +1,6 @@
 class UserAssociationsController < ApplicationController
   before_action :set_user_association, except: [:create]
+  before_action :set_group, only: [:edit, :update]
   before_filter :authenticate_user!
   authorize_resource
   
@@ -33,7 +34,8 @@ class UserAssociationsController < ApplicationController
   end
   
   def update
-    
+    user = @user_association.user
+    user.add_roles(params[:user_roles] , @user_association.group)
   end
 
   # DELETE /household_associations/1
@@ -44,10 +46,11 @@ class UserAssociationsController < ApplicationController
     if params[:household_id]
       @household = Household.find(params[:household_id])
       redirect_path = edit_household_path(params[:household_id])
+    elsif params[:organization_id]
+      @organization = Organization.find(params[:organization_id])
+      redirect_path = edit_organization_path(params[:organization_id])
     elsif params[:user_id]
       redirect_path = edit_user_path(params[:user_id])
-    elsif params[:organization_id]
-      redirect_path = edit_organization_path(params[:organization_id])
     else
       redirect_path = edit_user_path(current_user)
     end
@@ -65,6 +68,11 @@ class UserAssociationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user_association
       @user_association = UserAssociation.find(params[:id])
+    end
+    
+    def set_group
+      @household = @user_association.group if @user_association.group.class.name == 'Household'
+      @organization = @user_association.group if @user_association.group.class.name == 'Organization'
     end
     
     #def set_user

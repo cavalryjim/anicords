@@ -29,7 +29,7 @@ gem 'queue_classic', '2.2.2'
 gem 'simple_form', '3.0.0'
 gem 'html5_validators', '1.1.2'
 gem 'remotipart', '1.2.1'
-gem 'select2-rails', '3.5.7'
+gem 'select2-rails', '3.5.9.1'
 #gem 'public_activity', '1.4.0'
 gem 'cancan', '1.6.10'
 gem 'activeadmin', github: 'cavalryjim/active_admin' #JDavis: my version of the gem
@@ -69,7 +69,9 @@ gem 'rolify', '3.4.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '2.2.1'
+#gem 'jquery-rails', '2.2.1'
+#gem 'jquery-ui-rails', '4.2.1'
+gem 'jquery-rails', '2.3.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks', '1.3.0'

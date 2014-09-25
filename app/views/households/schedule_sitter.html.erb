@@ -26,12 +26,14 @@
     <div class="columns large-4">
       <div id="requests_div"><%= render 'requests_table' %></div>
       <div id="sitters_div"><%= render 'sitters_table' %></div>
-      <%= link_to button_small('add sitter'), "#", "data-reveal-id" => "newSitterModal" %>
+      <%= link_to button_small('add sitter'), "#", "data-reveal-id" => "addUserModal" %>
       
     </div>
   </div>
  </section>
 </div>
+
+<%= render 'user_associations/user'%>
 
 <div id="newSitterModal" class="reveal-modal" data-reveal>
 	  <h3>Add a new sitter</h3>

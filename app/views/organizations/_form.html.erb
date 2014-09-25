@@ -17,7 +17,7 @@
   <% end %>
 	  
   <%= content_tag :div, id: 'panel3', class: (@organization.new_record? ? 'content disabled' : 'content') do %>
-	<%= render 'personnel' unless @organization.new_record?%>
+	<div id='personnel_div'><%= render 'personnel' unless @organization.new_record?%></div>
   <% end %>
 
 </div>

@@ -3,6 +3,7 @@
      <table>
 	    <thead>
 	      <tr>
+	      	<th></th>
 	        <th>Household Members</th>
 	        <th>Email</th>
 	        <th>Phone</th>
@@ -14,8 +15,8 @@
 	    <tbody>
 	      <% @household.user_associations.each do |ua| %>
 	        <% if ua.user.present? %>
-	          <% next unless (ua.user.has_role? :member, @household) || (ua.user.has_role? :limited_member, @household)  %>
 	          <tr>
+	          	<td><%= link_to 'edit', edit_user_user_association_path(ua.user, ua), "data-reveal-id" => "editUserModal", remote: true  %></td>
 	            <td><%= ua.user.name %></td>
 	            <td><%= ua.user.email %></td>
 	            <td><%= ua.user.phone %></td>
@@ -33,38 +34,4 @@
 	  </table>
 </fieldset>
 
-<fieldset id='sitters_fieldset' class="member_fieldset">
-  <legend>Sitters</legend> 
-    <table>
-	    <thead>
-	      <tr>
-	        <th>Household Members</th>
-	        <th>Email</th>
-	        <th>Phone</th>
-	        <th>Access</th>
-	        <th></th>
-	      </tr>
-	    </thead>
-	
-	    <tbody>
-	      <% @household.user_associations.each do |ua| %>
-	        <% if ua.user.present? %>
-	          <% next unless ua.user.has_role? :sitter, @household %>
-	          <tr>
-	            <td><%= ua.user.name %></td>
-	            <td><%= ua.user.email %></td>
-	            <td><%= ua.user.phone %></td>
-	            <td><%= ua.user.group_roles(@household, true) %></td>
-	            <td>
-	               <% if ua.user != current_user %>
-	                 <%= link_to image_tag('cross.png', alt:"del", size: '20x20'), household_user_association_path(@household, ua), method: :delete, 
-				 	   data: { confirm: 'Please confirm you want to remove ' + ua.user.name_or_email + ' from this account.' }, remote: true %>
-				   <% end %>
-	            </td>
-	          </tr>
-	        <% end %>
-	      <% end %>     
-	    </tbody>
-	  </table>
-</fieldset>      
-      <%= link_to button_small('Add Member'), "#", "data-reveal-id" => "addUserModal" %>
+<%= link_to button_small('Add Member'), "#", "data-reveal-id" => "addUserModal" %>

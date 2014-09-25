@@ -29,7 +29,7 @@ Anicords::Application.routes.draw do
 
   resources :households do
     member do
-      get 'schedule_sitter'
+      get 'schedule_sitter', as: :schedule_sitter
     end
     resources :animals do
       resources :pictures

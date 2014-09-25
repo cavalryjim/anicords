@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918041719) do
+ActiveRecord::Schema.define(version: 20140925051834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -215,6 +215,8 @@ ActiveRecord::Schema.define(version: 20140918041719) do
     t.date     "qr_code_date"
   end
 
+  add_index "animals", ["owner_id", "owner_type"], name: "index_animals_on_owner_id_and_owner_type", using: :btree
+
   create_table "beta_comments", force: true do |t|
     t.text     "comment"
     t.string   "page_url"
@@ -342,7 +344,7 @@ ActiveRecord::Schema.define(version: 20140918041719) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
+    t.string   "medication_type"
     t.integer  "animal_type_id"
     t.string   "series_name"
     t.integer  "series_number"
@@ -352,7 +354,6 @@ ActiveRecord::Schema.define(version: 20140918041719) do
     t.integer  "frequency"
     t.string   "route"
     t.boolean  "chronic",            default: false
-    t.string   "medication_type"
     t.string   "nada_id"
     t.string   "produced_by"
     t.text     "description"

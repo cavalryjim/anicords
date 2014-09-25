@@ -7,3 +7,8 @@ $(".reveal-modal").foundation('reveal', 'close');
   $("#sitters_div").html('<%= j render("households/sitters_table") %>');
   $("#sitters_div").effect("highlight", {color:"#81F781"}, 1500).unbind();
 <% end %>
+
+<% if @organization.present? %>
+  $("#personnel_div").html('<%= j render("organizations/personnel") %>');
+  $(".personnel_fieldset").effect("highlight", {color:"#81F781"}, 1500).unbind();
+<% end %>

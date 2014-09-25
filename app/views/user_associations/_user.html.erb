@@ -34,7 +34,10 @@
 	    <div class="row bottom_padding_1em">
 	      <div class="large-12 columns">        
 	      	<%= label_tag 'user_roles', 'roles (select all that apply)'%>
-	      	<% if @organization.present? %>
+	      	<% if current_page?(schedule_sitter_household_path) %>
+	      	  <%= select_tag 'user_roles', options_for_select(household_roles, household_roles.last), multiple: true, class: 'regular_select' %>
+	      	  <%= f.hidden_field :household_id, value: @household.id %>
+	      	<% elsif @organization.present? %>
 	      	  <%= select_tag 'user_roles', options_for_select(organization_roles, organization_roles.first), multiple: true, class: 'regular_select' %>
 	          <%= f.hidden_field :organization_id, value: @organization.id %>
 	      	<% elsif @household.present? %>

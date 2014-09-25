@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require foundation
 //= require jquery.remotipart
-//= require select2
 //= require jquery.Jcrop
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
@@ -25,6 +24,7 @@
 //= require fnAddTr
 //= require addtohomescreen
 //= require jquery.datetimepicker
+//= require select2
 //= require_tree .
 
 
@@ -41,7 +41,7 @@ $(function(){
      }
   });
   
-  $(".sticky").sticky();
+  //$(".sticky").sticky();
   
   //orgAnimalDataTable(); // JDavis: might need to call the function later.
   orgTable = $('#animal_table').dataTable({
@@ -74,7 +74,6 @@ $(function(){
   	changeYear: true
   });
   
-  $(".regular_select").select2({ minimumResultsForSearch: 55, width: '100%'});
   
   $(".state_select").select2({ 
   	minimumResultsForSearch: 55, 
@@ -103,6 +102,10 @@ $(function(){
   	formatTime: 'h:i a'
   });
   
+  $(".regular_select").select2({ 
+  	minimumResultsForSearch: 55, 
+  	width: '100%'
+  });
 });
 
 //= require turbolinks
