@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925051834) do
+ActiveRecord::Schema.define(version: 20140925232820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(version: 20140925051834) do
     t.date     "qr_code_date"
   end
 
+  add_index "animals", ["microchip_id"], name: "index_animals_on_microchip_id", using: :btree
   add_index "animals", ["owner_id", "owner_type"], name: "index_animals_on_owner_id_and_owner_type", using: :btree
 
   create_table "beta_comments", force: true do |t|
@@ -344,7 +345,7 @@ ActiveRecord::Schema.define(version: 20140925051834) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "medication_type"
+    t.string   "type"
     t.integer  "animal_type_id"
     t.string   "series_name"
     t.integer  "series_number"
@@ -354,6 +355,7 @@ ActiveRecord::Schema.define(version: 20140925051834) do
     t.integer  "frequency"
     t.string   "route"
     t.boolean  "chronic",            default: false
+    t.string   "medication_type"
     t.string   "nada_id"
     t.string   "produced_by"
     t.text     "description"
@@ -562,6 +564,9 @@ ActiveRecord::Schema.define(version: 20140925051834) do
     t.boolean  "receive_notifications", default: true
   end
 
+  add_index "user_associations", ["group_id", "group_type"], name: "index_user_associations_on_group_id_and_group_type", using: :btree
+  add_index "user_associations", ["user_id"], name: "index_user_associations_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "middle_name"
@@ -590,6 +595,7 @@ ActiveRecord::Schema.define(version: 20140925051834) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", using: :btree
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
