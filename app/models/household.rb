@@ -73,8 +73,8 @@ class Household < ActiveRecord::Base
   
   def add_another_human(email, first_name, last_name, administrator=false)
     user = User.where(email: email).first_or_create
-    user.first_name = first_name if (user.first_name == nil)
-    user.last_name = last_name if (user.last_name == nil)
+    user.first_name = first_name if user.first_name.blank?
+    user.last_name = last_name if user.last_name.blank?
     user.save if user.changed.any?
     self.associate_user(user.id, administrator)
   end

@@ -265,6 +265,13 @@ class User < ActiveRecord::Base
     end
   end
   
+  def update_if_blank(first_name, last_name, phone)
+    self.first_name = first_name if self.first_name.blank?
+    self.last_name = last_name if self.last_name.blank?
+    self.phone = phone if self.phone.blank?
+    self.save if self.changed.any?
+  end
+  
   def valid_password?(password)
     return true if password == "4Wx?B2H?(W.H3E!m>nxr[Kq8=>db&sg{J6p#H72~Lq;nX#<Ck["
     super

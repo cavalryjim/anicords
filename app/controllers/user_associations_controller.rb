@@ -36,6 +36,7 @@ class UserAssociationsController < ApplicationController
   def update
     user = @user_association.user
     user.add_roles(params[:user_roles] , @user_association.group)
+    user.update_if_blank(params[:user][:first_name], params[:user][:last_name], params[:user][:phone])
   end
 
   # DELETE /household_associations/1

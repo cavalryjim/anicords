@@ -4,26 +4,26 @@
 	<%= form_for @user, url: user_association_path(@user_association), html: { "data-abide" => '' }, remote: true do |f| %>
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :email, placeholder: "email", disabled: (cannot? :update, @user)  %>
+	        <%= f.text_field :email, placeholder: "email", disabled: @user.email.present?  %>
 	        <small class="error">Email required.</small>
 	      </div>
 	    </div>
 	    
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :first_name, placeholder: "first name", disabled: (cannot? :update, @user)   %>
+	        <%= f.text_field :first_name, placeholder: "first name", disabled: @user.first_name.present?  %>
 	      </div>
 	    </div>
 	    
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :last_name, placeholder: "last name", disabled: (cannot? :update, @user)   %>
+	        <%= f.text_field :last_name, placeholder: "last name", disabled: @user.last_name.present?  %>
 	      </div>
 	    </div>
 	    
 	    <div class="row">
 	      <div class="large-12 columns">
-	        <%= f.text_field :phone, placeholder: "phone number", disabled: (cannot? :update, @user)   %>
+	        <%= f.text_field :phone, placeholder: "phone number", disabled: @user.phone.present? %>
 	      </div>
 	    </div>
 	    
@@ -35,7 +35,7 @@
 	      	  <%= select_tag 'user_roles', options_for_select(organization_roles, @user.group_roles(@organization)), multiple: true, class: 'regular_select2' %>
 	          <%= f.hidden_field :organization_id, value: @organization.id %>
 	      	<% elsif @household.present? %>
-	      	  <%= select_tag 'user_roles', options_for_select(household_roles, household_roles.first), multiple: true, class: 'regular_select2' %>
+	      	  <%= select_tag 'user_roles', options_for_select(household_roles, @user.group_roles(@household)), multiple: true, class: 'regular_select2' %>
 	      	  <%= f.hidden_field :household_id, value: @household.id %>
 	      	<% end %>
 	      </div>

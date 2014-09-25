@@ -5,7 +5,7 @@
   <div class="row pad-btm">
     <div class="column large-12">
 	  <h1 class="ptitle left"><%= @organization.name %></h1>
-	  <% if current_user.has_role? :admin, @organization %>
+	  <% if can? :edit, @organization %>
         <%= breadcrumb_nav([@organization.name, edit_link(@organization)]) %>
       <% end %>
 	</div>
