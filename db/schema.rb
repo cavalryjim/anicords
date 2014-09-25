@@ -341,7 +341,7 @@ ActiveRecord::Schema.define(version: 20140913021204) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "medication_type"
+    t.string   "type"
     t.integer  "animal_type_id"
     t.string   "series_name"
     t.integer  "series_number"
@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(version: 20140913021204) do
     t.integer  "frequency"
     t.string   "route"
     t.boolean  "chronic",            default: false
+    t.string   "medication_type"
     t.string   "nada_id"
     t.string   "produced_by"
     t.text     "description"
