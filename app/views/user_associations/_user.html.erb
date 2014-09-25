@@ -1,10 +1,10 @@
 <div id="addUserModal" class="reveal-modal" data-reveal>
 	  <div class="row">
 	    <div class="large-12 columns">
-	      <h3>Add users</h3>
+	      <h3>Users</h3>
 	    </div>
 	  </div>
-	  <%= form_for User.new, url: {action: "create_user"}, html: { "data-abide" => '' } do |f| %>
+	  <%= form_for User.new, url: user_associations_path, html: { "data-abide" => '' }, remote: true do |f| %>
 	    <div class="row">
 	      <div class="large-12 columns">
 	        <%= f.text_field :email, placeholder: "email"  %>

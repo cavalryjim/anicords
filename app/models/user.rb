@@ -207,7 +207,7 @@ class User < ActiveRecord::Base
   def add_roles(roles, group)
     # JDavis: remove existing roles
     self.group_roles(group).each do |existing_role|
-      self.remove_role existing_role.name, group
+      self.remove_role existing_role, group
     end
     
     # JDavis: add new roles

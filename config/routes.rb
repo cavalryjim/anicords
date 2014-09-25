@@ -73,6 +73,7 @@ Anicords::Application.routes.draw do
     resources :user_associations
   end
   
+  resources :user_associations
   resources :animal_vaccinations
   #resources :activities
   resources :beta_comments

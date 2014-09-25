@@ -83,18 +83,7 @@ class HouseholdsController < ApplicationController
     @household
   end
   
-  def create_user
-    @sitter_page = (params[:commit] == 'add sitter')
-    User.add_user_to_group(@household, params[:user_roles], params[:user][:email],
-      params[:user][:first_name], params[:user][:last_name], params[:user][:phone])
-    #new_user.create_activity :added_to_group, owner: current_user, recipient: @household
-    
-    respond_to do |format|
-      format.js
-      format.html { redirect_to edit_household_path(@household), notice: 'Human was successfully added.' }
-      format.json { head :no_content }
-    end
-  end
+  
   
   def schedule_sitter
     @request = SitterRequest.new

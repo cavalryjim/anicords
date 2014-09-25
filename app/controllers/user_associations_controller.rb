@@ -1,5 +1,5 @@
 class UserAssociationsController < ApplicationController
-  before_action :set_user_association
+  before_action :set_user_association, except: [:create]
   before_filter :authenticate_user!
   authorize_resource
   
@@ -9,6 +9,31 @@ class UserAssociationsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  
+  def create
+    if params[:user][:household_id].present?
+      @household = Household.find(params[:user][:household_id]) 
+      @group = @household
+      @sitter_page = (params[:commit] == 'add sitter')
+    elsif params[:user][:organization_id].present?
+      @organization = Organization.find(params[:user][:organization_id])
+      @group = @organization
+    end
+    
+    User.add_user_to_group(@group, params[:user_roles], params[:user][:email],
+      params[:user][:first_name], params[:user][:last_name], params[:user][:phone])
+    #new_user.create_activity :added_to_group, owner: current_user, recipient: @household
+    
+    respond_to do |format|
+      format.js
+      #format.html { redirect_to edit_household_path(@household), notice: 'Human was successfully added.' }
+      #format.json { head :no_content }
+    end
+  end
+  
+  def update
+    
   end
 
   # DELETE /household_associations/1
