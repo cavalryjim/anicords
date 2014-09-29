@@ -6,7 +6,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user.present? && user.persisted?
       sign_in_and_redirect user, notice: "Signed in!"
     else
-      session["devise.user_attributes"] = user.attributes
+      session["devise.user_attributes"] = user.attributes if (user.attributes.present?)
       redirect_to new_user_registration_url, alert: "Sorry but we are unable to authenticate you through Facebook"
     end
   end
