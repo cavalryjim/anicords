@@ -180,4 +180,12 @@ class Household < ActiveRecord::Base
     homes
   end
   
+  def providers
+    providers = []
+    household_associations.each do |association|
+      providers << association.provider
+    end
+    return providers
+  end
+  
 end

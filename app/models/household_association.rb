@@ -2,27 +2,22 @@
 #
 # Table name: household_associations
 #
-#  id                  :integer          not null, primary key
-#  household_id        :integer
-#  service_provider_id :integer
-#  clinic_id           :integer
-#  created_at          :datetime
-#  updated_at          :datetime
+#  id            :integer          not null, primary key
+#  household_id  :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  provider_id   :integer
+#  provider_type :string(255)
 #
 
 class HouseholdAssociation < ActiveRecord::Base
   belongs_to :household
-  belongs_to :service_provider
+  belongs_to :provider, polymorphic: true
   
   validates :household_id, presence: true
-  validates :service_provider_id, presence: true
   
   def name
-    if self.service_provider_id
-      self.service_provider.name
-    elsif self.clinic_id
-      self.clinic.name
-    end
+    self.provider.name
   end
   
 end
