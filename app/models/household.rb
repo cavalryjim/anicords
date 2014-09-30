@@ -182,7 +182,7 @@ class Household < ActiveRecord::Base
   
   def providers
     providers = []
-    household_associations.each do |association|
+    household_associations.find_each do |association|
       providers << association.provider
     end
     return providers

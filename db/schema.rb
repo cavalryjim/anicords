@@ -304,6 +304,9 @@ ActiveRecord::Schema.define(version: 20140930154614) do
     t.string   "provider_type"
   end
 
+  add_index "household_associations", ["household_id"], name: "index_household_associations_on_household_id", using: :btree
+  add_index "household_associations", ["provider_id", "provider_type"], name: "index_household_associations_on_provider_id_and_provider_type", using: :btree
+
   create_table "households", force: true do |t|
     t.string   "name"
     t.string   "address1"
