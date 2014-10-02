@@ -91,6 +91,11 @@ class Ability
       (user.has_role? :limited_member )
     end
     
+    can :manage, HouseholdAssociation do |association|
+      association.new_record? or
+      can? :update, association.household
+    end
+    
     can :manage, Location do |location|
       location.new_record? or
       #location.organizations.first.users.include?(user)

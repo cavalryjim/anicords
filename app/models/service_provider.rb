@@ -23,7 +23,7 @@ class ServiceProvider < ActiveRecord::Base
   resourcify
   #attr_accessible :veterinarians_attributes
   has_many  :households, through: :household_associations
-  has_many  :household_associations, dependent: :destroy
+  has_many  :household_associations, as: :provider, dependent: :destroy
   has_many  :services, through: :service_offerings
   has_many  :service_offerings, dependent: :destroy
   has_many  :business_types

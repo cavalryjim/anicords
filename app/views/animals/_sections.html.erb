@@ -3,10 +3,10 @@
   <li class="tab-title"><a href="#panel2">Health & Wellness</a></li>
   <li class="tab-title"><a href="#panel3">Preferences</a></li>
   <li class="tab-title"><a href="#panel4">Documents</a></li>
-  <% if @household %>
+  <% if false %>
     <li class="tab-title"><a href="#panel5">Service Providers</a></li>
   <% end %>
-  <% if @organization %>
+  <% if @organization.present? %>
     <li class="tab-title"><a href="#panel6">Pictures</a></li>
     <li class="tab-title"><a href="#panel7">Adoption</a></li>
   <% end %>
@@ -31,7 +31,7 @@
 	<%= render 'documents' %>
   <% end %>
   
- <% if @household %>	  
+ <% if false %>	  
   <%= content_tag :div, id: 'panel5', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
 	
     <div class="row">	
@@ -44,7 +44,7 @@
   <% end %>
  <% end %>
  
- <% if @organization %>
+ <% if @organization.present? %>
   <%= content_tag :div, id: 'panel6', class: (@animal.new_record? ? 'content disabled' : 'content') do %>
 	
     <div id="animal_picture_div"><%= render 'pictures/pictures_section' %></div>

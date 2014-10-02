@@ -1,4 +1,21 @@
-<h4>Coming soon!</h4>
-<p>
-	The ability to designate and interact with your service providers is forthcoming.  ETD for scheduling a service via email is Oct. 5, 2014.
-</p>
+<table id="provider_table">
+	<tr>
+	  <th colspan="3">Providers</th>
+	  
+	 
+	</tr>
+	
+	<% @household.household_associations.each do |association|%>
+	  <tr>
+		<td><%= association.name %></td>
+		
+		<td><%= association.provider_types %></td>
+		
+		<td><%= link_to image_tag('cross.png', :alt => "del"), household_household_association_path(@household, association), method: :delete, remote: true, 
+				 data: { confirm: 'Please confirm you want to remove ' + association.name + ' from the list.' } %></td>
+	  </tr>
+	<% end %>
+				
+</table>
+
+<%= link_to button_small('new provider'), '#', "data-reveal-id" => "addHouseholdProviderModal" %>

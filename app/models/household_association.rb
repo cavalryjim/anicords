@@ -20,4 +20,8 @@ class HouseholdAssociation < ActiveRecord::Base
     self.provider.name
   end
   
+  def provider_types
+    self.provider.service_provider_types.map {|t| t.name }.to_sentence if self.provider.service_provider_types.present?
+  end
+  
 end

@@ -42,4 +42,24 @@ jQuery ->
     speed: 'slow'
     visible: 6
   ).show()
+  
+  $('#household_association_provider_id').select2
+    placeholder: "service provider"
+    width: "100%"
+    id: (obj) ->
+      obj.id # use slug field for id
+
+    ajax: # instead of writing the function to execute the request we use Select2's convenient helper
+      url: "/service_providers"
+      dataType: "json"
+      data: (term, page) ->
+        term: term # search term
+        city: $('#city_term').val()
+        state: $('#state_term').val()
+        zip: $('#zip_term').val()
+        provider_type: $('#provider_type_term').val()
+        page_limit: 10
+
+      results: (data, page) -> 
+        results: data
 

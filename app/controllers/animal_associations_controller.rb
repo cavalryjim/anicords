@@ -6,20 +6,16 @@ class AnimalAssociationsController < ApplicationController
   
   def create
     @animal_association = AnimalAssociation.find_or_initialize_by(animal_association_params)
-    respond_to do |format|
-      if @animal_association.save 
-        format.js
-      end
+    @success = @animal_association.save 
+    respond_to do |format| 
+      format.js
     end
   end
   
   def update
+    @success = @animal_association.update(animal_association_params)
     respond_to do |format|
-      if @animal_association.update(animal_association_params)
-        format.js
-      else
-        format.js
-      end
+      format.js 
     end
   end
   

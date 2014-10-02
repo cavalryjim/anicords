@@ -1,0 +1,7 @@
+<% if @success %>
+  $(".reveal-modal").foundation('reveal', 'close');
+  $('#providers_div').html('<%= j render("households/providers") %>');
+  $('#provider_table').effect("highlight", {color:"#81F781"}, 1500).unbind();
+<% else %>
+  return alert("There was a problem.  Please try again later.");
+<% end %>

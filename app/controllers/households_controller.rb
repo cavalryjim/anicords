@@ -28,6 +28,7 @@ class HouseholdsController < ApplicationController
 
   # GET /households/1/edit
   def edit
+    @household_associations = @household.household_associations
   end
 
   # POST /households

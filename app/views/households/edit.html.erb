@@ -27,4 +27,68 @@
 
 <%= render 'user_associations/user'%>
 
+<div id="addHouseholdProviderModal" class="reveal-modal" data-reveal>
+    <h3>Add Service Provider</h3>
+	<%= form_for [@household, HouseholdAssociation.new], remote: true, html: {id: 'household_association_form', "data-abide" => '', class: 'household_association_form flash_save' } do |f| %>
+	  <div class="row">
+	    <div class="large-12 columns">
+		  Narrow your search results by entering a business type, city, state, and/or zip
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="large-6 columns">
+		  <%= select_tag 'provider_type_term', options_from_collection_for_select(ServiceProviderType.all, 'id', 'name'), include_blank: true, class:'regular_select', prompt: 'business type' %>
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-6 columns">
+		  <%= text_field_tag 'city_term', nil, placeholder: "city" %>
+	    </div>  
+	    <div class="large-2 columns">
+		  <%= select_tag 'state_term', options_for_select(us_states), include_blank: true, class:'state_select', prompt: 'state' %>
+	    </div>
+	    <div class="large-3 columns">
+		  <%= text_field_tag 'zip_term', nil, placeholder: "zip" %>
+	    </div>
+	    <div class="large-1 columns"></div>
+	    
+	  </div>
+	  
+	  <div class="row">
+	    <div class="large-11 columns">
+		  <%= f.text_field :provider_id, class: "select" %>
+		  <%= f.hidden_field :provider_type, value: "ServiceProvider" %> 
+	    </div>
+	  </div>
+
+	  <%= f.hidden_field :household_id, value: @household.id %>  
+	  
+	  <div class="actions">
+	    <%= f.submit "add provider", class: "button small" %>
+	  </div>
+	  
+	<% end %>
+	<p>
+	  Don't see the business you are look for?
+	  <%= link_to "Add new provider", "#", "data-reveal-id" => "addNewProviderModal" %>
+	</p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="addNewProviderModal" class="reveal-modal" data-reveal>
+    <h3>Tell us about the new provider</h3>
+
+	<%= form_for(ServiceProvider.new, remote: true, html: {id: 'new_provider_form', "data-abide" => '', class: 'household_association_form flash_save' } ) do |f| %>
+	
+	  <%= render 'service_providers/fields', f: f %>  
+	
+	  <%= hidden_field_tag 'household_id', @household.id %> 
+	  <div class="actions">
+	    <%= f.submit "submit", class: "button small" %>
+	  </div>
+	<% end %>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
 
