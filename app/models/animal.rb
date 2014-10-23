@@ -420,6 +420,10 @@ class Animal < ActiveRecord::Base
     UserMailer.animal_owner_message(self, message, sender_name, sender_contact ).deliver 
   end
   
+  def microchip_info
+    microchip_brand.present? ? microchip_brand.name + ' ' + microchip_id : microchip_id
+  end
+  
   private
   
   def new_health_profile
