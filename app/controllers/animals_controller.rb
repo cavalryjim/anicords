@@ -1,7 +1,8 @@
 class AnimalsController < ApplicationController
   before_action :authenticate_user!, except: [ :show, :microchip_lookup, :contact_owner ]
   before_action :set_animal, only: [:show, :edit, :update, :destroy, :download_file, :transfer_ownership, :accept_transfer, :cancel_transfer,
-                                      :sitter_instructions, :org_flyer, :photo_gallery, :weight_chart, :check_in, :check_out, :contact_owner ]
+                                      :sitter_instructions, :org_flyer, :photo_gallery, :weight_chart, :check_in, :check_out, :contact_owner,
+                                      :dog_facts ]
   before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer,
                                       :contact_owner ]
   #before_filter :authenticate_user!
@@ -187,6 +188,16 @@ class AnimalsController < ApplicationController
       format.pdf do
         pdf = OrgFlyerPdf.new(@animal, @organization)
         send_data pdf.render, filename: "#{@animal}_flyer.pdf",
+                type: "application/pdf", disposition: "inline"
+      end
+    end
+  end
+  
+  def dog_facts
+    respond_to do |format|
+      format.pdf do
+        pdf = DogFactsPdf.new(@animal)
+        send_data pdf.render, filename: "#{@animal}_dog_facts.pdf",
                 type: "application/pdf", disposition: "inline"
       end
     end

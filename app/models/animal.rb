@@ -102,7 +102,7 @@ class Animal < ActiveRecord::Base
   
   dragonfly_accessor :avatar do
     storage_options do |attachment|
-      { path: "avatars/#{Rails.env}/#{id}_#{Date.today}.png" }
+      { path: "avatars/#{Rails.env}/#{id}_#{Date.today}_#{rand(36**4).to_s(36)}.png" }
     end
   end
  

@@ -112,6 +112,7 @@ Anicords::Application.routes.draw do
   patch 'animals/:id/accept_transfer' => 'animals#accept_transfer', as: :accept_transfer
   get 'animals/:id/cancel_transfer' => 'animals#cancel_transfer', as: :cancel_transfer
   get 'animals/:id/sitter_instructions' => 'animals#sitter_instructions', as: :animal_sitter_instructions
+  get 'animals/:id/dog_facts' => 'animals#dog_facts', as: :animal_dog_facts
   post 'animals/:id/contact_owner' => 'animals#contact_owner', as: :contact_owner
   get 'organizations/:organization_id/animals/:id/org_flyer' => 'animals#org_flyer', as: :organization_animal_flyer
   match 'animals/:id/photo_gallery' => 'animals#photo_gallery', via: [:get, :post], as: :animal_photo_gallery
