@@ -27,7 +27,7 @@ class AnimalTransfer < ActiveRecord::Base
     transfers = AnimalTransfer.older_transfers
     transfers.find_each do |transfer|
       next unless transfer.transferee.class.name == "User"
-      UserMailer.animal_transfer_notice(transfer.transferee, transfer.animal).deliver
+      #UserMailer.animal_transfer_notice(transfer.transferee, transfer.animal).deliver
     end
   end
 
