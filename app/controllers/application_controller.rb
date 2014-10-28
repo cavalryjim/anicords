@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
-    if current_user
+    if current_user.present?
       redirect_to user_select_association_path
     else
       redirect_to home_path
