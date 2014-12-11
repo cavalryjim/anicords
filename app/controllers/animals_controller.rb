@@ -5,7 +5,7 @@ class AnimalsController < ApplicationController
                                       :dog_facts ]
   before_action :set_owner, only: [:new, :show, :create, :edit, :update, :destroy, :transfer_ownership, :sitter_instructions, :org_flyer,
                                       :contact_owner ]
-  #before_filter :authenticate_user!
+  
   authorize_resource except: [:accept_transfer, :show, :microchip_lookup, :contact_owner ]
   
   # GET /animals
