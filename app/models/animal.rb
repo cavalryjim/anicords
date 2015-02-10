@@ -390,10 +390,12 @@ class Animal < ActiveRecord::Base
   end
   
   def self.microchip_search(chip_brand, chip_id)
-    if chip_brand.present?
+    if chip_brand.present? && chip_id.present?
       where(microchip_brand_id: chip_brand, microchip_id: chip_id)
-    else
+    elsif chip_id.present?
       where(microchip_id: chip_id)  
+    else
+      nil
     end
   end
   
