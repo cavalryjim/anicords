@@ -17,6 +17,8 @@
   </head>
 
   <body>
+   <div id="wrapper">
+   	
     <%= render 'layouts/header2' %>
 	
 	<%= devise_error_messages! %>
@@ -27,13 +29,14 @@
 	  </div>
     <% end %>
 
-    <section class="white_background">
+    <section id="content" class="white_background">
         <%= yield %>
     </section>
     
-    <section class="border_top border_bottom">
+    <section >
       <%= render 'layouts/footer' %>
     </section>
+   </div>
     
     <% if !user_signed_in? && (defined? resource) %>
 	  <div id="registerSigninModal" class="reveal-modal" data-reveal>

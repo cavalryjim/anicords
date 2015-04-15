@@ -84,7 +84,7 @@ $(function(){
   
   $(".best_in_place").best_in_place();
    
-  $('.full_page').css("min-height", $(window).height() - ( $("#header").height() + 1.5 * $("#nav_menu").height() + $("#footer").height() ) );
+  //$('.full_page').css("min-height", $(window).height() - ( $("#header").height() + 1.5 * $("#nav_menu").height() + $("#footer").height() ) );
   $('.front_page_mainsection').css("min-height", $(window).height() - $("#top_bar").height() );
   $(".front_page_subsection").css("min-height",  $(window).height() );
   
