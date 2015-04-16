@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
   end
   
+  before_filter :check_for_subdomain
+  
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
     if current_user.present?
@@ -37,9 +39,11 @@ class ApplicationController < ActionController::Base
   
   
  private
-  def load_agency_from_subdomain
-    puts 'subdomain is ' + request.subdomain
-    @agency = Agency.find_by_subdomain!(request.subdomain)
+  def check_for_subdomain
+    if request.subdomain.present? && (request.subdomain != 'www')
+      puts 'subdomain is ' + request.subdomain
+      @agency = Agency.find_by_subdomain!(request.subdomain)
+    end
   end
   
 end

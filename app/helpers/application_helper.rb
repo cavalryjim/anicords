@@ -50,13 +50,15 @@ module ApplicationHelper
     image_tag(s3_url('animal_minder2.png'), size: '220x220', class: 'animalminder_image')
   end
   
-  def link_to_home(anchor = animalminder_image)
-    if current_user && current_user.no_associations?
-     link_to(anchor, user_select_account_type_path)
+  def link_to_home(agency = nil, anchor = animalminder_image)
+    if agency
+      link_to(anchor, root_url(subdomain: agency.subdomain))
+    elsif current_user && current_user.no_associations?
+      link_to(anchor, user_select_account_type_path)
     elsif current_user 
-     link_to(anchor, user_select_association_path ) 
+      link_to(anchor, user_select_association_path ) 
     else 
-     link_to(anchor, new_user_registration_path + "#" )
+      link_to(anchor, new_user_registration_path + "#" )
     end
   end
 
