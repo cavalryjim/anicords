@@ -37,5 +37,8 @@ class ApplicationController < ActionController::Base
   
   
  private
+  def load_agency_from_subdomain
+    @agency = Agency.find_by_subdomain!(request.subdomain)
+  end
   
 end
