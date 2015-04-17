@@ -1,0 +1,47 @@
+<% content_for :title, @agency.name %>
+
+<section class="gray_background ">
+  <div class="row pad-btm">
+    <div class="column large-12">
+	  <h1 class="ptitle left"><%= @agency.name %></h1>
+	</div>
+  </div>
+</section>
+
+<div>
+  <div class="row">
+    <div class="large-12 columns">
+      <h3 class="center">Welcome to the animal registry system for <%= @agency.name %></h3>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="row">
+    <div class="large-8 columns">
+      <h5 class="alt">Sign In</h5>
+      <%= render 'devise/registrations/register_sign_in'%> 
+    </div>
+        
+    <div class="small-12 large-4 columns">
+      <h5 class="alt">Mailing List</h5>
+      	
+      	<h4><small>
+      	  Not ready to create an account.  Stay informed on our mailing list.
+      	</small></h4>
+        <%= form_for BetaComment.new, remote: true, html: {id: 'beta_comment_form'} do |f| %>
+		  <div class="row">
+		    <div class="large-12 columns">
+		      <%= f.text_field :email, placeholder: "email address" %>
+		    </div>
+		  </div>
+		    
+		  <%= f.hidden_field :mailing_list, value: true %>
+		  
+		  <div class="actions">
+		    <%= f.submit 'sign up', class: "button small" %>
+		  </div>
+        <% end %>
+    </div>
+  </div>
+</div>

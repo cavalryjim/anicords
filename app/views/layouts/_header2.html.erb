@@ -37,9 +37,9 @@
 		<li class="divider"></li>
 		<li><%= link_to "Contact", contact_us_path + "#" %></li>
 		<li class="divider"></li>
-		<li><%= link_to "About", about_us_path + "#" %></li>
-		<li class="divider"></li>
-		<li><%= link_to "Sign in", new_user_registration_path + "#login" unless @agency.present? %></li>
+		<!-- <li><%= link_to "About", about_us_path + "#" %></li>
+		<li class="divider"></li> -->
+		<li><%= link_to "Sign in", (@agency.present? ? root_url(subdomain: @agency.subdomain) : (new_user_registration_path + "#login") ) %></li>
       <% end %>
     </ul>
     

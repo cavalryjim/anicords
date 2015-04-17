@@ -4,7 +4,7 @@ class AgenciesController < ApplicationController
   #before_filter :load_agency_from_subdomain
   
   def welcome
-    
+    redirect_to home_user_path(current_user) if signed_in?
   end
   
 end

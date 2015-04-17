@@ -70,12 +70,16 @@ Anicords::Application.routes.draw do
   devise_for :users, 
   #ActiveAdmin.routes(self)
         path_names: {sign_in: "login", sign_out: "logout", sign_up: "welcome"}, 
-        controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"} 
+        controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "registrations"}, 
+        path_prefix: 'd'
   
   resources :breeders do
     resources :animals
   end
   resources :users do
+    member do
+      get 'home'
+    end
     resources :user_associations
   end
   

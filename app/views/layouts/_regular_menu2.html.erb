@@ -8,7 +8,7 @@
             
       <section class="top-bar-section">
 	    <ul class="right">
-	      <li><%= link_to_home('Associations')%></li>
+	      <li><%= link_to_home(nil, 'Associations')%></li>
 	      
 	      <% if @organization.present? && @organization.persisted? %>
 	        <li class="has-dropdown">
@@ -42,9 +42,9 @@
 	        </li>
 	      <% end %>
 	      
-	      <% unless @household.present? || @organization.present? %>
+	      <!-- <% unless @household.present? || @organization.present? %>
 	        <li><%= link_to 'About', about_us_path %></li>
-	      <% end %>
+	      <% end %> -->
 	      
 	      <% if user_signed_in? %>
 	        <li class="has-dropdown">

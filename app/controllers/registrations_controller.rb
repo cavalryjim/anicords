@@ -1,13 +1,16 @@
 class RegistrationsController < Devise::RegistrationsController
   
+  
   def create
     super
     
-    if current_user && Rails.env.production?
-     QC.enqueue "User.signup_confirmation", @user.id
-    elsif current_user
-      UserMailer.signup_confirmation(@user).deliver
-    end
+    # if current_user && Rails.env.production?
+     # #QC.enqueue "User.signup_confirmation", @user.id
+      # UserMailer.signup_confirmation(@user).deliver
+    # elsif current_user
+      # UserMailer.signup_confirmation(@user).deliver
+    # end
+    UserMailer.signup_confirmation(@user).deliver if current_user.present?
     
   end
   
