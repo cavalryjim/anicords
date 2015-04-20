@@ -18,6 +18,15 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :manage, Agency do |agency|
+      agency.new_record? or
+      user.has_role? :admin, agency
+    end
+    
+    can :read, Agency do |agency|
+      agency.users.include?(user)
+    end
+    
     can :manage, Animal do |animal|
       animal.new_record? or
       #animal.owner.users.include?(user) or
