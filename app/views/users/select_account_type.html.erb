@@ -1,44 +1,57 @@
 <!--- JDavis: need breadcrumb jdhere --->
 <section class="border_top full_page">
-  <div class="row">
+  <div class="row" data-equalizer >
 	<div class="large-12 columns">
   	
-  	  <fieldset>
+  	  <fieldset >
 		<h4>Select the type of account to create</h4> 
 			
-	    <ul class="small-block-grid-3 large-block-grid-3">
-	      <li>
+	    <ul class="small-block-grid-3 large-block-grid-3" >
+	      <li >
 		   <%= link_to new_household_path do %>
-		    <div class="panel callout front_page_callout">
-	          <p>Household & Foster home (anyone with an animal family member)</p>
+		    <div class="panel callout front_page_callout center" data-equalizer-watch>
+		      <h6>Household</h6>
+	          <p>(anyone with an animal family member)</p>
 	        </div>
 	       <% end %>
 		  </li>
-		  <li >
+		  <li>
 		   <%= link_to new_organization_path do %>
-		    <div class="panel callout front_page_callout">
-	          <p>Animal group (such as a pet rescue)</p>
+		    <div class="panel callout front_page_callout center" data-equalizer-watch>
+		      <h6>Animal group</h6>
+	          <p>(such as a pet rescue)</p>
 	        </div>
 	       <% end %>
 		  </li>
 		  <li>
 		   <%= link_to "#" do %>
-		    <div class="panel callout front_page_callout">
-	          <p>Veterinarians (coming soon!)</p>
+		    <div class="panel callout front_page_callout center" data-equalizer-watch>
+		      <h6>Veterinarian</h6>
+	          <p>(coming soon!)</p>
+	        </div>
+	       <% end %>
+		  </li>
+		  <li>
+		   <%= link_to "#" do %>
+		    <div class="panel callout front_page_callout center" data-equalizer-watch>
+		      <h6>Breeder</h6>
+	          <p>(coming soon!)</p>
 	        </div>
 	       <% end %>
 		  </li>
 		  <li>
 		   <%= link_to new_service_provider_path do %>
-		    <div class="panel callout front_page_callout">
-	          <p>Service provider (groomers, sitters, kennels, etc.). <u>pre-Beta!</u></p>
+		    <div class="panel callout front_page_callout center" data-equalizer-watch>
+		      <h6>Service Provider</h6>
+	          <p>(groomers, sitters, kennels, etc.). <u>pre-Beta!</u></p>
 	        </div>
 	       <% end %>
 		  </li>
 		  <li>
 		   <%= link_to "#" do %>
-		    <div class="panel callout front_page_callout">
-	          <p>Livestock managers (cattle, horses, exotics). Coming soon!</p>
+		    <div class="panel callout front_page_callout center" data-equalizer-watch>
+		      <h6>Livestock</h6>
+	          <p>(cattle, horses, exotics). Coming soon!</p>
 	        </div>
 	       <% end %>
 		  </li>

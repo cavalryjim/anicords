@@ -9,13 +9,14 @@ gem 'rails', '4.0.10'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.16.0'
 
-gem 'sass-rails', '4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 
 gem 'devise', '3.2.2'
 #gem 'zurb-foundation', '4.3.1'
-gem 'foundation-rails', '5.3.0.1'
+#gem 'foundation-rails', '5.3.0.1'
+gem 'foundation-rails', '5.5.1.0'
 gem 'omniauth-twitter', '1.0.0'
 gem 'omniauth-facebook', '1.4.1'
 gem 'annotate', '2.5.0'
@@ -62,6 +63,7 @@ gem 'geocoder', '1.2.2'
 gem 'font-awesome-rails', '4.1.0.0'
 gem 'add-to-homescreen-rails', '3.0.7'
 gem 'rolify', '3.4.0'
+gem 'stripe', '1.21.0'
 
 
 

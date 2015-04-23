@@ -38,7 +38,10 @@ $(function(){
         // generic password: upper-case, lower-case, number/special character, and min 8 characters
         password : /(?=^.{8,}$).*$/
       }
-     }
+    },
+    equalizer: {
+      equalize_on_stack: true
+    }
   });
   
   //$(".sticky").sticky();
@@ -146,3 +149,5 @@ function validateFiles(inputFile, type) {
 
 
 
+
+$(function(){ $(document).foundation(); });

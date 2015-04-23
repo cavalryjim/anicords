@@ -160,7 +160,7 @@ section.front_page_section_login {
 
 .panel_as_button {
  background-color: #008cba !important;
- color: #FFFFFF;
+ color: #FFFFFF !important;
  padding: 0.5em !important; 
  font-size: 0.75em;
  margin-bottom: 1em !important;
@@ -481,12 +481,12 @@ footer {
 }
 
 .data_table select {
-  height: 1.5rem !important;
+  height: 1.5em !important;
   padding: 0 !important;
 }
 
 .no_margin_bottom {
-  margin-bottom: 0rem !important;
+  margin-bottom: 0em !important;
 }
 
 /* JDavis: this hides the document email form and lets jQuery handle the display */
@@ -631,7 +631,7 @@ tr.email_document {
 h1,h2,h3,h4,h5,h6 {
 	color: #008CBA !important;
 }
-p { font-size: 0.85rem !important; }
+p { font-size: 0.85em !important; }
 
 /* ====================
 	Header Styles
@@ -659,7 +659,7 @@ section.navigation {
 
 #divider {
 	border-right: 1px solid #008CBA;
-	padding-right: 1.375rem;
+	padding-right: 1.375em;
 }
 
 
@@ -1079,7 +1079,7 @@ select.shippingDropDown {
 
 .announcement-list h2 {
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 2rem;
+	font-size: 2em;
 	font-weight: 400;
 	line-height: 16px;
 	margin: 0 0 3px 0;
