@@ -40,9 +40,9 @@ class ApplicationController < ActionController::Base
   
  private
   def check_for_subdomain
-    if request.subdomain.present? && (request.subdomain != 'www')
+    if request.subdomain.present? && (request.subdomain != 'www') && (request.subdomain != 'anicords')
       #puts 'subdomain is ' + request.subdomain
-      @agency = Agency.find_by_subdomain!(request.subdomain)
+      @agency = Agency.find_by_subdomain!(request.subdomain) if Agency.first.present?
     end
   end
   
