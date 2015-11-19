@@ -17,12 +17,11 @@ Anicords::Application.routes.draw do
   end
 
   resources :veterinarians
-  # JDavis: taking this out momentarily
-  # resources :agencies do
-    # member do
-      # get 'welcome'
-    # end
-  # end
+  resources :agencies do
+    member do
+      get 'welcome'
+    end
+  end
   resources :organizations do
     resources :user_associations
     resources :animals
@@ -153,7 +152,7 @@ Anicords::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   # match '', to: 'agency#welcome', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, via: :all
-  get '', to: 'agencies#welcome', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  get '', to: 'agencies#welcome', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' && r.subdomain != 'anicords' }
   root 'users#home'
   #root 'devise/registrations#new'
 
