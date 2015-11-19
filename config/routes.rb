@@ -17,11 +17,12 @@ Anicords::Application.routes.draw do
   end
 
   resources :veterinarians
-  resources :agencies do
-    member do
-      get 'welcome'
-    end
-  end
+  # JDavis: taking this out momentarily
+  # resources :agencies do
+    # member do
+      # get 'welcome'
+    # end
+  # end
   resources :organizations do
     resources :user_associations
     resources :animals
